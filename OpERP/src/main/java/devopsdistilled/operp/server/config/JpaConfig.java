@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
 import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -83,6 +84,11 @@ public class JpaConfig {
 	transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 	transactionManager.setJpaDialect(jpaDialect());
 	return transactionManager;
+    }
+    
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+	return new PersistenceExceptionTranslationPostProcessor();
     }
 
 }
