@@ -10,5 +10,6 @@ public class ServerApp {
 		"devopsdistilled.operp.server");
 
 	System.out.println(ctx.toString());
+	((AnnotationConfigApplicationContext) ctx).close();
     }
 }

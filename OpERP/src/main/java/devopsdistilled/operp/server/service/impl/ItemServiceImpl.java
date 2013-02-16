@@ -26,7 +26,8 @@ public class ItemServiceImpl extends GenericServiceImpl<Item, Long> implements
     public void create(String name) {
 	Item item = new Item();
 	item.setName(name);
-	getDao().save(item);
+	getDao().create(item);
     }
+
 
 }

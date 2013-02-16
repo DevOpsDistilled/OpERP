@@ -7,9 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>src/main/resources/server/Beans.xml</config>
 		<config>src/main/resources/client/AppContext.xml</config>
-		<config>src/main/resources/server/AppContext.xml</config>
 	</configs>
 	<configSets>
 	</configSets>

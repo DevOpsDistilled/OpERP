@@ -10,9 +10,10 @@ public abstract class GenericServiceImpl<E, PK extends Serializable> implements
 
     protected abstract GenericDao<E, PK> getDao();
 
+    @SuppressWarnings("unchecked")
     @Override
     public PK save(E newInstance) {
-	return getDao().save(newInstance);
+	return (PK) getDao().create(newInstance);
     }
 
     @Override
@@ -25,10 +26,6 @@ public abstract class GenericServiceImpl<E, PK extends Serializable> implements
 	getDao().update(transientObject);
     }
 
-    @Override
-    public void saveOrUpdate(E transientObject) {
-	getDao().saveOrUpdate(transientObject);
-    }
 
     @Override
     public void delete(E persistentObject) {

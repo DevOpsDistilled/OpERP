@@ -4,11 +4,9 @@ import java.io.Serializable;
 
 public interface GenericDao<E, PK extends Serializable> {
 
-    PK save(E newInstance);
+    E create(E newInstance);
 
     void update(E transientObject);
-
-    void saveOrUpdate(E transientObject);
 
     void delete(E persistentObject);
 

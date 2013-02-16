@@ -8,7 +8,6 @@ public interface GenericService<E, PK extends Serializable> {
 
     void update(E transientObject);
 
-    void saveOrUpdate(E transientObject);
 
     void delete(E persistentObject);
 
