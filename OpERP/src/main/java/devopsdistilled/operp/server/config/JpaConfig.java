@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
 import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -57,7 +56,7 @@ public class JpaConfig {
 	EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
 	jpaVendorAdapter.setDatabase(Database.MYSQL);
 	jpaVendorAdapter.setShowSql(true);
-	jpaVendorAdapter.setGenerateDdl(true);
+	jpaVendorAdapter.setGenerateDdl(false);
 	jpaVendorAdapter
 		.setDatabasePlatform("org.eclipse.persistence.platform.database.MySQLPlatform");
 	return jpaVendorAdapter;
@@ -77,18 +76,22 @@ public class JpaConfig {
     public JpaDialect jpaDialect() {
 	return new EclipseLinkJpaDialect();
     }
-    
+
     @Bean
     public JpaTransactionManager transactionManager() {
 	JpaTransactionManager transactionManager = new JpaTransactionManager();
-	transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+	transactionManager.setEntityManagerFactory(entityManagerFactory()
+		.getObject());
 	transactionManager.setJpaDialect(jpaDialect());
 	return transactionManager;
     }
-    
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
-	return new PersistenceExceptionTranslationPostProcessor();
-    }
+
+    /*
+     * @Bean
+     * public PersistenceExceptionTranslationPostProcessor
+     * exceptionTranslationPostProcessor() {
+     * return new PersistenceExceptionTranslationPostProcessor();
+     * }
+     */
 
 }
