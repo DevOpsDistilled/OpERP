@@ -1,14 +1,18 @@
 package devopsdistilled.operp.server;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import devopsdistilled.operp.server.model.Item;
+import devopsdistilled.operp.server.service.ItemService;
 
 public class ServerApp {
     public static void main(String[] args) {
 
-	ApplicationContext ctx = new AnnotationConfigApplicationContext(
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 		"devopsdistilled.operp.server");
-
-	System.out.println(ctx.toString());
+	ItemService itemService = ctx.getBean(ItemService.class);
+	Item item = itemService.createItem("Test Item");
+	System.out.println(item);
+	ctx.close();
     }
 }
