@@ -13,11 +13,10 @@ public class ItemServiceImpl implements ItemService {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public Item createItem(String name) {
 	Item item = new Item();
-	item.setId(34);
 	item.setName("Test Item");
 	em.persist(item);
 	return item;
