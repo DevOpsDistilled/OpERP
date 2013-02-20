@@ -19,7 +19,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item createItem(String name) {
 	Item item = new Item();
-	item.setName("Test Item");
+	item.setName(name);
 	em.persist(item);
 	return item;
     }
