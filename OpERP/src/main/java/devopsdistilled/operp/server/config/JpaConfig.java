@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -42,6 +43,11 @@ public class JpaConfig {
     }
 
     @Bean
+    public static PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
+	return new PersistenceAnnotationBeanPostProcessor();
+    }
+
+    @Bean
     public DataSource dataSource() {
 	BasicDataSource dataSource = new BasicDataSource();
 	dataSource.setDriverClassName(driverClassName);
@@ -53,7 +59,6 @@ public class JpaConfig {
 	return dataSource;
     }
 
- 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
 	HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -92,7 +97,7 @@ public class JpaConfig {
     @Bean
     public Properties hibernateProperties() {
 	Properties hibernateProps = new Properties();
-	hibernateProps.setProperty("hibernate.hbm2ddl.auto", "true");
+	hibernateProps.setProperty("hibernate.hbm2ddl.auto", "create");
 	return hibernateProps;
     }
 
