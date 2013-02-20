@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -9,11 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
+import org.springframework.orm.jpa.JpaDialect;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -49,30 +53,31 @@ public class JpaConfig {
 	return dataSource;
     }
 
+ 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
-	EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
+	HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 	jpaVendorAdapter.setDatabase(Database.MYSQL);
+	jpaVendorAdapter.setGenerateDdl(true);
 	jpaVendorAdapter.setShowSql(true);
-	jpaVendorAdapter.setGenerateDdl(false);
 	jpaVendorAdapter
-		.setDatabasePlatform("org.eclipse.persistence.platform.database.MySQLPlatform");
+		.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
 	return jpaVendorAdapter;
     }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-	LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-	entityManagerFactory.setDataSource(this.dataSource());
-	entityManagerFactory.setJpaVendorAdapter(this.jpaVendorAdapter());
-	entityManagerFactory.setPackagesToScan(packagesToScan);
-	entityManagerFactory.setLoadTimeWeaver(new SimpleLoadTimeWeaver());
-	return entityManagerFactory;
+	LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+	emf.setDataSource(this.dataSource());
+	emf.setJpaVendorAdapter(this.jpaVendorAdapter());
+	emf.setPackagesToScan(packagesToScan);
+	emf.setJpaProperties(this.hibernateProperties());
+	return emf;
     }
-/*
+
     @Bean
     public JpaDialect jpaDialect() {
-	return new EclipseLinkJpaDialect();
+	return new HibernateJpaDialect();
     }
 
     @Bean
@@ -82,7 +87,14 @@ public class JpaConfig {
 		.getObject());
 	transactionManager.setJpaDialect(jpaDialect());
 	return transactionManager;
-    }*/
+    }
+
+    @Bean
+    public Properties hibernateProperties() {
+	Properties hibernateProps = new Properties();
+	hibernateProps.setProperty("hibernate.hbm2ddl.auto", "true");
+	return hibernateProps;
+    }
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
