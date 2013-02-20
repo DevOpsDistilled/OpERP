@@ -8,7 +8,6 @@ public class ServerApp {
 
 	ApplicationContext ctx = new AnnotationConfigApplicationContext(
 		"devopsdistilled.operp.server");
-
 	System.out.println(ctx.toString());
 	((AnnotationConfigApplicationContext) ctx).close();
     }

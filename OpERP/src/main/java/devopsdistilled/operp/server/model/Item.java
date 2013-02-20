@@ -11,16 +11,16 @@ import javax.persistence.Id;
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 7751126479626962944L;
-    private Long id;
+    private  int id;
     private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
 	return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
 	this.id = id;
     }
 

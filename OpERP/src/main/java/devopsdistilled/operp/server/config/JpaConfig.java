@@ -8,13 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
-import org.springframework.orm.jpa.JpaDialect;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -71,7 +69,7 @@ public class JpaConfig {
 	entityManagerFactory.setLoadTimeWeaver(new SimpleLoadTimeWeaver());
 	return entityManagerFactory;
     }
-
+/*
     @Bean
     public JpaDialect jpaDialect() {
 	return new EclipseLinkJpaDialect();
@@ -84,14 +82,11 @@ public class JpaConfig {
 		.getObject());
 	transactionManager.setJpaDialect(jpaDialect());
 	return transactionManager;
-    }
+    }*/
 
-    /*
-     * @Bean
-     * public PersistenceExceptionTranslationPostProcessor
-     * exceptionTranslationPostProcessor() {
-     * return new PersistenceExceptionTranslationPostProcessor();
-     * }
-     */
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+	return new PersistenceExceptionTranslationPostProcessor();
+    }
 
 }
