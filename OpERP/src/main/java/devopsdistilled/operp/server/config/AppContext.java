@@ -5,6 +5,6 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(JpaConfig.class)
-public class AppConfig {
+public class AppContext {
 
 }
