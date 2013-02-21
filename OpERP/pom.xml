@@ -11,7 +11,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<eclipselink.version>2.4.1</eclipselink.version>
 		<spring.version>3.2.1.RELEASE</spring.version>
 
 	</properties>
@@ -31,14 +30,6 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>EclipseLink</id>
-			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
-		</repository>
-	</repositories>
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -57,6 +48,7 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -68,6 +60,7 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -85,6 +78,7 @@
 			<artifactId>spring-beans</artifactId>
 			<version>3.2.1.RELEASE</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.miglayout</groupId>
 			<artifactId>miglayout-swing</artifactId>
@@ -96,6 +90,7 @@
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>4.0.1.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-rmi</artifactId>
@@ -106,6 +101,7 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -122,6 +118,7 @@
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -133,30 +130,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>4.1.9.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.1.9.Final</version>
 		</dependency>
 
-		<!-- eclipselink.jar with dependencies except commonj.sdo -->
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>${eclipselink.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>commonj.sdo</artifactId>
-					<groupId>commonj.sdo</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>2.0.4.v201112161009</version>
-		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
