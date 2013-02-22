@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.config;
+package devopsdistilled.operp.client.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import devopsdistilled.operp.server.service.ItemService;
 
 @Configuration
-public class RmiConfig {
+public class RmiContext {
 
     @Bean
     public RmiProxyFactoryBean itemService() {

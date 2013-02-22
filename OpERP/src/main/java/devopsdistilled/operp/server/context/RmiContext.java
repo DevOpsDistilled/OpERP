@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.config;
+package devopsdistilled.operp.server.context;
 
 import javax.inject.Inject;
 
@@ -9,7 +9,7 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
 import devopsdistilled.operp.server.service.ItemService;
 
 @Configuration
-public class RmiConfig {
+public class RmiContext {
     /*
      * @Bean
      * public ItemService itemService() {
