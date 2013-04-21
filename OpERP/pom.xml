@@ -142,5 +142,6 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.3.1.Final</version>
 		</dependency>
+		
 	</dependencies>
 </project>
