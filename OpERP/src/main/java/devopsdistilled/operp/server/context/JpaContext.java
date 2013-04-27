@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.config;
+package devopsdistilled.operp.server.context;
 
 import java.util.Properties;
 
@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
-public class JpaConfig {
+public class JpaContext {
 
     @Value("${jdbc.driverClassName}")
     private String driverClassName;

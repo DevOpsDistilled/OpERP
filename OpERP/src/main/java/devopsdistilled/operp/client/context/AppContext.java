@@ -1,10 +1,10 @@
-package devopsdistilled.operp.server.config;
+package devopsdistilled.operp.client.context;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ JpaConfig.class, RmiConfig.class })
-public class AppConfig {
+@Import(RmiContext.class)
+public class AppContext {
 
 }
