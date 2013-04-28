@@ -14,5 +14,6 @@ public class ServerApp {
 		ItemService itemService = ctx.getBean(ItemService.class);
 		Item item = itemService.createItem("Test Item from Server");
 		System.out.println(item);
+		
 	}
 }

@@ -26,84 +26,84 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("server/jdbc.properties")
 public class JpaContext {
 
-    @Value("${jdbc.driverClassName}")
-    private String driverClassName;
-    @Value("${jdbc.url}")
-    private String url;
-    @Value("${jdbc.username}")
-    private String username;
-    @Value("${jdbc.password}")
-    private String password;
-    @Value("devopsdistilled.operp.server.model")
-    private String packagesToScan;
+	@Value("${jdbc.driverClassName}")
+	private String driverClassName;
+	@Value("${jdbc.url}")
+	private String url;
+	@Value("${jdbc.username}")
+	private String username;
+	@Value("${jdbc.password}")
+	private String password;
+	@Value("devopsdistilled.operp.server.model")
+	private String packagesToScan;
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
-	return new PropertySourcesPlaceholderConfigurer();
-    }
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+/*
+	@Bean
+	public static PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
+		return new PersistenceAnnotationBeanPostProcessor();
+	}*/
 
-    @Bean
-    public static PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
-	return new PersistenceAnnotationBeanPostProcessor();
-    }
+	@Bean
+	public DataSource dataSource() {
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+		dataSource.setInitialSize(2);
+		dataSource.setMaxActive(10);
+		return dataSource;
+	}
 
-    @Bean
-    public DataSource dataSource() {
-	BasicDataSource dataSource = new BasicDataSource();
-	dataSource.setDriverClassName(driverClassName);
-	dataSource.setUrl(url);
-	dataSource.setUsername(username);
-	dataSource.setPassword(password);
-	dataSource.setInitialSize(2);
-	dataSource.setMaxActive(10);
-	return dataSource;
-    }
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+		jpaVendorAdapter.setDatabase(Database.MYSQL);
+		jpaVendorAdapter.setGenerateDdl(true);
+		jpaVendorAdapter.setShowSql(true);
+		jpaVendorAdapter
+				.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
+		return jpaVendorAdapter;
+	}
 
-    @Bean
-    public JpaVendorAdapter jpaVendorAdapter() {
-	HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-	jpaVendorAdapter.setDatabase(Database.MYSQL);
-	jpaVendorAdapter.setGenerateDdl(true);
-	jpaVendorAdapter.setShowSql(true);
-	jpaVendorAdapter
-		.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
-	return jpaVendorAdapter;
-    }
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+		emf.setDataSource(this.dataSource());
+		emf.setJpaVendorAdapter(this.jpaVendorAdapter());
+		emf.setPackagesToScan(packagesToScan);
+		emf.setJpaProperties(this.hibernateProperties());
+		return emf;
+	}
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-	LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-	emf.setDataSource(this.dataSource());
-	emf.setJpaVendorAdapter(this.jpaVendorAdapter());
-	emf.setPackagesToScan(packagesToScan);
-	emf.setJpaProperties(this.hibernateProperties());
-	return emf;
-    }
+	@Bean
+	public JpaDialect jpaDialect() {
+		return new HibernateJpaDialect();
+	}
 
-    @Bean
-    public JpaDialect jpaDialect() {
-	return new HibernateJpaDialect();
-    }
+	@Bean
+	public JpaTransactionManager transactionManager() {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory()
+				.getObject());
+		transactionManager.setJpaDialect(jpaDialect());
+		return transactionManager;
+	}
 
-    @Bean
-    public JpaTransactionManager transactionManager() {
-	JpaTransactionManager transactionManager = new JpaTransactionManager();
-	transactionManager.setEntityManagerFactory(entityManagerFactory()
-		.getObject());
-	transactionManager.setJpaDialect(jpaDialect());
-	return transactionManager;
-    }
+	@Bean
+	public Properties hibernateProperties() {
+		Properties hibernateProps = new Properties();
+		hibernateProps.setProperty("hibernate.hbm2ddl.auto", "create");
+		return hibernateProps;
+	}
 
-    @Bean
-    public Properties hibernateProperties() {
-	Properties hibernateProps = new Properties();
-	hibernateProps.setProperty("hibernate.hbm2ddl.auto", "create");
-	return hibernateProps;
-    }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
-	return new PersistenceExceptionTranslationPostProcessor();
-    }
+	@Bean
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+		return new PersistenceExceptionTranslationPostProcessor();
+	}
 
 }
