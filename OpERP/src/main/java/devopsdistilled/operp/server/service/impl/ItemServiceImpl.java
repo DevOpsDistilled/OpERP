@@ -13,15 +13,15 @@ import devopsdistilled.operp.server.service.ItemService;
 @Transactional
 public class ItemServiceImpl implements ItemService {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    @Override
-    public Item createItem(String name) {
-	Item item = new Item();
-	item.setName(name);
-	em.persist(item);
-	return item;
-    }
+	@Override
+	public Item createItem(String name) {
+		Item item = new Item();
+		item.setName(name);
+		em.persist(item);
+		return item;
+	}
 
 }
