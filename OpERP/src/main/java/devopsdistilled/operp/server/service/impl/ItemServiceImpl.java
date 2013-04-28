@@ -1,32 +1,27 @@
 package devopsdistilled.operp.server.service.impl;
 
-import org.springframework.stereotype.Service;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import devopsdistilled.operp.server.dao.GenericDao;
-import devopsdistilled.operp.server.dao.ItemDao;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import devopsdistilled.operp.server.model.Item;
 import devopsdistilled.operp.server.service.ItemService;
 
-@Service
-public class ItemServiceImpl extends GenericServiceImpl<Item, Long> implements
-	ItemService {
+@Repository("ItemService")
+@Transactional
+public class ItemServiceImpl implements ItemService {
 
-    private ItemDao dao;
-
-    public void setDao(ItemDao dao) {
-	this.dao = dao;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
-    protected GenericDao<Item, Long> getDao() {
-	return dao;
-    }
-
-    @Override
-    public void create(String name) {
+    public Item createItem(String name) {
 	Item item = new Item();
 	item.setName(name);
-	getDao().save(item);
+	em.persist(item);
+	return item;
     }
 
 }

@@ -1,15 +1,10 @@
 package devopsdistilled.operp.server.model;
 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-//@Entity
 public class Stock {
     private Item item;
     private int quantity;
 
-    @Id
-    @OneToMany
     public Item getItem() {
 	return item;
     }

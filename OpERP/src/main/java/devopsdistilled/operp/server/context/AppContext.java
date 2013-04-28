@@ -1,9 +1,10 @@
-package devopsdistilled.operp.server.config;
+package devopsdistilled.operp.server.context;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import(HibernateConfig.class)
-public class AppConfig {
+@Import({ JpaContext.class, RmiContext.class })
+public class AppContext {
+
 }
