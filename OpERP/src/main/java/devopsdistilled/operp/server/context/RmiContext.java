@@ -10,22 +10,19 @@ import devopsdistilled.operp.server.service.ItemService;
 
 @Configuration
 public class RmiContext {
-    /*
-     * @Bean
-     * public ItemService itemService() {
-     * return new ItemServiceImpl();
-     * }
-     */
-    @Inject
-    private ItemService itemService;
+	/*
+	 * @Bean public ItemService itemService() { return new ItemServiceImpl(); }
+	 */
+	@Inject
+	private ItemService itemService;
 
-    @Bean
-    public RmiServiceExporter rmiServiceExporter() {
-	RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
-	rmiServiceExporter.setServiceName("ItemService");
-	rmiServiceExporter.setServiceInterface(ItemService.class);
-	rmiServiceExporter.setService(itemService);
-	rmiServiceExporter.setRegistryPort(1099); // default
-	return rmiServiceExporter;
-    }
+	@Bean
+	public RmiServiceExporter rmiServiceExporter() {
+		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+		rmiServiceExporter.setServiceName("ItemService");
+		rmiServiceExporter.setServiceInterface(ItemService.class);
+		rmiServiceExporter.setService(itemService);
+		rmiServiceExporter.setRegistryPort(1099); // default
+		return rmiServiceExporter;
+	}
 }
