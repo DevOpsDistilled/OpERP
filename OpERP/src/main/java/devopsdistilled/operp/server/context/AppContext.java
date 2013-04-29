@@ -7,4 +7,8 @@ import org.springframework.context.annotation.Import;
 @Import({ JpaContext.class })
 public class AppContext {
 
+	/*@Bean
+	public ServerApp serverApp() {
+		return new ServerApp();
+	}*/
 }

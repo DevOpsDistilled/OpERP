@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -18,16 +19,16 @@ import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories("devopsdistilled.operp.server.data")
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
+@ComponentScan("devopsdistilled.operp.server.data")
 public class JpaContext {
 
 	@Inject
@@ -40,12 +41,7 @@ public class JpaContext {
 	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-
-	@Bean
-	public static PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
-		return new PersistenceAnnotationBeanPostProcessor();
-	}
-
+	
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
