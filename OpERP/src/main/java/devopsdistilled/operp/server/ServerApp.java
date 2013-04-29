@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import devopsdistilled.operp.client.context.AppContext;
-import devopsdistilled.operp.server.model.Item;
-import devopsdistilled.operp.server.service.ItemService;
+import devopsdistilled.operp.server.data.entity.Item;
+import devopsdistilled.operp.server.data.service.ItemService;
 
 public class ServerApp {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.model;
+package devopsdistilled.operp.server.data.entity;
 
 import java.io.Serializable;
 

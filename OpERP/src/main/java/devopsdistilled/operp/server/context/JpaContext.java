@@ -34,18 +34,18 @@ public class JpaContext {
 	private String username;
 	@Value("${jdbc.password}")
 	private String password;
-	@Value("devopsdistilled.operp.server.model")
+	@Value("devopsdistilled.operp.server.data.entity")
 	private String packagesToScan;
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-/*
+
 	@Bean
 	public static PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
 		return new PersistenceAnnotationBeanPostProcessor();
-	}*/
+	}
 
 	@Bean
 	public DataSource dataSource() {

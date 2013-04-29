@@ -2,8 +2,8 @@ package devopsdistilled.operp.client;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import devopsdistilled.operp.server.model.Item;
-import devopsdistilled.operp.server.service.ItemService;
+import devopsdistilled.operp.server.data.entity.Item;
+import devopsdistilled.operp.server.data.service.ItemService;
 //Test Comment 
 public class ClientApp {
     public static void main(String[] args) {

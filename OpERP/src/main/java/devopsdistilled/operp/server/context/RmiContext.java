@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
-import devopsdistilled.operp.server.service.ItemService;
+import devopsdistilled.operp.server.data.service.ItemService;
 
 @Configuration
 public class RmiContext {

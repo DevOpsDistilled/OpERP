@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.service.impl;
+package devopsdistilled.operp.server.data.service.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,8 +6,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import devopsdistilled.operp.server.model.Item;
-import devopsdistilled.operp.server.service.ItemService;
+import devopsdistilled.operp.server.data.entity.Item;
+import devopsdistilled.operp.server.data.service.ItemService;
 
 @Repository("ItemService")
 @Transactional
