@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
  @ComponentScan("devopsdistilled.operp.server.data")
-//@ComponentScan(basePackageClasses = Product.class)
 public class JpatTestContext {
 
 	@Inject
