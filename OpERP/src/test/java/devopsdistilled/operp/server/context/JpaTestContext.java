@@ -28,8 +28,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("devopsdistilled.operp.server.data")
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
- @ComponentScan("devopsdistilled.operp.server.data")
-public class JpatTestContext {
+@ComponentScan("devopsdistilled.operp.server.data")
+public class JpaTestContext {
 
 	@Inject
 	private Environment env;
