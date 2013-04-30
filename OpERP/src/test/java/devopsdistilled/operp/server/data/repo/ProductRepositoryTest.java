@@ -1,7 +1,5 @@
 package devopsdistilled.operp.server.data.repo;
 
-import static org.junit.Assert.assertNotNull;
-
 import javax.inject.Inject;
 
 import org.junit.Assert;
@@ -15,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import devopsdistilled.operp.server.context.AppTestContext;
 import devopsdistilled.operp.server.data.entity.Product;
 
+import static org.junit.Assert.assertNotNull;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppTestContext.class)
 @Transactional
@@ -22,7 +22,7 @@ public class ProductRepositoryTest {
 	/*
 	 * @PersistenceContext private EntityManager entityManager;
 	 */
-	
+
 	@Inject
 	ProductRepository productRepository;
 
@@ -33,7 +33,7 @@ public class ProductRepositoryTest {
 		 * entityManager); productRepository = jpaRepositoryFactory
 		 * .getRepository(ProductRepository.class);
 		 */
-		
+
 		assertNotNull(productRepository);
 	}
 
