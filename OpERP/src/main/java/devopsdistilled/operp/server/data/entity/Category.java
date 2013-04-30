@@ -3,9 +3,8 @@ package devopsdistilled.operp.server.data.entity;
 import javax.persistence.Entity;
 
 @Entity
-public class Item {
+public class Category {
+	private Long categoryId;
+	private String categoryName;
 	
-	private Long itemId;
-	private Product product;
-	private Brand brand;
 }
