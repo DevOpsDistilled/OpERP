@@ -4,25 +4,22 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import devopsdistilled.operp.server.context.AppContext;
-import devopsdistilled.operp.server.data.entity.Item;
-import devopsdistilled.operp.server.data.repo.ItemRepository;
+import devopsdistilled.operp.server.data.entity.Product;
+import devopsdistilled.operp.server.data.repo.ProductRepository;
 
 public class ServerApp {
-/*
-	@Inject
-	ItemRepository itemRepository;
-*/
+	/*
+	 * @Inject ItemRepository itemRepository;
+	 */
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
-		ItemRepository itemRepository = context.getBean(ItemRepository.class);
-		
-		Item item = new Item();
-		item.setName("Test Item");
-		item = itemRepository.save(item );
-		System.out.println(itemRepository.findOne(item.getId()));
+		ProductRepository productRepository = context
+				.getBean(ProductRepository.class);
+		Product product = new Product();
+		product.setProductName("Product Test");
+		product = productRepository.save(product);
+		System.out.println(productRepository.findOne(product.getProductId()));
 		System.out.println(context);
 	}
-
-	
 }
