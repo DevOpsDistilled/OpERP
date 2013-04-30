@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ JpatTestContext.class })
+@Import({ JpaTestContext.class })
 public class AppTestContext {
 
 	/*@Bean
