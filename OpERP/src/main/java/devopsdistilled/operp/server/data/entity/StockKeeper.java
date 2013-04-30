@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class StockKeeper {
-	private Item item;
-	private Warehouse warehouse;
+
+	private ItemWarehouseCatalog itemWarehouseCatalog;
 	private Long quantity;
 }
