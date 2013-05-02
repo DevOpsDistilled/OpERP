@@ -17,9 +17,11 @@ public class ServerApp {
 		ProductRepository productRepository = context
 				.getBean(ProductRepository.class);
 		Product product = new Product();
-		product.setProductName("Product Test");
+		product.setProductName("Test Product");
 		product = productRepository.save(product);
 		System.out.println(productRepository.findOne(product.getProductId()));
-		System.out.println(context);
+		System.out.println("From findByProductName() "
+				+ productRepository.findByProductName("Test Product").get(0)
+						.getProductName());
 	}
 }
