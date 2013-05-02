@@ -5,7 +5,6 @@ import java.util.Properties;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +14,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -29,7 +30,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
 @ComponentScan("devopsdistilled.operp.server.data")
-public class JpaContext {
+public class JpaH2TestContext {
 
 	@Inject
 	private Environment env;
@@ -41,17 +42,11 @@ public class JpaContext {
 	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-		dataSource.setUrl(env.getProperty("jdbc.url"));
-		dataSource.setUsername(env.getProperty("jdbc.username"));
-		dataSource.setPassword(env.getProperty("jdbc.password"));
-		dataSource.setInitialSize(2);
-		dataSource.setMaxActive(10);
-		return dataSource;
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
+				.setName("OpERP").build();
 	}
 
 	@Bean

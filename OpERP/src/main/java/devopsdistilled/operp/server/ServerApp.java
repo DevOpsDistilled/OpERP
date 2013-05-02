@@ -3,17 +3,23 @@ package devopsdistilled.operp.server;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import devopsdistilled.operp.client.context.AppContext;
-import devopsdistilled.operp.server.model.Item;
-import devopsdistilled.operp.server.service.ItemService;
+import devopsdistilled.operp.server.context.AppContext;
+import devopsdistilled.operp.server.data.entity.Product;
+import devopsdistilled.operp.server.data.repo.ProductRepository;
 
 public class ServerApp {
+	/*
+	 * @Inject ItemRepository itemRepository;
+	 */
 	public static void main(String[] args) {
-		@SuppressWarnings("resource")
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppContext.class);
-		ItemService itemService = ctx.getBean(ItemService.class);
-		Item item = itemService.createItem("Test Item from Server");
-		System.out.println(item);
-		
+		ApplicationContext context = new AnnotationConfigApplicationContext(
+				AppContext.class);
+		ProductRepository productRepository = context
+				.getBean(ProductRepository.class);
+		Product product = new Product();
+		product.setProductName("Product Test");
+		product = productRepository.save(product);
+		System.out.println(productRepository.findOne(product.getProductId()));
+		System.out.println(context);
 	}
 }

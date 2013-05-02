@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
 @ComponentScan("devopsdistilled.operp.server.data")
-public class JpaContext {
+public class JpaTestContext {
 
 	@Inject
 	private Environment env;
@@ -41,7 +41,7 @@ public class JpaContext {
 	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
