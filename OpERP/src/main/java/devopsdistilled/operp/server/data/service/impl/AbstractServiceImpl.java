@@ -8,60 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class AbstractServiceImpl<T> implements JpaRepository<T, Serializable> {
+import devopsdistilled.operp.server.data.service.AbstractService;
 
-	protected JpaRepository<T, Serializable> repo;
+public class AbstractServiceImpl<T, ID extends Serializable> implements
+		AbstractService<T, ID> {
 
-	@Override
-	public Page<T> findAll(Pageable pageable) {
+	private static final long serialVersionUID = 4892118695516828793L;
 
-		return repo.findAll(pageable);
-	}
-
-	@Override
-	public <S extends T> S save(S entity) {
-		return repo.save(entity);
-	}
-
-	@Override
-	public T findOne(Serializable id) {
-		return repo.findOne(id);
-	}
-
-	@Override
-	public boolean exists(Serializable id) {
-		return exists(id);
-	}
-
-	@Override
-	public Iterable<T> findAll(Iterable<Serializable> ids) {
-		return findAll(ids);
-	}
-
-	@Override
-	public long count() {
-		return repo.count();
-	}
-
-	@Override
-	public void delete(Serializable id) {
-		repo.delete(id);
-	}
-
-	@Override
-	public void delete(T entity) {
-		repo.delete(entity);
-	}
-
-	@Override
-	public void delete(Iterable<? extends T> entities) {
-		repo.delete(entities);
-	}
-
-	@Override
-	public void deleteAll() {
-		repo.deleteAll();
-	}
+	protected JpaRepository<T, ID> repo;
 
 	@Override
 	public List<T> findAll() {
@@ -85,7 +39,7 @@ public class AbstractServiceImpl<T> implements JpaRepository<T, Serializable> {
 
 	@Override
 	public T saveAndFlush(T entity) {
-		return saveAndFlush(entity);
+		return repo.saveAndFlush(entity);
 	}
 
 	@Override
@@ -98,4 +52,53 @@ public class AbstractServiceImpl<T> implements JpaRepository<T, Serializable> {
 		repo.deleteAllInBatch();
 	}
 
+	@Override
+	public Page<T> findAll(Pageable pageable) {
+		return findAll(pageable);
+	}
+
+	@Override
+	public <S extends T> S save(S entity) {
+		return repo.save(entity);
+	}
+
+	@Override
+	public T findOne(ID id) {
+		return repo.findOne(id);
+	}
+
+	@Override
+	public boolean exists(ID id) {
+		return repo.exists(id);
+	}
+
+	@Override
+	public long count() {
+		return repo.count();
+	}
+
+	@Override
+	public void delete(ID id) {
+		repo.delete(id);
+	}
+
+	@Override
+	public void delete(T entity) {
+		repo.delete(entity);
+	}
+
+	@Override
+	public void delete(Iterable<? extends T> entities) {
+		repo.delete(entities);
+	}
+
+	@Override
+	public void deleteAll() {
+		repo.deleteAll();
+	}
+
+	@Override
+	public Iterable<T> findAll(Iterable<ID> ids) {
+		return repo.findAll(ids);
+	}
 }
