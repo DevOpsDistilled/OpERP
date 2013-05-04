@@ -25,7 +25,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories("devopsdistilled.operp.server.data.repo")
+@EnableJpaRepositories(basePackages = "devopsdistilled.operp.server.data.repo", repositoryImplementationPostfix = "CustomImpl")
 @EnableTransactionManagement
 @PropertySource("server/jdbc.properties")
 @ComponentScan("devopsdistilled.operp.server.data")
