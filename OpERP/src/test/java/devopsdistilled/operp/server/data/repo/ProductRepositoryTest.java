@@ -65,4 +65,12 @@ public class ProductRepositoryTest {
 				CoreMatchers.is(returnedProducts.get(
 						returnedProducts.size() - 1).getProductName()));
 	}
+
+	@Test
+	public void testSaveCustom() {
+		Product fromSave = productRepository.save(testProduct);
+		Product fromSaveCustom = productRepository.saveCustom(testProduct);
+		Assert.assertThat("save and saveCustom must return same object",
+				fromSave, CoreMatchers.is(fromSaveCustom));
+	}
 }
