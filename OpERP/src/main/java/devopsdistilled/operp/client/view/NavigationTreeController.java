@@ -5,7 +5,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import devopsdistilled.operp.client.view.taskpane.iface.TaskPane;
 
 public class NavigationTreeController implements TreeSelectionListener {
 

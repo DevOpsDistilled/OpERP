@@ -1,11 +1,9 @@
-package devopsdistilled.operp.client.view.taskpane;
+package devopsdistilled.operp.client.view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import devopsdistilled.operp.client.view.MainWindow;
-import devopsdistilled.operp.client.view.taskpane.iface.TaskPane;
 
 public class PurchasesPane implements TaskPane {
 	private JPanel pane;
