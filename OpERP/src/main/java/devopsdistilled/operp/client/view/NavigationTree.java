@@ -3,9 +3,7 @@ package devopsdistilled.operp.client.view;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import devopsdistilled.operp.client.view.taskpane.InventoryPane;
-import devopsdistilled.operp.client.view.taskpane.PurchasesPane;
-import devopsdistilled.operp.client.view.taskpane.SalesPane;
+import devopsdistilled.operp.client.inventory.view.InventoryPane;
 
 public class NavigationTree {
 	private static JTree tree;

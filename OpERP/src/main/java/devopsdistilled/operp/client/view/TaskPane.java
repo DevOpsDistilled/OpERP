@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.view.taskpane.iface;
+package devopsdistilled.operp.client.view;
 
 public interface TaskPane {
 	public void makeCurrentWorkingTaskPane();
