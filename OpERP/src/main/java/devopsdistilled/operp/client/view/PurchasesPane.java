@@ -21,7 +21,7 @@ public class PurchasesPane implements TaskPane {
 
 			@Override
 			public void run() {
-				MainWindow.getInstance().setTaskPane(pane);
+				//MainWindow.getInstance().setTaskPane(pane);
 
 			}
 		});
