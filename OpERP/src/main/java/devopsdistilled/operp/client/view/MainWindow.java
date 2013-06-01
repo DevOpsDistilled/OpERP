@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -20,6 +21,7 @@ public class MainWindow {
 	private JToolBar toolBar;
 	private JMenuBar menuBar;
 
+	@Inject
 	private MainWindowListener listener;
 
 	private JButton button;

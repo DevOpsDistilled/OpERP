@@ -11,13 +11,20 @@ import devopsdistilled.operp.client.view.controller.MainWindowController;
 public class AppConfig {
 
 	@Bean
+	public MainWindow mainWindow() {
+		return MainWindow.getInstance();
+	}
+
+	@Bean
+	public MainWindowListener mainWindowListener() {
+		return new MainWindowListener();
+	}
+
+	@Bean
 	public MainWindowController mainWindowController() {
-		MainWindowController controller = MainWindowController.getInstance();
-		MainWindowListener listener = new MainWindowListener();
-		listener.setController(controller);
-		MainWindow mainWindow = MainWindow.getInstance();
-		mainWindow.setListener(listener);
-		controller.setMainWindow(mainWindow);
-		return controller;
+		MainWindowController mainWindowController = MainWindowController
+				.getInstance();
+
+		return mainWindowController;
 	}
 }

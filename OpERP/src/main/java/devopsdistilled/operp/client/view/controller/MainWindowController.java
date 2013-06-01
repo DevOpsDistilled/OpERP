@@ -1,9 +1,12 @@
 package devopsdistilled.operp.client.view.controller;
 
+import javax.inject.Inject;
+
 import devopsdistilled.operp.client.view.MainWindow;
 
 public class MainWindowController {
 
+	@Inject
 	private MainWindow mainWindow;
 
 	public MainWindow getMainWindow() {
