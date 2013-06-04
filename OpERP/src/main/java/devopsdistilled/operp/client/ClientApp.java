@@ -11,16 +11,9 @@ public class ClientApp {
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppConfig.class);
 
-		MainWindowController controller = context.getBean(MainWindowController.class);
-		controller.show();
+		MainWindowController controller = context
+				.getBean(MainWindowController.class);
+		controller.display();
 		System.out.println(context);
-		
-	/*	MainWindowController controller = MainWindowController.getInstance();
-		MainWindowListener listener = new MainWindowListener();
-		listener.setController(controller);
-		MainWindow mainWindow = MainWindow.getInstance();
-		mainWindow.setListener(listener);
-		controller.setMainWindow(mainWindow);*/
 	}
-
 }

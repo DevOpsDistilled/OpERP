@@ -1,73 +1,59 @@
 package devopsdistilled.operp.client.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
 import javax.inject.Inject;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 public class MainWindow {
 
-	private static MainWindow mainWindow = new MainWindow();
 	private JFrame mainFrame;
-
-	private SidePane sidePane;
 	private TaskPane taskPane;
 	private StatusPane statusPane;
+	private SidePane sidePane;
+
+	@Inject
 	private JToolBar toolBar;
+
+	@Inject
 	private JMenuBar menuBar;
 
 	@Inject
 	private MainWindowListener listener;
 
-	private JButton button;
-
-	private MainWindow() {
+	public MainWindow() {
 
 	}
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void display(){
-		
-		initialize();
-		buildUI();
-	}
-	public void initialize() {
-		mainFrame = new JFrame();
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
-		mainFrame.setBounds(5, 5, 400, 400);
-	}
+	public void display() {
 
-	public void buildUI() {
-		JPanel contentPane = (JPanel) getMainFrame().getContentPane();
-		button = new JButton("Test Button");
-		button.addActionListener(new ActionListener() {
+		EventQueue.invokeLater(new Runnable() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				listener.buttonPressed();
+			public void run() {
+				initialize();
+
+				try {
+					getMainFrame().setVisible(true);
+					getMainFrame().setJMenuBar(getMenuBar());
+					getMainFrame().add(getToolBar(), BorderLayout.NORTH);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		contentPane.add(button);
 	}
 
-	public JButton getButton() {
-		return button;
-	}
-
-	public void setButton(JButton button) {
-		this.button = button;
-	}
-
-	public static MainWindow getInstance() {
-		
-		return mainWindow;
+	private void initialize() {
+		mainFrame = new JFrame();
+		mainFrame.setBounds(100, 100, 450, 300);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public MainWindowListener getListener() {
@@ -76,14 +62,6 @@ public class MainWindow {
 
 	public void setListener(MainWindowListener listener) {
 		this.listener = listener;
-	}
-
-	public static MainWindow getMainWindow() {
-		return mainWindow;
-	}
-
-	public static void setMainWindow(MainWindow mainWindow) {
-		MainWindow.mainWindow = mainWindow;
 	}
 
 	public JFrame getMainFrame() {

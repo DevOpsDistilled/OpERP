@@ -30,7 +30,7 @@ public class MainWindowController {
 		getMainWindow().getMainFrame().dispose();
 	}
 	
-	public void show() {
+	public void display() {
 		mainWindow.display();
 	}
 }
