@@ -35,25 +35,8 @@ public class NavigationTree {
 
 		nodeMap.put(rootNodeDesc, rootNode);
 
-		// rootNode.add(new DefaultMutableTreeNode(new DefaultTaskPane()));
-
 		tree = new JTree(treeModel);
 		tree.setRootVisible(true);
-
-		/*
-		 * DefaultMutableTreeNode rootNode = new
-		 * DefaultMutableTreeNode("OpERP"); DefaultMutableTreeNode module;
-		 * 
-		 * module = new DefaultMutableTreeNode(new InventoryPane());
-		 * module.add(new DefaultMutableTreeNode(new SalesPane()));
-		 * rootNode.add(module);
-		 * 
-		 * module = new DefaultMutableTreeNode(new SalesPane());
-		 * rootNode.add(module);
-		 * 
-		 * module = new DefaultMutableTreeNode(new PurchasesPane());
-		 * rootNode.add(module);
-		 */
 
 	}
 
