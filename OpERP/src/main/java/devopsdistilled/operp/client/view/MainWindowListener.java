@@ -6,6 +6,7 @@ import devopsdistilled.operp.client.view.controller.MainWindowController;
 
 public class MainWindowListener {
 	
+	
 	@Inject
 	private MainWindowController controller;
 
@@ -19,5 +20,14 @@ public class MainWindowListener {
 
 	public void buttonPressed() {
 		controller.dispose();
+	}
+
+	public void btnHideTaskbarPressed() {
+		controller.hideTaskbar();
+		
+	}
+
+	public void btnShowTaskbarPressed() {
+		controller.showTaskBar();
 	}
 }

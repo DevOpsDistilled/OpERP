@@ -2,8 +2,11 @@ package devopsdistilled.operp.client.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
@@ -41,7 +44,25 @@ public class MainWindow {
 				try {
 					getMainFrame().setVisible(true);
 					getMainFrame().setJMenuBar(getMenuBar());
-					getMainFrame().add(getToolBar(), BorderLayout.NORTH);
+					getMainFrame().getContentPane().add(getToolBar(), BorderLayout.NORTH);
+					
+					JButton btnHideTaskbar = new JButton("Hide Taskbar");
+					btnHideTaskbar.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							listener.btnHideTaskbarPressed();
+						}
+					});
+					mainFrame.getContentPane().add(btnHideTaskbar, BorderLayout.EAST);
+					
+					JButton btnShowTaskbar = new JButton("Show Taskbar");
+					btnShowTaskbar.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							listener.btnShowTaskbarPressed();
+						}
+					});
+					mainFrame.getContentPane().add(btnShowTaskbar, BorderLayout.WEST);
 
 				} catch (Exception e) {
 					e.printStackTrace();
