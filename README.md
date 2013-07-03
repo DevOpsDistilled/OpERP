@@ -9,4 +9,4 @@ ____________________
 <b>DevOps Distilled</b>
 
 
-  > _Adapting to your Needs_
+  > _Adapting with your Needs_
