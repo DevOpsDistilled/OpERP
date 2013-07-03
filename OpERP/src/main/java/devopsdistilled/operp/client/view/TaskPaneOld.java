@@ -1,5 +1,5 @@
 package devopsdistilled.operp.client.view;
 
-public interface TaskPane {
+public interface TaskPaneOld {
 	public void makeCurrentWorkingTaskPane();
 }

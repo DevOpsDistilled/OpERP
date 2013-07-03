@@ -1,6 +1,4 @@
-package devopsdistilled.operp.client.view.controller;
-
-import java.awt.BorderLayout;
+package devopsdistilled.operp.client.controller;
 
 import javax.inject.Inject;
 
@@ -36,13 +34,4 @@ public class MainWindowController {
 		mainWindow.display();
 	}
 
-	public void hideTaskbar() {
-		mainWindow.getMainFrame().remove(mainWindow.getToolBar());
-		mainWindow.getMainFrame().validate();
-	}
-
-	public void showTaskBar() {
-		mainWindow.getMainFrame().add(mainWindow.getToolBar(),BorderLayout.NORTH);
-		mainWindow.getMainFrame().validate();
-	}
 }

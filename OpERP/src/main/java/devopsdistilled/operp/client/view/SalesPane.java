@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class SalesPane implements TaskPane {
+public class SalesPane implements TaskPaneOld {
 
 	private JPanel pane;
 

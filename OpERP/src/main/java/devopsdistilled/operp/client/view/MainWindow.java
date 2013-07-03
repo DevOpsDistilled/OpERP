@@ -2,11 +2,8 @@ package devopsdistilled.operp.client.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
@@ -14,9 +11,9 @@ import javax.swing.JToolBar;
 public class MainWindow {
 
 	private JFrame mainFrame;
-	private TaskPane taskPane;
+	private TaskPaneOld taskPane;
 	private StatusPane statusPane;
-	private SidePane sidePane;
+	private SidePaneOld sidePane;
 
 	@Inject
 	private JToolBar toolBar;
@@ -45,24 +42,6 @@ public class MainWindow {
 					getMainFrame().setVisible(true);
 					getMainFrame().setJMenuBar(getMenuBar());
 					getMainFrame().getContentPane().add(getToolBar(), BorderLayout.NORTH);
-					
-					JButton btnHideTaskbar = new JButton("Hide Taskbar");
-					btnHideTaskbar.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							listener.btnHideTaskbarPressed();
-						}
-					});
-					mainFrame.getContentPane().add(btnHideTaskbar, BorderLayout.EAST);
-					
-					JButton btnShowTaskbar = new JButton("Show Taskbar");
-					btnShowTaskbar.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							listener.btnShowTaskbarPressed();
-						}
-					});
-					mainFrame.getContentPane().add(btnShowTaskbar, BorderLayout.WEST);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,19 +72,19 @@ public class MainWindow {
 		this.mainFrame = mainFrame;
 	}
 
-	public SidePane getSidePane() {
+	public SidePaneOld getSidePane() {
 		return sidePane;
 	}
 
-	public void setSidePane(SidePane sidePane) {
+	public void setSidePane(SidePaneOld sidePane) {
 		this.sidePane = sidePane;
 	}
 
-	public TaskPane getTaskPane() {
+	public TaskPaneOld getTaskPane() {
 		return taskPane;
 	}
 
-	public void setTaskPane(TaskPane taskPane) {
+	public void setTaskPane(TaskPaneOld taskPane) {
 		this.taskPane = taskPane;
 	}
 

@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.view;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.view.controller.MainWindowController;
+import devopsdistilled.operp.client.controller.MainWindowController;
 
 public class MainWindowListener {
 	
@@ -22,12 +22,5 @@ public class MainWindowListener {
 		controller.dispose();
 	}
 
-	public void btnHideTaskbarPressed() {
-		controller.hideTaskbar();
-		
-	}
 
-	public void btnShowTaskbarPressed() {
-		controller.showTaskBar();
-	}
 }

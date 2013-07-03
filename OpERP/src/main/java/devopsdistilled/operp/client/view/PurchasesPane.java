@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 
-public class PurchasesPane implements TaskPane {
+public class PurchasesPane implements TaskPaneOld {
 	private JPanel pane;
 
 	@Override

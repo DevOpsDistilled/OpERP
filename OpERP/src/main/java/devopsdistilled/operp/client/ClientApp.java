@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import devopsdistilled.operp.client.context.AppConfig;
-import devopsdistilled.operp.client.view.controller.MainWindowController;
+import devopsdistilled.operp.client.controller.MainWindowController;
 
 public class ClientApp {
 	public static void main(String[] args) {
