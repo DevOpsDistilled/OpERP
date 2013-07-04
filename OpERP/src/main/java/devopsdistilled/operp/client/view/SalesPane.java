@@ -4,8 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-
-public class SalesPane implements TaskPane {
+public class SalesPane implements TaskPaneOld {
 
 	private JPanel pane;
 
@@ -22,7 +21,6 @@ public class SalesPane implements TaskPane {
 
 			@Override
 			public void run() {
-				MainWindow.getInstance().setTaskPane(pane);
 
 			}
 		});

@@ -4,10 +4,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import devopsdistilled.operp.client.view.MainWindow;
-import devopsdistilled.operp.client.view.TaskPane;
+import devopsdistilled.operp.client.view.TaskPaneOld;
 
-public class InventoryPane implements TaskPane {
+public class InventoryPane implements TaskPaneOld {
 
 	private JPanel pane;
 
@@ -32,7 +31,7 @@ public class InventoryPane implements TaskPane {
 
 			@Override
 			public void run() {
-				MainWindow.getInstance().setTaskPane(pane);
+				//MainWindow.getInstance().setTaskPane(pane);
 
 			}
 		});
