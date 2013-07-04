@@ -2,7 +2,6 @@ package devopsdistilled.operp.server.context;
 
 import java.util.Properties;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -32,8 +30,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("devopsdistilled.operp.server.data")
 public class JpaH2TestContext {
 
-	@Inject
-	private Environment env;
+	/*
+	 * @Inject private Environment env;
+	 */
 
 	@Value("devopsdistilled.operp.server.data.entity")
 	private String packagesToScan;

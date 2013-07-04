@@ -1,62 +1,98 @@
 package devopsdistilled.operp.client.view;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.inject.Inject;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-
-import net.miginfocom.swing.MigLayout;
 
 public class MainWindow {
 
-	private static MainWindow window;
 	private JFrame mainFrame;
+	private TaskPaneOld taskPane;
+	private StatusPane statusPane;
+	private SidePaneOld sidePane;
 
-	private JPanel sidePane;
-	private JPanel taskPane;
-	private JPanel statusPane;
+	@Inject
 	private JToolBar toolBar;
+
+	@Inject
 	private JMenuBar menuBar;
 
-	public JPanel getTaskPane() {
-		return taskPane;
+	@Inject
+	private MainWindowListener listener;
+
+	public MainWindow() {
+
 	}
 
-	public void setTaskPane(JPanel taskPane) {
-		this.mainFrame.remove(getTaskPane());
-		this.taskPane = taskPane;
-		System.out.println("From setTaskPane");
-		this.mainFrame.getContentPane().add(this.taskPane, "width 75%");
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	public void display() {
 
-		this.mainFrame.validate();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				initialize();
+
+				try {
+					getMainFrame().setVisible(true);
+					getMainFrame().setJMenuBar(getMenuBar());
+					getMainFrame().getContentPane().add(getToolBar(), BorderLayout.NORTH);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
-	public JMenuBar getMenuBar() {
-		return menuBar;
+	private void initialize() {
+		mainFrame = new JFrame();
+		mainFrame.setBounds(100, 100, 450, 300);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public void setMenuBar(JMenuBar menuBar) {
-		this.menuBar = menuBar;
+	public MainWindowListener getListener() {
+		return listener;
 	}
 
-	public JPanel getSidePane() {
+	public void setListener(MainWindowListener listener) {
+		this.listener = listener;
+	}
+
+	public JFrame getMainFrame() {
+		return mainFrame;
+	}
+
+	public void setMainFrame(JFrame mainFrame) {
+		this.mainFrame = mainFrame;
+	}
+
+	public SidePaneOld getSidePane() {
 		return sidePane;
 	}
 
-	public void setSidePane(JPanel sidePane) {
+	public void setSidePane(SidePaneOld sidePane) {
 		this.sidePane = sidePane;
 	}
 
-	public JPanel getStatusPane() {
+	public TaskPaneOld getTaskPane() {
+		return taskPane;
+	}
+
+	public void setTaskPane(TaskPaneOld taskPane) {
+		this.taskPane = taskPane;
+	}
+
+	public StatusPane getStatusPane() {
 		return statusPane;
 	}
 
-	public void setStatusPane(JPanel statusPane) {
+	public void setStatusPane(StatusPane statusPane) {
 		this.statusPane = statusPane;
 	}
 
@@ -68,61 +104,11 @@ public class MainWindow {
 		this.toolBar = toolBar;
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-
-					for (LookAndFeelInfo info : UIManager
-							.getInstalledLookAndFeels()) {
-						if ("Nimbus".equals(info.getName())) {
-							UIManager.setLookAndFeel(info.getClassName());
-							break;
-						}
-					}
-					window = new MainWindow();
-					window.mainFrame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public JMenuBar getMenuBar() {
+		return menuBar;
 	}
 
-	public MainWindow() {
-		initialize();
-		buildUI();
-	}
-
-	private void initialize() {
-		mainFrame = new JFrame();
-		mainFrame.getContentPane().setLayout(
-				new MigLayout("debug", "[]", "[top]"));
-		menuBar = MenuBar.getInstance();
-		statusPane = StatusPane.getInstance();
-		sidePane = SidePane.getInstance();
-		toolBar = ToolBar.getInstance();
-	}
-
-	private void buildUI() {
-		mainFrame.setTitle("OpERP");
-		mainFrame.setBounds(100, 100, 450, 300);
-		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setJMenuBar(menuBar);
-		mainFrame.getContentPane().add(toolBar, "north, growx");
-		mainFrame.getContentPane().add(sidePane, "width 25%, growy, pushy");
-		taskPane = new JPanel();
-		taskPane.add(new JLabel("From Task Pane"));
-		mainFrame.getContentPane().add(taskPane, " width 75%");
-		mainFrame.getContentPane().add(statusPane, "south");
-	}
-
-	public static MainWindow getInstance() {
-		if (window == null) {
-			new MainWindow();
-		}
-		return window;
+	public void setMenuBar(JMenuBar menuBar) {
+		this.menuBar = menuBar;
 	}
 }

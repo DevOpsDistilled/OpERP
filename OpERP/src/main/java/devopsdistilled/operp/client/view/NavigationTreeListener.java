@@ -6,11 +6,11 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 
-public class NavigationTreeController implements TreeSelectionListener {
+public class NavigationTreeListener implements TreeSelectionListener {
 
 	private final JTree tree;
 
-	public NavigationTreeController(final JTree tree) {
+	public NavigationTreeListener(final JTree tree) {
 		this.tree = tree;
 	}
 
@@ -23,7 +23,7 @@ public class NavigationTreeController implements TreeSelectionListener {
 			// Nothing is selected.
 			return;
 
-		TaskPane taskPane = (TaskPane) selectedNode.getUserObject();
+		TaskPaneOld taskPane = (TaskPaneOld) selectedNode.getUserObject();
 		taskPane.makeCurrentWorkingTaskPane();
 	}
 
