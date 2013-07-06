@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.inventory.view;
+package devopsdistilled.operp.client.stock.view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
