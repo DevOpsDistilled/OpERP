@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.view;
+package devopsdistilled.operp.client.main;
 
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;

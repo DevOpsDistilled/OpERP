@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import devopsdistilled.operp.client.view.TaskPaneOld;
+import devopsdistilled.operp.client.main.TaskPaneOld;
 
 public class InventoryPane implements TaskPaneOld {
 

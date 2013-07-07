@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.view;
+package devopsdistilled.operp.client.main;
 
 import java.util.HashMap;
 import java.util.Map;

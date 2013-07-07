@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.controller;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.view.MainWindow;
+import devopsdistilled.operp.client.main.MainWindow;
 
 public class MainWindowController {
 

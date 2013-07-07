@@ -1,28 +1,30 @@
-package devopsdistilled.operp.client.view;
+package devopsdistilled.operp.client.main;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class SalesPane implements TaskPaneOld {
 
+public class PurchasesPane implements TaskPaneOld {
 	private JPanel pane;
 
 	@Override
 	public String toString() {
-		return "Sales";
+		return "Purchases";
 	}
 
 	@Override
 	public void makeCurrentWorkingTaskPane() {
 		pane = new JPanel();
-		pane.add(new JLabel("From Sales Pane"));
+		pane.add(new JLabel("From Purchases Pane"));
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
+				//MainWindow.getInstance().setTaskPane(pane);
 
 			}
 		});
+
 	}
 }
