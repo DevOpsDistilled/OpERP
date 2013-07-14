@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.main;
+package devopsdistilled.operp.client.abstracts;
 
 
 public abstract class TaskPane extends ViewPane {

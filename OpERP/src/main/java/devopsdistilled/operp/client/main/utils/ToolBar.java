@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.main;
+package devopsdistilled.operp.client.main.utils;
 
 import javax.swing.JButton;
 import javax.swing.JToolBar;
