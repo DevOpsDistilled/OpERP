@@ -22,6 +22,9 @@ public class MainWindow implements MainModelObserver {
 	@Inject
 	private MainModel model;
 
+	@Inject
+	private NavigationPane navigationPane;
+
 	private JFrame frame;
 	private JSplitPane splitPane;
 
@@ -46,7 +49,7 @@ public class MainWindow implements MainModelObserver {
 				initComponents();
 				frame.getContentPane().add(splitPane);
 
-				splitPane.setLeftComponent(new NavigationPane().getPane());
+				splitPane.setLeftComponent(navigationPane.getPane());
 				splitPane.setRightComponent(model.getSelectedTaskPane()
 						.getPane());
 
