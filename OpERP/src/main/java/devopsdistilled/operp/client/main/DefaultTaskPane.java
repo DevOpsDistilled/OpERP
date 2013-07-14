@@ -4,6 +4,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import devopsdistilled.operp.client.abstracts.TaskPane;
 import net.miginfocom.swing.MigLayout;
 
 public class DefaultTaskPane extends TaskPane {

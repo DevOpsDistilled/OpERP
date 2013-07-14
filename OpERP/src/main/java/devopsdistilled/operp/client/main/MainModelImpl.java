@@ -3,6 +3,10 @@ package devopsdistilled.operp.client.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import devopsdistilled.operp.client.abstracts.AbstractModel;
+import devopsdistilled.operp.client.abstracts.Observer;
+import devopsdistilled.operp.client.abstracts.TaskPane;
+
 public class MainModelImpl extends AbstractModel implements MainModel {
 
 	private TaskPane selectedTaskPane;

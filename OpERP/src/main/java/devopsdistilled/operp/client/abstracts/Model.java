@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.main;
+package devopsdistilled.operp.client.abstracts;
 
 public interface Model {
 	public void registerObserver(Observer observer);

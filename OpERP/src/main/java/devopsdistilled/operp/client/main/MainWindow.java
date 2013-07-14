@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
+import devopsdistilled.operp.client.abstracts.TaskPane;
+
 public class MainWindow implements MainModelObserver {
 
 	private static MainWindow mainWindow = new MainWindow();
