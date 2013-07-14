@@ -1,14 +1,9 @@
 package devopsdistilled.operp.client.main;
 
+import javax.swing.JComponent;
+
 public abstract class ViewPane {
 
-	protected Listener listener;
+	public abstract JComponent getPane();
 
-	public Controller getController() {
-		return getListener().getController();
-	}
-
-	private Listener getListener() {
-		return listener;
-	}
 }
