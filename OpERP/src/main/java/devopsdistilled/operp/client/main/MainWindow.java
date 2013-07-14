@@ -1,114 +1,87 @@
 package devopsdistilled.operp.client.main;
 
-import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JToolBar;
+import javax.swing.JSplitPane;
 
-public class MainWindow {
+import devopsdistilled.operp.client.abstracts.TaskPane;
 
-	private JFrame mainFrame;
-	private TaskPaneOld taskPane;
-	private StatusPane statusPane;
-	private SidePaneOld sidePane;
+public class MainWindow implements MainModelObserver {
+
+	private static MainWindow mainWindow = new MainWindow();
 
 	@Inject
-	private JToolBar toolBar;
+	private MainWindowController controller;
 
 	@Inject
-	private JMenuBar menuBar;
+	private MainModel model;
 
-	@Inject
-	private MainWindowListener listener;
+	private JFrame frame;
+	private JSplitPane splitPane;
 
-	public MainWindow() {
-
+	private MainWindow() {
 	}
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	public void display() {
+	public static MainWindow getInstance() {
+		return mainWindow;
+	}
+
+	@PostConstruct
+	private void registerObserver() {
+		model.registerObserver(this);
+		model.castObservers();
+	}
+
+	public void init() {
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				initialize();
+				initComponents();
+				frame.getContentPane().add(splitPane);
 
-				try {
-					getMainFrame().setVisible(true);
-					getMainFrame().setJMenuBar(getMenuBar());
-					getMainFrame().getContentPane().add(getToolBar(), BorderLayout.NORTH);
+				splitPane.setLeftComponent(new NavigationPane().getPane());
+				splitPane.setRightComponent(model.getSelectedTaskPane()
+						.getPane());
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				frame.setVisible(true);
 			}
 		});
 	}
 
-	private void initialize() {
-		mainFrame = new JFrame();
-		mainFrame.setBounds(100, 100, 450, 300);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private void initComponents() {
+		frame = new JFrame(model.getTitle());
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setBounds(new Rectangle(screenSize));
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		splitPane = new JSplitPane();
+		splitPane.setDividerLocation(200);
 	}
 
-	public MainWindowListener getListener() {
-		return listener;
+	@Override
+	public void updateTaskPane(TaskPane taskPane) {
+		splitPane.setRightComponent(taskPane.getPane());
 	}
 
-	public void setListener(MainWindowListener listener) {
-		this.listener = listener;
+	@Override
+	public void updateTitle(String title) {
+		frame.setTitle(title);
 	}
 
-	public JFrame getMainFrame() {
-		return mainFrame;
+	public MainModel getModel() {
+		return model;
 	}
 
-	public void setMainFrame(JFrame mainFrame) {
-		this.mainFrame = mainFrame;
-	}
+	@Override
+	public void updateAll() {
 
-	public SidePaneOld getSidePane() {
-		return sidePane;
-	}
-
-	public void setSidePane(SidePaneOld sidePane) {
-		this.sidePane = sidePane;
-	}
-
-	public TaskPaneOld getTaskPane() {
-		return taskPane;
-	}
-
-	public void setTaskPane(TaskPaneOld taskPane) {
-		this.taskPane = taskPane;
-	}
-
-	public StatusPane getStatusPane() {
-		return statusPane;
-	}
-
-	public void setStatusPane(StatusPane statusPane) {
-		this.statusPane = statusPane;
-	}
-
-	public JToolBar getToolBar() {
-		return toolBar;
-	}
-
-	public void setToolBar(JToolBar toolBar) {
-		this.toolBar = toolBar;
-	}
-
-	public JMenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	public void setMenuBar(JMenuBar menuBar) {
-		this.menuBar = menuBar;
 	}
 }
