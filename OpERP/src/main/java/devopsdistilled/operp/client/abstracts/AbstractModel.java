@@ -13,7 +13,6 @@ public abstract class AbstractModel implements Model {
 	@Override
 	public void registerObserver(Observer observer) {
 		observers.add(observer);
-		System.out.println("Observer registered");
 	}
 
 	@Override
