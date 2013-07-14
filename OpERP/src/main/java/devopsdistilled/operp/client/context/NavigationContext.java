@@ -1,8 +1,52 @@
 package devopsdistilled.operp.client.context;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import devopsdistilled.operp.client.items.ItemMgmtPane;
+import devopsdistilled.operp.client.main.NavigationPane;
+import devopsdistilled.operp.client.main.NavigationTree;
+import devopsdistilled.operp.client.party.PartyMgmtPane;
+import devopsdistilled.operp.client.sales.SalesPane;
+import devopsdistilled.operp.client.stock.StockPane;
 
 @Configuration
 public class NavigationContext {
+
+	@Bean
+	public PartyMgmtPane partyMgmtPane() {
+		return new PartyMgmtPane();
+	}
+
+	@Bean
+	public ItemMgmtPane itemMgmtPane() {
+		return new ItemMgmtPane();
+	}
+
+	@Bean
+	public StockPane stockPane() {
+		return new StockPane();
+	}
+
+	@Bean
+	public SalesPane salesPane() {
+		return new SalesPane();
+	}
+
+	@Bean
+	public NavigationTree navigationTree() {
+		NavigationTree navTree = new NavigationTree();
+		navTree.addNode(partyMgmtPane(), 0);
+		navTree.addNode(itemMgmtPane(), 1);
+		navTree.addNode(stockPane(), 2);
+		navTree.addNode(salesPane(), 3);
+
+		return navTree;
+	}
+
+	@Bean
+	public NavigationPane navigationPane() {
+		return new NavigationPane();
+	}
 
 }
