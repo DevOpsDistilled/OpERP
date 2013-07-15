@@ -87,4 +87,8 @@ public class MainWindow implements MainModelObserver {
 	public void updateAll() {
 
 	}
+
+	public MainWindowController getController() {
+		return controller;
+	}
 }
