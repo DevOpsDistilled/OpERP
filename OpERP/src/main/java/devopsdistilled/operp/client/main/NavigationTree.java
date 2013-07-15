@@ -42,6 +42,7 @@ public class NavigationTree {
 
 		tree = new JTree(treeModel);
 		tree.setRootVisible(true);
+		tree.setSelectionRow(0);
 	}
 
 	public void setListener(EventListener listener) {
