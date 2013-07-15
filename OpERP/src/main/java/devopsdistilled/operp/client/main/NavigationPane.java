@@ -5,7 +5,9 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 
+import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.abstracts.ViewPane;
 
 public class NavigationPane extends ViewPane implements TreeSelectionListener {
@@ -23,8 +25,19 @@ public class NavigationPane extends ViewPane implements TreeSelectionListener {
 	}
 
 	@Override
-	public void valueChanged(TreeSelectionEvent e) {
-		System.out.println("Value Changed");
+	public void valueChanged(TreeSelectionEvent event) {
+
+		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) event
+				.getPath().getLastPathComponent();
+
+		DefaultMutableTreeNode prevNode = (DefaultMutableTreeNode) event
+				.getOldLeadSelectionPath().getLastPathComponent();
+
+		TaskPane newTaskPane = (TaskPane) selectedNode.getUserObject();
+
+		TaskPane oldTaskPane = (TaskPane) prevNode.getUserObject();
+
+		mainWindow.getController().changeTaskPane(newTaskPane, oldTaskPane);
 	}
 
 }
