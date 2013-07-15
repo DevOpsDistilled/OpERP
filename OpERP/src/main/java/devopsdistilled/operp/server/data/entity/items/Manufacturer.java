@@ -1,7 +1,7 @@
 package devopsdistilled.operp.server.data.entity.items;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,32 +17,8 @@ public class Manufacturer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long manufacturerId;
-	private String manufacturerName;
 
 	@OneToMany(mappedBy = "manufacturer")
-	private Set<Brand> brands;
+	private List<Brand> brands;
 
-	public Long getManufacturerId() {
-		return manufacturerId;
-	}
-
-	public void setManufacturerId(Long manufacturerId) {
-		this.manufacturerId = manufacturerId;
-	}
-
-	public String getManufacturerName() {
-		return manufacturerName;
-	}
-
-	public void setManufacturerName(String manufacturerName) {
-		this.manufacturerName = manufacturerName;
-	}
-
-	public Set<Brand> getBrands() {
-		return brands;
-	}
-
-	public void setBrands(Set<Brand> brands) {
-		this.brands = brands;
-	}
 }
