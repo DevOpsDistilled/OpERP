@@ -12,6 +12,7 @@ public class ClientApp {
 				AppContext.class);
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();
+
 		System.out.println(context);
 	}
 }
