@@ -2,7 +2,7 @@ package devopsdistilled.operp.server.data.repo.custom.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.server.data.entity.Product;
+import devopsdistilled.operp.server.data.entity.items.Product;
 import devopsdistilled.operp.server.data.repo.ProductRepository;
 import devopsdistilled.operp.server.data.repo.custom.ProductRepositoryCustom;
 

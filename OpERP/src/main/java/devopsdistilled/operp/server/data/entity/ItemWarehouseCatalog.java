@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import devopsdistilled.operp.server.data.entity.items.Item;
+
 @Entity
 public class ItemWarehouseCatalog implements Serializable {
 

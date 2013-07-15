@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import devopsdistilled.operp.server.data.entity.Manufacturer;
+import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 import devopsdistilled.operp.server.data.repo.ManufacturerRepository;
 import devopsdistilled.operp.server.data.service.ManufacturerService;
 

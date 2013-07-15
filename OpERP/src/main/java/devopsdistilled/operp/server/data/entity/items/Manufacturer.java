@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.items;
 
 import java.io.Serializable;
 import java.util.Set;

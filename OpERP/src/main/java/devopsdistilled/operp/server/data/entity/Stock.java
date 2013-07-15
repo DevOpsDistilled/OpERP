@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import devopsdistilled.operp.server.data.entity.items.Item;
+
 @Entity
 public class Stock implements Serializable {
 

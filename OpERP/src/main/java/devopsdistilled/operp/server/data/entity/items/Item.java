@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.items;
 
 import java.io.Serializable;
 
@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import devopsdistilled.operp.server.data.entity.Stock;
 
 @Entity
 public class Item implements Serializable {
