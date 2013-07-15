@@ -1,9 +1,11 @@
 package devopsdistilled.operp.client.main;
 
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -15,6 +17,8 @@ public class NavigationTree {
 
 	private final DefaultTreeModel treeModel;
 	private JTree tree;
+
+	private EventListener listener;
 
 	public JTree getTree() {
 		return tree;
@@ -38,7 +42,11 @@ public class NavigationTree {
 
 		tree = new JTree(treeModel);
 		tree.setRootVisible(true);
+	}
 
+	public void setListener(EventListener listener) {
+		this.listener = listener;
+		tree.addTreeSelectionListener((TreeSelectionListener) listener);
 	}
 
 	public void addNode(TaskPane taskPane) {
