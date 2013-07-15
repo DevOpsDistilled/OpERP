@@ -10,6 +10,7 @@ public class ClientApp {
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
+
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();
 
