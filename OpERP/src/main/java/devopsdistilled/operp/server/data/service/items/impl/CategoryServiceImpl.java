@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service.impl;
+package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 

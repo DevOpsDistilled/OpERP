@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service.impl;
+package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 
@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 import devopsdistilled.operp.server.data.repo.items.ManufacturerRepository;
-import devopsdistilled.operp.server.data.service.ManufacturerService;
+import devopsdistilled.operp.server.data.service.impl.AbstractServiceImpl;
+import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 
 @Service
 public class ManufacturerServiceImpl extends
