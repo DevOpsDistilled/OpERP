@@ -16,6 +16,10 @@ public class Item implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemId;
+	
+	private String itemName;
+	
+	private Double price;
 
 	@ManyToOne
 	private Product product;

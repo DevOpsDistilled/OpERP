@@ -18,6 +18,8 @@ public class Manufacturer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long manufacturerId;
 
+	private String manufactuerName;
+
 	@OneToMany(mappedBy = "manufacturer")
 	private List<Brand> brands;
 

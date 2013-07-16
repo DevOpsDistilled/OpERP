@@ -19,6 +19,8 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long productId;
 
+	private String productName;
+
 	@OneToMany(mappedBy = "product")
 	private List<Item> items;
 

@@ -17,6 +17,8 @@ public class Brand implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long brandID;
 
+	private String brandName;
+
 	@ManyToOne
 	private Manufacturer manufacturer;
 

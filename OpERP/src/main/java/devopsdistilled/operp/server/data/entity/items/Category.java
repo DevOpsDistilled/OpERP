@@ -18,6 +18,8 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryId;
 
+	private String categoryName;
+
 	@ManyToMany(mappedBy = "categories")
 	private List<Product> products;
 }
