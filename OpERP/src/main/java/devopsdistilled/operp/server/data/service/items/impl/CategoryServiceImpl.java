@@ -1,9 +1,9 @@
-package devopsdistilled.operp.server.data.service.impl;
+package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.server.data.entity.Category;
-import devopsdistilled.operp.server.data.repo.CategoryRepository;
+import devopsdistilled.operp.server.data.entity.items.Category;
+import devopsdistilled.operp.server.data.repo.items.CategoryRepository;
 import devopsdistilled.operp.server.data.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
