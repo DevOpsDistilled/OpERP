@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import devopsdistilled.operp.server.context.AppTestContext;
 import devopsdistilled.operp.server.data.entity.items.Product;
+import devopsdistilled.operp.server.data.repo.items.ProductRepository;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)

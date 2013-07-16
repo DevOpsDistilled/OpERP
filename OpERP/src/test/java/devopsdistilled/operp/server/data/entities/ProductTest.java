@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import devopsdistilled.operp.server.context.AppTestContext;
-import devopsdistilled.operp.server.data.repo.ProductRepository;
+import devopsdistilled.operp.server.data.repo.items.ProductRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppTestContext.class)

@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.repo.ItemRepository;
+import devopsdistilled.operp.server.data.repo.items.ItemRepository;
 import devopsdistilled.operp.server.data.service.ItemService;
 
 @Service

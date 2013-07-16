@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.repo.custom;
+package devopsdistilled.operp.server.data.repo.items.custom;
 
 import devopsdistilled.operp.server.data.entity.items.Product;
 

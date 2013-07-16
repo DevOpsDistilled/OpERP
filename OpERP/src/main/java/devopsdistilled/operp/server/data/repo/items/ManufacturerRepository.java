@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.repo;
+package devopsdistilled.operp.server.data.repo.items;
 
 import java.util.List;
 
