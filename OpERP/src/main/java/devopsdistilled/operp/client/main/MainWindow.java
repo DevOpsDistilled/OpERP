@@ -38,7 +38,6 @@ public class MainWindow implements MainModelObserver {
 	@PostConstruct
 	private void registerObserver() {
 		model.registerObserver(this);
-		model.castObservers();
 	}
 
 	public void init() {
