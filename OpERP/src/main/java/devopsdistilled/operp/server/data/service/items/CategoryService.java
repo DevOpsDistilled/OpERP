@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service;
+package devopsdistilled.operp.server.data.service.items;
 
 import java.io.Serializable;
 
