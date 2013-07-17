@@ -10,14 +10,21 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
-public class NewItemPane {
+public class ItemPane implements ItemModelObserver {
+
+	private final ItemModel model;
+	private final ItemPaneController controller;
 
 	private final JPanel pane;
 	private JComponent owner;
 	private final JTextField textField;
 	private final JTextField textField_3;
 
-	public NewItemPane() {
+	public ItemPane(ItemModel itemModel, ItemPaneController itemPaneController) {
+
+		this.model = itemModel;
+		this.controller = itemPaneController;
+
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][][grow]", "[][][][][]"));
 
@@ -67,5 +74,11 @@ public class NewItemPane {
 		dialog.setSize(640, 800);
 		dialog.setVisible(true);
 		return dialog;
+	}
+
+	@Override
+	public void updateAll() {
+		// TODO Auto-generated method stub
+
 	}
 }
