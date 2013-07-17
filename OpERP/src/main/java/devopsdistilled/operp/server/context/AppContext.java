@@ -4,11 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ JpaContext.class })
+@Import({ JpaContext.class, RmiContext.class })
 public class AppContext {
 
-	/*@Bean
-	public ServerApp serverApp() {
-		return new ServerApp();
-	}*/
 }
