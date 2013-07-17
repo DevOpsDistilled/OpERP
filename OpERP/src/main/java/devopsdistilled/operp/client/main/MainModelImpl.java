@@ -1,30 +1,17 @@
 package devopsdistilled.operp.client.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import devopsdistilled.operp.client.abstracts.AbstractModel;
-import devopsdistilled.operp.client.abstracts.Observer;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
-public class MainModelImpl extends AbstractModel implements MainModel {
+public class MainModelImpl extends AbstractModel<MainModelObserver> implements
+		MainModel {
 
 	private TaskPane selectedTaskPane;
 	private String title;
 
-	protected List<MainModelObserver> observers;
-
 	public MainModelImpl() {
 		this.selectedTaskPane = new DefaultTaskPane();
 		this.title = new String("OpERP");
-		observers = new ArrayList<>();
-	}
-
-	@Override
-	public void castObservers() {
-		for (Observer observer : super.observers) {
-			observers.add((MainModelObserver) observer);
-		}
 	}
 
 	@Override

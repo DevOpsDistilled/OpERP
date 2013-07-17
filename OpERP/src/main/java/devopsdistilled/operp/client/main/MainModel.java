@@ -13,5 +13,4 @@ public interface MainModel extends Model {
 
 	public void setTitle(String title);
 
-	public void castObservers();
 }
