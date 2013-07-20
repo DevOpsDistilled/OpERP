@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.server.data.entity.items.Brand;
+import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ItemPane implements ItemModelObserver {
@@ -45,14 +46,16 @@ public class ItemPane implements ItemModelObserver {
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
+
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
-		
-				JLabel lblItemId = new JLabel("Item Name");
-				pane.add(lblItemId, "cell 0 2,alignx trailing");
-		
-				textField = new JTextField();
-				pane.add(textField, "cell 2 2,growx");
-				textField.setColumns(10);
+
+		JLabel lblItemId = new JLabel("Item Name");
+		pane.add(lblItemId, "cell 0 2,alignx trailing");
+
+		textField = new JTextField();
+
+		pane.add(textField, "cell 2 2,growx");
+		textField.setColumns(10);
 
 		JLabel lblPrice = new JLabel("Price");
 		pane.add(lblPrice, "cell 0 3,alignx trailing");
@@ -70,18 +73,32 @@ public class ItemPane implements ItemModelObserver {
 		});
 		pane.add(btnCancel, "flowx,cell 2 4");
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Item item = new Item();
+				Brand brand = (Brand) comboBrands.getSelectedItem();
+				Product product = (Product) comboProducts.getSelectedItem();
+				item.setBrand(brand);
+				item.setProduct(product);
+
+				if (controller.validate(item)) {
+					controller.save(item);
+				}
+			}
+		});
 		pane.add(btnSave, "cell 2 4");
-		
-				JButton btnNewProduct = new JButton("New Product");
-				pane.add(btnNewProduct, "cell 2 0");
-				
-						JButton btnNewBrand = new JButton("New Brand");
-						btnNewBrand.addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-							}
-						});
-						pane.add(btnNewBrand, "cell 2 1");
+
+		JButton btnNewProduct = new JButton("New Product");
+		pane.add(btnNewProduct, "cell 2 0");
+
+		JButton btnNewBrand = new JButton("New Brand");
+		btnNewBrand.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		pane.add(btnNewBrand, "cell 2 1");
 
 		dialog = new JDialog();
 
@@ -128,4 +145,5 @@ public class ItemPane implements ItemModelObserver {
 		}
 		comboBrands.setSelectedItem(null);
 	}
+
 }
