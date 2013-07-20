@@ -38,7 +38,9 @@ public final class ItemMgmtPane extends TaskPane {
 				ItemModel itemModel = new ItemModelImpl();
 				ItemPaneController itemPaneController = new ItemPaneControllerImpl(
 						itemModel);
-				ItemPane itemPane = new ItemPane(itemModel, itemPaneController);
+				ItemPane itemPane = new ItemPane(getPane(), itemModel,
+						itemPaneController);
+				itemPane.getDialog();
 			}
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
