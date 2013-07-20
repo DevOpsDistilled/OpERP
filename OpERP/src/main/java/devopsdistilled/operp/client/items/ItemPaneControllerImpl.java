@@ -3,8 +3,6 @@ package devopsdistilled.operp.client.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
@@ -14,23 +12,23 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 
 	private final ItemModel model;
 
-	@Inject
-	private ItemService itemService;
+	private final ItemService itemService;
 
-	@Inject
-	private ProductService productService;
+	private final ProductService productService;
 
-	@Inject
-	private BrandService brandService;
+	private final BrandService brandService;
 
-	public ItemPaneControllerImpl(ItemModel itemModel) {
+	public ItemPaneControllerImpl(ItemModel itemModel, ItemService itemService,
+			ProductService productService, BrandService brandService) {
 		this.model = itemModel;
+		this.itemService = itemService;
+		this.productService = productService;
+		this.brandService = brandService;
 	}
 
 	@Override
 	public void populateData() {
 		List<Brand> brands = new ArrayList<>();
-		System.out.println("BrandService = " + brandService);
 		brands = brandService.findAll();
 		model.setBrands(brands);
 	}
