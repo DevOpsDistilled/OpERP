@@ -1,9 +1,9 @@
 package devopsdistilled.operp.client.items;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import devopsdistilled.operp.server.data.entity.items.Brand;
+import devopsdistilled.operp.server.data.entity.items.Product;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
@@ -28,9 +28,11 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 
 	@Override
 	public void populateData() {
-		List<Brand> brands = new ArrayList<>();
-		brands = brandService.findAll();
+		List<Brand> brands = brandService.findAll();
 		model.setBrands(brands);
+		
+		List<Product> products = productService.findAll();
+		model.setProducts(products);
 	}
 
 }
