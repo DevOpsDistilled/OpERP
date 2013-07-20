@@ -22,4 +22,27 @@ public class Brand implements Serializable {
 	@ManyToOne
 	private Manufacturer manufacturer;
 
+	public Long getBrandID() {
+		return brandID;
+	}
+
+	public void setBrandID(Long brandID) {
+		this.brandID = brandID;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public Manufacturer getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(Manufacturer manufacturer) {
+		this.manufacturer = manufacturer;
+	}
 }
