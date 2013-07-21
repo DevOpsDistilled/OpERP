@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.items;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
@@ -11,13 +13,17 @@ import devopsdistilled.operp.server.data.service.items.ProductService;
 
 public class ItemPaneControllerImpl implements ItemPaneController {
 
-	private final ItemModel model;
+	@Inject
+	private ItemModel model;
 
-	private final ItemService itemService;
+	@Inject
+	private ItemService itemService;
 
-	private final ProductService productService;
+	@Inject
+	private ProductService productService;
 
-	private final BrandService brandService;
+	@Inject
+	private BrandService brandService;
 
 	public ItemPaneControllerImpl(ItemModel itemModel, ItemService itemService,
 			ProductService productService, BrandService brandService) {
@@ -25,6 +31,17 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 		this.itemService = itemService;
 		this.productService = productService;
 		this.brandService = brandService;
+	}
+
+	public ItemPaneControllerImpl(ItemModel itemModel) {
+		System.out.println("@Injected Model in Controller: " + this.model);
+		this.model = itemModel;
+		System.out.println("Controller instantiated: " + this);
+
+		System.out.println("Model in Controller = " + this.model);
+	}
+
+	public ItemPaneControllerImpl() {
 	}
 
 	@Override
@@ -44,6 +61,11 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 	@Override
 	public Item save(Item item) {
 		return itemService.save(item);
+	}
+
+	@Override
+	public ItemModel getModel() {
+		return model;
 	}
 
 }

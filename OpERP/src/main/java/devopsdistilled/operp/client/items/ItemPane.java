@@ -19,20 +19,29 @@ import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ItemPane implements ItemModelObserver {
 
-	private final ItemModel model;
-	private final ItemPaneController controller;
+	private ItemModel model;
 
-	private final JDialog dialog;
-	private final JPanel pane;
-	private final JComponent owner;
-	private final JTextField textField;
-	private final JTextField textField_3;
-	private final JComboBox<Brand> comboBrands;
-	private final JComboBox<Product> comboProducts;
+	private ItemPaneController controller;
 
-	public ItemPane(final JComponent owner, ItemModel itemModel,
-			ItemPaneController itemPaneController) {
+	private JDialog dialog;
+	private JPanel pane;
+	private JComponent owner;
+	private JTextField textField;
+	private JTextField textField_3;
+	private JComboBox<Brand> comboBrands;
+	private JComboBox<Product> comboProducts;
 
+	public ItemPane(ItemPaneController itemPaneController, ItemModel itemModel) {
+
+		this.model = itemModel;
+		System.out.println("Model in Pane = " + this.model);
+		model.registerObserver(this);
+		this.controller = itemPaneController;
+		System.out.println("Pane instantiated: " + this);
+
+	}
+
+	public void init() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][]"));
 
@@ -101,13 +110,12 @@ public class ItemPane implements ItemModelObserver {
 		pane.add(btnNewBrand, "cell 2 1");
 
 		dialog = new JDialog();
-
-		this.owner = owner;
-		this.model = itemModel;
-		model.registerObserver(this);
-		this.controller = itemPaneController;
+		
 		controller.populateData();
+	}
 
+	public ItemPane() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public JComponent getPane() {
@@ -146,4 +154,7 @@ public class ItemPane implements ItemModelObserver {
 		comboBrands.setSelectedItem(null);
 	}
 
+	public void setOwner(JComponent owner) {
+		this.owner = owner;
+	}
 }
