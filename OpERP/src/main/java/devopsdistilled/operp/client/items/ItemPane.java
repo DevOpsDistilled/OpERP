@@ -34,11 +34,8 @@ public class ItemPane implements ItemModelObserver {
 	public ItemPane(ItemPaneController itemPaneController, ItemModel itemModel) {
 
 		this.model = itemModel;
-		System.out.println("Model in Pane = " + this.model);
 		model.registerObserver(this);
 		this.controller = itemPaneController;
-		System.out.println("Pane instantiated: " + this);
-
 	}
 
 	public void init() {

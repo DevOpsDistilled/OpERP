@@ -37,7 +37,7 @@ public final class ItemMgmtPane extends TaskPane {
 				ItemPane itemPane = ClientApp.getApplicationContext().getBean(
 						ItemPane.class);
 				itemPane.init();
-				//itemPane.setOwner(getPane());
+				itemPane.setOwner(getPane());
 				itemPane.getDialog();
 			}
 		});

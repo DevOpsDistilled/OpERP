@@ -40,29 +40,20 @@ public class UIContext {
 	@Bean()
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public ItemModel itemModel() {
-		System.out.println("From itemModel()");
 		return new ItemModelImpl();
 	}
 
 	@Bean
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public ItemPaneController itemPaneController() {
-		System.out.println("From itemPaneController()");
 		return new ItemPaneControllerImpl();
 	}
 
 	@Bean
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public ItemPane itemPane() {
-		System.out.println("From itemPane()");
 		ItemPaneController controller = itemPaneController();
 		ItemModel model = controller.getModel();
-		ItemPaneController controller2 = itemPaneController();
-		ItemModel model2 = controller2.getModel();
-		System.out.println("controller1: " + controller);
-		System.out.println("model1: " + model);
-		System.out.println("controller2: " + controller2);
-		System.out.println("model2: " + model2);
 		return new ItemPane(controller, model);
 	}
 }

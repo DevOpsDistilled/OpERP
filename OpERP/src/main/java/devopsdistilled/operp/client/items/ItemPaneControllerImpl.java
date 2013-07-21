@@ -34,11 +34,7 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 	}
 
 	public ItemPaneControllerImpl(ItemModel itemModel) {
-		System.out.println("@Injected Model in Controller: " + this.model);
 		this.model = itemModel;
-		System.out.println("Controller instantiated: " + this);
-
-		System.out.println("Model in Controller = " + this.model);
 	}
 
 	public ItemPaneControllerImpl() {
@@ -67,5 +63,4 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 	public ItemModel getModel() {
 		return model;
 	}
-
 }
