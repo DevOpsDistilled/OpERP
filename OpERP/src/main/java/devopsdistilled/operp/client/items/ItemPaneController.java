@@ -10,4 +10,6 @@ public interface ItemPaneController {
 
 	Item save(Item item);
 
+	ItemModel getModel();
+
 }

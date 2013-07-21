@@ -11,13 +11,8 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.ClientApp;
 import devopsdistilled.operp.client.abstracts.TaskPane;
-import devopsdistilled.operp.server.data.service.items.BrandService;
-import devopsdistilled.operp.server.data.service.items.ItemService;
-import devopsdistilled.operp.server.data.service.items.ProductService;
 
 public final class ItemMgmtPane extends TaskPane {
-
-	private JComponent owner;
 
 	@Override
 	public String toString() {
@@ -39,19 +34,10 @@ public final class ItemMgmtPane extends TaskPane {
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				ItemService itemService = ClientApp.getApplicationContext()
-						.getBean(ItemService.class);
-				ProductService productService = ClientApp
-						.getApplicationContext().getBean(ProductService.class);
-				BrandService brandService = ClientApp.getApplicationContext()
-						.getBean(BrandService.class);
-
-				ItemModel itemModel = new ItemModelImpl();
-				ItemPaneController itemPaneController = new ItemPaneControllerImpl(
-						itemModel, itemService, productService, brandService);
-				ItemPane itemPane = new ItemPane(getPane(), itemModel,
-						itemPaneController);
+				ItemPane itemPane = ClientApp.getApplicationContext().getBean(
+						ItemPane.class);
+				itemPane.init();
+				itemPane.setOwner(getPane());
 				itemPane.getDialog();
 			}
 		});
