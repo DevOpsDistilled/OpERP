@@ -1,15 +1,11 @@
 package devopsdistilled.operp.client.items;
 
-import java.util.Vector;
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 
@@ -18,7 +14,7 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 
 	private JPanel pane;
 	private JTable table;
-	private DefaultTableModel tableModel;
+	private ItemTableModel tableModel;
 
 	public ListItemPane(ListItemPaneController controller, ListItemModel model) {
 		this.controller = controller;
@@ -32,7 +28,7 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 	 */
 	public void init() {
 		pane = new JPanel();
-		tableModel = new DefaultTableModel();
+		tableModel = new ItemTableModel();
 		table = new JTable(tableModel);
 		pane.add(new JScrollPane(table));
 
@@ -52,12 +48,8 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 
 	@Override
 	public void updateItemList() {
-		Vector<Item> items = new Vector<>(model.getItems());
-		tableModel.setDataVector(items, model.getTableColumnNames());
+		tableModel.setItems(model.getItems());
 	}
 
-	@Override
-	public void updateColumnNames() {
-		tableModel.setColumnIdentifiers(model.getTableColumnNames());
-	}
+	
 }
