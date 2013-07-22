@@ -69,4 +69,14 @@ public class ItemTableModel extends AbstractTableModel {
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return false;
 	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+		fireTableDataChanged();
+	}
+
+	public Item getItemAt(int rowIndex) {
+		return items.get(rowIndex);
+	}
+
 }
