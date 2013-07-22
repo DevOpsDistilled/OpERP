@@ -1,13 +1,15 @@
 package devopsdistilled.operp.client.items;
 
+import java.util.Vector;
+
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 
@@ -30,18 +32,11 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 	 */
 	public void init() {
 		pane = new JPanel();
-		Object[][] data = { { 1.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0 },
-				{ 0.0, 0.0, 1.0 } };
-
-		Object[] columnNames = { "First", "Second", "Third" };
-		tableModel = new DefaultTableModel(data, columnNames);
+		tableModel = new DefaultTableModel();
 		table = new JTable(tableModel);
-
-		table.setShowHorizontalLines(true);
 		pane.add(new JScrollPane(table));
-		pane.add(new JLabel("Label in Pane"));
 
-		// controller.loadData();
+		controller.loadData();
 	}
 
 	@Override
@@ -57,8 +52,8 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 
 	@Override
 	public void updateItemList() {
-		// TODO Auto-generated method stub
-
+		Vector<Item> items = new Vector<>(model.getItems());
+		tableModel.setDataVector(items, model.getTableColumnNames());
 	}
 
 	@Override
