@@ -6,6 +6,4 @@ public interface ListItemModelObserver extends Observer {
 
 	void updateItemList();
 
-	void updateColumnNames();
-
 }
