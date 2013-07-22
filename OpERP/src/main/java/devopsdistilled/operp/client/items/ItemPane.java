@@ -107,8 +107,8 @@ public class ItemPane implements ItemModelObserver {
 		pane.add(btnNewBrand, "cell 2 1");
 
 		dialog = new JDialog();
-		
-		controller.populateData();
+
+		controller.loadData();
 	}
 
 	public ItemPane() {
@@ -154,4 +154,5 @@ public class ItemPane implements ItemModelObserver {
 	public void setOwner(JComponent owner) {
 		this.owner = owner;
 	}
+
 }

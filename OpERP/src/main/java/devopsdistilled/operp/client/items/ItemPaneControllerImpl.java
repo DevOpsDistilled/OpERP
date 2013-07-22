@@ -41,7 +41,7 @@ public class ItemPaneControllerImpl implements ItemPaneController {
 	}
 
 	@Override
-	public void populateData() {
+	public void loadData() {
 		List<Brand> brands = brandService.findAll();
 		model.setBrands(brands);
 
