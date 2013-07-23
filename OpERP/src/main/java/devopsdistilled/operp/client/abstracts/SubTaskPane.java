@@ -20,8 +20,8 @@ public abstract class SubTaskPane {
 	}
 
 	public JDialog getDialog() {
-		dialog.getContentPane().setLayout(new MigLayout("debug"));
-		dialog.getContentPane().add(getPane());
+		dialog.getContentPane().setLayout(new MigLayout("debug, fill"));
+		dialog.getContentPane().add(getPane(), "grow");
 		dialog.setLocationRelativeTo(owner);
 		dialog.setSize(400, 600);
 		dialog.setVisible(true);
