@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
