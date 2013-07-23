@@ -1,14 +1,19 @@
 package devopsdistilled.operp.client.items;
 
-import devopsdistilled.operp.client.ClientApp;
+import javax.inject.Inject;
+
+import org.springframework.context.ApplicationContext;
+
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ItemControllerImpl implements ItemController {
 
+	@Inject
+	ApplicationContext context;
+
 	@Override
 	public void createItem() {
-		ItemPane itemPane = ClientApp.getApplicationContext().getBean(
-				ItemPane.class);
+		ItemPane itemPane = context.getBean(ItemPane.class);
 		itemPane.init();
 		// itemPane.setOwner(getPane());
 		itemPane.getDialog();
@@ -21,8 +26,7 @@ public class ItemControllerImpl implements ItemController {
 
 	@Override
 	public void listItems() {
-		ListItemPane listItemPane = ClientApp.getApplicationContext().getBean(
-				ListItemPane.class);
+		ListItemPane listItemPane = context.getBean(ListItemPane.class);
 		listItemPane.init();
 		// listItemPane.setOwner(getPane());
 		listItemPane.getDialog();
