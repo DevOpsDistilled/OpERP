@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Import;
 
 import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.client.items.ItemControllerImpl;
-import devopsdistilled.operp.client.items.ItemModel;
-import devopsdistilled.operp.client.items.ItemModelImpl;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.models.ItemModel;
+import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
 import devopsdistilled.operp.client.items.views.CreateItemPane;
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
