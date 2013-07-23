@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ UIContext.class, RmiContext.class })
+@Import({ RmiContext.class, UIContext.class })
 public class AppContext {
 
 }
