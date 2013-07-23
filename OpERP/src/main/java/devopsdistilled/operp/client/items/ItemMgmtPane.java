@@ -9,11 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.ClientApp;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public final class ItemMgmtPane extends TaskPane {
-
-	private JComponent owner;
 
 	@Override
 	public String toString() {
@@ -35,13 +34,28 @@ public final class ItemMgmtPane extends TaskPane {
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ItemModel itemModel = new ItemModelImpl();
-				ItemPaneController itemPaneController = new ItemPaneControllerImpl(
-						itemModel);
-				ItemPane itemPane = new ItemPane(itemModel, itemPaneController);
+				ItemPane itemPane = ClientApp.getApplicationContext().getBean(
+						ItemPane.class);
+				itemPane.init();
+				itemPane.setOwner(getPane());
+				itemPane.getDialog();
 			}
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
+
+		JButton btnListItems = new JButton("List Items");
+		btnListItems.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ListItemPane listItemPane = ClientApp.getApplicationContext()
+						.getBean(ListItemPane.class);
+				listItemPane.init();
+				listItemPane.setOwner(getPane());
+				listItemPane.getDialog();
+
+			}
+		});
+		pane.add(btnListItems, "cell 0 2");
 
 		return pane;
 	}

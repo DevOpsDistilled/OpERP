@@ -27,4 +27,44 @@ public class Item implements Serializable {
 	@ManyToOne
 	private Brand brand;
 
+	public Long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
 }
