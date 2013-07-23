@@ -1,7 +1,7 @@
 package devopsdistilled.operp.client.items.controllers;
 
-public interface CreateItemPaneController {
+import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
 
-	void init();
+public interface CreateItemPaneController extends SubTaskPaneController {
 
 }
