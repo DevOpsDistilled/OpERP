@@ -18,6 +18,9 @@ import devopsdistilled.operp.client.items.ListItemModelImpl;
 import devopsdistilled.operp.client.items.ListItemPane;
 import devopsdistilled.operp.client.items.ListItemPaneController;
 import devopsdistilled.operp.client.items.ListItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.views.CreateItemPane;
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
@@ -87,6 +90,21 @@ public class UIContext {
 		ListItemPaneController controller = listItemPaneController();
 		ListItemModel model = controller.getModel();
 		return new ListItemPane(controller, model);
+	}
+
+	@Bean
+	public devopsdistilled.operp.client.items.models.ItemModel itemModelNew() {
+		return new devopsdistilled.operp.client.items.models.impl.ItemModelImpl();
+	}
+
+	@Bean
+	public CreateItemPane createItemPane() {
+		return new CreateItemPane();
+	}
+
+	@Bean
+	public CreateItemPaneController createItemPaneController() {
+		return new CreateItemPaneControllerImpl();
 	}
 
 }
