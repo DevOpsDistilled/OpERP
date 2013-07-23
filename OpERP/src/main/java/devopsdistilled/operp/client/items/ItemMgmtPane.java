@@ -43,6 +43,20 @@ public final class ItemMgmtPane extends TaskPane {
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
 
+		JButton btnListItems = new JButton("List Items");
+		btnListItems.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ListItemPane listItemPane = ClientApp.getApplicationContext()
+						.getBean(ListItemPane.class);
+				listItemPane.init();
+				listItemPane.setOwner(getPane());
+				listItemPane.getDialog();
+
+			}
+		});
+		pane.add(btnListItems, "cell 0 2");
+
 		return pane;
 	}
 }

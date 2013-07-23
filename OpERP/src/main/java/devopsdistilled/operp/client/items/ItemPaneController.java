@@ -4,7 +4,7 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 
 public interface ItemPaneController {
 
-	void populateData();
+	void loadData();
 
 	boolean validate(Item item);
 
