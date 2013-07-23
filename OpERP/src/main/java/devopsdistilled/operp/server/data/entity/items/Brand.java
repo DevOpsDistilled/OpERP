@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import devopsdistilled.operp.server.data.entity.Entiti;
+
 @Entity
-public class Brand implements Serializable {
+public class Brand extends Entiti implements Serializable {
 
 	private static final long serialVersionUID = -8725499929433349001L;
 
