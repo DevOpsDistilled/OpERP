@@ -1,9 +1,8 @@
 package devopsdistilled.operp.client.items;
 
-public interface ListItemPaneController {
+import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
 
-	ListItemModel getModel();
-
-	void loadData();
+public interface ListItemPaneController extends
+		SubTaskPaneController<ListItemModel> {
 
 }
