@@ -15,6 +15,7 @@ public class ItemModelImpl extends AbstractModel<ItemModelObserver> implements
 	private List<Brand> brands;
 
 	public ItemModelImpl() {
+		System.out.println("Model instantiated: " + this);
 	}
 
 	public ItemModelImpl(Item item) {

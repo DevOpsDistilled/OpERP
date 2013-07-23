@@ -28,7 +28,6 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 	private JTextField textField_3;
 	private JComboBox<Brand> comboBrands;
 	private JComboBox<Product> comboProducts;
-	private JTextField textField_1;
 
 	public ItemPane(ItemPaneController itemPaneController, ItemModel itemModel) {
 
@@ -37,47 +36,37 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 		this.controller = itemPaneController;
 	}
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	@Override
 	public void init() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][][]"));
-		
-		JLabel lblItemId_1 = new JLabel("Item Id");
-		pane.add(lblItemId_1, "cell 0 0,alignx trailing");
-		
-		textField_1 = new JTextField();
-		pane.add(textField_1, "cell 2 0,growx");
-		textField_1.setColumns(10);
-		
-				JLabel lblItemId = new JLabel("Item Name");
-				pane.add(lblItemId, "cell 0 1,alignx trailing");
-		
-				textField = new JTextField();
-				
-						pane.add(textField, "cell 2 1,growx");
-						textField.setColumns(10);
+		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
-		pane.add(lblProductName, "cell 0 2,alignx trailing");
+		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
 		comboProducts = new JComboBox<Product>();
-		pane.add(comboProducts, "flowx,cell 2 2,growx");
+		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
-		pane.add(lblBrandName, "cell 0 3,alignx trailing");
+		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
 
-		pane.add(comboBrands, "flowx,cell 2 3,growx");
+		pane.add(comboBrands, "flowx,cell 2 1,growx");
+
+		JLabel lblItemId = new JLabel("Item Name");
+		pane.add(lblItemId, "cell 0 2,alignx trailing");
+
+		textField = new JTextField();
+
+		pane.add(textField, "cell 2 2,growx");
+		textField.setColumns(10);
 
 		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "cell 0 4,alignx trailing");
+		pane.add(lblPrice, "cell 0 3,alignx trailing");
 
 		textField_3 = new JTextField();
-		pane.add(textField_3, "cell 2 4,growx");
+		pane.add(textField_3, "cell 2 3,growx");
 		textField_3.setColumns(10);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -87,7 +76,7 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 				getDialog().setVisible(false);
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 2 5");
+		pane.add(btnCancel, "flowx,cell 2 4");
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			@Override
@@ -103,10 +92,10 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 				}
 			}
 		});
-		pane.add(btnSave, "cell 2 5");
+		pane.add(btnSave, "cell 2 4");
 
 		JButton btnNewProduct = new JButton("New Product");
-		pane.add(btnNewProduct, "cell 2 2");
+		pane.add(btnNewProduct, "cell 2 0");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
@@ -114,7 +103,7 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		pane.add(btnNewBrand, "cell 2 3");
+		pane.add(btnNewBrand, "cell 2 1");
 
 		controller.loadData();
 	}
