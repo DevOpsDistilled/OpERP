@@ -3,16 +3,19 @@ package devopsdistilled.operp.client.items;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.ClientApp;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public final class ItemMgmtPane extends TaskPane {
+
+	@Inject
+	private ItemController itemController;
 
 	@Override
 	public String toString() {
@@ -34,11 +37,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ItemPane itemPane = ClientApp.getApplicationContext().getBean(
-						ItemPane.class);
-				itemPane.init();
-				itemPane.setOwner(getPane());
-				itemPane.getDialog();
+				itemController.createItem();
 			}
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
@@ -47,12 +46,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnListItems.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ListItemPane listItemPane = ClientApp.getApplicationContext()
-						.getBean(ListItemPane.class);
-				listItemPane.init();
-				listItemPane.setOwner(getPane());
-				listItemPane.getDialog();
-
+				itemController.listItems();
 			}
 		});
 		pane.add(btnListItems, "cell 0 2");
