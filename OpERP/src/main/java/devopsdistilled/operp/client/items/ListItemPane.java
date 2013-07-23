@@ -1,13 +1,11 @@
 package devopsdistilled.operp.client.items;
 
-import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 
 public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
@@ -30,17 +28,16 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 	 * @wbp.parser.entryPoint
 	 */
 	public void init() {
+		pane = new JPanel(new MigLayout("debug, fill"));
 
 		tableModel = new ItemTableModel();
 		table = new JTable(tableModel);
+
 		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-		pane = new JPanel(new BorderLayout());
-		pane.setBorder(BorderFactory.createEmptyBorder());
-
-		pane.add(scrollPane);
+		pane.add(scrollPane, "grow");
 
 		controller.loadData();
 	}
