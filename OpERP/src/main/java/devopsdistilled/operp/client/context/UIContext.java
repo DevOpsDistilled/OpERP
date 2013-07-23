@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 
+import devopsdistilled.operp.client.items.ItemController;
+import devopsdistilled.operp.client.items.ItemControllerImpl;
 import devopsdistilled.operp.client.items.ItemModel;
 import devopsdistilled.operp.client.items.ItemModelImpl;
 import devopsdistilled.operp.client.items.ItemPane;
@@ -46,6 +48,11 @@ public class UIContext {
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public ItemModel itemModel() {
 		return new ItemModelImpl();
+	}
+
+	@Bean
+	public ItemController itemController() {
+		return new ItemControllerImpl();
 	}
 
 	@Bean
