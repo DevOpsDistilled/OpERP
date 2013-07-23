@@ -4,19 +4,23 @@ import javax.inject.Inject;
 
 import org.springframework.context.ApplicationContext;
 
+import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public class ItemControllerImpl implements ItemController {
 
 	@Inject
-	ApplicationContext context;
+	private ApplicationContext context;
+
+	@Inject
+	private ItemService itemService;
 
 	@Override
 	public void createItem() {
-		ItemPane itemPane = context.getBean(ItemPane.class);
-		itemPane.init();
-		// itemPane.setOwner(getPane());
-		itemPane.getDialog();
+		CreateItemPaneController createItemPaneController = context
+				.getBean(CreateItemPaneController.class);
+		createItemPaneController.init();
 	}
 
 	@Override
@@ -28,8 +32,12 @@ public class ItemControllerImpl implements ItemController {
 	public void listItems() {
 		ListItemPane listItemPane = context.getBean(ListItemPane.class);
 		listItemPane.init();
-		// listItemPane.setOwner(getPane());
 		listItemPane.getDialog();
+	}
+
+	@Override
+	public void deleteItem(Item item) {
+		itemService.delete(item);
 	}
 
 }

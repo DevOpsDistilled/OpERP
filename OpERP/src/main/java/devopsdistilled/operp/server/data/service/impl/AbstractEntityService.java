@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import devopsdistilled.operp.server.data.service.AbstractService;
+import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractServiceImpl<T, ID extends Serializable>
-		implements AbstractService<T, ID> {
+public abstract class AbstractEntityService<T, ID extends Serializable>
+		implements EntityService<T, ID> {
 
 	private static final long serialVersionUID = 4892118695516828793L;
 

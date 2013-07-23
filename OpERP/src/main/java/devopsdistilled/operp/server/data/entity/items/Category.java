@@ -9,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import devopsdistilled.operp.server.data.entity.Entiti;
+
 @Entity
-public class Category implements Serializable {
+public class Category extends Entiti implements Serializable {
 
 	private static final long serialVersionUID = -3809686715120885998L;
 
