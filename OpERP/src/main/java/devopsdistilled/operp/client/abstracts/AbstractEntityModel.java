@@ -7,7 +7,7 @@ import java.util.List;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ID>, EO extends EntityObserver, ID extends Serializable>
+public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ID>, EO extends EntityObserver<E>, ID extends Serializable>
 		extends AbstractModel<EO> implements EntityModel<E, ES, EO, ID> {
 
 	protected List<E> entities;
@@ -34,7 +34,6 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		setEntities(getService().findAll());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void notifyObservers() {
 		for (EO observer : observers) {
@@ -42,7 +41,6 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void registerObserver(EO observer) {
 		super.registerObserver(observer);
