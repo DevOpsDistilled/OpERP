@@ -39,4 +39,10 @@ public class MainModelImpl extends AbstractModel<MainModelObserver> implements
 	public String getTitle() {
 		return title;
 	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		
+	}
 }

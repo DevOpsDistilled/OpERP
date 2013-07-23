@@ -8,17 +8,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import devopsdistilled.operp.server.data.entity.Entiti;
+
 @Entity
-public class Item implements Serializable {
+public class Item extends Entiti implements Serializable {
 
 	private static final long serialVersionUID = 1137602696634935018L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemId;
-	
+
 	private String itemName;
-	
+
 	private Double price;
 
 	@ManyToOne
