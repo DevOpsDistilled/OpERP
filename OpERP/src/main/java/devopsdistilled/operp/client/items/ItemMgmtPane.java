@@ -34,11 +34,8 @@ public final class ItemMgmtPane extends TaskPane {
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ItemPane itemPane = ClientApp.getApplicationContext().getBean(
-						ItemPane.class);
-				itemPane.init();
-				itemPane.setOwner(getPane());
-				itemPane.getDialog();
+				ItemController itemController = new ItemControllerImpl();
+				itemController.createItem();
 			}
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
