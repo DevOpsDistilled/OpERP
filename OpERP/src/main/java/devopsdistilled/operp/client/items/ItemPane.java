@@ -7,25 +7,23 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class ItemPane implements ItemModelObserver {
+public class ItemPane extends SubTaskPane implements ItemModelObserver {
 
-	private ItemModel model;
+	private final ItemModel model;
 
-	private ItemPaneController controller;
+	private final ItemPaneController controller;
 
-	private JDialog dialog;
 	private JPanel pane;
-	private JComponent owner;
 	private JTextField textField;
 	private JTextField textField_3;
 	private JComboBox<Brand> comboBrands;
@@ -106,25 +104,13 @@ public class ItemPane implements ItemModelObserver {
 		});
 		pane.add(btnNewBrand, "cell 2 1");
 
-		dialog = new JDialog();
 
 		controller.loadData();
 	}
 
-	public ItemPane() {
-		// TODO Auto-generated constructor stub
-	}
-
+	@Override
 	public JComponent getPane() {
 		return pane;
-	}
-
-	public JDialog getDialog() {
-		dialog.getContentPane().add(getPane());
-		dialog.setSize(640, 800);
-		dialog.setLocationRelativeTo(owner);
-		dialog.setVisible(true);
-		return dialog;
 	}
 
 	@Override
@@ -149,10 +135,6 @@ public class ItemPane implements ItemModelObserver {
 			comboBrands.addItem(brand);
 		}
 		comboBrands.setSelectedItem(null);
-	}
-
-	public void setOwner(JComponent owner) {
-		this.owner = owner;
 	}
 
 }
