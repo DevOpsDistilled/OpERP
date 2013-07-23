@@ -2,10 +2,8 @@ package devopsdistilled.operp.client.items;
 
 import devopsdistilled.operp.client.abstracts.Observer;
 
-public interface ItemModelObserver extends Observer {
+public interface ListItemModelObserver extends Observer {
 
-	void updateProducts();
-
-	void updateBrands();
+	void updateItemList();
 
 }
