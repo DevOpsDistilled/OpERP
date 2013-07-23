@@ -1,23 +1,13 @@
 package devopsdistilled.operp.client.context;
 
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Scope;
 
 import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.client.items.ItemControllerImpl;
 import devopsdistilled.operp.client.items.ItemModel;
 import devopsdistilled.operp.client.items.ItemModelImpl;
-import devopsdistilled.operp.client.items.ItemPane;
-import devopsdistilled.operp.client.items.ItemPaneController;
-import devopsdistilled.operp.client.items.ItemPaneControllerImpl;
-import devopsdistilled.operp.client.items.ListItemModel;
-import devopsdistilled.operp.client.items.ListItemModelImpl;
-import devopsdistilled.operp.client.items.ListItemPane;
-import devopsdistilled.operp.client.items.ListItemPaneController;
-import devopsdistilled.operp.client.items.ListItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.views.CreateItemPane;
@@ -48,53 +38,13 @@ public class UIContext {
 	}
 
 	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ItemModel itemModel() {
-		return new ItemModelImpl();
-	}
-
-	@Bean
 	public ItemController itemController() {
 		return new ItemControllerImpl();
 	}
 
 	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ItemPaneController itemPaneController() {
-		return new ItemPaneControllerImpl();
-	}
-
-	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ItemPane itemPane() {
-		ItemPaneController controller = itemPaneController();
-		ItemModel model = controller.getModel();
-		return new ItemPane(controller, model);
-	}
-
-	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ListItemModel listItemModel() {
-		return new ListItemModelImpl();
-	}
-
-	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ListItemPaneController listItemPaneController() {
-		return new ListItemPaneControllerImpl();
-	}
-
-	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public ListItemPane listItemPane() {
-		ListItemPaneController controller = listItemPaneController();
-		ListItemModel model = controller.getModel();
-		return new ListItemPane(controller, model);
-	}
-
-	@Bean
-	public devopsdistilled.operp.client.items.models.ItemModel itemModelNew() {
-		return new devopsdistilled.operp.client.items.models.impl.ItemModelImpl();
+	public ItemModel itemModel() {
+		return new ItemModelImpl();
 	}
 
 	@Bean
