@@ -7,5 +7,7 @@ public interface ItemController {
 	public void createItem();
 
 	public void editItem(Item item);
+	
+	public void listItems();
 
 }

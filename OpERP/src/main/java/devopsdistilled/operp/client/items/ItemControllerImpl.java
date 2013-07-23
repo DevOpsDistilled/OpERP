@@ -10,13 +10,22 @@ public class ItemControllerImpl implements ItemController {
 		ItemPane itemPane = ClientApp.getApplicationContext().getBean(
 				ItemPane.class);
 		itemPane.init();
-		//itemPane.setOwner(getPane());
+		// itemPane.setOwner(getPane());
 		itemPane.getDialog();
 	}
 
 	@Override
 	public void editItem(Item item) {
-		
+
+	}
+
+	@Override
+	public void listItems() {
+		ListItemPane listItemPane = ClientApp.getApplicationContext().getBean(
+				ListItemPane.class);
+		listItemPane.init();
+		// listItemPane.setOwner(getPane());
+		listItemPane.getDialog();
 	}
 
 }
