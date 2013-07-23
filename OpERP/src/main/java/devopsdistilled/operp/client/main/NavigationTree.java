@@ -47,7 +47,7 @@ public class NavigationTree {
 
 	public void setListener(EventListener listener) {
 		this.listener = listener;
-		tree.addTreeSelectionListener((TreeSelectionListener) listener);
+		tree.addTreeSelectionListener((TreeSelectionListener) this.listener);
 	}
 
 	public void addNode(TaskPane taskPane) {
