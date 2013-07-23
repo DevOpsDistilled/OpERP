@@ -36,6 +36,7 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 		this.controller = itemPaneController;
 	}
 
+	@Override
 	public void init() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][]"));
@@ -103,7 +104,6 @@ public class ItemPane extends SubTaskPane implements ItemModelObserver {
 			}
 		});
 		pane.add(btnNewBrand, "cell 2 1");
-
 
 		controller.loadData();
 	}

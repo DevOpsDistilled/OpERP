@@ -15,6 +15,8 @@ public abstract class SubTaskPane {
 
 	public abstract JComponent getPane();
 
+	public abstract void init();
+
 	public void setOwner(JComponent owner) {
 		this.owner = owner;
 	}

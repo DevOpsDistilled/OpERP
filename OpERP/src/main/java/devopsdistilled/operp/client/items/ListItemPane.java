@@ -27,6 +27,7 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
+	@Override
 	public void init() {
 		pane = new JPanel(new MigLayout("debug, fill"));
 
