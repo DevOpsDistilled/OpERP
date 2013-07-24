@@ -10,4 +10,5 @@ public interface ItemController {
 	
 	public void listItems();
 
+	public void deleteItem(Item item);
 }

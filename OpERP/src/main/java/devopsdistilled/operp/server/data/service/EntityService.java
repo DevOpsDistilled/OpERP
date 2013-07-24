@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AbstractService<T, ID extends Serializable> extends
+public interface EntityService<T, ID extends Serializable> extends
 		JpaRepository<T, ID>, Serializable {
 
 }
