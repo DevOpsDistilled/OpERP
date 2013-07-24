@@ -25,24 +25,23 @@ public class CreateItemPane extends SubTaskPane implements ItemModelObserver {
 	@Inject
 	private CreateItemPaneController controller;
 
-	private JPanel pane;
-	private JTextField itemNameField;
-	private JTextField priceField;
-	private JComboBox<Brand> comboBrands;
-	private JComboBox<Product> comboProducts;
-	private JComboBox<Item> comboItems;
-	private JTextField itemIdField;
+	private final JPanel pane;
+	private final JTextField itemNameField;
+	private final JTextField priceField;
+	private final JComboBox<Brand> comboBrands;
+	private final JComboBox<Product> comboProducts;
+	private final JComboBox<Item> comboItems;
+	private final JTextField itemIdField;
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	@Override
 	public void init() {
-		initComponents();
 		super.init();
 	}
 
-	private void initComponents() {
+	public CreateItemPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][][]"));
 
