@@ -7,7 +7,7 @@ import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
-
+import devopsdistilled.operp.server.data.service.stock.StockService;
 @Configuration
 public class RmiContext {
 
@@ -33,5 +33,13 @@ public class RmiContext {
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/BrandService");
 		rmiProxy.setServiceInterface(BrandService.class);
 		return rmiProxy;
+	}
+	@Bean
+	public RmiProxyFactoryBean StockService(){
+		RmiProxyFactoryBean rmiProxy=new RmiProxyFactoryBean();
+		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/StockService");
+		rmiProxy.setServiceInterface(StockService.class);
+		return rmiProxy;
+		
 	}
 }
