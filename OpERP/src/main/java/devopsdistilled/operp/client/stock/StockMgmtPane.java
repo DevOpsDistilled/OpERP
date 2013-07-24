@@ -29,14 +29,14 @@ public class StockMgmtPane extends TaskPane{
 	@Override
 	public JComponent getPane() {
 		JPanel pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[grow]", "[]"));
+		pane.setLayout(new MigLayout("", "[grow]", "[][][]"));
 		
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
-		pane.add(lblStockManagement, "cell 0 0,alignx center,wrap");
+		pane.add(lblStockManagement, "cell 0 0,alignx center");
 		
-		JButton testButton=new JButton("Test ");
-		testButton.addActionListener(new ActionListener() {
+		JButton btnStock=new JButton("Stock");
+		btnStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StockPane stockPane=ClientApp.getApplicationContext().
 						getBean(StockPane.class);
@@ -45,10 +45,10 @@ public class StockMgmtPane extends TaskPane{
 				stockPane.getDialog();
 			}
 		});
-		pane.add(testButton,"split 2");
+		pane.add(btnStock,"flowx,cell 0 1");
 		
-		JButton testBt2=new JButton("WareHouse");
-		testBt2.addActionListener(new ActionListener() {
+		JButton btnaddwarehouse=new JButton("Add WareHouse");
+		btnaddwarehouse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WareHousePane wareHousePane=ClientApp.getApplicationContext().getBean(WareHousePane.class);
 				wareHousePane.init();
@@ -56,7 +56,13 @@ public class StockMgmtPane extends TaskPane{
 				wareHousePane.getDialog();
 			}
 		});
-		pane.add(testBt2,"gapx 25");
+		pane.add(btnaddwarehouse,"cell 0 1,gapx 25");
+		
+		JButton btnStocklist = new JButton("StockList");
+		pane.add(btnStocklist, "flowx,split 3,cell 0 2");
+		
+		JButton btnWarehouseList = new JButton("WareHouse LIst");
+		pane.add(btnWarehouseList, "cell 0 2");
 		
 		
 		return pane;
