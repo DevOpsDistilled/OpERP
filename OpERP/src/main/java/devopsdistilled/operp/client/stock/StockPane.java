@@ -2,22 +2,18 @@ package devopsdistilled.operp.client.stock;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.abstracts.TaskPane;
-
-import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class StockPane extends SubTaskPane  {
 	private JPanel pane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -25,28 +21,46 @@ public class StockPane extends SubTaskPane  {
 	@Override
 	public void init(){
 		pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][]"));
+		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][]"));
 		
-		JLabel lblStockId = new JLabel("Stock Id");
-		pane.add(lblStockId, "cell 0 0,alignx trailing");
+		JLabel lblItemName = new JLabel("Item Name");
+		pane.add(lblItemName, "cell 0 0,alignx trailing");
+		
+		JComboBox comboBox = new JComboBox();
+		pane.add(comboBox, "cell 1 0,growx");
+		
+		JLabel lblWarehouseName = new JLabel("Warehouse Name");
+		pane.add(lblWarehouseName, "cell 0 1,alignx trailing");
+		
+		JComboBox comboBox_1 = new JComboBox();
+		pane.add(comboBox_1, "cell 1 1,growx");
+		
+		JLabel lblQuantity = new JLabel("Quantity");
+		pane.add(lblQuantity, "cell 0 2,alignx trailing");
+		
+		textField = new JTextField();
+		pane.add(textField, "cell 1 2,growx");
+		textField.setColumns(15);
+		
+		JLabel lblDate = new JLabel("Date");
+		pane.add(lblDate, "cell 0 3,alignx trailing");
 		
 		textField_1 = new JTextField();
-		pane.add(textField_1, "cell 1 0,growx");
+		pane.add(textField_1, "cell 1 3,growx");
 		textField_1.setColumns(10);
 		
-		JLabel lblWarehouseId = new JLabel("Warehouse Id");
-		pane.add(lblWarehouseId, "cell 0 1,alignx trailing");
+		JButton btnCancel = new JButton("Cancel");
+		pane.add(btnCancel, "flowx,split 3,cell 1 4");
 		
-		textField_2 = new JTextField();
-		pane.add(textField_2, "cell 1 1,growx");
-		textField_2.setColumns(10);
+		JButton btnAdd = new JButton("Add");
+		pane.add(btnAdd, "cell 1 4");
 		
-		JLabel lblQantity = new JLabel("Qantity");
-		pane.add(lblQantity, "cell 0 2,alignx trailing");
+		JButton btnRemove = new JButton("Remove");
+		pane.add(btnRemove, "cell 1 4");
 		
-		textField_3 = new JTextField();
-		pane.add(textField_3, "cell 1 2,growx");
-		textField_3.setColumns(10);
+		
+		
+		
 		
 		
 		
