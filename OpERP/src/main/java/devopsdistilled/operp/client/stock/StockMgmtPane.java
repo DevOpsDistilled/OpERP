@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class StockMgmtPane extends TaskPane{
 
@@ -31,6 +32,7 @@ public class StockMgmtPane extends TaskPane{
 		pane.setLayout(new MigLayout("", "[grow]", "[]"));
 		
 		JLabel lblStockManagement = new JLabel("Stock Management");
+		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0,alignx center,wrap");
 		
 		JButton testButton=new JButton("Test ");

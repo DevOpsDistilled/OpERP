@@ -1,5 +1,8 @@
 package devopsdistilled.operp.client.stock;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,6 +12,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+
+import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class WareHousePane extends SubTaskPane{
 	private JPanel pane;
@@ -24,7 +30,7 @@ public class WareHousePane extends SubTaskPane{
 	@Override
 	public void init() {
 		pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 		
 		JLabel lblWarehouseId = new JLabel("WareHouse Id");
 		pane.add(lblWarehouseId, "cell 0 0");
@@ -42,6 +48,24 @@ public class WareHousePane extends SubTaskPane{
 		textField_1 = new JTextField();
 		pane.add(textField_1, "cell 1 2,growx");
 		textField_1.setColumns(10);
+		
+		JLabel label = new JLabel("District");
+		pane.add(label, "cell 0 3,alignx trailing");
+		
+		JComboBox comboBox = new JComboBox();
+		pane.add(comboBox, "cell 1 3,growx");
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().setVisible(false);
+			}
+		});
+		pane.add(btnCancel, "flowx,split 2,cell 1 4");
+		
+		JButton btnSave = new JButton("Save");
+		pane.add(btnSave, "cell 1 4");
 		
 	}
 	@Override	

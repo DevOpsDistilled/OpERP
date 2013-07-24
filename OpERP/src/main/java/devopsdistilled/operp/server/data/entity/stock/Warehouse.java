@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import antlr.collections.List;
 
 @Entity
 public class Warehouse implements Serializable {
@@ -14,12 +17,16 @@ public class Warehouse implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseID;
-	private String location;
+	private String name;
 	
-	public String getLocation() {
-		return location;
+	
+	public String getName() {
+		return name;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
+	
+	
 }
