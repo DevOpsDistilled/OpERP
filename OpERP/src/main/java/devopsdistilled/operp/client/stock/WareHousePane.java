@@ -49,11 +49,8 @@ public class WareHousePane extends SubTaskPane{
 		pane.add(textField_1, "cell 1 2,growx");
 		textField_1.setColumns(10);
 		
-		JLabel label = new JLabel("District");
-		pane.add(label, "cell 0 3,alignx trailing");
 		
-		JComboBox comboBox = new JComboBox();
-		pane.add(comboBox, "cell 1 3,growx");
+		
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -62,10 +59,10 @@ public class WareHousePane extends SubTaskPane{
 				getDialog().setVisible(false);
 			}
 		});
-		pane.add(btnCancel, "flowx,split 2,cell 1 4");
+		pane.add(btnCancel, "flowx,split 2,cell 1 3");
 		
 		JButton btnSave = new JButton("Save");
-		pane.add(btnSave, "cell 1 4");
+		pane.add(btnSave, "cell 1 3");
 		
 	}
 	@Override	
