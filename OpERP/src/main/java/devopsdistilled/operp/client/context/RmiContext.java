@@ -35,7 +35,7 @@ public class RmiContext {
 		return rmiProxy;
 	}
 	@Bean
-	public RmiProxyFactoryBean StockService(){
+	public RmiProxyFactoryBean stockService(){
 		RmiProxyFactoryBean rmiProxy=new RmiProxyFactoryBean();
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/StockService");
 		rmiProxy.setServiceInterface(StockService.class);
