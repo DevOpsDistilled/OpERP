@@ -20,15 +20,14 @@ public class Stock implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int stockId;
-	
+	private Long quantity;
+
 	@OneToOne
 	private Item item;
 	
 	@ManyToOne
 	private Warehouse warehouse;
 	
-	private Long quantity;
-
 	public Long getQuantity() {
 		return quantity;
 	}
