@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -14,19 +13,19 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
+import devopsdistilled.operp.client.items.models.observers.CreateItemPaneModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class CreateItemPane extends SubTaskPane implements
-		ProductModelObserver, BrandModelObserver {
+		CreateItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
 
-	@Inject
+/*	@Inject
 	private CreateItemPaneController controller;
-
+*/
 	private final JPanel pane;
 	private final JTextField itemNameField;
 	private final JTextField priceField;
