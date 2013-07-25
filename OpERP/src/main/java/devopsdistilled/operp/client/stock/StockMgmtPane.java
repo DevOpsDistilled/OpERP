@@ -38,11 +38,7 @@ public class StockMgmtPane extends TaskPane{
 		JButton btnStock=new JButton("Stock");
 		btnStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StockPane stockPane=ClientApp.getApplicationContext().
-						getBean(StockPane.class);
-				stockPane.init();
-				stockPane.getPane();
-				stockPane.getDialog();
+			
 			}
 		});
 		pane.add(btnStock,"flowx,cell 0 1");
@@ -50,10 +46,7 @@ public class StockMgmtPane extends TaskPane{
 		JButton btnaddwarehouse=new JButton("Add WareHouse");
 		btnaddwarehouse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WareHousePane wareHousePane=ClientApp.getApplicationContext().getBean(WareHousePane.class);
-				wareHousePane.init();
-				wareHousePane.getPane();
-				wareHousePane.getDialog();
+			
 			}
 		});
 		pane.add(btnaddwarehouse,"cell 0 1,gapx 25");
