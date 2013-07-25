@@ -23,9 +23,9 @@ import devopsdistilled.operp.server.data.entity.items.Product;
 public class CreateItemPane extends SubTaskPane implements
 		CreateItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
 
-/*	@Inject
-	private CreateItemPaneController controller;
-*/
+	/*
+	 * @Inject private CreateItemPaneController controller;
+	 */
 	private final JPanel pane;
 	private final JTextField itemNameField;
 	private final JTextField priceField;
@@ -110,7 +110,6 @@ public class CreateItemPane extends SubTaskPane implements
 
 	@Override
 	public void updateBrands(List<Brand> brands) {
-		System.out.println("updateBrands()");
 		comboBrands.removeAllItems();
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
@@ -120,7 +119,6 @@ public class CreateItemPane extends SubTaskPane implements
 
 	@Override
 	public void updateProducts(List<Product> products) {
-		System.out.println("updateProducts()");
 		comboProducts.removeAllItems();
 		for (Product product : products) {
 			comboProducts.addItem(product);
