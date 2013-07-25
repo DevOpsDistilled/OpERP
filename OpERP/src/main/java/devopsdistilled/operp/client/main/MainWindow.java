@@ -82,11 +82,6 @@ public class MainWindow implements MainModelObserver {
 		return model;
 	}
 
-	@Override
-	public void updateAll() {
-
-	}
-
 	public MainWindowController getController() {
 		return controller;
 	}
