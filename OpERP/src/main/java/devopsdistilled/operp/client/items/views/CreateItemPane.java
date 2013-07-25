@@ -124,14 +124,21 @@ public class CreateItemPane extends SubTaskPane implements
 			comboProducts.setSelectedItem(prevSelected);
 		else
 			comboProducts.setSelectedItem(null);
+
 	}
 
 	@Override
 	public void updateBrands(List<Brand> brands) {
+		Brand prevSelected = (Brand) comboBrands.getSelectedItem();
 		comboBrands.removeAllItems();
+
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
 		}
 
+		if (brands.contains(prevSelected))
+			comboBrands.setSelectedItem(prevSelected);
+		else
+			comboBrands.setSelectedItem(null);
 	}
 }
