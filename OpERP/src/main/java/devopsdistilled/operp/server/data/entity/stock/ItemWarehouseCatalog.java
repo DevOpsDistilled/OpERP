@@ -1,12 +1,13 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import devopsdistilled.operp.server.data.entity.items.Item;
 
@@ -18,8 +19,10 @@ public class ItemWarehouseCatalog implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemWarehouseCatalogId;
-	@OneToOne
-	private Item item;
-	@OneToOne
-	private Warehouse warehouse;
+	
+	@OneToMany
+	private List<Item> item;
+	
+	@OneToMany
+	private List<Warehouse> warehouse;
 }

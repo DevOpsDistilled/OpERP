@@ -22,6 +22,8 @@ import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
 import devopsdistilled.operp.client.main.MainWindowController;
 import devopsdistilled.operp.client.main.MainWindowControllerImpl;
+import devopsdistilled.operp.client.stock.StockPane;
+import devopsdistilled.operp.client.stock.WareHousePane;
 
 @Configuration
 @Import({ NavigationContext.class })
@@ -78,4 +80,15 @@ public class UIContext {
 		return new CreateItemPaneControllerImpl();
 	}
 
+	@Bean
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
+	public StockPane stockPane(){
+		return new StockPane();
+	}
+	@Bean
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
+	public WareHousePane wareHousePane(){
+		return new WareHousePane();
+	}
+	
 }

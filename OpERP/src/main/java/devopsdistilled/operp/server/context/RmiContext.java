@@ -9,6 +9,7 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
+import devopsdistilled.operp.server.data.service.stock.StockService;
 
 @Configuration
 public class RmiContext {
@@ -20,6 +21,9 @@ public class RmiContext {
 
 	@Inject
 	private BrandService brandService;
+	
+	@Inject 
+	private StockService stockService;
 
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
@@ -49,5 +53,16 @@ public class RmiContext {
 		rmiServiceExporter.setService(brandService);
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
+	}
+	
+	@Bean
+	public RmiServiceExporter rmiStockServiceExporter(){
+		RmiServiceExporter rmiServiceExportor=new RmiServiceExporter();
+		rmiServiceExportor.setServiceName("StockService");
+		rmiServiceExportor.setServiceInterface(StockService.class);
+		rmiServiceExportor.setService(stockService);
+		rmiServiceExportor.setRegistryPort(1099);
+		return rmiServiceExportor;
+		
 	}
 }

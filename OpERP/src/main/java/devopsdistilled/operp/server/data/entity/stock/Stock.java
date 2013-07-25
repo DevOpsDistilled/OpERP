@@ -1,10 +1,11 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.items.Item;
@@ -15,12 +16,16 @@ public class Stock implements Serializable {
 	private static final long serialVersionUID = 6110051890442579005L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int stockId;
+	private Long quantity;
+
 	@OneToOne
 	private Item item;
-	private Long quantity;
-	private BigDecimal unitPrice;
-	private String unit;
-
+	
+	@ManyToOne
+	private Warehouse warehouse;
+	
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -29,19 +34,4 @@ public class Stock implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public BigDecimal getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-	public String getUnit() {
-		return unit;
-	}
-
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
 }

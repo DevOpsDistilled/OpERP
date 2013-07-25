@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.entity;
+package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
 
@@ -14,12 +14,16 @@ public class Warehouse implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseID;
-	private String location;
+	private String name;
 	
-	public String getLocation() {
-		return location;
+	
+	public String getName() {
+		return name;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
+	
+	
 }
