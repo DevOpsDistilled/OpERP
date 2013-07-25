@@ -2,7 +2,6 @@ package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.items.Brand;
@@ -11,8 +10,9 @@ import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 
 @Service
-public class BrandServiceImpl extends AbstractEntityService<Brand, Long>
-		implements BrandService {
+public class BrandServiceImpl extends
+		AbstractEntityService<Brand, Long, BrandRepository> implements
+		BrandService {
 
 	private static final long serialVersionUID = -9026551460330247355L;
 
@@ -20,7 +20,7 @@ public class BrandServiceImpl extends AbstractEntityService<Brand, Long>
 	private BrandRepository brandRepository;
 
 	@Override
-	protected JpaRepository<Brand, Long> getRepo() {
+	protected BrandRepository getRepo() {
 		return brandRepository;
 	}
 
