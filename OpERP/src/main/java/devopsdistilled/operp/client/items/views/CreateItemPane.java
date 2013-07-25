@@ -15,12 +15,14 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
-import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
+import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
+import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class CreateItemPane extends SubTaskPane implements ItemModelObserver {
+public class CreateItemPane extends SubTaskPane implements
+		ProductModelObserver, BrandModelObserver {
 
 	@Inject
 	private CreateItemPaneController controller;
@@ -30,7 +32,6 @@ public class CreateItemPane extends SubTaskPane implements ItemModelObserver {
 	private final JTextField priceField;
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
-	private final JComboBox<Item> comboItems;
 
 	@Override
 	public void init() {
@@ -51,16 +52,15 @@ public class CreateItemPane extends SubTaskPane implements ItemModelObserver {
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
-		comboItems = new JComboBox<Item>();
-		pane.add(comboItems, "flowx,cell 2 1,growx");
-		
-				JLabel lblItemId = new JLabel("Item Name");
-				pane.add(lblItemId, "cell 0 2,alignx trailing");
-		
-				itemNameField = new JTextField();
-				
-						pane.add(itemNameField, "cell 2 2,growx");
-						itemNameField.setColumns(10);
+		pane.add(comboBrands, "flowx,cell 2 1,growx");
+
+		JLabel lblItemId = new JLabel("Item Name");
+		pane.add(lblItemId, "cell 0 2,alignx trailing");
+
+		itemNameField = new JTextField();
+
+		pane.add(itemNameField, "cell 2 2,growx");
+		itemNameField.setColumns(10);
 
 		JLabel lblPrice = new JLabel("Price");
 		pane.add(lblPrice, "cell 0 3,alignx trailing");
@@ -110,9 +110,21 @@ public class CreateItemPane extends SubTaskPane implements ItemModelObserver {
 	}
 
 	@Override
-	public void update(List<Item> entities) {
-		for (Item item : entities) {
-			comboItems.addItem(item);
+	public void updateBrands(List<Brand> brands) {
+		System.out.println("updateBrands()");
+		comboBrands.removeAllItems();
+		for (Brand brand : brands) {
+			comboBrands.addItem(brand);
+		}
+
+	}
+
+	@Override
+	public void updateProducts(List<Product> products) {
+		System.out.println("updateProducts()");
+		comboProducts.removeAllItems();
+		for (Product product : products) {
+			comboProducts.addItem(product);
 		}
 	}
 
