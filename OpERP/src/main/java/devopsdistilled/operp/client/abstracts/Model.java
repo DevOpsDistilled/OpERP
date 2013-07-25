@@ -6,4 +6,6 @@ public interface Model<O extends Observer> {
 	public void removeObserver(O observer);
 
 	public void notifyObservers();
+
+	public void update();
 }
