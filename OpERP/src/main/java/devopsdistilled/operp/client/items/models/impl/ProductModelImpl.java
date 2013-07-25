@@ -18,7 +18,7 @@ public class ProductModelImpl
 
 	@Override
 	public ProductService getService() {
-		return null;
+		return service;
 	}
 
 }
