@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -42,21 +43,13 @@ public class StockPane extends SubTaskPane  {
 		pane.add(textField, "cell 1 2,growx");
 		textField.setColumns(15);
 		
-		JLabel lblDate = new JLabel("Date");
-		pane.add(lblDate, "cell 0 3,alignx trailing");
-		
-		textField_1 = new JTextField();
-		pane.add(textField_1, "cell 1 3,growx");
-		textField_1.setColumns(10);
-		
 		JButton btnCancel = new JButton("Cancel");
 		pane.add(btnCancel, "flowx,split 3,cell 1 4");
 		
-		JButton btnAdd = new JButton("Add");
-		pane.add(btnAdd, "cell 1 4");
+		JButton btnUpdate = new JButton("Update");
+		pane.add(btnUpdate, "cell 1 4");
 		
-		JButton btnRemove = new JButton("Remove");
-		pane.add(btnRemove, "cell 1 4");
+	
 		
 		
 		
