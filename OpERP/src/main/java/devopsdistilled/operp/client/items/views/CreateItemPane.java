@@ -105,6 +105,8 @@ public class CreateItemPane extends SubTaskPane implements
 
 					getDialog().dispose();
 
+					new ItemDetailDialog(item);
+
 				} catch (ProductBrandPairExistsException e1) {
 					JOptionPane
 							.showMessageDialog(getPane(),
