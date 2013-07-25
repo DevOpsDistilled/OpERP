@@ -24,4 +24,14 @@ public class ItemServiceImpl extends AbstractEntityService<Item, Long>
 		return itemRepository;
 	}
 
+	@Override
+	public boolean isProductBrandPairExists(String productName, String brandName) {
+		return false;
+	}
+
+	@Override
+	public boolean isItemNameExists(String itemName) {
+		return false;
+	}
+
 }
