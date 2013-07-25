@@ -50,12 +50,6 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		}
 	}
 
-	@Override
-	public void registerObserver(EO observer) {
-		super.registerObserver(observer);
-		update();
-	}
-
 	protected abstract Class<EO> getObserverClass();
 
 	private Method getUpdateMethod() {

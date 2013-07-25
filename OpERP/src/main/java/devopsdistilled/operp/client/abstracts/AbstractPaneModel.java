@@ -18,10 +18,4 @@ public abstract class AbstractPaneModel<PO extends PaneModelObserver> extends
 		}
 	}
 
-	@Override
-	public void registerObserver(PO observer) {
-		super.registerObserver(observer);
-		update();
-	}
-
 }
