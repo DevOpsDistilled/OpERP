@@ -22,5 +22,10 @@ public abstract class AbstractModel<O extends Observer> implements Model<O> {
 			observers.remove(i);
 		}
 	}
+	
+	@Override
+	public void notifyObservers() {
+		
+	}
 
 }
