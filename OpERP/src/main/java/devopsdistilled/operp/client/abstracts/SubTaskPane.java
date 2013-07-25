@@ -5,7 +5,7 @@ import javax.swing.JDialog;
 
 import net.miginfocom.swing.MigLayout;
 
-public abstract class SubTaskPane {
+public abstract class SubTaskPane implements PaneModelObserver {
 	protected JDialog dialog;
 
 	public SubTaskPane() {
@@ -26,4 +26,8 @@ public abstract class SubTaskPane {
 		return dialog;
 	}
 
+	@Override
+	public void updateTitle(String title) {
+		getDialog().setTitle(title);
+	}
 }
