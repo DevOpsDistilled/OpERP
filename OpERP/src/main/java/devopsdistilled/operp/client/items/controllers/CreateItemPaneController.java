@@ -10,4 +10,6 @@ public interface CreateItemPaneController extends SubTaskPaneController {
 	void validate(Item item) throws ProductBrandPairExistsException,
 			ItemNameExistsException;
 
+	Item save(Item item);
+
 }
