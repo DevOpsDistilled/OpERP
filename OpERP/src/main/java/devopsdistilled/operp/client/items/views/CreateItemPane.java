@@ -47,12 +47,14 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
 		comboProducts = new JComboBox<Product>();
+		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
+		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 
 		JLabel lblItemId = new JLabel("Item Name");
@@ -111,6 +113,20 @@ public class CreateItemPane extends SubTaskPane implements
 	}
 
 	@Override
+	public void updateProducts(List<Product> products) {
+		Product prevSelected = (Product) comboProducts.getSelectedItem();
+		comboProducts.removeAllItems();
+
+		for (Product product : products)
+			comboProducts.addItem(product);
+
+		if (products.contains(prevSelected))
+			comboProducts.setSelectedItem(prevSelected);
+		else
+			comboProducts.setSelectedItem(null);
+	}
+
+	@Override
 	public void updateBrands(List<Brand> brands) {
 		comboBrands.removeAllItems();
 		for (Brand brand : brands) {
@@ -118,13 +134,4 @@ public class CreateItemPane extends SubTaskPane implements
 		}
 
 	}
-
-	@Override
-	public void updateProducts(List<Product> products) {
-		comboProducts.removeAllItems();
-		for (Product product : products) {
-			comboProducts.addItem(product);
-		}
-	}
-
 }
