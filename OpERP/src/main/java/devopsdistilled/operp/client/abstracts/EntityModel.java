@@ -15,6 +15,4 @@ public interface EntityModel<E extends Entiti, ES extends EntityService<E, ID>, 
 
 	public ES getService();
 
-	public void update();
-
 }

@@ -13,6 +13,7 @@ public abstract class AbstractModel<O extends Observer> implements Model<O> {
 	@Override
 	public void registerObserver(O observer) {
 		observers.add(observer);
+		update();
 	}
 
 	@Override
@@ -21,6 +22,11 @@ public abstract class AbstractModel<O extends Observer> implements Model<O> {
 		if (i >= 0) {
 			observers.remove(i);
 		}
+	}
+
+	@Override
+	public void notifyObservers() {
+
 	}
 
 }

@@ -9,9 +9,11 @@ import devopsdistilled.operp.client.items.ItemControllerImpl;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.models.BrandModel;
+import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.models.impl.BrandModelImpl;
+import devopsdistilled.operp.client.items.models.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ProductModelImpl;
 import devopsdistilled.operp.client.items.views.CreateItemPane;
@@ -44,6 +46,11 @@ public class UIContext {
 	@Bean
 	public ItemController itemController() {
 		return new ItemControllerImpl();
+	}
+
+	@Bean
+	public CreateItemPaneModel createItemPaneModel() {
+		return new CreateItemPaneModelImpl();
 	}
 
 	@Bean
