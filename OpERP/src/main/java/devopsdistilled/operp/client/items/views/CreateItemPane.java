@@ -9,12 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.CreateItemPaneModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
@@ -41,7 +44,8 @@ public class CreateItemPane extends SubTaskPane implements
 
 	public CreateItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][]"));
+		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
+				"[][][][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
@@ -86,9 +90,29 @@ public class CreateItemPane extends SubTaskPane implements
 			public void actionPerformed(ActionEvent e) {
 				Item item = new Item();
 				Brand brand = (Brand) comboBrands.getSelectedItem();
-				Product product = (Product) comboProducts.getSelectedItem();
 				item.setBrand(brand);
+				Product product = (Product) comboProducts.getSelectedItem();
 				item.setProduct(product);
+				String itemName = itemNameField.getText().trim();
+				item.setItemName(itemName);
+
+				try {
+					controller.validate(item);
+
+					// validated
+
+					item = controller.save(item);
+
+					getDialog().dispose();
+
+				} catch (ProductBrandPairExistsException e1) {
+					JOptionPane
+							.showMessageDialog(getPane(),
+									"Item with selected pair of Product and Brand already exists.");
+				} catch (ItemNameExistsException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Item Name already exists");
+				}
 
 			}
 		});
