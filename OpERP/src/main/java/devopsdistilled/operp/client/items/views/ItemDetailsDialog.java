@@ -97,6 +97,12 @@ public class ItemDetailsDialog {
 		pane.add(btnDelete, "flowx,cell 1 6");
 
 		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				itemController.editItem(item);
+			}
+		});
 		pane.add(btnEdit, "cell 1 6");
 
 		btnOk = new JButton("OK");
