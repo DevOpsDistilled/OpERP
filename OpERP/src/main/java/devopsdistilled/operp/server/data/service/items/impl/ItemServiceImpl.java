@@ -1,10 +1,14 @@
 package devopsdistilled.operp.server.data.service.items.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.items.Product;
 import devopsdistilled.operp.server.data.repo.items.ItemRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
@@ -25,14 +29,20 @@ public class ItemServiceImpl extends
 	}
 
 	@Override
-	public boolean isProductBrandPairExists(String productName, String brandName) {
-		itemRepository.findByProductNameAndBrandName(productName, brandName);
-		return false;
+	public boolean isProductBrandPairExists(Product product, Brand brand) {
+		List<Item> items = itemRepository.findByProductAndBrand(product, brand);
+		if (items.size() == 0)
+			return false;
+		else
+			return true;
 	}
 
 	@Override
 	public boolean isItemNameExists(String itemName) {
-		itemRepository.findByItemName(itemName);
-		return false;
+		List<Item> items = itemRepository.findByItemName(itemName);
+		if (items.size() == 0)
+			return false;
+		else
+			return true;
 	}
 }

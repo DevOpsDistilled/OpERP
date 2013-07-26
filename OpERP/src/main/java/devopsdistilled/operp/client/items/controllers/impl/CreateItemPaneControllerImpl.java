@@ -41,9 +41,8 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			ItemNameExistsException {
 
-		if (itemModel.getService().isProductBrandPairExists(
-				item.getProduct().getProductName(),
-				item.getBrand().getBrandName())) {
+		if (itemModel.getService().isProductBrandPairExists(item.getProduct(),
+				item.getBrand())) {
 
 			throw new ProductBrandPairExistsException();
 		}
