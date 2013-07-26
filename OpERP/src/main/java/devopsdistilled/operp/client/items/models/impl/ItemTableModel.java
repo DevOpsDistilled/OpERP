@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.models.impl;
 
 import java.util.LinkedList;
 import java.util.List;
