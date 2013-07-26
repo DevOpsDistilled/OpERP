@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,13 +17,14 @@ import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class ItemDetailsDialog {
+public class ItemDetailsDialog extends EntityDetailsDialog<Item> {
 
 	@Inject
 	private ItemController itemController;
 
-	private final JDialog dialog;
 	private final JPanel pane;
+
+	private Item item;
 
 	private final JTextField itemIdField;
 	private final JTextField itemNameField;
@@ -35,15 +35,13 @@ public class ItemDetailsDialog {
 	private final JButton btnEdit;
 	private final JButton btnOk;
 
-	public ItemDetailsDialog(final Item item) {
-		dialog = new JDialog();
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	public ItemDetailsDialog() {
 		dialog.setTitle("Item Details");
 		dialog.setSize(400, 200);
 
 		pane = new JPanel();
 
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
+		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][][][][][]"));
 
 		JLabel lblItemId = new JLabel("Item ID:");
 		pane.add(lblItemId, "cell 0 0,alignx trailing");
@@ -117,25 +115,32 @@ public class ItemDetailsDialog {
 		pane.add(btnOk, "cell 1 6");
 		dialog.setVisible(true);
 
+	}
+
+	@Override
+	public JComponent getPane() {
+		return pane;
+	}
+
+	@Override
+	public void show(Item item) {
+
+		this.item = item;
+
 		if (item != null) {
 			itemIdField.setText(item.getItemId().toString());
 			itemNameField.setText(item.getItemName());
 			productField.setText(item.getProduct().getProductName());
 			brandField.setText(item.getBrand().getBrandName());
 			priceField.setText(item.getPrice().toString());
+
+			getDialog().setVisible(true);
+
 		} else {
 			dialog.dispose();
 			JOptionPane.showMessageDialog(getPane(), "null object produced");
 		}
 
-	}
-
-	public JDialog getDialog() {
-		return dialog;
-	}
-
-	public JComponent getPane() {
-		return pane;
 	}
 
 	public static void main(String[] args) {
@@ -152,6 +157,6 @@ public class ItemDetailsDialog {
 		brand.setBrandName("Test Brand");
 		item.setBrand(brand);
 
-		new ItemDetailsDialog(item);
+		new ItemDetailsDialog().show(item);
 	}
 }
