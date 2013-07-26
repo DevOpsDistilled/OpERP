@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.items.views;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -10,10 +12,12 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.models.impl.ItemTableModel;
+import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ListItemPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ListItemPane extends SubTaskPane implements
-		ListItemPaneModelObserver {
+		ListItemPaneModelObserver, ItemModelObserver {
 
 	@Inject
 	private ListItemPaneController controller;
@@ -38,6 +42,11 @@ public class ListItemPane extends SubTaskPane implements
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateItems(List<Item> items) {
+		tableModel.setItems(items);
 	}
 
 }
