@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.items.views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -12,11 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ItemDetailsDialog {
+
+	@Inject
+	private ItemController itemController;
 
 	private final JDialog dialog;
 	private final JPanel pane;
@@ -30,7 +35,7 @@ public class ItemDetailsDialog {
 	private final JButton btnEdit;
 	private final JButton btnOk;
 
-	public ItemDetailsDialog(Item item) {
+	public ItemDetailsDialog(final Item item) {
 		dialog = new JDialog();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setTitle("Item Details");
@@ -83,6 +88,12 @@ public class ItemDetailsDialog {
 		dialog.getContentPane().add(pane);
 
 		btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				itemController.deleteItem(item);
+			}
+		});
 		pane.add(btnDelete, "flowx,cell 1 6");
 
 		btnEdit = new JButton("Edit");
