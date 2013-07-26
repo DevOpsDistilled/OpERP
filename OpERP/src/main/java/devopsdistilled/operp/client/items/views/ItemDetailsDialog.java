@@ -91,6 +91,7 @@ public class ItemDetailsDialog {
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
 				itemController.deleteItem(item);
 			}
 		});
@@ -100,6 +101,7 @@ public class ItemDetailsDialog {
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
 				itemController.editItem(item);
 			}
 		});
