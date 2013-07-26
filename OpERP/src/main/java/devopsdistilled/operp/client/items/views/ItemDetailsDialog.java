@@ -113,7 +113,6 @@ public class ItemDetailsDialog extends EntityDetailsDialog<Item> {
 			}
 		});
 		pane.add(btnOk, "cell 1 6");
-		dialog.setVisible(true);
 
 	}
 
