@@ -7,10 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "product", "brand" }))
 public class Item extends Entiti implements Serializable {
 
 	private static final long serialVersionUID = 1137602696634935018L;
