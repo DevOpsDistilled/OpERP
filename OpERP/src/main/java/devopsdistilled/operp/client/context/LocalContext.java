@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({ MainWindowContext.class, EntityModelContext.class,
-		EntityControllerContext.class, MvcContext.class })
+		EntityControllerContext.class, MvcContext.class, EntityDetailsContext.class })
 public class LocalContext {
 
 }

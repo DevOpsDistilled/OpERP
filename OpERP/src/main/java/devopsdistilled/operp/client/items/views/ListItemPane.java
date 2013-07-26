@@ -19,6 +19,7 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 public class ListItemPane extends SubTaskPane implements
 		ListItemPaneModelObserver, ItemModelObserver {
 
+	@SuppressWarnings("unused")
 	@Inject
 	private ListItemPaneController controller;
 
