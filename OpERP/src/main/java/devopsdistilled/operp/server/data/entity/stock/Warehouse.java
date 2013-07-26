@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import devopsdistilled.operp.server.data.entity.Entiti;
+
 @Entity
-public class Warehouse implements Serializable {
+public class Warehouse extends Entiti implements Serializable {
 	private static final long serialVersionUID = 3048560317071734805L;
 
 	@Id
