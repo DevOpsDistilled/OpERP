@@ -20,7 +20,7 @@ public class Manufacturer extends Entiti implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long manufacturerId;
 
-	private String manufactuerName;
+	private String manufacturerName;
 
 	@OneToMany(mappedBy = "manufacturer")
 	private List<Brand> brands;
@@ -33,12 +33,12 @@ public class Manufacturer extends Entiti implements Serializable {
 		this.manufacturerId = manufacturerId;
 	}
 
-	public String getManufactuerName() {
-		return manufactuerName;
+	public String getManufacturerName() {
+		return manufacturerName;
 	}
 
-	public void setManufactuerName(String manufactuerName) {
-		this.manufactuerName = manufactuerName;
+	public void setManufacturerName(String manufactuerName) {
+		this.manufacturerName = manufactuerName;
 	}
 
 	public List<Brand> getBrands() {
