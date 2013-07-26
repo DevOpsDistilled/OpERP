@@ -14,9 +14,7 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsDialog;
 import devopsdistilled.operp.client.items.ItemController;
-import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {
 
@@ -141,22 +139,5 @@ public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {
 			JOptionPane.showMessageDialog(getPane(), "null object produced");
 		}
 
-	}
-
-	public static void main(String[] args) {
-		Item item = new Item();
-		item.setItemId(20L);
-		item.setItemName("Test Item");
-		item.setPrice(200.0);
-
-		Product product = new Product();
-		product.setProductName("Test Product");
-		item.setProduct(product);
-
-		Brand brand = new Brand();
-		brand.setBrandName("Test Brand");
-		item.setBrand(brand);
-
-		new ItemDetailsDialog().show(item);
 	}
 }
