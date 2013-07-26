@@ -22,8 +22,15 @@ import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
 import devopsdistilled.operp.client.main.MainWindowController;
 import devopsdistilled.operp.client.main.MainWindowControllerImpl;
-import devopsdistilled.operp.client.stock.StockPane;
-import devopsdistilled.operp.client.stock.WareHousePane;
+import devopsdistilled.operp.client.stock.StockController;
+import devopsdistilled.operp.client.stock.StockControllerImpl;
+import devopsdistilled.operp.client.stock.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.controllers.impl.UpdateStockPaneControllerImpl;
+import devopsdistilled.operp.client.stock.models.StockModel;
+import devopsdistilled.operp.client.stock.models.UpdateStockPaneModel;
+import devopsdistilled.operp.client.stock.models.impl.StockModelImpl;
+import devopsdistilled.operp.client.stock.models.impl.UpdateStockPanemodelImpl;
+import devopsdistilled.operp.client.stock.views.UpdateStockPane;
 
 @Configuration
 @Import({ NavigationContext.class })
@@ -79,14 +86,30 @@ public class UIContext {
 	public CreateItemPaneController createItemPaneController() {
 		return new CreateItemPaneControllerImpl();
 	}
-
 	@Bean
-	public StockPane stockPane(){
-		return new StockPane();
-	}
-	@Bean
-	public WareHousePane wareHousePane(){
-		return new WareHousePane();
+	public StockController stockController() {
+		return new StockControllerImpl();
 	}
 	
+	@Bean
+	public UpdateStockPaneModel updateStockPaneModel(){
+		return new UpdateStockPanemodelImpl();
+	}
+	@Bean
+	public StockModel stockModel(){
+		return new StockModelImpl();
+		
+	}
+	@Bean
+	public UpdateStockPane stockPane(){
+		return new UpdateStockPane();
+	}
+	
+	@Bean 
+	public UpdateStockPaneController updateStockPaneController(){
+		return new UpdateStockPaneControllerImpl();
+			
+	}
+	
+
 }

@@ -2,13 +2,11 @@ package devopsdistilled.operp.client.items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 

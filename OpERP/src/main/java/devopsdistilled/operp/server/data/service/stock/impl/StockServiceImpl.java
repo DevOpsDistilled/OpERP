@@ -11,11 +11,14 @@ import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 
 @Service
-public class StockServiceImpl extends AbstractEntityService<Stock, Long> implements StockService{
+public class StockServiceImpl extends AbstractEntityService<Stock, Long> 
+		implements StockService{
+	
 private static final long serialVersionUID = -7737068540744137395L;
 	
 	@Inject
 	private StockRepository stockRepository;
+	
 	@Override
 	protected JpaRepository<Stock, Long> getRepo() {
 		return stockRepository;

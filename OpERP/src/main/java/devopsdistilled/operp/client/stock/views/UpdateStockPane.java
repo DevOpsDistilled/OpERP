@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.stock;
+package devopsdistilled.operp.client.stock.views;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -6,21 +6,22 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.stock.models.observers.UpdateStockPaneModelObserver;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class StockPane extends SubTaskPane  {
+public class UpdateStockPane extends SubTaskPane implements UpdateStockPaneModelObserver{
 	private JPanel pane;
 	private JTextField textField;
-	private JTextField textField_1;
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	@Override
 	public void init(){
+		super.init();
+	}
+	
+	public UpdateStockPane(){
 		pane=new JPanel();
 		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][]"));
 		
@@ -48,22 +49,12 @@ public class StockPane extends SubTaskPane  {
 		
 		JButton btnUpdate = new JButton("Update");
 		pane.add(btnUpdate, "cell 1 4");
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		
 }
 
 	@Override
 	public JComponent getPane() {
-		
 		return pane;
 	}
 }
