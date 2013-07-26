@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.views;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -7,28 +7,21 @@ import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.ItemTableModel;
+import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.models.observers.ListItemPaneModelObserver;
 
-public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
+public class ListItemPane extends SubTaskPane implements
+		ListItemPaneModelObserver {
 
 	private final ListItemPaneController controller;
 	private final ListItemModel model;
 
-	private JPanel pane;
-	private JTable table;
-	private ItemTableModel tableModel;
+	private final JPanel pane;
+	private final JTable table;
+	private final ItemTableModel tableModel;
 
-	public ListItemPane(ListItemPaneController controller, ListItemModel model) {
-		this.controller = controller;
-
-		this.model = model;
-		model.registerObserver(this);
-	}
-
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	@Override
-	public void init() {
+	public ListItemPane() {
 		pane = new JPanel(new MigLayout("debug, fill"));
 
 		tableModel = new ItemTableModel();
@@ -39,6 +32,10 @@ public class ListItemPane extends SubTaskPane implements ListItemModelObserver {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		pane.add(scrollPane, "grow");
+	}
+
+	@Override
+	public void init() {
 
 		controller.loadData();
 	}
