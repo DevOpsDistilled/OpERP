@@ -1,25 +1,22 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.controllers.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.server.data.service.items.ItemService;
+import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.models.ListItemPaneModel;
+import devopsdistilled.operp.client.items.views.ListItemPane;
 
 public class ListItemPaneControllerImpl implements ListItemPaneController {
 
 	@Inject
-	private ListItemModel model;
+	private ListItemPane view;
 
 	@Inject
-	private ItemService itemService;
+	private ListItemPaneModel model;
 
 	@Override
-	public ListItemModel getModel() {
-		return model;
-	}
+	public void init() {
 
-	@Override
-	public void loadData() {
-		model.setItems(itemService.findAll());
 	}
 
 }
