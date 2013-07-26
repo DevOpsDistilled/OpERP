@@ -4,15 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.CreateItemPaneModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
@@ -23,9 +28,9 @@ import devopsdistilled.operp.server.data.entity.items.Product;
 public class CreateItemPane extends SubTaskPane implements
 		CreateItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
 
-	/*
-	 * @Inject private CreateItemPaneController controller;
-	 */
+	@Inject
+	private CreateItemPaneController controller;
+
 	private final JPanel pane;
 	private final JTextField itemNameField;
 	private final JTextField priceField;
@@ -39,18 +44,21 @@ public class CreateItemPane extends SubTaskPane implements
 
 	public CreateItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][][grow][]", "[][][][][]"));
+		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
+				"[][][][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
 		comboProducts = new JComboBox<Product>();
+		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
+		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 
 		JLabel lblItemId = new JLabel("Item Name");
@@ -82,9 +90,31 @@ public class CreateItemPane extends SubTaskPane implements
 			public void actionPerformed(ActionEvent e) {
 				Item item = new Item();
 				Brand brand = (Brand) comboBrands.getSelectedItem();
-				Product product = (Product) comboProducts.getSelectedItem();
 				item.setBrand(brand);
+				Product product = (Product) comboProducts.getSelectedItem();
 				item.setProduct(product);
+				String itemName = itemNameField.getText().trim();
+				item.setItemName(itemName);
+
+				try {
+					controller.validate(item);
+
+					// validated
+
+					item = controller.save(item);
+
+					getDialog().dispose();
+
+					new ItemDetailDialog(item);
+
+				} catch (ProductBrandPairExistsException e1) {
+					JOptionPane
+							.showMessageDialog(getPane(),
+									"Item with selected pair of Product and Brand already exists.");
+				} catch (ItemNameExistsException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Item Name already exists");
+				}
 
 			}
 		});
@@ -109,20 +139,32 @@ public class CreateItemPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateBrands(List<Brand> brands) {
-		comboBrands.removeAllItems();
-		for (Brand brand : brands) {
-			comboBrands.addItem(brand);
-		}
+	public void updateProducts(List<Product> products) {
+		Product prevSelected = (Product) comboProducts.getSelectedItem();
+		comboProducts.removeAllItems();
+
+		for (Product product : products)
+			comboProducts.addItem(product);
+
+		if (products.contains(prevSelected))
+			comboProducts.setSelectedItem(prevSelected);
+		else
+			comboProducts.setSelectedItem(null);
 
 	}
 
 	@Override
-	public void updateProducts(List<Product> products) {
-		comboProducts.removeAllItems();
-		for (Product product : products) {
-			comboProducts.addItem(product);
-		}
-	}
+	public void updateBrands(List<Brand> brands) {
+		Brand prevSelected = (Brand) comboBrands.getSelectedItem();
+		comboBrands.removeAllItems();
 
+		for (Brand brand : brands) {
+			comboBrands.addItem(brand);
+		}
+
+		if (brands.contains(prevSelected))
+			comboBrands.setSelectedItem(prevSelected);
+		else
+			comboBrands.setSelectedItem(null);
+	}
 }
