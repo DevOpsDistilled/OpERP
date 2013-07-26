@@ -4,80 +4,135 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class ItemDetailDialog {
+public class ItemDetailsDialog {
 
 	private final JDialog dialog;
+	private final JPanel pane;
+
 	private final JTextField itemIdField;
 	private final JTextField itemNameField;
 	private final JTextField brandField;
 	private final JTextField priceField;
 	private final JTextField productField;
-	private final JButton okButton;
+	private final JButton btnDelete;
+	private final JButton btnEdit;
+	private final JButton btnOk;
 
-	public ItemDetailDialog(Item item) {
+	public ItemDetailsDialog(Item item) {
 		dialog = new JDialog();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.getContentPane().setLayout(
-				new MigLayout("", "[][grow]", "[][][][][][][]"));
+		dialog.setTitle("Item Details");
+		dialog.setSize(400, 200);
+
+		pane = new JPanel();
+
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 
 		JLabel lblItemId = new JLabel("Item ID:");
-		dialog.getContentPane().add(lblItemId, "cell 0 0,alignx trailing");
+		pane.add(lblItemId, "cell 0 0,alignx trailing");
 
-		itemIdField = new JTextField(item.getItemId().toString());
+		itemIdField = new JTextField();
 		itemIdField.setEditable(false);
-		dialog.getContentPane().add(itemIdField, "cell 1 0,growx");
+		pane.add(itemIdField, "cell 1 0,growx");
 		itemIdField.setColumns(10);
 
 		JLabel lblItemName = new JLabel("Item Name:");
-		dialog.getContentPane().add(lblItemName, "cell 0 1,alignx trailing");
+		pane.add(lblItemName, "cell 0 1,alignx trailing");
 
-		itemNameField = new JTextField(item.getItemName().toString());
+		itemNameField = new JTextField();
 		itemNameField.setEditable(false);
-		dialog.getContentPane().add(itemNameField, "cell 1 1,growx");
+		pane.add(itemNameField, "cell 1 1,growx");
 		itemNameField.setColumns(10);
 
 		JLabel lblProduct = new JLabel("Product:");
-		dialog.getContentPane().add(lblProduct, "cell 0 2,alignx trailing");
+		pane.add(lblProduct, "cell 0 2,alignx trailing");
 
-		productField = new JTextField(item.getProduct().toString());
+		productField = new JTextField();
 		productField.setEditable(false);
-		dialog.getContentPane().add(productField, "cell 1 2,growx");
+		pane.add(productField, "cell 1 2,growx");
 		productField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Brand:");
-		dialog.getContentPane().add(lblNewLabel,
-				"cell 0 3,alignx trailing,aligny baseline");
+		pane.add(lblNewLabel, "cell 0 3,alignx trailing,aligny baseline");
 
-		brandField = new JTextField(item.getBrand().toString());
+		brandField = new JTextField();
 		brandField.setEditable(false);
-		dialog.getContentPane().add(brandField, "cell 1 3,growx");
+		pane.add(brandField, "cell 1 3,growx");
 		brandField.setColumns(10);
 
 		JLabel lblPrice = new JLabel("Price:");
-		dialog.getContentPane().add(lblPrice, "cell 0 4,alignx trailing");
+		pane.add(lblPrice, "cell 0 4,alignx trailing");
 
-		priceField = new JTextField(item.getPrice().toString());
+		priceField = new JTextField();
 		priceField.setEditable(false);
-		dialog.getContentPane().add(priceField, "cell 1 4,growx");
+		pane.add(priceField, "cell 1 4,growx");
 		priceField.setColumns(10);
 
-		okButton = new JButton("OK");
-		okButton.addActionListener(new ActionListener() {
+		dialog.getContentPane().add(pane);
+
+		btnDelete = new JButton("Delete");
+		pane.add(btnDelete, "flowx,cell 1 6");
+
+		btnEdit = new JButton("Edit");
+		pane.add(btnEdit, "cell 1 6");
+
+		btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dialog.dispose();
+				getDialog().dispose();
 			}
 		});
-		dialog.getContentPane().add(okButton, "cell 1 6,alignx center");
-
+		pane.add(btnOk, "cell 1 6");
 		dialog.setVisible(true);
 
+		if (item != null) {
+			itemIdField.setText(item.getItemId().toString());
+			itemNameField.setText(item.getItemName());
+			productField.setText(item.getProduct().getProductName());
+			brandField.setText(item.getBrand().getBrandName());
+			priceField.setText(item.getPrice().toString());
+		} else {
+			dialog.dispose();
+			JOptionPane.showMessageDialog(getPane(), "null object produced");
+		}
+
+	}
+
+	public JDialog getDialog() {
+		return dialog;
+	}
+
+	public JComponent getPane() {
+		return pane;
+	}
+
+	public static void main(String[] args) {
+		Item item = new Item();
+		item.setItemId(20L);
+		item.setItemName("Test Item");
+		item.setPrice(200.0);
+
+		Product product = new Product();
+		product.setProductName("Test Product");
+		item.setProduct(product);
+
+		Brand brand = new Brand();
+		brand.setBrandName("Test Brand");
+		item.setBrand(brand);
+
+		new ItemDetailsDialog(item);
 	}
 }
