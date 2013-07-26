@@ -2,6 +2,7 @@ package devopsdistilled.operp.server.data.entity.items;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Item extends Entiti implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemId;
 
+	@Column(unique = true)
 	private String itemName;
 
 	private Double price;
