@@ -1,7 +1,5 @@
 package devopsdistilled.operp.server.data.service.items.impl;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -30,19 +28,20 @@ public class ItemServiceImpl extends
 
 	@Override
 	public boolean isProductBrandPairExists(Product product, Brand brand) {
-		List<Item> items = itemRepository.findByProductAndBrand(product, brand);
-		if (items.size() == 0)
-			return false;
-		else
+		Item item = itemRepository.findByProductAndBrand(product, brand);
+		if (item != null)
 			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public boolean isItemNameExists(String itemName) {
-		List<Item> items = itemRepository.findByItemName(itemName);
-		if (items.size() == 0)
-			return false;
-		else
+		Item item = itemRepository.findByItemName(itemName);
+
+		if (item != null)
 			return true;
+		else
+			return false;
 	}
 }
