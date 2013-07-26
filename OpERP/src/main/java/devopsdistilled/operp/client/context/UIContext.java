@@ -7,16 +7,21 @@ import org.springframework.context.annotation.Import;
 import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.client.items.ItemControllerImpl;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.controllers.impl.ListItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
+import devopsdistilled.operp.client.items.models.ListItemPaneModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.models.impl.BrandModelImpl;
 import devopsdistilled.operp.client.items.models.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
+import devopsdistilled.operp.client.items.models.impl.ListItemPaneModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ProductModelImpl;
 import devopsdistilled.operp.client.items.views.CreateItemPane;
+import devopsdistilled.operp.client.items.views.ListItemPane;
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
@@ -54,6 +59,11 @@ public class UIContext {
 	}
 
 	@Bean
+	public ListItemPaneModel listItemPaneModel() {
+		return new ListItemPaneModelImpl();
+	}
+
+	@Bean
 	public ItemModel itemModel() {
 		return new ItemModelImpl();
 	}
@@ -74,8 +84,18 @@ public class UIContext {
 	}
 
 	@Bean
+	public ListItemPane listItemPane() {
+		return new ListItemPane();
+	}
+
+	@Bean
 	public CreateItemPaneController createItemPaneController() {
 		return new CreateItemPaneControllerImpl();
+	}
+
+	@Bean
+	public ListItemPaneController listItemPaneController() {
+		return new ListItemPaneControllerImpl();
 	}
 
 }
