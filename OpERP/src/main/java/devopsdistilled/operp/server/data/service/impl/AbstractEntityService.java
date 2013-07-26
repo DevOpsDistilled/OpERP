@@ -8,27 +8,28 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityService<T, ID extends Serializable>
-		implements EntityService<T, ID> {
+public abstract class AbstractEntityService<E extends Entiti, ID extends Serializable, ER extends JpaRepository<E, ID>>
+		implements EntityService<E, ID> {
 
 	private static final long serialVersionUID = 4892118695516828793L;
 
-	protected abstract JpaRepository<T, ID> getRepo();
+	protected abstract ER getRepo();
 
 	@Override
-	public List<T> findAll() {
+	public List<E> findAll() {
 		return getRepo().findAll();
 	}
 
 	@Override
-	public List<T> findAll(Sort sort) {
+	public List<E> findAll(Sort sort) {
 		return getRepo().findAll(sort);
 	}
 
 	@Override
-	public <S extends T> List<S> save(Iterable<S> entities) {
+	public <S extends E> List<S> save(Iterable<S> entities) {
 		return getRepo().save(entities);
 	}
 
@@ -38,12 +39,12 @@ public abstract class AbstractEntityService<T, ID extends Serializable>
 	}
 
 	@Override
-	public T saveAndFlush(T entity) {
+	public E saveAndFlush(E entity) {
 		return getRepo().saveAndFlush(entity);
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<T> entities) {
+	public void deleteInBatch(Iterable<E> entities) {
 		getRepo().deleteInBatch(entities);
 	}
 
@@ -53,17 +54,17 @@ public abstract class AbstractEntityService<T, ID extends Serializable>
 	}
 
 	@Override
-	public Page<T> findAll(Pageable pageable) {
+	public Page<E> findAll(Pageable pageable) {
 		return getRepo().findAll(pageable);
 	}
 
 	@Override
-	public <S extends T> S save(S entity) {
+	public <S extends E> S save(S entity) {
 		return getRepo().save(entity);
 	}
 
 	@Override
-	public T findOne(ID id) {
+	public E findOne(ID id) {
 		return getRepo().findOne(id);
 	}
 
@@ -83,12 +84,12 @@ public abstract class AbstractEntityService<T, ID extends Serializable>
 	}
 
 	@Override
-	public void delete(T entity) {
+	public void delete(E entity) {
 		getRepo().delete(entity);
 	}
 
 	@Override
-	public void delete(Iterable<? extends T> entities) {
+	public void delete(Iterable<? extends E> entities) {
 		getRepo().delete(entities);
 	}
 
@@ -98,7 +99,7 @@ public abstract class AbstractEntityService<T, ID extends Serializable>
 	}
 
 	@Override
-	public Iterable<T> findAll(Iterable<ID> ids) {
+	public Iterable<E> findAll(Iterable<ID> ids) {
 		return getRepo().findAll(ids);
 	}
 }

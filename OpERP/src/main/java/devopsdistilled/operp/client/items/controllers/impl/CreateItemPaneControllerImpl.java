@@ -3,10 +3,14 @@ package devopsdistilled.operp.client.items.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.views.CreateItemPane;
+import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 
@@ -15,6 +19,9 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 
 	@Inject
 	private CreateItemPane view;
+
+	@Inject
+	private ItemModel itemModel;
 
 	@Inject
 	private ProductModel productModel;
@@ -30,4 +37,24 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 		brandModel.registerObserver(view);
 	}
 
+	@Override
+	public void validate(Item item) throws ProductBrandPairExistsException,
+			ItemNameExistsException {
+
+		if (itemModel.getService().isProductBrandPairExists(item.getProduct(),
+				item.getBrand())) {
+
+			throw new ProductBrandPairExistsException();
+		}
+
+		if (itemModel.getService().isItemNameExists(item.getItemName())) {
+
+			throw new ItemNameExistsException();
+		}
+	}
+
+	@Override
+	public Item save(Item item) {
+		return itemModel.getService().saveAndFlush(item);
+	}
 }

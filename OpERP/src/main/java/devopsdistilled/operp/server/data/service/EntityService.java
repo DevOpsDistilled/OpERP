@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EntityService<T, ID extends Serializable> extends
-		JpaRepository<T, ID>, Serializable {
+import devopsdistilled.operp.server.data.entity.Entiti;
+
+public interface EntityService<E extends Entiti, ID extends Serializable> extends
+		JpaRepository<E, ID>, Serializable {
 
 }
