@@ -31,6 +31,9 @@ public class CreateItemPane extends SubTaskPane implements
 	@Inject
 	private CreateItemPaneController controller;
 
+	@Inject
+	private ItemDetailsDialog itemDetailsDialog;
+
 	private final JPanel pane;
 	private final JTextField itemNameField;
 	private final JTextField priceField;
@@ -108,7 +111,7 @@ public class CreateItemPane extends SubTaskPane implements
 
 					getDialog().dispose();
 
-					new ItemDetailsDialog(item);
+					itemDetailsDialog.show(item);
 
 				} catch (ProductBrandPairExistsException e1) {
 					JOptionPane
