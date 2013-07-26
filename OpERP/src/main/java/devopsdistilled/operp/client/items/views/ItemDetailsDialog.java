@@ -12,12 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsDialog;
 import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class ItemDetailsDialog extends EntityDetailsDialog<Item> {
+public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {
 
 	@Inject
 	private ItemController itemController;
