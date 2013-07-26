@@ -1,9 +1,7 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.models.observers;
 
-import devopsdistilled.operp.client.abstracts.Observer;
+import devopsdistilled.operp.client.abstracts.PaneModelObserver;
 
-public interface ListItemModelObserver extends Observer {
-
-	void updateItemList();
+public interface ListItemPaneModelObserver extends PaneModelObserver {
 
 }
