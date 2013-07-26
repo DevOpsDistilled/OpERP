@@ -8,15 +8,8 @@ public class CreateItemPaneModelImpl extends
 		AbstractPaneModel<CreateItemPaneModelObserver> implements
 		CreateItemPaneModel {
 
-	private String title = "Create Item";
-
-	@Override
-	public void setTitle(String title) {
-		this.title = title;
-
-		for (CreateItemPaneModelObserver observer : observers) {
-			observer.updateTitle(this.title);
-		}
+	public CreateItemPaneModelImpl() {
+		title = "Create Item";
 	}
 
 	@Override
