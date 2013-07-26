@@ -16,7 +16,8 @@ public class ListItemPaneControllerImpl implements ListItemPaneController {
 
 	@Override
 	public void init() {
-
+		view.init();
+		model.registerObserver(view);
 	}
 
 }
