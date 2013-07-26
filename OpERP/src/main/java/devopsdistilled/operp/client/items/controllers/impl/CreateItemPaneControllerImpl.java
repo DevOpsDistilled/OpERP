@@ -55,6 +55,9 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 
 	@Override
 	public Item save(Item item) {
-		return itemModel.getService().saveAndFlush(item);
+		Item savedItem = itemModel.getService().saveAndFlush(item);
+		itemModel.update(); // update ItemModel and notify observers about new
+							// item
+		return savedItem;
 	}
 }
