@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
@@ -18,13 +19,15 @@ import devopsdistilled.operp.client.items.controllers.EditItemPaneController;
 import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
+import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.EditItemPaneModelObserver;
+import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class EditItemPane extends SubTaskPane implements
-		EditItemPaneModelObserver {
+		EditItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
 
 	@Inject
 	private EditItemPaneController controller;
@@ -150,4 +153,15 @@ public class EditItemPane extends SubTaskPane implements
 
 	}
 
+	@Override
+	public void updateProducts(List<Product> products) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateBrands(List<Brand> brands) {
+		// TODO Auto-generated method stub
+
+	}
 }
