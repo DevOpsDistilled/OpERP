@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.controllers.EditItemPaneController;
 import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
@@ -33,7 +34,9 @@ public class ItemControllerImpl implements ItemController {
 
 	@Override
 	public void editItem(Item item) {
-
+		EditItemPaneController editItemPaneController = context
+				.getBean(EditItemPaneController.class);
+		editItemPaneController.init(item);
 	}
 
 	@Override
