@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
@@ -39,7 +40,13 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 
 	@Override
 	public void validate(Item item) throws ProductBrandPairExistsException,
-			ItemNameExistsException {
+			ItemNameExistsException, NullFieldException {
+
+		if (item.getItemName() == null || item.getProduct() == null
+				|| item.getBrand() == null || item.getPrice() == null) {
+
+			throw new NullFieldException();
+		}
 
 		if (itemModel.getService().isProductBrandPairExists(item.getProduct(),
 				item.getBrand())) {
