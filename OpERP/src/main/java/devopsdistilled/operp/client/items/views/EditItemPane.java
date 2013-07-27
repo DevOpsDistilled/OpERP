@@ -170,13 +170,31 @@ public class EditItemPane extends SubTaskPane implements
 
 	@Override
 	public void updateProducts(List<Product> products) {
-		// TODO Auto-generated method stub
+		Product prevSelected = (Product) comboProducts.getSelectedItem();
+		comboProducts.removeAllItems();
+
+		for (Product product : products)
+			comboProducts.addItem(product);
+
+		if (products.contains(prevSelected))
+			comboProducts.setSelectedItem(prevSelected);
+		else
+			comboProducts.setSelectedItem(null);
 
 	}
 
 	@Override
 	public void updateBrands(List<Brand> brands) {
-		// TODO Auto-generated method stub
+		Brand prevSelected = (Brand) comboBrands.getSelectedItem();
+		comboBrands.removeAllItems();
 
+		for (Brand brand : brands) {
+			comboBrands.addItem(brand);
+		}
+
+		if (brands.contains(prevSelected))
+			comboBrands.setSelectedItem(prevSelected);
+		else
+			comboBrands.setSelectedItem(null);
 	}
 }
