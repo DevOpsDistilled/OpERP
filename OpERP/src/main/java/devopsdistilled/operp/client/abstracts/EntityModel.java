@@ -14,7 +14,9 @@ public interface EntityModel<E extends Entiti, ES extends EntityService<E, ID>, 
 	void setEntities(List<E> entities);
 
 	public ES getService();
-	
+
 	public E saveAndUpdateModel(E entity);
+
+	public void deleteAndUpdateModel(E entity);
 
 }
