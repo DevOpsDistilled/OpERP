@@ -44,4 +44,41 @@ public class ItemServiceImpl extends
 		else
 			return false;
 	}
+
+	/**
+	 * Returns false if Product and Brand Pair exists and the pair doesn't
+	 * belong to given itemId. Else returns true
+	 */
+	@Override
+	public boolean isProductBrandPairValidForItem(Long itemId, Product product,
+			Brand brand) {
+
+		Item item = itemRepository.findByProductAndBrand(product, brand);
+
+		if (item == null)
+			return true;
+
+		if (item.getItemId() != itemId)
+			return false;
+
+		return true;
+	}
+
+	/**
+	 * Returns false if ItemName exists for Item other than Item with given
+	 * itemId. Else return true
+	 */
+	@Override
+	public boolean isItemNameValidForItem(Long itemId, String itemName) {
+
+		Item item = itemRepository.findByItemName(itemName);
+
+		if (item == null)
+			return true;
+
+		if (item.getItemId() != itemId)
+			return false;
+
+		return true;
+	}
 }

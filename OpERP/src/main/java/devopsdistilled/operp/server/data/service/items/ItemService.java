@@ -11,4 +11,9 @@ public interface ItemService extends EntityService<Item, Long> {
 
 	boolean isItemNameExists(String itemName);
 
+	boolean isProductBrandPairValidForItem(Long itemId, Product product,
+			Brand brand);
+
+	boolean isItemNameValidForItem(Long itemId, String itemName);
+
 }
