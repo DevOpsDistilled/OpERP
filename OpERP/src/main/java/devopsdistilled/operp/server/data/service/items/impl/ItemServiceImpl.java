@@ -45,6 +45,10 @@ public class ItemServiceImpl extends
 			return false;
 	}
 
+	/**
+	 * Returns false if Product and Brand Pair exists and the pair doesn't
+	 * belong to given itemId. Else returns true
+	 */
 	@Override
 	public boolean isProductBrandPairValidForItem(Long itemId, Product product,
 			Brand brand) {
@@ -56,6 +60,10 @@ public class ItemServiceImpl extends
 		return true;
 	}
 
+	/**
+	 * Returns false if ItemName exists for Item other than Item with given
+	 * itemId. Else return true
+	 */
 	@Override
 	public boolean isItemNameValidForItem(Long itemId, String itemName) {
 
