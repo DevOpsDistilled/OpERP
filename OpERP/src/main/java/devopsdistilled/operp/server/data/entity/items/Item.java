@@ -2,6 +2,7 @@ package devopsdistilled.operp.server.data.entity.items;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,11 +31,11 @@ public class Item extends Entiti implements Serializable {
 
 	private Double price;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "productId")
 	private Product product;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "brandId")
 	private Brand brand;
 
