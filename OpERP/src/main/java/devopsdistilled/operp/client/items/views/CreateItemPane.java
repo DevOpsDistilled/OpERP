@@ -103,28 +103,36 @@ public class CreateItemPane extends SubTaskPane implements
 				String itemName = itemNameField.getText().trim();
 				item.setItemName(itemName);
 				String itemPrice = priceField.getText().trim();
-				Double price = Double.parseDouble(itemPrice);
-				item.setPrice(price);
+
 				try {
-					controller.validate(item);
 
-					// validated
+					Double price = Double.parseDouble(itemPrice);
+					item.setPrice(price);
 
-					item = controller.save(item);
+					try {
+						controller.validate(item);
 
-					getDialog().dispose();
+						// validated
 
-					itemDetailsDialog.show(item);
-				} catch (NullFieldException ex) {
+						item = controller.save(item);
+
+						getDialog().dispose();
+
+						itemDetailsDialog.show(item);
+					} catch (NullFieldException ex) {
+						JOptionPane.showMessageDialog(getPane(),
+								"Required field(s) are Null");
+					} catch (ProductBrandPairExistsException ex) {
+						JOptionPane
+								.showMessageDialog(getPane(),
+										"Item with selected pair of Product and Brand already exists.");
+					} catch (ItemNameExistsException ex) {
+						JOptionPane.showMessageDialog(getPane(),
+								"Item Name already exists");
+					}
+				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
-							"Required field(s) are Null");
-				} catch (ProductBrandPairExistsException ex) {
-					JOptionPane
-							.showMessageDialog(getPane(),
-									"Item with selected pair of Product and Brand already exists.");
-				} catch (ItemNameExistsException ex) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Item Name already exists");
+							"Price must be a Numeric value");
 				}
 
 			}
