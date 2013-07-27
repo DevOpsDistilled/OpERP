@@ -41,4 +41,15 @@ public class EditItemPaneControllerImpl implements EditItemPaneController {
 		brandModel.registerObserver(view);
 	}
 
+	@Override
+	public Item save(Item item) {
+		return itemModel.saveAndUpdateModel(item);
+	}
+
+	@Override
+	public void validate(Item item) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
