@@ -40,39 +40,48 @@ public class EditItemPane extends SubTaskPane implements
 	private final JTextField priceField;
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
+	private final JTextField itemIdField;
 
 	public EditItemPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
-				"[][][][][]"));
+				"[][][][][][]"));
+
+		JLabel lblItemId_1 = new JLabel("Item ID");
+		pane.add(lblItemId_1, "cell 0 0,alignx right");
+
+		itemIdField = new JTextField();
+		itemIdField.setEditable(false);
+		pane.add(itemIdField, "cell 2 0,growx");
+		itemIdField.setColumns(10);
 
 		JLabel lblProductName = new JLabel("Product Name");
-		pane.add(lblProductName, "cell 0 0,alignx trailing");
+		pane.add(lblProductName, "cell 0 1,alignx trailing");
 
 		comboProducts = new JComboBox<Product>();
 		comboProducts.setSelectedItem(null);
-		pane.add(comboProducts, "flowx,cell 2 0,growx");
+		pane.add(comboProducts, "flowx,cell 2 1,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
-		pane.add(lblBrandName, "cell 0 1,alignx trailing");
+		pane.add(lblBrandName, "cell 0 2,alignx trailing");
 
 		comboBrands = new JComboBox<Brand>();
 		comboBrands.setSelectedItem(null);
-		pane.add(comboBrands, "flowx,cell 2 1,growx");
+		pane.add(comboBrands, "flowx,cell 2 2,growx");
 
 		JLabel lblItemId = new JLabel("Item Name");
-		pane.add(lblItemId, "cell 0 2,alignx trailing");
+		pane.add(lblItemId, "cell 0 3,alignx trailing");
 
 		itemNameField = new JTextField();
 
-		pane.add(itemNameField, "cell 2 2,growx");
+		pane.add(itemNameField, "cell 2 3,growx");
 		itemNameField.setColumns(10);
 
 		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "cell 0 3,alignx trailing");
+		pane.add(lblPrice, "cell 0 4,alignx trailing");
 
 		priceField = new JTextField();
-		pane.add(priceField, "cell 2 3,growx");
+		pane.add(priceField, "cell 2 4,growx");
 		priceField.setColumns(10);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -82,12 +91,14 @@ public class EditItemPane extends SubTaskPane implements
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 2 4");
+		pane.add(btnCancel, "flowx,cell 2 5");
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Item item = new Item();
+				Long itemId = Long.parseLong(itemIdField.getText().trim());
+				item.setItemId(itemId);
 				Brand brand = (Brand) comboBrands.getSelectedItem();
 				item.setBrand(brand);
 				Product product = (Product) comboProducts.getSelectedItem();
@@ -129,10 +140,10 @@ public class EditItemPane extends SubTaskPane implements
 
 			}
 		});
-		pane.add(btnUpdate, "cell 2 4");
+		pane.add(btnUpdate, "cell 2 5");
 
 		JButton btnNewProduct = new JButton("New Product");
-		pane.add(btnNewProduct, "cell 2 0");
+		pane.add(btnNewProduct, "cell 2 1");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
@@ -140,7 +151,7 @@ public class EditItemPane extends SubTaskPane implements
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		pane.add(btnNewBrand, "cell 2 1");
+		pane.add(btnNewBrand, "cell 2 2");
 	}
 
 	@Override
@@ -150,7 +161,11 @@ public class EditItemPane extends SubTaskPane implements
 
 	@Override
 	public void updateItem(Item item) {
-
+		itemIdField.setText(item.getItemId().toString());
+		itemNameField.setText(item.getItemName());
+		priceField.setText(item.getPrice().toString());
+		comboProducts.setSelectedItem(item.getProduct());
+		comboBrands.setSelectedItem(item.getBrand());
 	}
 
 	@Override
