@@ -44,4 +44,25 @@ public class ItemServiceImpl extends
 		else
 			return false;
 	}
+
+	@Override
+	public boolean isProductBrandPairValidForItem(Long itemId, Product product,
+			Brand brand) {
+
+		Item item = itemRepository.findByProductAndBrand(product, brand);
+		if (item.getItemId() != itemId)
+			return false;
+
+		return true;
+	}
+
+	@Override
+	public boolean isItemNameValidForItem(Long itemId, String itemName) {
+
+		Item item = itemRepository.findByItemName(itemName);
+		if (item.getItemId() != itemId)
+			return false;
+
+		return true;
+	}
 }
