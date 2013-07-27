@@ -59,7 +59,7 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 
 	@Override
 	public E saveAndUpdateModel(E entity) {
-		E savedEntity = getService().saveAndFlush(entity);
+		E savedEntity = getService().save(entity);
 		update();
 		return savedEntity;
 	}
