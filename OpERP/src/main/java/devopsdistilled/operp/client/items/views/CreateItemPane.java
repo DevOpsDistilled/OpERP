@@ -102,7 +102,9 @@ public class CreateItemPane extends SubTaskPane implements
 				item.setProduct(product);
 				String itemName = itemNameField.getText().trim();
 				item.setItemName(itemName);
-
+				String itemPrice = priceField.getText().trim();
+				Double price = Double.parseDouble(itemPrice);
+				item.setPrice(price);
 				try {
 					controller.validate(item);
 
