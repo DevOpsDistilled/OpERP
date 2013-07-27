@@ -54,6 +54,10 @@ public class ItemServiceImpl extends
 			Brand brand) {
 
 		Item item = itemRepository.findByProductAndBrand(product, brand);
+
+		if (item == null)
+			return true;
+
 		if (item.getItemId() != itemId)
 			return false;
 
@@ -68,6 +72,10 @@ public class ItemServiceImpl extends
 	public boolean isItemNameValidForItem(Long itemId, String itemName) {
 
 		Item item = itemRepository.findByItemName(itemName);
+
+		if (item == null)
+			return true;
+
 		if (item.getItemId() != itemId)
 			return false;
 
