@@ -63,4 +63,10 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		update();
 		return savedEntity;
 	}
+
+	@Override
+	public void deleteAndUpdateModel(E entity) {
+		getService().delete(entity);
+		update();
+	}
 }
