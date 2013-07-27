@@ -17,6 +17,7 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.CreateItemPaneModelObserver;
@@ -112,12 +113,14 @@ public class CreateItemPane extends SubTaskPane implements
 					getDialog().dispose();
 
 					itemDetailsDialog.show(item);
-
-				} catch (ProductBrandPairExistsException e1) {
+				} catch (NullFieldException ex) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Required field(s) are Null");
+				} catch (ProductBrandPairExistsException ex) {
 					JOptionPane
 							.showMessageDialog(getPane(),
 									"Item with selected pair of Product and Brand already exists.");
-				} catch (ItemNameExistsException e1) {
+				} catch (ItemNameExistsException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Item Name already exists");
 				}
