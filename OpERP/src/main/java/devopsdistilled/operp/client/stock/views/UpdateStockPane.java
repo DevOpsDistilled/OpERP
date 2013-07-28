@@ -6,15 +6,27 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.UpdateStockPaneModelObserver;
+import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
+import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class UpdateStockPane extends SubTaskPane implements UpdateStockPaneModelObserver{
-	private JPanel pane;
-	private JTextField textField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.List;
+
+public class UpdateStockPane extends SubTaskPane implements
+		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver{
+	private final JPanel pane;
+	private final JTextField textField;
+	private final JComboBox<Item>  comboItems;
+	private final JComboBox<Warehouse>  comboWarehouses;
 	
 	@Override
 	public void init(){
@@ -28,14 +40,20 @@ public class UpdateStockPane extends SubTaskPane implements UpdateStockPaneModel
 		JLabel lblItemName = new JLabel("Item Name");
 		pane.add(lblItemName, "cell 0 0,alignx trailing");
 		
-		JComboBox comboBox = new JComboBox();
-		pane.add(comboBox, "cell 1 0,growx");
+		comboItems = new JComboBox<Item>();
+		pane.add(comboItems, "flowx,split 2,cell 1 0,growx");
+		
+		JButton btnNewItem = new JButton("New Item");
+		pane.add(btnNewItem, "cell 1 0");
 		
 		JLabel lblWarehouseName = new JLabel("Warehouse Name");
 		pane.add(lblWarehouseName, "cell 0 1,alignx trailing");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		pane.add(comboBox_1, "cell 1 1,growx");
+		comboWarehouses = new JComboBox();
+		pane.add(comboWarehouses, "flowx,split 2,cell 1 1,growx");
+		
+		JButton btnNewWarehouse = new JButton("New Warehouse");
+		pane.add(btnNewWarehouse, "cell 1 1");
 		
 		JLabel lblQuantity = new JLabel("Quantity");
 		pane.add(lblQuantity, "cell 0 2,alignx trailing");
@@ -45,9 +63,29 @@ public class UpdateStockPane extends SubTaskPane implements UpdateStockPaneModel
 		textField.setColumns(15);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+			}
+		});
 		pane.add(btnCancel, "flowx,split 3,cell 1 4");
 		
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Stock stock=new Stock();
+				Item item=(Item)comboItems.getSelectedItem();
+				Warehouse warehouse=(Warehouse)comboWarehouses.getSelectedItem();
+				
+				//stock.setQuantity(textField.getText());
+				stock.setItem(item);
+				stock.setWarehouse(warehouse);
+				
+			}
+		});
 		pane.add(btnUpdate, "cell 1 4");
 			
 		
@@ -56,6 +94,15 @@ public class UpdateStockPane extends SubTaskPane implements UpdateStockPaneModel
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateItems(List<Item> items) {
+		comboItems.removeAllItems();
+		for(Item item: items){
+		comboItems.addItem(item);
+		}
+		
 	}
 }
 	

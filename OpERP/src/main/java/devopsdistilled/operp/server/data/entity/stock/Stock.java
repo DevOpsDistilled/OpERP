@@ -28,6 +28,24 @@ public class Stock extends Entiti implements Serializable {
 	@ManyToOne
 	private Warehouse warehouse;
 	
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
+	}
+
+	
+	
 	public Long getQuantity() {
 		return quantity;
 	}
