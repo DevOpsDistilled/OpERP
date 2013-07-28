@@ -8,4 +8,5 @@ public interface Model<O extends Observer> {
 	public void notifyObservers();
 
 	public void update();
+
 }

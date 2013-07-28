@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.context;
 
+import javax.inject.Scope;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -24,6 +26,7 @@ import devopsdistilled.operp.client.main.MainWindowController;
 import devopsdistilled.operp.client.main.MainWindowControllerImpl;
 import devopsdistilled.operp.client.stock.StockController;
 import devopsdistilled.operp.client.stock.StockControllerImpl;
+import devopsdistilled.operp.client.stock.WareHousePane;
 import devopsdistilled.operp.client.stock.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.controllers.impl.UpdateStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.models.StockModel;
@@ -86,30 +89,37 @@ public class UIContext {
 	public CreateItemPaneController createItemPaneController() {
 		return new CreateItemPaneControllerImpl();
 	}
+
 	@Bean
 	public StockController stockController() {
 		return new StockControllerImpl();
 	}
-	
+
 	@Bean
-	public UpdateStockPaneModel updateStockPaneModel(){
+	public UpdateStockPaneModel updateStockPaneModel() {
 		return new UpdateStockPanemodelImpl();
 	}
+
 	@Bean
-	public StockModel stockModel(){
+	public StockModel stockModel() {
 		return new StockModelImpl();
-		
+
 	}
+
 	@Bean
-	public UpdateStockPane stockPane(){
+	public UpdateStockPane updateStockPane() {
 		return new UpdateStockPane();
 	}
-	
-	@Bean 
-	public UpdateStockPaneController updateStockPaneController(){
-		return new UpdateStockPaneControllerImpl();
-			
-	}
-	
 
+	@Bean
+	public UpdateStockPaneController updateStockPaneController() {
+		return new UpdateStockPaneControllerImpl();
+	}
+
+	@Bean
+	public WareHousePane wareHousePane() {
+		return new WareHousePane();
+	}
+
+	
 }

@@ -5,8 +5,10 @@ import javax.inject.Inject;
 import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.controllers.EditItemPaneController;
+import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public class ItemControllerImpl implements ItemController {
 
@@ -14,7 +16,7 @@ public class ItemControllerImpl implements ItemController {
 	private ApplicationContext context;
 
 	@Inject
-	private ItemService itemService;
+	private ItemModel itemModel;
 
 	@Override
 	public void createItem() {
@@ -24,20 +26,22 @@ public class ItemControllerImpl implements ItemController {
 	}
 
 	@Override
-	public void editItem(Item item) {
-
+	public void listItems() {
+		ListItemPaneController listItemPaneController = context
+				.getBean(ListItemPaneController.class);
+		listItemPaneController.init();
 	}
 
 	@Override
-	public void listItems() {
-		ListItemPane listItemPane = context.getBean(ListItemPane.class);
-		listItemPane.init();
-		listItemPane.getDialog();
+	public void editItem(Item item) {
+		EditItemPaneController editItemPaneController = context
+				.getBean(EditItemPaneController.class);
+		editItemPaneController.init(item);
 	}
 
 	@Override
 	public void deleteItem(Item item) {
-		itemService.delete(item);
+		itemModel.deleteAndUpdateModel(item);
 	}
 
 }

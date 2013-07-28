@@ -4,7 +4,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ RmiContext.class, LocalContext.class })
-public class AppContext {
+@Import({ MainWindowContext.class, EntityModelContext.class,
+		EntityControllerContext.class, MvcContext.class, EntityDetailsContext.class })
+public class LocalContext {
 
 }
