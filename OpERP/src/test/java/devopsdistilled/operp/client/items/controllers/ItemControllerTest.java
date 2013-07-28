@@ -14,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import devopsdistilled.operp.client.context.AppContext;
-import devopsdistilled.operp.client.items.ItemController;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 

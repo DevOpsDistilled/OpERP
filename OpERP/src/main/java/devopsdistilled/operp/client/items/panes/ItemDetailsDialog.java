@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.views;
+package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsDialog;
-import devopsdistilled.operp.client.items.ItemController;
+import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {

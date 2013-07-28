@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.views;
+package devopsdistilled.operp.client.items.panes;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.models.impl.ItemTableModel;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ListItemPaneModelObserver;
+import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class ListItemPane extends SubTaskPane implements
