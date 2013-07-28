@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.controllers;
+package devopsdistilled.operp.client.items.panes.controllers;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
 

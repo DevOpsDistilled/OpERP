@@ -1,16 +1,16 @@
-package devopsdistilled.operp.client.items.controllers.impl;
+package devopsdistilled.operp.client.items.panes.controllers.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.items.controllers.EditItemPaneController;
 import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.BrandModel;
-import devopsdistilled.operp.client.items.models.EditItemPaneModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
-import devopsdistilled.operp.client.items.views.EditItemPane;
+import devopsdistilled.operp.client.items.panes.EditItemPane;
+import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
+import devopsdistilled.operp.client.items.panes.model.EditItemPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class EditItemPaneControllerImpl implements EditItemPaneController {

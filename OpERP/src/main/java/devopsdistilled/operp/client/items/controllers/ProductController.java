@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.controllers;
 
 import devopsdistilled.operp.server.data.entity.items.Product;
 
