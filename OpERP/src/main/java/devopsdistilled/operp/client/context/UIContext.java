@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.context;
 
+import javax.inject.Scope;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -81,12 +83,10 @@ public class UIContext {
 	}
 
 	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public StockPane stockPane(){
 		return new StockPane();
 	}
 	@Bean
-	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public WareHousePane wareHousePane(){
 		return new WareHousePane();
 	}

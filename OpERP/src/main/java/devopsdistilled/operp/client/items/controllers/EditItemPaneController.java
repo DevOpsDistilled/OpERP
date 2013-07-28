@@ -6,11 +6,12 @@ import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-public interface CreateItemPaneController extends SubTaskPaneController {
+public interface EditItemPaneController extends SubTaskPaneController {
 
-	void validate(Item item) throws ProductBrandPairExistsException,
-			ItemNameExistsException, NullFieldException;
+	public void init(Item item);
 
-	Item save(Item item);
+	public Item save(Item item);
 
+	public void validate(Item item) throws NullFieldException,
+			ProductBrandPairExistsException, ItemNameExistsException;
 }
