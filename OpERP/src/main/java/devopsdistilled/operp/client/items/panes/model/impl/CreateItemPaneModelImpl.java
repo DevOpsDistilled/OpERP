@@ -1,8 +1,8 @@
-package devopsdistilled.operp.client.items.models.impl;
+package devopsdistilled.operp.client.items.panes.model.impl;
 
 import devopsdistilled.operp.client.abstracts.AbstractPaneModel;
-import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.models.observers.CreateItemPaneModelObserver;
+import devopsdistilled.operp.client.items.panes.model.CreateItemPaneModel;
 
 public class CreateItemPaneModelImpl extends
 		AbstractPaneModel<CreateItemPaneModelObserver> implements

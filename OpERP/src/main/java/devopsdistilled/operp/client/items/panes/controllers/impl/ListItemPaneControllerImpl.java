@@ -1,11 +1,11 @@
-package devopsdistilled.operp.client.items.controllers.impl;
+package devopsdistilled.operp.client.items.panes.controllers.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.items.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.models.ItemModel;
-import devopsdistilled.operp.client.items.models.ListItemPaneModel;
-import devopsdistilled.operp.client.items.views.ListItemPane;
+import devopsdistilled.operp.client.items.panes.ListItemPane;
+import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.panes.model.ListItemPaneModel;
 
 public class ListItemPaneControllerImpl implements ListItemPaneController {
 
