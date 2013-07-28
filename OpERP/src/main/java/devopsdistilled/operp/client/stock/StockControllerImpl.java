@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.context.ApplicationContext;
 
-import devopsdistilled.operp.client.stock.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 
 public class StockControllerImpl implements StockController{

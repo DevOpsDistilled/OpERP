@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.items.controllers.ItemController;
 
 public final class ItemMgmtPane extends TaskPane {
 

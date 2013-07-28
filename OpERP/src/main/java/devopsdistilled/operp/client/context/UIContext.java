@@ -1,24 +1,22 @@
 package devopsdistilled.operp.client.context;
 
-import javax.inject.Scope;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import devopsdistilled.operp.client.items.ItemController;
-import devopsdistilled.operp.client.items.ItemControllerImpl;
-import devopsdistilled.operp.client.items.controllers.CreateItemPaneController;
-import devopsdistilled.operp.client.items.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.controllers.ItemController;
+import devopsdistilled.operp.client.items.controllers.impl.ItemControllerImpl;
 import devopsdistilled.operp.client.items.models.BrandModel;
-import devopsdistilled.operp.client.items.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.models.impl.BrandModelImpl;
-import devopsdistilled.operp.client.items.models.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ProductModelImpl;
-import devopsdistilled.operp.client.items.views.CreateItemPane;
+import devopsdistilled.operp.client.items.panes.CreateItemPane;
+import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.model.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.model.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
@@ -27,13 +25,13 @@ import devopsdistilled.operp.client.main.MainWindowControllerImpl;
 import devopsdistilled.operp.client.stock.StockController;
 import devopsdistilled.operp.client.stock.StockControllerImpl;
 import devopsdistilled.operp.client.stock.WareHousePane;
-import devopsdistilled.operp.client.stock.controllers.UpdateStockPaneController;
-import devopsdistilled.operp.client.stock.controllers.impl.UpdateStockPaneControllerImpl;
-import devopsdistilled.operp.client.stock.models.StockModel;
-import devopsdistilled.operp.client.stock.models.UpdateStockPaneModel;
-import devopsdistilled.operp.client.stock.models.impl.StockModelImpl;
-import devopsdistilled.operp.client.stock.models.impl.UpdateStockPanemodelImpl;
-import devopsdistilled.operp.client.stock.views.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.models.StockModel;
+import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
+import devopsdistilled.operp.client.stock.panes.models.impl.StockModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPanemodelImpl;
 
 @Configuration
 @Import({ NavigationContext.class })
