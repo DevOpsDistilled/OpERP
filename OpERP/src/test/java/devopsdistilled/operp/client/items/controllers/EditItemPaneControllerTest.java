@@ -16,6 +16,7 @@ import devopsdistilled.operp.client.context.AppContext;
 import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
+import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;

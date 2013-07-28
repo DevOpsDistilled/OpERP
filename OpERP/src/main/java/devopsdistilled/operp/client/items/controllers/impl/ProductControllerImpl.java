@@ -1,5 +1,6 @@
-package devopsdistilled.operp.client.items;
+package devopsdistilled.operp.client.items.controllers.impl;
 
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ProductControllerImpl implements ProductController {
