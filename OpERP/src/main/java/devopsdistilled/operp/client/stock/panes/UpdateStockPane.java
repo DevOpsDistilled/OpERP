@@ -1,14 +1,18 @@
 package devopsdistilled.operp.client.stock.panes;
 
+import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.UpdateStockPaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
@@ -23,8 +27,12 @@ import java.util.List;
 
 public class UpdateStockPane extends SubTaskPane implements
 		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver{
+	
+	@Inject
+	private UpdateStockPaneController controller;
+	
 	private final JPanel pane;
-	private final JTextField textField;
+	private final JTextField quantityField;
 	private final JComboBox<Item>  comboItems;
 	private final JComboBox<Warehouse>  comboWarehouses;
 	
@@ -58,9 +66,9 @@ public class UpdateStockPane extends SubTaskPane implements
 		JLabel lblQuantity = new JLabel("Quantity");
 		pane.add(lblQuantity, "cell 0 2,alignx trailing");
 		
-		textField = new JTextField();
-		pane.add(textField, "cell 1 2,growx");
-		textField.setColumns(15);
+		quantityField = new JTextField();
+		pane.add(quantityField, "cell 1 2,growx");
+		quantityField.setColumns(15);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -83,6 +91,21 @@ public class UpdateStockPane extends SubTaskPane implements
 				//stock.setQuantity(textField.getText());
 				stock.setItem(item);
 				stock.setWarehouse(warehouse);
+				String itemquantity=quantityField.getText().trim();
+				
+				try{
+					Long quantity=Long.parseLong(itemquantity);
+					stock.setQuantity(quantity);
+					try{
+						controller.validateStock(stock);
+						
+					}catch(NullFieldException ex){
+						JOptionPane.showMessageDialog(getPane(), "Required Fields are Null");
+					}
+				}catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Quantity must be a Numeric value");
+				}
 				
 			}
 		});
