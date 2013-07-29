@@ -18,6 +18,11 @@ import devopsdistilled.operp.client.items.panes.model.ListItemPaneModel;
 import devopsdistilled.operp.client.items.panes.model.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.model.impl.EditItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.model.impl.ListItemPaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
+import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPanemodelImpl;
 
 @Configuration
 public class MvcContext {
@@ -36,6 +41,10 @@ public class MvcContext {
 		return new EditItemPaneModelImpl();
 	}
 
+	@Bean 
+	public UpdateStockPaneModel updateStockPaneModel(){
+		return new UpdateStockPanemodelImpl();
+	}
 	@Bean
 	public CreateItemPane createItemPane() {
 		return new CreateItemPane();
@@ -49,6 +58,11 @@ public class MvcContext {
 	@Bean
 	public EditItemPane editItemPane() {
 		return new EditItemPane();
+	}
+	
+	@Bean
+	public UpdateStockPane updateStockpane(){
+		return new UpdateStockPane();
 	}
 
 	@Bean
@@ -64,5 +78,10 @@ public class MvcContext {
 	@Bean
 	public EditItemPaneController editItemPaneController() {
 		return new EditItemPaneControllerImpl();
+	}
+	
+	@Bean
+	public UpdateStockPaneController updateStockPaneController(){
+		return new UpdateStockPaneControllerImpl();
 	}
 }

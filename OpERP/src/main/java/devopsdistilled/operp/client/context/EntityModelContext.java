@@ -9,6 +9,8 @@ import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.models.impl.BrandModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ProductModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.StockModel;
+import devopsdistilled.operp.client.stock.panes.models.impl.StockModelImpl;
 
 @Configuration
 public class EntityModelContext {
@@ -26,5 +28,9 @@ public class EntityModelContext {
 	public BrandModel brandModel() {
 		return new BrandModelImpl();
 	}
-
+	
+	@Bean 
+	public StockModel stockmodel(){
+		return new StockModelImpl();
+	}
 }
