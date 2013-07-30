@@ -2,13 +2,13 @@ package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
@@ -22,10 +22,12 @@ public class Stock extends Entiti implements Serializable {
 	private int stockId;
 	private Long quantity;
 
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="itemId")
 	private Item item;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="warehouseId")
 	private Warehouse warehouse;
 	
 	public Item getItem() {

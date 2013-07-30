@@ -26,6 +26,10 @@ import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.controllers.impl.StockControllerImpl;
 import devopsdistilled.operp.client.stock.controllers.impl.WarehouseControllerImpl;
+import devopsdistilled.operp.client.stock.models.StockModel;
+import devopsdistilled.operp.client.stock.models.WarehouseModel;
+import devopsdistilled.operp.client.stock.models.impl.StockModelImpl;
+import devopsdistilled.operp.client.stock.models.impl.WarehouseModelImpl;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
@@ -102,7 +106,11 @@ public class UIContext {
 		return new UpdateStockPaneModelImpl();
 	}
 
-
+	@Bean
+	private StockModel stockModel(){
+		return new StockModelImpl();
+	}
+	
 	@Bean
 	public UpdateStockPane updateStockPane() {
 		return new UpdateStockPane();
@@ -117,10 +125,17 @@ public class UIContext {
 	public WarehouseController warehouseController(){
 		return new WarehouseControllerImpl();
 	}
+	
 	@Bean
 	public CreateWarehousePaneModel createWarehousePaneModel(){
 		return new CreateWarehousePaneModelImpl();
 	}
+	
+	@Bean
+	private WarehouseModel warehouseModel(){
+		return new WarehouseModelImpl();
+	}
+	
 	@Bean
 	public CreateWarehousePane wareHousePane() {
 		return new CreateWarehousePane();

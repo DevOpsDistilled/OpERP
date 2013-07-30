@@ -2,11 +2,14 @@ package devopsdistilled.operp.server.data.service.stock.impl;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.repo.stock.WarehouseRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
+@Service
 public class WarehouseServiceImpl extends 
 		AbstractEntityService<Warehouse, Long,WarehouseRepository>
 		implements WarehouseService{
@@ -18,7 +21,6 @@ public class WarehouseServiceImpl extends
 
 	@Override
 	protected WarehouseRepository getRepo() {
-		// TODO Auto-generated method stub
 		return warehouseRepository;
 	}
 

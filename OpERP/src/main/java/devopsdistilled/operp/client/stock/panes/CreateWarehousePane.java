@@ -8,10 +8,13 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JTextField;
+
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.stock.models.observers.CreateWarehousePaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
@@ -50,22 +53,25 @@ public class CreateWarehousePane extends SubTaskPane implements
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().setVisible(false);
+				getDialog().dispose();
 			}
 		});
 		pane.add(btnCancel, "flowx,cell 1 1");
 		
 		JButton btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Warehouse warehouse=new Warehouse();
 				String warehouseName=warehouseNameField.getText().trim();
-				warehouse.setName(warehouseName);
+				warehouse.setWarehouseName(warehouseName);
 				try{
 					controller.validate(warehouse);
-					
-				}catch (NullFieldException ex) {
+					//warehouse=controller.save(warehouse);
+					//getDialog().dispose();
+				}
+				catch (NullFieldException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Required field(s) are Null");
 				}

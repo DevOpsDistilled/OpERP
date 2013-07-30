@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
@@ -17,8 +17,8 @@ public class CreateWareHousePaneControllerImpl implements CreateWarehousePaneCon
 	@Inject
 	private CreateWarehousePane view;
 	
-	//@Inject
-	//private WarehouseModel warehouseModel;
+	@Inject
+	private WarehouseModel warehouseModel;
 
 	@Override
 	public void init() {
@@ -29,8 +29,8 @@ public class CreateWareHousePaneControllerImpl implements CreateWarehousePaneCon
 	}
 
 	@Override
-	public void validate(Warehouse warehouse)throws NullFieldException {
-		if(warehouse.getName()==null){
+	public void validate(Warehouse warehouse) throws NullFieldException {
+		if(warehouse.getWarehouseName() == null){
 			throw new NullFieldException();
 		}
 		
@@ -38,8 +38,9 @@ public class CreateWareHousePaneControllerImpl implements CreateWarehousePaneCon
 
 	@Override
 	public Warehouse save(Warehouse warehouse) {
-		// TODO Auto-generated method stub
-		return null;
+		Warehouse savedWarehouse=warehouseModel.saveAndUpdateModel(warehouse);
+		return savedWarehouse;
+		
 	}
 
 }

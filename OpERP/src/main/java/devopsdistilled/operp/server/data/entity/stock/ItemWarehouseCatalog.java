@@ -20,9 +20,9 @@ public class ItemWarehouseCatalog implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long itemWarehouseCatalogId;
 	
-	@OneToMany
-	private List<Item> item;
+	//@OneToMany
+	//private List<Item> item;
 	
-	@OneToMany
-	private List<Warehouse> warehouse;
+//	@OneToMany
+	//private List<Warehouse> warehouse;
 }

@@ -3,7 +3,7 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 import javax.inject.Inject;
 import javax.swing.JOptionPane;
 
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
@@ -31,10 +31,10 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController{
 
 
 	@Override
-	public void validateStock(Stock stock) throws NullFieldException {
+	public void validate(Stock stock) throws NullFieldException {
 		
 		if (stock.getItem()==null || stock.getQuantity()==null || stock.getWarehouse()==null){
-			
+		
 			throw new NullFieldException();
 		}
 		
@@ -43,10 +43,11 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController{
 
 	@Override
 	public Stock update(Stock stock) {
-		JOptionPane.showMessageDialog(null, "OK");
-		//Stock updatedStock=stockModel.saveAndUpdateModel(stock);
-		//return updatedStock;
-		return null;
+		Stock updatedStock=stockModel.saveAndUpdateModel(stock);
+		return updatedStock;
+		
 	}
+
+
 
 }

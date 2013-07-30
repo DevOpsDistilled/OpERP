@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.UpdateStockPaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
@@ -35,6 +35,7 @@ public class UpdateStockPane extends SubTaskPane implements
 	private final JTextField quantityField;
 	private final JComboBox<Item>  comboItems;
 	private final JComboBox<Warehouse>  comboWarehouses;
+	
 	
 	@Override
 	public void init(){
@@ -90,8 +91,6 @@ public class UpdateStockPane extends SubTaskPane implements
 				Stock stock=new Stock();
 				Item item=(Item)comboItems.getSelectedItem();
 				Warehouse warehouse=(Warehouse)comboWarehouses.getSelectedItem();
-				
-				//stock.setQuantity(textField.getText());
 				stock.setItem(item);
 				stock.setWarehouse(warehouse);
 				String itemquantity=quantityField.getText().trim();
@@ -100,7 +99,7 @@ public class UpdateStockPane extends SubTaskPane implements
 					Long quantity=Long.parseLong(itemquantity);
 					stock.setQuantity(quantity);
 					try{
-						controller.validateStock(stock);
+						controller.validate(stock);
 						
 					}catch(NullFieldException ex){
 						JOptionPane.showMessageDialog(getPane(), "Required Fields are Null");
