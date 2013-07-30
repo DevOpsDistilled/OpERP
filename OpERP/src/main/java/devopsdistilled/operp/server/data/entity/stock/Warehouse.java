@@ -16,14 +16,14 @@ public class Warehouse extends Entiti implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseID;
-	private String name;
+	private String warehouseName;
 	
 	
 	public String getName() {
-		return name;
+		return warehouseName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.warehouseName = name;
 	}
 	
 	

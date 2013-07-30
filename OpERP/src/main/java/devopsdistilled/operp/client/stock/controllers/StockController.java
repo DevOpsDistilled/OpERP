@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.stock;
+package devopsdistilled.operp.client.stock.controllers;
 
 public interface StockController {
 	

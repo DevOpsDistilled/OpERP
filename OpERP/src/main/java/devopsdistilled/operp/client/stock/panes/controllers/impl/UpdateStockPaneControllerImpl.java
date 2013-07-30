@@ -4,9 +4,9 @@ import javax.inject.Inject;
 import javax.swing.JOptionPane;
 
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
-import devopsdistilled.operp.client.stock.panes.models.StockModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 

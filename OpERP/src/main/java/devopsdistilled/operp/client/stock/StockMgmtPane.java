@@ -5,8 +5,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.stock.controllers.StockController;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -15,6 +19,9 @@ public class StockMgmtPane extends TaskPane{
 
 	@Inject
 	private StockController stockController;
+	
+	@Inject
+	private WarehouseController warehouseController;
 	
 	@Override
 	public String toString() {
@@ -43,6 +50,18 @@ public class StockMgmtPane extends TaskPane{
 			
 		});
 		pane.add(btnUpdateStock,"flowx,cell 0 1");
+		
+		JButton btnCreateWarehouse = new JButton("Create Warehouse");
+		btnCreateWarehouse.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warehouseController.createWarehouse();
+			}
+		});
+			
+		
+		pane.add(btnCreateWarehouse, "cell 0 2");
 		
 		
 		

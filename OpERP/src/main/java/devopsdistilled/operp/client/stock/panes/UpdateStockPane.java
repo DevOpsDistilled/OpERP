@@ -39,6 +39,9 @@ public class UpdateStockPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
+		
+		// Other JDialog properties goes here
+				// getDialog.setSize(...);
 	}
 	
 	public UpdateStockPane(){

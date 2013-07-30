@@ -22,16 +22,20 @@ import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
 import devopsdistilled.operp.client.main.MainWindowController;
 import devopsdistilled.operp.client.main.MainWindowControllerImpl;
-import devopsdistilled.operp.client.stock.StockController;
-import devopsdistilled.operp.client.stock.StockControllerImpl;
-import devopsdistilled.operp.client.stock.WareHousePane;
+import devopsdistilled.operp.client.stock.controllers.StockController;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+import devopsdistilled.operp.client.stock.controllers.impl.StockControllerImpl;
+import devopsdistilled.operp.client.stock.controllers.impl.WarehouseControllerImpl;
+import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
-import devopsdistilled.operp.client.stock.panes.models.StockModel;
+import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
-import devopsdistilled.operp.client.stock.panes.models.impl.StockModelImpl;
-import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPanemodelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 
 @Configuration
 @Import({ NavigationContext.class })
@@ -95,14 +99,9 @@ public class UIContext {
 
 	@Bean
 	public UpdateStockPaneModel updateStockPaneModel() {
-		return new UpdateStockPanemodelImpl();
+		return new UpdateStockPaneModelImpl();
 	}
 
-	@Bean
-	public StockModel stockModel() {
-		return new StockModelImpl();
-
-	}
 
 	@Bean
 	public UpdateStockPane updateStockPane() {
@@ -115,9 +114,20 @@ public class UIContext {
 	}
 
 	@Bean
-	public WareHousePane wareHousePane() {
-		return new WareHousePane();
+	public WarehouseController warehouseController(){
+		return new WarehouseControllerImpl();
+	}
+	@Bean
+	public CreateWarehousePaneModel createWarehousePaneModel(){
+		return new CreateWarehousePaneModelImpl();
+	}
+	@Bean
+	public CreateWarehousePane wareHousePane() {
+		return new CreateWarehousePane();
 	}
 
-	
+	@Bean
+	public CreateWarehousePaneController createWarehousePaneController(){
+		return new CreateWareHousePaneControllerImpl();
+	}
 }

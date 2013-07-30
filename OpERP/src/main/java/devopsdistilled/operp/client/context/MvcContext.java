@@ -18,11 +18,16 @@ import devopsdistilled.operp.client.items.panes.model.ListItemPaneModel;
 import devopsdistilled.operp.client.items.panes.model.impl.CreateItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.model.impl.EditItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.model.impl.ListItemPaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
-import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPanemodelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 
 @Configuration
 public class MvcContext {
@@ -43,8 +48,14 @@ public class MvcContext {
 
 	@Bean 
 	public UpdateStockPaneModel updateStockPaneModel(){
-		return new UpdateStockPanemodelImpl();
+		return new UpdateStockPaneModelImpl();
 	}
+	
+	@Bean 
+	public CreateWarehousePaneModel createWarehousePaneModel(){
+		return new CreateWarehousePaneModelImpl();
+	}
+	
 	@Bean
 	public CreateItemPane createItemPane() {
 		return new CreateItemPane();
@@ -64,7 +75,12 @@ public class MvcContext {
 	public UpdateStockPane updateStockpane(){
 		return new UpdateStockPane();
 	}
-
+	
+	@Bean
+	public CreateWarehousePane createWarehousePane(){
+		return new CreateWarehousePane();
+	}
+	
 	@Bean
 	public CreateItemPaneController createItemPaneController() {
 		return new CreateItemPaneControllerImpl();
@@ -83,5 +99,10 @@ public class MvcContext {
 	@Bean
 	public UpdateStockPaneController updateStockPaneController(){
 		return new UpdateStockPaneControllerImpl();
+	}
+	
+	@Bean
+	public CreateWarehousePaneController createWarehousePaneController(){
+		return new CreateWareHousePaneControllerImpl();
 	}
 }

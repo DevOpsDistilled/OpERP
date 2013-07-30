@@ -1,0 +1,12 @@
+package devopsdistilled.operp.client.stock.panes.controllers;
+
+import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+
+public interface CreateWarehousePaneController extends SubTaskPaneController{
+		
+	void validate(Warehouse warehouse) throws NullFieldException;
+	
+	Warehouse save(Warehouse warehouse);	
+}
