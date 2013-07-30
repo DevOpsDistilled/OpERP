@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.exceptions;
+package devopsdistilled.operp.client.exceptions;
 
 public class NullFieldException extends Exception {
 

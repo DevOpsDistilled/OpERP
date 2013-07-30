@@ -10,6 +10,7 @@ import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
+import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Configuration
 public class RmiContext {
@@ -24,6 +25,9 @@ public class RmiContext {
 	
 	@Inject 
 	private StockService stockService;
+	
+	@Inject
+	private WarehouseService warehouseService;
 
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
@@ -64,5 +68,15 @@ public class RmiContext {
 		rmiServiceExportor.setRegistryPort(1099);
 		return rmiServiceExportor;
 		
+	}
+	
+	@Bean
+	public RmiServiceExporter rmiWarehouseServiceExporter(){
+		RmiServiceExporter rmiServiceExporter=new RmiServiceExporter();
+		rmiServiceExporter.setServiceName("WarehouseService");
+		rmiServiceExporter.setServiceInterface(WarehouseService.class);
+		rmiServiceExporter.setService(warehouseService);
+		rmiServiceExporter.setRegistryPort(1099);
+		return rmiServiceExporter;
 	}
 }
