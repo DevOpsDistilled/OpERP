@@ -53,7 +53,7 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 	}
 
 	@SuppressWarnings("unchecked")
-	public Class<EO> getObserverClass() {
+	protected Class<EO> getObserverClass() {
 		Type superclass = getClass().getGenericSuperclass();
 
 		Type[] typeArguments = ((ParameterizedType) superclass)
