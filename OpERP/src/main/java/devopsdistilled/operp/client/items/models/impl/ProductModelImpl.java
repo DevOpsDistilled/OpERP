@@ -21,9 +21,4 @@ public class ProductModelImpl
 		return service;
 	}
 
-	@Override
-	protected Class<ProductModelObserver> getObserverClass() {
-		return ProductModelObserver.class;
-	}
-
 }
