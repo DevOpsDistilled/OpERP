@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import devopsdistilled.operp.client.context.AppContext;
 import devopsdistilled.operp.client.items.models.ItemModel;
+import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
+import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,7 +33,7 @@ public class ItemModelTest {
 		assertNotNull(itemModel);
 	}
 
-	@Test
+	// @Test
 	public void testSaveAndUpdateModel() {
 
 		// This test won't run if Unique constraints are set in Item Entity.
@@ -48,4 +50,9 @@ public class ItemModelTest {
 		assertEquals(new Long(initialItemsSize), new Long(afterUpdateSize - 1));
 	}
 
+	@Test
+	public void testGetObserverClass() {
+		assertEquals(((ItemModelImpl) itemModel).getObserverClass(),
+				ItemModelObserver.class);
+	}
 }
