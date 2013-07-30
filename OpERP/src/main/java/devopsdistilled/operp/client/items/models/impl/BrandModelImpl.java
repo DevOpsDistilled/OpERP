@@ -20,9 +20,4 @@ public class BrandModelImpl extends
 		return service;
 	}
 
-	@Override
-	protected Class<BrandModelObserver> getObserverClass() {
-		return BrandModelObserver.class;
-	}
-
 }
