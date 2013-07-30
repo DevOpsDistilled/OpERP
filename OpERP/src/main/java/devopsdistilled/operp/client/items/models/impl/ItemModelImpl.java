@@ -20,9 +20,4 @@ public class ItemModelImpl extends
 		return service;
 	}
 
-	@Override
-	protected Class<ItemModelObserver> getObserverClass() {
-		return ItemModelObserver.class;
-	}
-
 }

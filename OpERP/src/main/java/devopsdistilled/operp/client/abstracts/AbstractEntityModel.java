@@ -3,6 +3,8 @@ package devopsdistilled.operp.client.abstracts;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,7 +52,16 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		}
 	}
 
-	protected abstract Class<EO> getObserverClass();
+	@SuppressWarnings("unchecked")
+	protected Class<EO> getObserverClass() {
+		Type superclass = getClass().getGenericSuperclass();
+
+		Type[] typeArguments = ((ParameterizedType) superclass)
+				.getActualTypeArguments();
+		Class<EO> observerClass = (Class<EO>) (typeArguments[2]);
+		return observerClass;
+
+	}
 
 	private Method getUpdateMethod() {
 		Method[] methods = getObserverClass().getMethods();
