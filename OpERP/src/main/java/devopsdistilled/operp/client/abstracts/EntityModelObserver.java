@@ -8,6 +8,6 @@ package devopsdistilled.operp.client.abstracts;
  * declaration. Else "AbstractEntityModel.getUpdateMethod()" requires change in
  * definition
  */
-public interface EntityObserver extends Observer {
+public interface EntityModelObserver extends Observer {
 
 }
