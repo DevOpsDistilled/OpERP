@@ -1,9 +1,11 @@
-package devopsdistilled.operp.client.items.controllers;
+package devopsdistilled.operp.client.items.controllers.impl;
 
 import javax.inject.Inject;
 
 import org.springframework.context.ApplicationContext;
 
+import devopsdistilled.operp.client.items.controllers.CategoryController;
+import devopsdistilled.operp.client.items.models.CategoryModel;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
@@ -11,6 +13,9 @@ public class CategoryControllerImpl implements CategoryController {
 
 	@Inject
 	private ApplicationContext context;
+
+	@Inject
+	private CategoryModel categoryModel;
 
 	@Override
 	public void create() {
@@ -32,9 +37,7 @@ public class CategoryControllerImpl implements CategoryController {
 	}
 
 	@Override
-	public void delete(Category entity) {
-		// TODO Auto-generated method stub
-
+	public void delete(Category category) {
+		categoryModel.deleteAndUpdateModel(category);
 	}
-
 }
