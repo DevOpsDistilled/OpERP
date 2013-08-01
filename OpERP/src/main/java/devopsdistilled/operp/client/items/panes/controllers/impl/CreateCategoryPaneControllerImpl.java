@@ -29,7 +29,8 @@ public class CreateCategoryPaneControllerImpl implements
 	}
 
 	@Override
-	public void validate(Category category) throws NullFieldException, EntityNameExistsException {
+	public void validate(Category category) throws NullFieldException,
+			EntityNameExistsException {
 		if (category.getCategoryName().equalsIgnoreCase("")) {
 			throw new NullFieldException();
 		}
@@ -42,8 +43,7 @@ public class CreateCategoryPaneControllerImpl implements
 
 	@Override
 	public Category save(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryModel.saveAndUpdateModel(category);
 	}
 
 }
