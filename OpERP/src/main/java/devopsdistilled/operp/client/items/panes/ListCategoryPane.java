@@ -36,8 +36,8 @@ public class ListCategoryPane extends SubTaskPane implements
 
 		tableModel = new BeanTableModel<>(Category.class);
 		table = new JTable(tableModel);
+		tableModel.setModelEditable(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
