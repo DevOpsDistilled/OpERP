@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsDialog;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {
+public class ItemDetailsPane extends AbstractEntityDetailsPane<Item> {
 
 	@Inject
 	private ItemController itemController;
@@ -34,7 +34,7 @@ public class ItemDetailsDialog extends AbstractEntityDetailsDialog<Item> {
 	private final JButton btnEdit;
 	private final JButton btnOk;
 
-	public ItemDetailsDialog() {
+	public ItemDetailsPane() {
 		dialog.setTitle("Item Details");
 		dialog.setSize(400, 200);
 

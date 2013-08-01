@@ -5,11 +5,11 @@ import javax.swing.JDialog;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
-public abstract class AbstractEntityDetailsDialog<E extends Entiti> {
+public abstract class AbstractEntityDetailsPane<E extends Entiti> {
 
 	protected final JDialog dialog;
 
-	public AbstractEntityDetailsDialog() {
+	public AbstractEntityDetailsPane() {
 		dialog = new JDialog();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setTitle("Details");
