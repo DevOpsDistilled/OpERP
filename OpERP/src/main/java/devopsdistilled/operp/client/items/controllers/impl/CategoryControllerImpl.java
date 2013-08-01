@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.models.CategoryModel;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
 public class CategoryControllerImpl implements CategoryController {
@@ -25,9 +26,10 @@ public class CategoryControllerImpl implements CategoryController {
 	}
 
 	@Override
-	public void edit(Category entity) {
-		// TODO Auto-generated method stub
-
+	public void edit(Category category) {
+		EditCategoryPaneController editCategoryPaneController = context
+				.getBean(EditCategoryPaneController.class);
+		editCategoryPaneController.init(category);
 	}
 
 	@Override
