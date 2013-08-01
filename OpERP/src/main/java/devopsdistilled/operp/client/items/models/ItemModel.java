@@ -6,6 +6,6 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public interface ItemModel extends
-		EntityModel<Item, ItemService, ItemModelObserver, Long> {
+		EntityModel<Item, ItemService, ItemModelObserver> {
 
 }

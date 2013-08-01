@@ -6,6 +6,6 @@ import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 
 public interface BrandModel extends
-		EntityModel<Brand, BrandService, BrandModelObserver, Long> {
+		EntityModel<Brand, BrandService, BrandModelObserver> {
 
 }
