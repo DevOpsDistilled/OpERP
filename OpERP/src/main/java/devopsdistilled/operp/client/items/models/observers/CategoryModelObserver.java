@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.panes.models.observers;
+package devopsdistilled.operp.client.items.models.observers;
 
 import devopsdistilled.operp.client.abstracts.EntityModelObserver;
 
