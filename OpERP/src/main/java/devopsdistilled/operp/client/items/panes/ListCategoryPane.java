@@ -67,6 +67,11 @@ public class ListCategoryPane extends SubTaskPane implements
 	public void updateCategories(List<Category> categories) {
 		tableModel = null;
 		tableModel = new BeanTableModel<>(Category.class, categories);
+
+		for (int i = 0; i < tableModel.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+
 		tableModel.setModelEditable(false);
 		table.setModel(tableModel);
 
