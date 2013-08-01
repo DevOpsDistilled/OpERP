@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.EditCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateItemPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.EditCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
 
@@ -33,5 +35,10 @@ public class MvcModelContext {
 	@Bean
 	public CreateCategoryPaneModel createCategoryPaneModel() {
 		return new CreateCategoryPaneModelImpl();
+	}
+
+	@Bean
+	public EditCategoryPaneModel editCategoryPaneModel() {
+		return new EditCategoryPaneModelImpl();
 	}
 }
