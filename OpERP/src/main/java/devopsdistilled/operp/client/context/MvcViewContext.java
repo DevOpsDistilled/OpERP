@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
+import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
 
@@ -31,4 +32,8 @@ public class MvcViewContext {
 		return new CreateCategoryPane();
 	}
 
+	@Bean
+	public EditCategoryPane editCategoryPane() {
+		return new EditCategoryPane();
+	}
 }
