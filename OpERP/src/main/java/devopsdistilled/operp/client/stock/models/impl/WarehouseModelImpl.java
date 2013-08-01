@@ -25,4 +25,5 @@ public class WarehouseModelImpl extends
 		return WarehouseModelObserver.class;
 	}
 
+
 }

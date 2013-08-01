@@ -2,6 +2,7 @@ package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,8 @@ public class Warehouse extends Entiti implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseId;
-	
+
+	@Column(unique = true)
 	private String warehouseName;
 
 	public String getWarehouseName() {
@@ -26,10 +28,5 @@ public class Warehouse extends Entiti implements Serializable {
 	public void setWarehouseName(String warehouseName) {
 		this.warehouseName = warehouseName;
 	}
-	
-	
-	
-	
-	
-	
+
 }

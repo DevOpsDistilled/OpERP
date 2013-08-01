@@ -8,4 +8,5 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 
+	Warehouse findByWarehouseName(String warehouseName);
 }

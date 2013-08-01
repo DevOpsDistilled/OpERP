@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
+import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.stock.models.observers.CreateWarehousePaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
@@ -23,32 +24,32 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import javax.swing.JButton;
 
 public class CreateWarehousePane extends SubTaskPane implements
-	WarehouseModelObserver,CreateWarehousePaneModelObserver{
+		WarehouseModelObserver, CreateWarehousePaneModelObserver {
 	private JPanel pane;
 	private JTextField warehouseNameField;
-	
+
 	@Inject
 	private CreateWarehousePaneController controller;
-	
+
 	@Override
 	public void init() {
 		super.init();
-		
+
 		// Other JDialog properties goes here
 		// getDialog.setSize(...);
 	}
-	
-	public CreateWarehousePane(){
-		pane=new JPanel();
+
+	public CreateWarehousePane() {
+		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
-		
+
 		JLabel lblWarehouseName = new JLabel("WareHouse Name");
 		pane.add(lblWarehouseName, "cell 0 0,alignx trailing");
-		
+
 		warehouseNameField = new JTextField();
 		pane.add(warehouseNameField, "cell 1 0,growx");
 		warehouseNameField.setColumns(10);
-		
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
@@ -57,31 +58,33 @@ public class CreateWarehousePane extends SubTaskPane implements
 			}
 		});
 		pane.add(btnCancel, "flowx,cell 1 1");
-		
+
 		JButton btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Warehouse warehouse=new Warehouse();
-				String warehouseName=warehouseNameField.getText().trim();
+				Warehouse warehouse = new Warehouse();
+				String warehouseName = warehouseNameField.getText().trim();
 				warehouse.setWarehouseName(warehouseName);
-				try{
+				try {
 					controller.validate(warehouse);
-					//warehouse=controller.save(warehouse);
-					//getDialog().dispose();
-				}
-				catch (NullFieldException ex) {
+					warehouse=controller.save(warehouse);
+					getDialog().dispose();
+				} catch (NullFieldException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Required field(s) are Null");
+				} catch (EntityNameExistsException ex) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Warehouse name already exists");
 				}
 			}
 		});
 		pane.add(btnCreate, "cell 1 1");
-		
+
 	}
-	
-	@Override	
+
+	@Override
 	public JComponent getPane() {
 		return pane;
 	}
