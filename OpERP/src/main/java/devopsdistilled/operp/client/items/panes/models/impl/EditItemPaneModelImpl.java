@@ -11,6 +11,10 @@ public class EditItemPaneModelImpl extends
 
 	private Item item;
 
+	public EditItemPaneModelImpl() {
+		title = "Edit Item";
+	}
+
 	@Override
 	public Item getItem() {
 		return item;
@@ -18,7 +22,7 @@ public class EditItemPaneModelImpl extends
 
 	@Override
 	public String getTitle() {
-		return "Edit Item";
+		return title;
 	}
 
 	@Override
