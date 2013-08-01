@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.controllers.CategoryController;
-import devopsdistilled.operp.client.items.controllers.CategoryControllerImpl;
 import devopsdistilled.operp.client.items.controllers.ItemController;
+import devopsdistilled.operp.client.items.controllers.impl.CategoryControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.ItemControllerImpl;
 
 @Configuration
