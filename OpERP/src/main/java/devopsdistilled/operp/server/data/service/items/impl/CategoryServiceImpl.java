@@ -42,10 +42,10 @@ public class CategoryServiceImpl extends
 		if (category == null)
 			return true;
 
-		if (category.getCategoryId() != categoryId)
-			return false;
+		if (category.getCategoryId().equals(categoryId))
+			return true;
 
-		return true;
+		return false;
 	}
 
 }
