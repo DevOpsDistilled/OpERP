@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.items;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Category extends Entiti implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryId;
 
+	@Column(unique = true)
 	private String categoryName;
 
 	@ManyToMany(mappedBy = "categories")

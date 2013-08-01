@@ -9,8 +9,8 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public class ItemModelImpl extends
-		AbstractEntityModel<Item, ItemService, ItemModelObserver, Long>
-		implements ItemModel {
+		AbstractEntityModel<Item, ItemService, ItemModelObserver> implements
+		ItemModel {
 
 	@Inject
 	private ItemService service;
