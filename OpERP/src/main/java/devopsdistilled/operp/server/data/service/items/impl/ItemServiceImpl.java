@@ -77,8 +77,8 @@ public class ItemServiceImpl extends
 			return true;
 
 		if (item.getItemId() != itemId)
-			return false;
+			return true;
 
-		return true;
+		return false;
 	}
 }
