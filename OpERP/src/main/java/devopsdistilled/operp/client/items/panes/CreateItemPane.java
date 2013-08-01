@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.ItemNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
@@ -33,7 +33,7 @@ public class CreateItemPane extends SubTaskPane implements
 	private CreateItemPaneController controller;
 
 	@Inject
-	private ItemDetailsDialog itemDetailsDialog;
+	private ItemDetailsPane itemDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField itemNameField;
@@ -118,7 +118,7 @@ public class CreateItemPane extends SubTaskPane implements
 
 						getDialog().dispose();
 
-						itemDetailsDialog.show(item);
+						itemDetailsPane.show(item);
 					} catch (NullFieldException ex) {
 						JOptionPane.showMessageDialog(getPane(),
 								"Required field(s) are Null");
@@ -126,7 +126,7 @@ public class CreateItemPane extends SubTaskPane implements
 						JOptionPane
 								.showMessageDialog(getPane(),
 										"Item with selected pair of Product and Brand already exists.");
-					} catch (ItemNameExistsException ex) {
+					} catch (EntityNameExistsException ex) {
 						JOptionPane.showMessageDialog(getPane(),
 								"Item Name already exists");
 					}

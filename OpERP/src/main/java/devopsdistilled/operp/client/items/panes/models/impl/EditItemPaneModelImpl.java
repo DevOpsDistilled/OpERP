@@ -1,8 +1,8 @@
-package devopsdistilled.operp.client.items.panes.model.impl;
+package devopsdistilled.operp.client.items.panes.models.impl;
 
 import devopsdistilled.operp.client.abstracts.AbstractPaneModel;
 import devopsdistilled.operp.client.items.models.observers.EditItemPaneModelObserver;
-import devopsdistilled.operp.client.items.panes.model.EditItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class EditItemPaneModelImpl extends

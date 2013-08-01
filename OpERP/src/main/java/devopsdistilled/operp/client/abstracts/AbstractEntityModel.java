@@ -1,6 +1,5 @@
 package devopsdistilled.operp.client.abstracts;
 
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -11,8 +10,8 @@ import java.util.List;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ID>, EO extends EntityObserver, ID extends Serializable>
-		extends AbstractModel<EO> implements EntityModel<E, ES, EO, ID> {
+public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
+		extends AbstractModel<EO> implements EntityModel<E, ES, EO> {
 
 	protected List<E> entities;
 

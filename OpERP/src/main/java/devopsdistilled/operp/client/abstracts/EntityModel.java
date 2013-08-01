@@ -1,12 +1,11 @@
 package devopsdistilled.operp.client.abstracts;
 
-import java.io.Serializable;
 import java.util.List;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public interface EntityModel<E extends Entiti, ES extends EntityService<E, ID>, EO extends EntityObserver, ID extends Serializable>
+public interface EntityModel<E extends Entiti, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
 		extends Model<EO> {
 
 	public List<E> getEntities();
