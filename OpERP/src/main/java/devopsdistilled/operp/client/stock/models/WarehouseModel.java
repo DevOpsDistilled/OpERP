@@ -6,6 +6,6 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 public interface WarehouseModel extends
-		EntityModel<Warehouse, WarehouseService, WarehouseModelObserver, Long> {
+		EntityModel<Warehouse, WarehouseService, WarehouseModelObserver> {
 
 }

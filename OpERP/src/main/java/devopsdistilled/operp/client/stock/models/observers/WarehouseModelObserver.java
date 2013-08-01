@@ -1,7 +1,7 @@
 package devopsdistilled.operp.client.stock.models.observers;
 
-import devopsdistilled.operp.client.abstracts.EntityObserver;
+import devopsdistilled.operp.client.abstracts.EntityModelObserver;
 
-public interface WarehouseModelObserver extends EntityObserver {
+public interface WarehouseModelObserver extends EntityModelObserver {
 
 }

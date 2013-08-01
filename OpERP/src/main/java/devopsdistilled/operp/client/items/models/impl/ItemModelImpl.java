@@ -9,8 +9,8 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public class ItemModelImpl extends
-		AbstractEntityModel<Item, ItemService, ItemModelObserver, Long>
-		implements ItemModel {
+		AbstractEntityModel<Item, ItemService, ItemModelObserver> implements
+		ItemModel {
 
 	@Inject
 	private ItemService service;
@@ -18,11 +18,6 @@ public class ItemModelImpl extends
 	@Override
 	public ItemService getService() {
 		return service;
-	}
-
-	@Override
-	protected Class<ItemModelObserver> getObserverClass() {
-		return ItemModelObserver.class;
 	}
 
 }

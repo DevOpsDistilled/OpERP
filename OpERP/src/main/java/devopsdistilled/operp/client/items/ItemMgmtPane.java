@@ -9,12 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 
 public final class ItemMgmtPane extends TaskPane {
 
 	@Inject
 	private ItemController itemController;
+
+	@Inject
+	private CategoryController categoryController;
 
 	@Override
 	public String toString() {
@@ -27,7 +31,7 @@ public final class ItemMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]", "[][][]"));
+		pane.setLayout(new MigLayout("", "[]", "[][][][]"));
 
 		JLabel lblitemManagement = new JLabel("Item Management");
 		pane.add(lblitemManagement, "cell 0 0");
@@ -49,6 +53,15 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnListItems, "cell 0 2");
+
+		JButton btnCreateCategory = new JButton("Create Category");
+		btnCreateCategory.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				categoryController.create();
+			}
+		});
+		pane.add(btnCreateCategory, "cell 0 3");
 
 		return pane;
 	}

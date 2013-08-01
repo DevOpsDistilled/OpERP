@@ -8,9 +8,8 @@ import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Product;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 
-public class ProductModelImpl
-		extends
-		AbstractEntityModel<Product, ProductService, ProductModelObserver, Long>
+public class ProductModelImpl extends
+		AbstractEntityModel<Product, ProductService, ProductModelObserver>
 		implements ProductModel {
 
 	@Inject
@@ -19,11 +18,6 @@ public class ProductModelImpl
 	@Override
 	public ProductService getService() {
 		return service;
-	}
-
-	@Override
-	protected Class<ProductModelObserver> getObserverClass() {
-		return ProductModelObserver.class;
 	}
 
 }

@@ -33,7 +33,7 @@ public class EditItemPane extends SubTaskPane implements
 	private EditItemPaneController controller;
 
 	@Inject
-	private ItemDetailsDialog itemDetailsDialog;
+	private ItemDetailsPane itemDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField itemNameField;
@@ -121,7 +121,7 @@ public class EditItemPane extends SubTaskPane implements
 
 						getDialog().dispose();
 
-						itemDetailsDialog.show(item);
+						itemDetailsPane.show(item);
 					} catch (NullFieldException ex) {
 						JOptionPane.showMessageDialog(getPane(),
 								"Required field(s) are Null");

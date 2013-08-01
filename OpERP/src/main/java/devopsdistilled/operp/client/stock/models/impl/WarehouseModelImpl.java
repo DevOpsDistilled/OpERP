@@ -9,7 +9,7 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 public class WarehouseModelImpl extends 
-		AbstractEntityModel<Warehouse, WarehouseService, WarehouseModelObserver, Long>
+		AbstractEntityModel<Warehouse, WarehouseService, WarehouseModelObserver>
 		implements WarehouseModel{
 	
 	@Inject

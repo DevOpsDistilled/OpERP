@@ -1,7 +1,6 @@
 package devopsdistilled.operp.client.items.panes.controllers.impl;
 
 import javax.inject.Inject;
-
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
@@ -10,7 +9,7 @@ import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
-import devopsdistilled.operp.client.items.panes.model.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class CreateItemPaneControllerImpl implements CreateItemPaneController {
@@ -42,8 +41,9 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			EntityNameExistsException, NullFieldException {
 
-		if (item.getItemName() == null || item.getProduct() == null
-				|| item.getBrand() == null || item.getPrice() == null) {
+		if (item.getItemName().equalsIgnoreCase("")
+				|| item.getProduct() == null || item.getBrand() == null
+				|| item.getPrice() == null) {
 
 			throw new NullFieldException();
 		}

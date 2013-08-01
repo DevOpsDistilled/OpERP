@@ -9,7 +9,7 @@ import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 
 public class BrandModelImpl extends
-		AbstractEntityModel<Brand, BrandService, BrandModelObserver, Long>
+		AbstractEntityModel<Brand, BrandService, BrandModelObserver>
 		implements BrandModel {
 
 	@Inject
@@ -18,11 +18,6 @@ public class BrandModelImpl extends
 	@Override
 	public BrandService getService() {
 		return service;
-	}
-
-	@Override
-	protected Class<BrandModelObserver> getObserverClass() {
-		return BrandModelObserver.class;
 	}
 
 }

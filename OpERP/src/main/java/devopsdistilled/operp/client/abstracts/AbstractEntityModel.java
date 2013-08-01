@@ -1,16 +1,17 @@
 package devopsdistilled.operp.client.abstracts;
 
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.List;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ID>, EO extends EntityObserver, ID extends Serializable>
-		extends AbstractModel<EO> implements EntityModel<E, ES, EO, ID> {
+public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
+		extends AbstractModel<EO> implements EntityModel<E, ES, EO> {
 
 	protected List<E> entities;
 
@@ -50,7 +51,16 @@ public abstract class AbstractEntityModel<E extends Entiti, ES extends EntitySer
 		}
 	}
 
-	protected abstract Class<EO> getObserverClass();
+	@SuppressWarnings("unchecked")
+	protected Class<EO> getObserverClass() {
+		Type superclass = getClass().getGenericSuperclass();
+
+		Type[] typeArguments = ((ParameterizedType) superclass)
+				.getActualTypeArguments();
+		Class<EO> observerClass = (Class<EO>) (typeArguments[2]);
+		return observerClass;
+
+	}
 
 	private Method getUpdateMethod() {
 		Method[] methods = getObserverClass().getMethods();

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
 import devopsdistilled.operp.server.data.service.items.BrandService;
+import devopsdistilled.operp.server.data.service.items.CategoryService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
@@ -49,6 +50,13 @@ public class RmiContext {
 		RmiProxyFactoryBean rmiProxy=new RmiProxyFactoryBean();
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/WarehouseService");
 		rmiProxy.setServiceInterface(WarehouseService.class);
+		return rmiProxy;
+	}
+	@Bean
+	public RmiProxyFactoryBean categoryService() {
+		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
+		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/CategoryService");
+		rmiProxy.setServiceInterface(CategoryService.class);
 		return rmiProxy;
 	}
 }

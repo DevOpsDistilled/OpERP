@@ -6,6 +6,6 @@ import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 
 public interface StockModel extends
-		EntityModel<Stock, StockService, StockModelObserver, Long> {
+		EntityModel<Stock, StockService, StockModelObserver> {
 
 }
