@@ -34,9 +34,7 @@ public class ListCategoryPane extends SubTaskPane implements
 	public ListCategoryPane() {
 		pane = new JPanel(new MigLayout("debug, fill"));
 
-		tableModel = new BeanTableModel<>(Category.class);
-		table = new JTable(tableModel);
-		tableModel.setModelEditable(false);
+		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -67,11 +65,10 @@ public class ListCategoryPane extends SubTaskPane implements
 
 	@Override
 	public void updateCategories(List<Category> categories) {
-		if (tableModel.getRowCount() != 0) {
-			int lastRow = tableModel.getRowCount() - 1;
-			tableModel.removeRowRange(0, lastRow);
-		}
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Category.class, categories);
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
 
-		tableModel.insertRows(0, categories);
 	}
 }
