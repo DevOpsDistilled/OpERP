@@ -7,4 +7,6 @@ public interface CategoryService extends EntityService<Category, Long> {
 
 	boolean isCategoryNameExists(String categoryName);
 
+	boolean isCategoryNameValidForCategory(Long categoryId, String categoryName);
+
 }
