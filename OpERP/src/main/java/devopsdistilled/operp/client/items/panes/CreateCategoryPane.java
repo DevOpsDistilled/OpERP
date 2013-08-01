@@ -25,6 +25,9 @@ public class CreateCategoryPane extends SubTaskPane implements
 	@Inject
 	private CreateCategoryPaneController controller;
 
+	@Inject
+	private CategoryDetailsPane categoryDetailsPane;
+
 	private final JPanel pane;
 	private final JTextField categoryNameField;
 
@@ -58,6 +61,8 @@ public class CreateCategoryPane extends SubTaskPane implements
 					controller.validate(category);
 					category = controller.save(category);
 					getDialog().dispose();
+
+					categoryDetailsPane.show(category);
 
 				} catch (NullFieldException e1) {
 					JOptionPane.showMessageDialog(getPane(),
