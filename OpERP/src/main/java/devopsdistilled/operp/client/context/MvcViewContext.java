@@ -7,6 +7,7 @@ import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
+import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
 
 @Configuration
@@ -35,5 +36,10 @@ public class MvcViewContext {
 	@Bean
 	public EditCategoryPane editCategoryPane() {
 		return new EditCategoryPane();
+	}
+
+	@Bean
+	public ListCategoryPane listCategoryPane() {
+		return new ListCategoryPane();
 	}
 }
