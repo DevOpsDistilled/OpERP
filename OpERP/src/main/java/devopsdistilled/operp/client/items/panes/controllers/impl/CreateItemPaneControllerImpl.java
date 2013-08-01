@@ -42,8 +42,9 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			ItemNameExistsException, NullFieldException {
 
-		if (item.getItemName() == null || item.getProduct() == null
-				|| item.getBrand() == null || item.getPrice() == null) {
+		if (item.getItemName().equalsIgnoreCase("")
+				|| item.getProduct() == null || item.getBrand() == null
+				|| item.getPrice() == null) {
 
 			throw new NullFieldException();
 		}
