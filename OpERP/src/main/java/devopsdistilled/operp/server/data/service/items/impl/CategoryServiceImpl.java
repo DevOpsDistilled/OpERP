@@ -24,4 +24,13 @@ public class CategoryServiceImpl extends
 		return repo;
 	}
 
+	@Override
+	public boolean isCategoryNameExists(String categoryName) {
+		Category category = repo.findByCategoryName(categoryName);
+		if (category != null)
+			return true;
+
+		return false;
+	}
+
 }

@@ -5,4 +5,6 @@ import devopsdistilled.operp.server.data.service.EntityService;
 
 public interface CategoryService extends EntityService<Category, Long> {
 
+	boolean isCategoryNameExists(String categoryName);
+
 }
