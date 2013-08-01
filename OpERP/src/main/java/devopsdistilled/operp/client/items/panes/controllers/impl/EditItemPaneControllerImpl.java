@@ -10,7 +10,7 @@ import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
-import devopsdistilled.operp.client.items.panes.model.EditItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class EditItemPaneControllerImpl implements EditItemPaneController {

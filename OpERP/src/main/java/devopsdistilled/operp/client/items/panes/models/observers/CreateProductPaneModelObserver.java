@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.panes.model.observers;
+package devopsdistilled.operp.client.items.panes.models.observers;
 
 import devopsdistilled.operp.client.abstracts.PaneModelObserver;
 

@@ -10,7 +10,7 @@ import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
-import devopsdistilled.operp.client.items.panes.model.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class CreateItemPaneControllerImpl implements CreateItemPaneController {

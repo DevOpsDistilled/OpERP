@@ -4,7 +4,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.panes.model.observers.CreateProductPaneModelObserver;
+import devopsdistilled.operp.client.items.panes.models.observers.CreateProductPaneModelObserver;
 
 public class CreateProductPane extends SubTaskPane implements
 		CreateProductPaneModelObserver {
