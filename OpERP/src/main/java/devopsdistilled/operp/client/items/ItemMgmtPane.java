@@ -33,7 +33,7 @@ public final class ItemMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[]", "[][][][][]"));
 
 		JLabel lblitemManagement = new JLabel("Item Management");
 		pane.add(lblitemManagement, "cell 0 0");
@@ -64,6 +64,15 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnCreateCategory, "cell 0 3");
+
+		JButton btnListCategories = new JButton("List Categories");
+		btnListCategories.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				categoryController.list();
+			}
+		});
+		pane.add(btnListCategories, "cell 0 4");
 
 		return pane;
 	}
