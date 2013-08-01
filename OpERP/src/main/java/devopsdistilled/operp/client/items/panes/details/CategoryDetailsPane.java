@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.panes;
+package devopsdistilled.operp.client.items.panes.details;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

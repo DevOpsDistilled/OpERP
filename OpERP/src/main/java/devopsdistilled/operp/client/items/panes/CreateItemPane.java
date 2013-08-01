@@ -21,6 +21,7 @@ import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsExcep
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.panes.details.ItemDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateItemPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;

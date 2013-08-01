@@ -3,8 +3,8 @@ package devopsdistilled.operp.client.context;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import devopsdistilled.operp.client.items.panes.CategoryDetailsPane;
-import devopsdistilled.operp.client.items.panes.ItemDetailsPane;
+import devopsdistilled.operp.client.items.panes.details.CategoryDetailsPane;
+import devopsdistilled.operp.client.items.panes.details.ItemDetailsPane;
 
 @Configuration
 public class EntityDetailsContext {

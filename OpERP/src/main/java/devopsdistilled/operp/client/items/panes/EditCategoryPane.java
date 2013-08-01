@@ -16,6 +16,7 @@ import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
+import devopsdistilled.operp.client.items.panes.details.CategoryDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditCategoryPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
