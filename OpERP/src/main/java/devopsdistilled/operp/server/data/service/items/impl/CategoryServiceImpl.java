@@ -33,4 +33,19 @@ public class CategoryServiceImpl extends
 		return false;
 	}
 
+	@Override
+	public boolean isCategoryNameValidForCategory(Long categoryId,
+			String categoryName) {
+
+		Category category = repo.findByCategoryName(categoryName);
+
+		if (category == null)
+			return true;
+
+		if (category.getCategoryId().equals(categoryId))
+			return true;
+
+		return false;
+	}
+
 }

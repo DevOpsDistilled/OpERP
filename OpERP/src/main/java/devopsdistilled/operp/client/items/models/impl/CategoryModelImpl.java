@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.items.models.CategoryModel;
-import devopsdistilled.operp.client.items.panes.models.observers.CategoryModelObserver;
+import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 import devopsdistilled.operp.server.data.service.items.CategoryService;
 
