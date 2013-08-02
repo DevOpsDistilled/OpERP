@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.controllers.ItemController;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 
 public final class ItemMgmtPane extends TaskPane {
 
@@ -21,6 +22,9 @@ public final class ItemMgmtPane extends TaskPane {
 
 	@Inject
 	private CategoryController categoryController;
+
+	@Inject
+	private ProductController productController;
 
 	@Override
 	public String toString() {
@@ -73,10 +77,15 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnListCategories, "cell 0 4");
-		
+
 		JButton btnCreateProduct = new JButton("Create Product");
+		btnCreateProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		pane.add(btnCreateProduct, "cell 0 5");
-		
+
 		JButton btnListProducts = new JButton("List Products");
 		pane.add(btnListProducts, "cell 0 6");
 
