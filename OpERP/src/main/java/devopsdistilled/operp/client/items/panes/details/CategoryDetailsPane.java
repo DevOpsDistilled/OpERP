@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.items.panes;
+package devopsdistilled.operp.client.items.panes.details;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,6 +66,8 @@ public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+				categoryController.edit(category);
 			}
 		});
 		pane.add(btnEdit, "cell 1 3");

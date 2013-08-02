@@ -58,7 +58,7 @@ public class ItemServiceImpl extends
 		if (item == null)
 			return true;
 
-		if (item.getItemId() != itemId)
+		if (item.getItemId().equals(itemId))
 			return false;
 
 		return true;
@@ -76,9 +76,9 @@ public class ItemServiceImpl extends
 		if (item == null)
 			return true;
 
-		if (item.getItemId() != itemId)
-			return false;
+		if (item.getItemId().equals(itemId))
+			return true;
 
-		return true;
+		return false;
 	}
 }
