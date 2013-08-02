@@ -82,6 +82,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnCreateProduct.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				productController.create();
 			}
 		});
 		pane.add(btnCreateProduct, "cell 0 5");
