@@ -43,9 +43,8 @@ public class EditCategoryPaneControllerImpl implements
 	}
 
 	@Override
-	public Category save(Category entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category save(Category category) {
+		return categoryModel.saveAndUpdateModel(category);
 	}
 
 }
