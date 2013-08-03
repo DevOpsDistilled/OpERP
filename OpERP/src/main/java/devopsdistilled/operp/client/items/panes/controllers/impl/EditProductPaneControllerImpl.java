@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.panes.EditProductPane;
 import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.models.EditProductPaneModel;
@@ -16,6 +17,9 @@ public class EditProductPaneControllerImpl implements EditProductPaneController 
 
 	@Inject
 	private EditProductPaneModel model;
+
+	@Inject
+	private ProductModel productModel;
 
 	@Override
 	public void init(Product entity) {
