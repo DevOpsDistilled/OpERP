@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.panes.details;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
@@ -97,8 +98,9 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		if (product != null) {
 			productIdField.setText(product.getProductId().toString());
 			productNameField.setText(product.getProductName());
-			productCategoryList.setListData((Category[]) product
-					.getCategories().toArray());
+
+			productCategoryList.setListData(new Vector<Category>(product
+					.getCategories()));
 
 			getDialog().setVisible(true);
 		}
