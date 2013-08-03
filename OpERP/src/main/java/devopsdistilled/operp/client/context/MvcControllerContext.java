@@ -8,15 +8,19 @@ import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneContro
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.ListProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.EditProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.ListProductPaneControllerImpl;
 
 @Configuration
 public class MvcControllerContext {
@@ -54,5 +58,15 @@ public class MvcControllerContext {
 	@Bean
 	public CreateProductPaneController createProductPaneController() {
 		return new CreateProductPaneControllerImpl();
+	}
+
+	@Bean
+	public ListProductPaneController listProductPaneController() {
+		return new ListProductPaneControllerImpl();
+	}
+
+	@Bean
+	public EditProductPaneController editProductPaneController() {
+		return new EditProductPaneControllerImpl();
 	}
 }

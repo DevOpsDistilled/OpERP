@@ -56,4 +56,9 @@ public class Category extends Entiti implements Serializable {
 		return getCategoryName();
 	}
 
+	@Override
+	public Long getId() {
+		return getCategoryId();
+	}
+
 }

@@ -67,4 +67,9 @@ public class Product extends Entiti implements Serializable {
 	public String toString() {
 		return getProductName();
 	}
+
+	@Override
+	public Long getId() {
+		return getProductId();
+	}
 }

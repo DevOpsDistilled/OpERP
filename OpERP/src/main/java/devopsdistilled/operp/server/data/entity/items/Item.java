@@ -79,4 +79,9 @@ public class Item extends Entiti implements Serializable {
 		this.brand = brand;
 	}
 
+	@Override
+	public Long getId() {
+		return getItemId();
+	}
+
 }

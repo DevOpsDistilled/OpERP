@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,44 +23,55 @@ import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
-import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
-import devopsdistilled.operp.client.items.panes.models.observers.CreateProductPaneModelObserver;
+import devopsdistilled.operp.client.items.panes.models.observers.EditProductPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class CreateProductPane extends SubTaskPane implements
-		CreateProductPaneModelObserver, CategoryModelObserver {
+public class EditProductPane extends SubTaskPane implements
+		EditProductPaneModelObserver, CategoryModelObserver {
 
 	@Inject
-	private CreateProductPaneController controller;
-
-	@Inject
-	private ProductDetailsPane productDetailsPane;
+	private EditProductPaneController controller;
 
 	@Inject
 	private CategoryController categoryController;
+
+	@Inject
+	private ProductDetailsPane productDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField productNameField;
 	private final JPanel categoryPanel;
 
-	DefaultListModel<Category> listModel;
+	DefaultListModel<Category> categoryListModel = new DefaultListModel<>();;
 	private final JList<Category> categoryList;
+	private final JTextField productIdField;
 
-	public CreateProductPane() {
+	private Product product;
+
+	public EditProductPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][grow][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
+
+		JLabel lblProductId = new JLabel("Product ID");
+		pane.add(lblProductId, "cell 0 0,alignx trailing");
+
+		productIdField = new JTextField();
+		productIdField.setEditable(false);
+		pane.add(productIdField, "cell 1 0,growx");
+		productIdField.setColumns(10);
 
 		JLabel lblProductName = new JLabel("Product Name");
-		pane.add(lblProductName, "cell 0 0,alignx trailing");
+		pane.add(lblProductName, "cell 0 1,alignx trailing");
 
 		productNameField = new JTextField();
-		pane.add(productNameField, "cell 1 0,growx");
+		pane.add(productNameField, "cell 1 1,growx");
 		productNameField.setColumns(10);
 
 		JLabel lblCategory = new JLabel("Category");
-		pane.add(lblCategory, "cell 0 1");
+		pane.add(lblCategory, "cell 0 2");
 
 		categoryPanel = new JPanel();
 		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
@@ -76,7 +88,7 @@ public class CreateProductPane extends SubTaskPane implements
 
 		categoryList = new JList<>();
 		categoryPanel.add(categoryList, "cell 0 0,grow");
-		pane.add(scrollPane, "cell 1 1,grow");
+		pane.add(scrollPane, "cell 1 2,grow");
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -85,15 +97,14 @@ public class CreateProductPane extends SubTaskPane implements
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 1 2");
+		pane.add(btnCancel, "flowx,cell 1 3");
 
-		JButton btnCreate = new JButton("Create");
+		JButton btnCreate = new JButton("Update");
 		btnCreate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				List<Category> categories = new LinkedList<>();
 				categories.addAll(categoryList.getSelectedValuesList());
-				Product product = new Product();
 				String productName = productNameField.getText().trim();
 				product.setProductName(productName);
 				product.setCategories(categories);
@@ -114,7 +125,34 @@ public class CreateProductPane extends SubTaskPane implements
 				}
 			}
 		});
-		pane.add(btnCreate, "cell 1 2");
+		pane.add(btnCreate, "cell 1 3");
+	}
+
+	@Override
+	public void updateEntity(Product product) {
+		this.product = product;
+		productIdField.setText(product.getProductId().toString());
+		productNameField.setText(product.getProductName());
+		List<Category> productCategories = product.getCategories();
+
+		int[] selectedIndices = new int[productCategories.size()];
+		for (int i = 0; i < productCategories.size(); i++) {
+			selectedIndices[i] = -1;
+		}
+
+		for (Category productCategory : productCategories) {
+			Enumeration<Category> categories = categoryListModel.elements();
+
+			while (categories.hasMoreElements()) {
+				Category category = categories.nextElement();
+				if (productCategory.compareTo(category) == 0) {
+					selectedIndices[productCategories.indexOf(productCategory)] = categoryListModel
+							.indexOf(category);
+				}
+			}
+		}
+
+		categoryList.setSelectedIndices(selectedIndices);
 	}
 
 	@Override
@@ -124,24 +162,22 @@ public class CreateProductPane extends SubTaskPane implements
 
 	@Override
 	public void updateCategories(List<Category> categories) {
-
+		categoryListModel = new DefaultListModel<>();
 		List<Category> selCat = categoryList.getSelectedValuesList();
 		int[] selectedIndices = new int[selCat.size()];
 		for (int i = 0; i < selCat.size(); i++) {
 			selectedIndices[i] = -1;
 		}
 
-		listModel = null;
-		listModel = new DefaultListModel<>();
 		for (Category category : categories) {
-			listModel.addElement(category);
+			categoryListModel.addElement(category);
 		}
-		categoryList.setModel(listModel);
+		categoryList.setModel(categoryListModel);
 
 		for (Category selCategory : selCat) {
 			for (Category category : categories) {
 				if (selCategory.compareTo(category) == 0) {
-					selectedIndices[selCat.indexOf(selCategory)] = listModel
+					selectedIndices[selCat.indexOf(selCategory)] = categoryListModel
 							.indexOf(category);
 				}
 			}
@@ -149,4 +185,5 @@ public class CreateProductPane extends SubTaskPane implements
 
 		categoryList.setSelectedIndices(selectedIndices);
 	}
+
 }

@@ -7,4 +7,6 @@ public interface ProductService extends EntityService<Product, Long> {
 
 	boolean isProductNameExists(String productName);
 
+	boolean isProductNameValidForProduct(Long productId, String productName);
+
 }
