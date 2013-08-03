@@ -124,11 +124,29 @@ public class CreateProductPane extends SubTaskPane implements
 
 	@Override
 	public void updateCategories(List<Category> categories) {
+
+		List<Category> selCat = categoryList.getSelectedValuesList();
+		int[] selectedIndices = new int[selCat.size()];
+		for (int i = 0; i < selCat.size(); i++) {
+			selectedIndices[i] = -1;
+		}
+
 		listModel = null;
 		listModel = new DefaultListModel<>();
 		for (Category category : categories) {
 			listModel.addElement(category);
 		}
 		categoryList.setModel(listModel);
+
+		for (Category selCategory : selCat) {
+			for (Category category : categories) {
+				if (selCategory.compareTo(category) == 0) {
+					selectedIndices[selCat.indexOf(selCategory)] = listModel
+							.indexOf(category);
+				}
+			}
+		}
+
+		categoryList.setSelectedIndices(selectedIndices);
 	}
 }
