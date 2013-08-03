@@ -32,6 +32,7 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 
 	public ProductDetailsPane() {
 		pane = new JPanel();
+		getDialog().getContentPane().add(getPane());
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
 
 		JLabel lblProductId = new JLabel("Product ID");
