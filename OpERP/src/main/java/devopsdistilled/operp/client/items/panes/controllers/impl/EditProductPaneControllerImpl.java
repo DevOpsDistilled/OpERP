@@ -6,31 +6,33 @@ import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.CategoryModel;
 import devopsdistilled.operp.client.items.models.ProductModel;
-import devopsdistilled.operp.client.items.panes.CreateProductPane;
-import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
-import devopsdistilled.operp.client.items.panes.models.CreateProductPaneModel;
+import devopsdistilled.operp.client.items.panes.EditProductPane;
+import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
+import devopsdistilled.operp.client.items.panes.models.EditProductPaneModel;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-public class CreateProductPaneControllerImpl implements
-		CreateProductPaneController {
+public class EditProductPaneControllerImpl implements EditProductPaneController {
 
 	@Inject
-	private CreateProductPane view;
+	private EditProductPane view;
 
 	@Inject
-	private CreateProductPaneModel model;
-
-	@Inject
-	private CategoryModel categoryModel;
+	private EditProductPaneModel model;
 
 	@Inject
 	private ProductModel productModel;
 
+	@Inject
+	private CategoryModel categoryModel;
+
 	@Override
-	public void init() {
+	public void init(Product product) {
 		view.init();
-		model.registerObserver(view);
 		categoryModel.registerObserver(view);
+
+		// Respective Models are to be registered at last.
+		model.setEntity(product);
+		model.registerObserver(view);
 	}
 
 	@Override
@@ -42,18 +44,17 @@ public class CreateProductPaneControllerImpl implements
 
 		if (product.getCategories().size() == 0)
 			throw new NullFieldException(
-					"Product should be of at least 1 category");
+					"Product should be of atleast 1 category");
 
-		if (productModel.getService().isProductNameExists(
-				product.getProductName()))
+		if (!productModel.getService().isProductNameValidForProduct(
+				product.getProductId(), product.getProductName()))
 			throw new EntityNameExistsException("Product Name already exists");
 
 	}
 
 	@Override
 	public Product save(Product product) {
-		product = productModel.saveAndUpdateModel(product);
-		return product;
+		return productModel.saveAndUpdateModel(product);
 	}
 
 }

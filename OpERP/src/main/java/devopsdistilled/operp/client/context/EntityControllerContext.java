@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.controllers.ItemController;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.controllers.impl.CategoryControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.ItemControllerImpl;
+import devopsdistilled.operp.client.items.controllers.impl.ProductControllerImpl;
 
 @Configuration
 public class EntityControllerContext {
@@ -19,5 +21,10 @@ public class EntityControllerContext {
 	@Bean
 	public CategoryController categoryController() {
 		return new CategoryControllerImpl();
+	}
+
+	@Bean
+	public ProductController productController() {
+		return new ProductControllerImpl();
 	}
 }

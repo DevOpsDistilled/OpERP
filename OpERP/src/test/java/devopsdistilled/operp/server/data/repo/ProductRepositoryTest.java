@@ -2,11 +2,8 @@ package devopsdistilled.operp.server.data.repo;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +49,7 @@ public class ProductRepositoryTest {
 				productRepository.findOne(testProduct.getProductId()));
 	}
 
-	@Test
+	/*@Test
 	public void testFindByProductName() {
 		Product savedProduct = productRepository.save(testProduct);
 		List<Product> returnedProducts = productRepository
@@ -66,7 +63,7 @@ public class ProductRepositoryTest {
 				CoreMatchers.is(returnedProducts.get(
 						returnedProducts.size() - 1).getProductName()));
 	}
-
+*/
 	@Test
 	public void testSaveCustom() {
 		/*
