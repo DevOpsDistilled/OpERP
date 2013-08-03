@@ -89,11 +89,9 @@ public class CreateProductPane extends SubTaskPane implements
 					product = controller.save(product);
 
 				} catch (NullFieldException e1) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Product Name can't be empty");
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				} catch (EntityNameExistsException e1) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Product Name already exists");
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 
 				}
 			}
