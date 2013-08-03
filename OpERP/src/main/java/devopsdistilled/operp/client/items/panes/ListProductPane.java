@@ -64,8 +64,15 @@ public class ListProductPane extends SubTaskPane implements
 
 	@Override
 	public void updateProducts(List<Product> products) {
-		// TODO Auto-generated method stub
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Product.class, products);
 
+		for (int i = 0; i < tableModel.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
 	}
 
 }
