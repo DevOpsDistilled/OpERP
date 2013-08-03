@@ -26,8 +26,9 @@ public class EditProductPaneControllerImpl implements EditProductPaneController 
 	private CategoryModel categoryModel;
 
 	@Override
-	public void init(Product entity) {
+	public void init(Product product) {
 		view.init();
+		model.setEntity(product);
 		model.registerObserver(view);
 		categoryModel.registerObserver(view);
 	}
