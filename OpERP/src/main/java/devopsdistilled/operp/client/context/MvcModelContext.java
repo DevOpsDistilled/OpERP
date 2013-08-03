@@ -8,6 +8,7 @@ import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.EditProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListProductPaneModel;
@@ -16,6 +17,7 @@ import devopsdistilled.operp.client.items.panes.models.impl.CreateItemPaneModelI
 import devopsdistilled.operp.client.items.panes.models.impl.CreateProductPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.EditProductPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListProductPaneModelImpl;
@@ -61,5 +63,10 @@ public class MvcModelContext {
 	@Bean
 	public ListProductPaneModel listProductPaneModel() {
 		return new ListProductPaneModelImpl();
+	}
+
+	@Bean
+	public EditProductPaneModel editProductPaneModel() {
+		return new EditProductPaneModelImpl();
 	}
 }
