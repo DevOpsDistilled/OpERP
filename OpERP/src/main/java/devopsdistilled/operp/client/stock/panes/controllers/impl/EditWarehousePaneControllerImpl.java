@@ -5,48 +5,48 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
-import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
-import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
-import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.EditWarehousePane;
+import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-public class CreateWareHousePaneControllerImpl implements
-		CreateWarehousePaneController {
-
+public class EditWarehousePaneControllerImpl implements 
+		EditWarehousePaneController {
+	
 	@Inject
-	private CreateWarehousePaneModel model;
-
+	private EditWarehousePane view;
+	
 	@Inject
-	private CreateWarehousePane view;
-
+	private EditWarehousePaneModel model;
+	
 	@Inject
 	private WarehouseModel warehouseModel;
 
 	@Override
-	public void init() {
+	public void init(Warehouse warehouse) {
 		view.init();
+		model.setEntity(warehouse);
 		model.registerObserver(view);
-
+	
+		
 	}
-
 	@Override
 	public void validate(Warehouse warehouse) throws NullFieldException,
 			EntityNameExistsException {
-		if (warehouse.getWarehouseName().equals(new String(""))) {
+		if(warehouse.getWarehouseName().equalsIgnoreCase("")){
 			throw new NullFieldException();
 		}
-
-		if (warehouseModel.getService().isWarehouseNameExists(
-				warehouse.getWarehouseName()))
+		
+		if(!warehouseModel.getService().isWarehouseNameValidForWarehouse(
+				warehouse.getWarehouseId(), warehouse.getWarehouseName())){
+				
 			throw new EntityNameExistsException();
-
+			
+		}
 	}
-
 	@Override
 	public Warehouse save(Warehouse warehouse) {
-		Warehouse savedWarehouse = warehouseModel.saveAndUpdateModel(warehouse);
-		return savedWarehouse;
-
+		return warehouseModel.saveAndUpdateModel(warehouse);
 	}
 
 }

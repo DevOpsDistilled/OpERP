@@ -25,12 +25,25 @@ public class WarehouseServiceImpl extends
 	}
 
 	@Override
-	public boolean isNameExists(String warehouseName) {
+	public boolean isWarehouseNameExists(String warehouseName) {
 		Warehouse warehouse = warehouseRepository
 				.findByWarehouseName(warehouseName);
 		if (warehouse != null)
 			return true;
 
+		return false;
+	}
+
+
+	@Override
+	public boolean isWarehouseNameValidForWarehouse(Long warehouseId,
+			String warehouseName) {
+		Warehouse warehouse=warehouseRepository.findByWarehouseName(warehouseName);
+		if(warehouse==null){
+			return true;
+		}
+		if(warehouse.getWarehouseId().equals(warehouseId))
+			return true;
 		return false;
 	}
 

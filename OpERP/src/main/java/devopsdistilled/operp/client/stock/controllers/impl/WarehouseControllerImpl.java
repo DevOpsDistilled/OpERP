@@ -6,8 +6,8 @@ import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
-import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
@@ -39,8 +39,10 @@ public class WarehouseControllerImpl implements WarehouseController{
 	}
 
 	@Override
-	public void edit(Warehouse entity) {
-		
+	public void edit(Warehouse warehouse) {
+		EditWarehousePaneController editWarehousePaneController=context.
+				getBean(EditWarehousePaneController.class);
+		editWarehousePaneController.init(warehouse);
 		
 	}
 	

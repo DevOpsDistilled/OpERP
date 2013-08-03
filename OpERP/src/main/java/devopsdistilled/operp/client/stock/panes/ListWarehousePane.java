@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.stock.panes;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,31 +9,46 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.stock.models.impl.WarehouseTableModel;
 import devopsdistilled.operp.client.stock.models.observers.ListWarehousePaneObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
-import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class ListWarehousePane extends SubTaskPane implements 
 ListWarehousePaneObserver,WarehouseModelObserver{
 	
 	@Inject
-	private ListWarehousePaneController controller;
+	private WarehouseDetailsPane warehouseDetailsPane;
 	
-	private JComponent pane;
+	private JPanel pane;
 	private JTable table;
-	private WarehouseTableModel tableModel;
-	
+	BeanTableModel<Warehouse> tableModel;
 
 	public ListWarehousePane(){
 		pane=new JPanel();
-		pane.setLayout(new MigLayout("debug,fill","[]","[]"));
-		tableModel=new WarehouseTableModel();
+		pane.setLayout(new MigLayout("debug,fill"));
 		table=new JTable(tableModel);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e){
+				if(SwingUtilities.isLeftMouseButton(e) 
+						&& e.getClickCount() == 2
+						&& table.getSelectedRow() != -1){
+					Warehouse warehouse=tableModel.getRow(table.getSelectedRow());
+					warehouseDetailsPane.show(warehouse);
+					
+				}
+			}
+		});
+		
 		
 		final JScrollPane scrollPane=new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -43,6 +60,19 @@ ListWarehousePaneObserver,WarehouseModelObserver{
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateWarehouse(List<Warehouse> warehouses){
+		tableModel=null;
+		tableModel=new BeanTableModel<>(Warehouse.class,warehouses);
+		
+		for(int i=0;i<table.getColumnCount();i++){
+			tableModel.setColumnEditable(i, false);
+		}
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
+		
 	}
 	
 }

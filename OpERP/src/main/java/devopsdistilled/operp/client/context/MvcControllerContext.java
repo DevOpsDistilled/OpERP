@@ -15,6 +15,14 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.EditCategoryPan
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
 
 @Configuration
 public class MvcControllerContext {
@@ -47,5 +55,25 @@ public class MvcControllerContext {
 	@Bean
 	public ListCategoryPaneController listCategoryPaneController() {
 		return new ListCategoryPaneControllerImpl();
+	}
+	
+	@Bean
+	public UpdateStockPaneController updateStockPaneController(){
+		return new UpdateStockPaneControllerImpl();
+	}
+	
+	@Bean
+	public CreateWarehousePaneController createWarehousePaneController(){
+		return new CreateWareHousePaneControllerImpl();
+	}
+	
+	@Bean
+	public ListWarehousePaneController listWarehousePaneController(){
+		return new ListWarehousePaneControllerImpl();
+	}
+	
+	@Bean
+	public EditWarehousePaneController editWarehousePaneController(){
+		return new EditWarehousePaneControllerImpl();
 	}
 }

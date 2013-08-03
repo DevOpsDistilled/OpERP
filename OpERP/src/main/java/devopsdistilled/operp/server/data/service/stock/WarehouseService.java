@@ -5,8 +5,7 @@ import devopsdistilled.operp.server.data.service.EntityService;
 
 public interface WarehouseService extends EntityService<Warehouse, Long>{
 
-	
-
-	boolean isNameExists(String warehouseName);
+	boolean isWarehouseNameExists(String warehouseName);
+	boolean isWarehouseNameValidForWarehouse(Long warehouseId, String warehouseName);
 
 }

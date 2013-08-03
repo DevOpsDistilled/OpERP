@@ -15,6 +15,14 @@ import devopsdistilled.operp.client.items.panes.models.impl.EditCategoryPaneMode
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
+import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 
 @Configuration
 public class MvcModelContext {
@@ -47,5 +55,25 @@ public class MvcModelContext {
 	@Bean
 	public ListCategoryPaneModel listCategoryPaneModel() {
 		return new ListCategoryPaneModelImpl();
+	}
+	
+	@Bean 
+	public UpdateStockPaneModel updateStockPaneModel(){
+		return new UpdateStockPaneModelImpl();
+	}
+	
+	@Bean 
+	public CreateWarehousePaneModel createWarehousePaneModel(){
+		return new CreateWarehousePaneModelImpl();
+	}
+	
+	@Bean
+	public ListWarehousePaneModel listWarehousePaneModel(){
+		return new ListWarehousePaneModelImpl();
+	}
+	
+	@Bean
+	public EditWarehousePaneModel editWarehousePaneModel(){
+		return new EditWarehousePaneModelImpl();
 	}
 }

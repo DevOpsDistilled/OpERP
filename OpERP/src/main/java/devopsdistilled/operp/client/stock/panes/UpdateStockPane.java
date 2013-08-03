@@ -129,6 +129,12 @@ public class UpdateStockPane extends SubTaskPane implements
 		}
 		
 	}
+
+	@Override
+	public void updateWarehouse(List<Warehouse> warehouses) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 	
 	

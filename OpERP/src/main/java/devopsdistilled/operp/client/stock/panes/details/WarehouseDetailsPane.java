@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.stock.panes;
+package devopsdistilled.operp.client.stock.panes.details;
 
 import javax.inject.Inject;
 import javax.swing.JComponent;
@@ -49,6 +49,7 @@ public class WarehouseDetailsPane extends
 		
 		warehouseNameField = new JTextField();
 		pane.add(warehouseNameField, "cell 1 1,growx");
+		warehouseNameField.setEditable(false);
 		warehouseNameField.setColumns(10);
 		
 		btnDelete = new JButton("Delete");

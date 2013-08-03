@@ -65,6 +65,7 @@ public class StockMgmtPane extends TaskPane{
 		
 		JButton btnListWarehouse = new JButton("List Warehouse");
 		btnListWarehouse.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			warehouseController.list();
 			}
