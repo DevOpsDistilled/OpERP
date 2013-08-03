@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.items.panes.details;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -12,10 +13,14 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.server.data.entity.items.Category;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
+
+	@Inject
+	private ProductController productController;
 
 	private Product product;
 
