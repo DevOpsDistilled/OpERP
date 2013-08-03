@@ -2,12 +2,14 @@ package devopsdistilled.operp.client.items.panes.details;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -31,6 +33,7 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 
 	public ProductDetailsPane() {
 		pane = new JPanel();
+		getDialog().getContentPane().add(getPane());
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
 
 		JLabel lblProductId = new JLabel("Product ID");
@@ -59,8 +62,13 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				productController.delete(product);
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+						getPane(),
+						"Delete Product: " + product.getProductName() + " ?",
+						"Delete Product", JOptionPane.YES_NO_OPTION)) {
+					getDialog().dispose();
+					productController.delete(product);
+				}
 			}
 		});
 		pane.add(btnDelete, "flowx,cell 1 3");
@@ -97,8 +105,9 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		if (product != null) {
 			productIdField.setText(product.getProductId().toString());
 			productNameField.setText(product.getProductName());
-			productCategoryList.setListData((Category[]) product
-					.getCategories().toArray());
+
+			productCategoryList.setListData(new Vector<Category>(product
+					.getCategories()));
 
 			getDialog().setVisible(true);
 		}

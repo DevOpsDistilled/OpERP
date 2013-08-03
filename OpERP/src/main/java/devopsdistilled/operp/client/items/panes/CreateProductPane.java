@@ -18,10 +18,12 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
+import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateProductPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 import devopsdistilled.operp.server.data.entity.items.Product;
@@ -31,6 +33,12 @@ public class CreateProductPane extends SubTaskPane implements
 
 	@Inject
 	private CreateProductPaneController controller;
+
+	@Inject
+	private ProductDetailsPane productDetailsPane;
+
+	@Inject
+	private CategoryController categoryController;
 
 	private final JPanel pane;
 	private final JTextField productNameField;
@@ -56,7 +64,14 @@ public class CreateProductPane extends SubTaskPane implements
 		categoryPanel = new JPanel();
 		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
 				"[23px,grow]"));
-
+		JButton btnNewCategory = new JButton("New Category");
+		btnNewCategory.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				categoryController.create();
+			}
+		});
+		categoryPanel.add(btnNewCategory, "south");
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
 
 		categoryList = new JList<>();
@@ -87,6 +102,9 @@ public class CreateProductPane extends SubTaskPane implements
 
 					controller.validate(product);
 					product = controller.save(product);
+
+					getDialog().dispose();
+					productDetailsPane.show(product);
 
 				} catch (NullFieldException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
