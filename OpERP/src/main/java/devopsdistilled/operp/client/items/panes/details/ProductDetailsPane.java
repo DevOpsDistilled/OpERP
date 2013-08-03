@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -61,8 +62,13 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				productController.delete(product);
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+						getPane(),
+						"Delete Product: " + product.getProductName() + " ?",
+						"Delete Product", JOptionPane.YES_NO_OPTION)) {
+					getDialog().dispose();
+					productController.delete(product);
+				}
 			}
 		});
 		pane.add(btnDelete, "flowx,cell 1 3");
