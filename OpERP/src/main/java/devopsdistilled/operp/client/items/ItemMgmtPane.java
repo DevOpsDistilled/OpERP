@@ -88,6 +88,12 @@ public final class ItemMgmtPane extends TaskPane {
 		pane.add(btnCreateProduct, "cell 0 5");
 
 		JButton btnListProducts = new JButton("List Products");
+		btnListProducts.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				productController.list();
+			}
+		});
 		pane.add(btnListProducts, "cell 0 6");
 
 		return pane;
