@@ -13,7 +13,8 @@ import javax.persistence.ManyToMany;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Category extends Entiti implements Serializable {
+public class Category extends Entiti implements Serializable,
+		Comparable<Category> {
 
 	private static final long serialVersionUID = -3809686715120885998L;
 
@@ -54,6 +55,14 @@ public class Category extends Entiti implements Serializable {
 	@Override
 	public String toString() {
 		return getCategoryName();
+	}
+
+	@Override
+	public int compareTo(Category anotherCategory) {
+
+		return (this.categoryId < anotherCategory.categoryId) ? -1
+				: (this.categoryId > anotherCategory.categoryId) ? 1 : 0;
+
 	}
 
 }
