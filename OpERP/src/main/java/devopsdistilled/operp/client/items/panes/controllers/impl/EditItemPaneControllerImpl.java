@@ -52,8 +52,9 @@ public class EditItemPaneControllerImpl implements EditItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			EntityNameExistsException, NullFieldException {
 
-		if (item.getItemName() == null || item.getProduct() == null
-				|| item.getBrand() == null || item.getPrice() == null) {
+		if (item.getItemName().equalsIgnoreCase("")
+				|| item.getProduct() == null || item.getBrand() == null
+				|| item.getPrice() == null) {
 
 			throw new NullFieldException();
 		}

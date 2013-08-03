@@ -15,71 +15,96 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.details.CategoryDetailsPane;
-import devopsdistilled.operp.client.items.panes.models.observers.CreateCategoryPaneModelObserver;
+import devopsdistilled.operp.client.items.panes.models.observers.EditCategoryPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
-public class CreateCategoryPane extends SubTaskPane implements
-		CreateCategoryPaneModelObserver {
+public class EditCategoryPane extends SubTaskPane implements
+		EditCategoryPaneModelObserver {
 
 	@Inject
-	private CreateCategoryPaneController controller;
+	private EditCategoryPaneController controller;
 
 	@Inject
 	private CategoryDetailsPane categoryDetailsPane;
 
 	private final JPanel pane;
+	private final JTextField categoryIdField;
 	private final JTextField categoryNameField;
+	private final JButton btnCancel;
+	private final JButton btnUpdate;
 
-	public CreateCategoryPane() {
+	public EditCategoryPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
+
+		JLabel lblCategoryId = new JLabel("Category ID");
+		pane.add(lblCategoryId, "cell 0 0,alignx trailing");
+
+		categoryIdField = new JTextField();
+		categoryIdField.setEditable(false);
+		pane.add(categoryIdField, "cell 1 0,growx");
+		categoryIdField.setColumns(10);
 
 		JLabel lblCategoryName = new JLabel("Category Name");
-		pane.add(lblCategoryName, "cell 0 0,alignx trailing");
+		pane.add(lblCategoryName, "cell 0 1,alignx trailing");
 
 		categoryNameField = new JTextField();
-		pane.add(categoryNameField, "cell 1 0,growx");
+		pane.add(categoryNameField, "cell 1 1,growx");
 		categoryNameField.setColumns(10);
 
-		JButton btnCancel = new JButton("Cancel");
+		btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 1 1");
+		pane.add(btnCancel, "flowx,cell 1 3");
 
-		JButton btnCreate = new JButton("Create");
-		btnCreate.addActionListener(new ActionListener() {
+		btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Category category = new Category();
-				category.setCategoryName(categoryNameField.getText().trim());
+
+				Long categoryId = Long.parseLong(categoryIdField.getText()
+						.trim());
+				category.setCategoryId(categoryId);
+
+				String categoryName = categoryNameField.getText().trim();
+				category.setCategoryName(categoryName);
+
 				try {
 					controller.validate(category);
 					category = controller.save(category);
-					//getDialog().dispose();
-
+					getDialog().dispose();
 					categoryDetailsPane.show(category);
 
 				} catch (NullFieldException e1) {
 					JOptionPane.showMessageDialog(getPane(),
-							"Category Name Field Empty");
+							"Category Name should not be empty");
+
 				} catch (EntityNameExistsException e1) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Category Name already exists");
 				}
 			}
 		});
-		pane.add(btnCreate, "cell 1 1");
+		pane.add(btnUpdate, "cell 1 3");
+
 	}
 
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateEntity(Category category) {
+		categoryIdField.setText(category.getCategoryId().toString());
+		categoryNameField.setText(category.getCategoryName());
 	}
 
 }

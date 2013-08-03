@@ -39,8 +39,13 @@ import devopsdistilled.operp.client.items.panes.models.impl.CreateItemPaneModelI
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
 
+import org.springframework.context.annotation.Import;
+
 @Configuration
+@Import({ MvcModelContext.class, MvcViewContext.class,
+		MvcControllerContext.class })
 public class MvcContext {
+
 
 	@Bean
 	public CreateItemPaneModel createItemPaneModel() {
@@ -143,4 +148,6 @@ public class MvcContext {
 	public ListWarehousePaneController listWarehousePaneController(){
 		return new ListWarehousePaneControllerImpl();
 	}
+
+
 }
