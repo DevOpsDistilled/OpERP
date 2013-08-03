@@ -24,4 +24,14 @@ public class ProductServiceImpl extends
 		return productRepository;
 	}
 
+	@Override
+	public boolean isProductNameExists(String productName) {
+		Product product = productRepository.findByProductName(productName);
+
+		if (product != null)
+			return true;
+
+		return false;
+	}
+
 }
