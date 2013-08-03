@@ -63,4 +63,8 @@ public class Product extends Entiti implements Serializable {
 		this.categories = categories;
 	}
 
+	@Override
+	public String toString() {
+		return getProductName();
+	}
 }
