@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.items.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,6 +59,12 @@ public class CreateProductPane extends SubTaskPane implements
 		pane.add(scrollPane, "cell 1 1,grow");
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+			}
+		});
 		pane.add(btnCancel, "flowx,cell 1 2");
 
 		JButton btnCreate = new JButton("Create");
