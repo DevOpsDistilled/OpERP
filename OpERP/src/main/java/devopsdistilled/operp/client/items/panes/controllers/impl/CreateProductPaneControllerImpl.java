@@ -37,6 +37,17 @@ public class CreateProductPaneControllerImpl implements
 	public void validate(Product product) throws NullFieldException,
 			EntityNameExistsException {
 
+		if (product.getProductName().equalsIgnoreCase(""))
+			throw new NullFieldException("Product Name can't be empty");
+
+		if (product.getCategories().size() == 0)
+			throw new NullFieldException(
+					"Product should be of at least 1 category");
+
+		if (productModel.getService().isProductNameExists(
+				product.getProductName()))
+			throw new EntityNameExistsException("Product Name already exists");
+
 	}
 
 	@Override
