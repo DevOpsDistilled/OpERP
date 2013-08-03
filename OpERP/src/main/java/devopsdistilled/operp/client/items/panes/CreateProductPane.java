@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
@@ -35,6 +36,9 @@ public class CreateProductPane extends SubTaskPane implements
 
 	@Inject
 	private ProductDetailsPane productDetailsPane;
+
+	@Inject
+	private CategoryController categoryController;
 
 	private final JPanel pane;
 	private final JTextField productNameField;
@@ -64,7 +68,7 @@ public class CreateProductPane extends SubTaskPane implements
 		btnNewCategory.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				categoryController.create();
 			}
 		});
 		categoryPanel.add(btnNewCategory, "south");
