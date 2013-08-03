@@ -25,12 +25,15 @@ import javax.swing.JButton;
 
 public class CreateWarehousePane extends SubTaskPane implements
 		WarehouseModelObserver, CreateWarehousePaneModelObserver {
-	private JPanel pane;
-	private JTextField warehouseNameField;
-
+	
 	@Inject
 	private CreateWarehousePaneController controller;
-
+	
+	@Inject
+	private WarehouseDetailsPane warehouseDetailsPane;
+	private JPanel pane;
+	private JTextField warehouseNameField;
+	
 	@Override
 	public void init() {
 		super.init();
@@ -71,6 +74,8 @@ public class CreateWarehousePane extends SubTaskPane implements
 					controller.validate(warehouse);
 					warehouse=controller.save(warehouse);
 					getDialog().dispose();
+					warehouseDetailsPane.show(warehouse);
+					
 				} catch (NullFieldException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Required field(s) are Null");

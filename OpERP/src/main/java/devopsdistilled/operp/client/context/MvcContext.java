@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
@@ -15,14 +16,19 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.CreateItemPaneC
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
+import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
@@ -67,6 +73,10 @@ public class MvcContext {
 	}
 	
 	@Bean
+	public ListWarehousePaneModel listWarehousePaneModel(){
+		return new ListWarehousePaneModelImpl();
+	}
+	@Bean
 	public CreateItemPane createItemPane() {
 		return new CreateItemPane();
 	}
@@ -95,7 +105,12 @@ public class MvcContext {
 	public CreateCategoryPane createCategoryPane() {
 		return new CreateCategoryPane();
 	}
-
+	
+	@Bean
+	public ListWarehousePane listWarehousePane(){
+		return new ListWarehousePane();
+	}
+	
 	@Bean
 	public CreateItemPaneController createItemPaneController() {
 		return new CreateItemPaneControllerImpl();
@@ -123,5 +138,9 @@ public class MvcContext {
 	@Bean
 	public CreateCategoryPaneController createCategoryPaneController() {
 		return new CreateCategoryPaneControllerImpl();
+	}
+	@Bean
+	public ListWarehousePaneController listWarehousePaneController(){
+		return new ListWarehousePaneControllerImpl();
 	}
 }

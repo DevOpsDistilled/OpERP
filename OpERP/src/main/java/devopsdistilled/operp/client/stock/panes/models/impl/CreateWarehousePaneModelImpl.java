@@ -7,11 +7,13 @@ import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 public class CreateWarehousePaneModelImpl extends 
 		AbstractPaneModel<CreateWarehousePaneModelObserver>
 		implements CreateWarehousePaneModel{
-
+	
+	public CreateWarehousePaneModelImpl(){
+		title="Create Warehouse";
+	}
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return title;
 	}
 
 }

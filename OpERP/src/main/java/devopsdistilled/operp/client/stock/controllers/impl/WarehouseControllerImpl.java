@@ -5,9 +5,11 @@ import javax.inject.Inject;
 import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+import devopsdistilled.operp.client.stock.models.WarehouseModel;
+import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
-import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
-import devopsdistilled.operp.server.data.service.stock.WarehouseService;
+import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class WarehouseControllerImpl implements WarehouseController{
 	
@@ -15,15 +17,43 @@ public class WarehouseControllerImpl implements WarehouseController{
 	private ApplicationContext context;
 	
 	@Inject
-	private CreateWarehousePaneModel model;
+	private WarehouseModel warehouseModel;
 	
 	
 	@Override
-	public void createWarehouse() {
+	public void create() {
 		CreateWarehousePaneController createWarehousePaneController=context
 				.getBean(CreateWarehousePaneController.class);
 		createWarehousePaneController.init();
 		
 	}
+
+
+	@Override
+	public void list() {
+		ListWarehousePaneController listWarehousePaneController=context
+				.getBean(ListWarehousePaneController.class);
+		listWarehousePaneController.init();
+		
+		
+	}
+
+	@Override
+	public void edit(Warehouse entity) {
+		
+		
+	}
+	
+	@Override
+	public void delete(Warehouse warehouse) {
+		warehouseModel.deleteAndUpdateModel(warehouse);
+		
+	}
+
+
+
+
+
+	
 
 }

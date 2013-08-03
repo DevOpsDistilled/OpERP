@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.CategoryDetailsPane;
 import devopsdistilled.operp.client.items.panes.ItemDetailsPane;
+import devopsdistilled.operp.client.stock.panes.WarehouseDetailsPane;
 
 @Configuration
 public class EntityDetailsContext {
@@ -17,5 +18,10 @@ public class EntityDetailsContext {
 	@Bean
 	public CategoryDetailsPane categoryDetailsPane() {
 		return new CategoryDetailsPane();
+	}
+	
+	@Bean
+	public WarehouseDetailsPane warehouseDetailsPane(){
+		return new WarehouseDetailsPane();
 	}
 }

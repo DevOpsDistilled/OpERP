@@ -60,7 +60,7 @@ public class CreateCategoryPane extends SubTaskPane implements
 				try {
 					controller.validate(category);
 					category = controller.save(category);
-					getDialog().dispose();
+					//getDialog().dispose();
 
 					categoryDetailsPane.show(category);
 

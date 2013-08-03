@@ -1,6 +1,9 @@
 package devopsdistilled.operp.client.stock.controllers;
 
-public interface WarehouseController {
+import devopsdistilled.operp.client.abstracts.EntityController;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-	public void createWarehouse();
+
+public interface WarehouseController extends EntityController<Warehouse> {
+
 }

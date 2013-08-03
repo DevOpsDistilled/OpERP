@@ -34,7 +34,7 @@ public class StockMgmtPane extends TaskPane{
 	@Override
 	public JComponent getPane() {
 		JPanel pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[grow]", "[][][]"));
+		pane.setLayout(new MigLayout("", "[grow]", "[][][][]"));
 		
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -56,12 +56,20 @@ public class StockMgmtPane extends TaskPane{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				warehouseController.createWarehouse();
+				warehouseController.create();
 			}
 		});
 			
 		
 		pane.add(btnCreateWarehouse, "cell 0 2");
+		
+		JButton btnListWarehouse = new JButton("List Warehouse");
+		btnListWarehouse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			warehouseController.list();
+			}
+		});
+		pane.add(btnListWarehouse, "cell 0 3");
 		
 		
 		
