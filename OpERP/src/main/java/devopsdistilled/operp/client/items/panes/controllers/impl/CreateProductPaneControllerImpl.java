@@ -52,8 +52,8 @@ public class CreateProductPaneControllerImpl implements
 
 	@Override
 	public Product save(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		product = productModel.saveAndUpdateModel(product);
+		return product;
 	}
 
 }
