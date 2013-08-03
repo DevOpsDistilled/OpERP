@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -132,12 +133,20 @@ public class EditProductPane extends SubTaskPane implements
 		productNameField.setText(product.getProductName());
 		List<Category> productCategories = product.getCategories();
 
-		int[] selectedIndices = new int[-1];
-		for (Category category : productCategories) {
-			int i = -1;
-			if (categoryListModel.contains(category)) {
-				i++;
-				selectedIndices[i] = categoryListModel.indexOf(category);
+		int[] selectedIndices = new int[productCategories.size()];
+		for (int i = 0; i < productCategories.size(); i++) {
+			selectedIndices[i] = -1;
+		}
+
+		for (Category productCategory : productCategories) {
+			Enumeration<Category> categories = categoryListModel.elements();
+
+			while (categories.hasMoreElements()) {
+				Category category = categories.nextElement();
+				if (productCategory.compareTo(category) == 0) {
+					selectedIndices[productCategories.indexOf(productCategory)] = categoryListModel
+							.indexOf(category);
+				}
 			}
 		}
 
