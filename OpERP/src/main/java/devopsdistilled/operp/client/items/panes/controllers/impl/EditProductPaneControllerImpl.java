@@ -34,9 +34,19 @@ public class EditProductPaneControllerImpl implements EditProductPaneController 
 	}
 
 	@Override
-	public void validate(Product entity) throws NullFieldException,
+	public void validate(Product product) throws NullFieldException,
 			EntityNameExistsException {
-		// TODO Auto-generated method stub
+
+		if (product.getProductName().equalsIgnoreCase(""))
+			throw new NullFieldException("Product Name can't be empty");
+
+		if (product.getCategories().size() == 0)
+			throw new NullFieldException(
+					"Product should be of atleast 1 category");
+
+		if (!productModel.getService().isProductNameValidForProduct(
+				product.getProductId(), product.getProductName()))
+			throw new EntityNameExistsException("Product Name already exists");
 
 	}
 
