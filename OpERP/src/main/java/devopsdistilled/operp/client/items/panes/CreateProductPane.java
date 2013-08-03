@@ -60,7 +60,14 @@ public class CreateProductPane extends SubTaskPane implements
 		categoryPanel = new JPanel();
 		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
 				"[23px,grow]"));
+		JButton btnNewCategory = new JButton("New Category");
+		btnNewCategory.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
+			}
+		});
+		categoryPanel.add(btnNewCategory, "south");
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
 
 		categoryList = new JList<>();
