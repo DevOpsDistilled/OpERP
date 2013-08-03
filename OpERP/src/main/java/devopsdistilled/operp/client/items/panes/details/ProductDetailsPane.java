@@ -52,7 +52,7 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		JLabel lblProductCategory = new JLabel("Product Category");
 		pane.add(lblProductCategory, "cell 0 2");
 
-		productCategoryList = new JList();
+		productCategoryList = new JList<>();
 		pane.add(productCategoryList, "cell 1 2,grow");
 
 		JButton btnDelete = new JButton("Delete");
