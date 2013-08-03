@@ -45,7 +45,7 @@ public class EditProductPane extends SubTaskPane implements
 	private final JTextField productNameField;
 	private final JPanel categoryPanel;
 
-	DefaultListModel<Category> categoryListModel;
+	DefaultListModel<Category> categoryListModel = new DefaultListModel<>();;
 	private final JList<Category> categoryList;
 	private final JTextField productIdField;
 
@@ -160,7 +160,6 @@ public class EditProductPane extends SubTaskPane implements
 
 	@Override
 	public void updateCategories(List<Category> categories) {
-		categoryListModel = null;
 		categoryListModel = new DefaultListModel<>();
 		List<Category> selCat = categoryList.getSelectedValuesList();
 		int[] selectedIndices = new int[selCat.size()];
@@ -168,8 +167,6 @@ public class EditProductPane extends SubTaskPane implements
 			selectedIndices[i] = -1;
 		}
 
-		categoryListModel = null;
-		categoryListModel = new DefaultListModel<>();
 		for (Category category : categories) {
 			categoryListModel.addElement(category);
 		}
