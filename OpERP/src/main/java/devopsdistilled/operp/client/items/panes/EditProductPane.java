@@ -49,6 +49,8 @@ public class EditProductPane extends SubTaskPane implements
 	private final JList<Category> categoryList;
 	private final JTextField productIdField;
 
+	private Product product;
+
 	public EditProductPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
@@ -103,7 +105,6 @@ public class EditProductPane extends SubTaskPane implements
 			public void actionPerformed(ActionEvent e) {
 				List<Category> categories = new LinkedList<>();
 				categories.addAll(categoryList.getSelectedValuesList());
-				Product product = new Product();
 				String productName = productNameField.getText().trim();
 				product.setProductName(productName);
 				product.setCategories(categories);
@@ -129,6 +130,7 @@ public class EditProductPane extends SubTaskPane implements
 
 	@Override
 	public void updateEntity(Product product) {
+		this.product = product;
 		productIdField.setText(product.getProductId().toString());
 		productNameField.setText(product.getProductName());
 		List<Category> productCategories = product.getCategories();
