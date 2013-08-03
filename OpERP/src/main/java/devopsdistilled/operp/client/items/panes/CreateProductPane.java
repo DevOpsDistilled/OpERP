@@ -1,27 +1,36 @@
 package devopsdistilled.operp.client.items.panes;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateProductPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.items.Category;
 
 public class CreateProductPane extends SubTaskPane implements
-		CreateProductPaneModelObserver {
+		CreateProductPaneModelObserver, CategoryModelObserver {
 
 	@Inject
 	private CreateProductPaneController controller;
 
 	private final JPanel pane;
 	private final JTextField productNameField;
+	private final JPanel categoryPanel;
+
+	DefaultListModel<Category> listModel;
+	private final JList<Category> categoryList;
 
 	public CreateProductPane() {
 		pane = new JPanel();
@@ -37,11 +46,14 @@ public class CreateProductPane extends SubTaskPane implements
 		JLabel lblCategory = new JLabel("Category");
 		pane.add(lblCategory, "cell 0 1");
 
-		JPanel categoryPanel = new JPanel();
-		categoryPanel.setLayout(new MigLayout("", "[92px]", "[23px]"));
-		categoryPanel.add(new JCheckBox("Check Me"), "cell 0 0,alignx left,aligny top");
+		categoryPanel = new JPanel();
+		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
+				"[23px,grow]"));
 
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
+
+		categoryList = new JList<>();
+		categoryPanel.add(categoryList, "cell 0 0,grow");
 		pane.add(scrollPane, "cell 1 1,grow");
 
 		JButton btnCancel = new JButton("Cancel");
@@ -56,4 +68,13 @@ public class CreateProductPane extends SubTaskPane implements
 		return pane;
 	}
 
+	@Override
+	public void updateCategories(List<Category> categories) {
+		listModel = null;
+		listModel = new DefaultListModel<>();
+		for (Category category : categories) {
+			listModel.addElement(category);
+		}
+		categoryList.setModel(listModel);
+	}
 }
