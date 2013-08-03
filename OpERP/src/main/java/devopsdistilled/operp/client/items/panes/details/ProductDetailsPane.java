@@ -21,4 +21,9 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 
 	}
 
+	@Override
+	public String getTitle() {
+		return "Product Details";
+	}
+
 }
