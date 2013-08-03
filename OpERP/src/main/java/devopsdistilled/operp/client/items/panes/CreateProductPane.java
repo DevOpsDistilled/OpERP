@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.panes;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,6 +38,8 @@ public class CreateProductPane extends SubTaskPane implements
 		pane.add(lblCategory, "cell 0 1");
 
 		JPanel categoryPanel = new JPanel();
+		categoryPanel.setLayout(new MigLayout("", "[92px]", "[23px]"));
+		categoryPanel.add(new JCheckBox("Check Me"), "cell 0 0,alignx left,aligny top");
 
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
 		pane.add(scrollPane, "cell 1 1,grow");
