@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.models.ProductModel;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListProductPaneController;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
@@ -19,6 +20,9 @@ public class ProductControllerImpl implements ProductController {
 	@Inject
 	private ListProductPaneController listProductPaneController;
 
+	@Inject
+	private EditProductPaneController editProductPaneController;
+
 	@Override
 	public void create() {
 		createProductPaneController.init();
@@ -26,8 +30,7 @@ public class ProductControllerImpl implements ProductController {
 
 	@Override
 	public void edit(Product product) {
-		// TODO Auto-generated method stub
-
+		editProductPaneController.init(product);
 	}
 
 	@Override
