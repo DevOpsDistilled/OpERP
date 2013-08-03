@@ -28,9 +28,11 @@ public class EditProductPaneControllerImpl implements EditProductPaneController 
 	@Override
 	public void init(Product product) {
 		view.init();
+		categoryModel.registerObserver(view);
+
+		// Respective Models are to be registered at last.
 		model.setEntity(product);
 		model.registerObserver(view);
-		categoryModel.registerObserver(view);
 	}
 
 	@Override
