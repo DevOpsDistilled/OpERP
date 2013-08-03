@@ -1,6 +1,5 @@
 package devopsdistilled.operp.server.data.entity.items;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,7 +13,7 @@ import javax.persistence.OneToMany;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Product extends Entiti implements Serializable {
+public class Product extends Entiti {
 
 	private static final long serialVersionUID = -3781064523477859914L;
 
