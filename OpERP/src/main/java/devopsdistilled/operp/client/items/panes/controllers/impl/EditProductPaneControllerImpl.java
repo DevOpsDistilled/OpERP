@@ -51,9 +51,8 @@ public class EditProductPaneControllerImpl implements EditProductPaneController 
 	}
 
 	@Override
-	public Product save(Product entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product save(Product product) {
+		return productModel.saveAndUpdateModel(product);
 	}
 
 }
