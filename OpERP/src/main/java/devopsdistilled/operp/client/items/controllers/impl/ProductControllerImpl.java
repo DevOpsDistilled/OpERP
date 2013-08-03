@@ -38,8 +38,7 @@ public class ProductControllerImpl implements ProductController {
 
 	@Override
 	public void delete(Product product) {
-		// TODO Auto-generated method stub
-
+		productModel.deleteAndUpdateModel(product);
 	}
 
 }
