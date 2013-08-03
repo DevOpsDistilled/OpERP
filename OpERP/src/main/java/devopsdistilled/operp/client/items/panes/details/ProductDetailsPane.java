@@ -56,9 +56,23 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 		pane.add(productCategoryList, "cell 1 2,grow");
 
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+				productController.delete(product);
+			}
+		});
 		pane.add(btnDelete, "flowx,cell 1 3");
 
 		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+				productController.edit(product);
+			}
+		});
 		pane.add(btnEdit, "cell 1 3");
 
 		JButton btnOk = new JButton("OK");
