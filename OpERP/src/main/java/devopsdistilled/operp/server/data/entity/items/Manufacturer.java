@@ -48,4 +48,9 @@ public class Manufacturer extends Entiti implements Serializable {
 	public void setBrands(List<Brand> brands) {
 		this.brands = brands;
 	}
+
+	@Override
+	public Long getId() {
+		return getManufacturerId();
+	}
 }

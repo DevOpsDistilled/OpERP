@@ -8,13 +8,9 @@ public class CreateProductPaneModelImpl extends
 		AbstractPaneModel<CreateProductPaneModelObserver> implements
 		CreateProductPaneModel {
 
-	public CreateProductPaneModelImpl() {
-		title = "Create Product";
-	}
-
 	@Override
 	public String getTitle() {
-		return title;
+		return "Create Product";
 	}
 
 }

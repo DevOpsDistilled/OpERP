@@ -21,11 +21,15 @@ import javax.swing.table.AbstractTableModel;
  * 
  */
 abstract class RowTableModel<T> extends AbstractTableModel {
+
+	private static final long serialVersionUID = 8178728492574712439L;
+
 	protected List<T> modelData;
 	protected List<String> columnNames;
+	@SuppressWarnings("rawtypes")
 	protected Class[] columnClasses;
 	protected Boolean[] isColumnEditable;
-	private Class rowClass = Object.class;
+	private Class<?> rowClass;// = Object.class;
 	private boolean isModelEditable = true;
 
 	/**
@@ -36,18 +40,18 @@ abstract class RowTableModel<T> extends AbstractTableModel {
 	 * Sub classes creating a model using this constructor must make sure to
 	 * invoke the setDataAndColumnNames() method.
 	 * 
-	 * @param rowClass
+	 * @param beanClass
 	 *            the class of row data to be added to the model
 	 */
-	protected RowTableModel(Class rowClass) {
-		setRowClass(rowClass);
+	protected RowTableModel(Class<?> beanClass) {
+		setRowClass(beanClass);
 	}
 
 	/**
 	 * Constructs a <code>RowTableModel</code> with column names.
 	 * 
 	 * Each column's name will be taken from the <code>columnNames</code> List
-	 * and the number of colums is determined by thenumber of items in the
+	 * and the number of columns is determined by thenumber of items in the
 	 * <code>columnNames</code> List.
 	 * 
 	 * Sub classes creating a model using this constructor must make sure to
@@ -101,7 +105,7 @@ abstract class RowTableModel<T> extends AbstractTableModel {
 	 *            the class of row data to be added to the model
 	 */
 	protected RowTableModel(List<T> modelData, List<String> columnNames,
-			Class rowClass) {
+			Class<T> rowClass) {
 		setDataAndColumnNames(modelData, columnNames);
 		setRowClass(rowClass);
 	}
@@ -134,7 +138,7 @@ abstract class RowTableModel<T> extends AbstractTableModel {
 	 * @param rowClas
 	 *            the class of the row
 	 */
-	protected void setRowClass(Class rowClass) {
+	protected void setRowClass(Class<?> rowClass) {
 		this.rowClass = rowClass;
 	}
 
@@ -153,8 +157,8 @@ abstract class RowTableModel<T> extends AbstractTableModel {
 	 * @return the Class of the column being queried
 	 */
 	@Override
-	public Class getColumnClass(int column) {
-		Class columnClass = null;
+	public Class<?> getColumnClass(int column) {
+		Class<?> columnClass = null;
 
 		// Get the class, if set, for the specified column
 
@@ -474,7 +478,7 @@ abstract class RowTableModel<T> extends AbstractTableModel {
 	 * @exception ArrayIndexOutOfBoundsException
 	 *                if an invalid column was given
 	 */
-	public void setColumnClass(int column, Class columnClass) {
+	public void setColumnClass(int column, Class<?> columnClass) {
 		columnClasses[column] = columnClass;
 		fireTableRowsUpdated(0, getRowCount() - 1);
 	}
