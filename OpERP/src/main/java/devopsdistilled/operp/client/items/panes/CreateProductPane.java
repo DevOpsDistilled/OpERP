@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,16 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateProductPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
+import devopsdistilled.operp.server.data.entity.items.Product;
 
 public class CreateProductPane extends SubTaskPane implements
 		CreateProductPaneModelObserver, CategoryModelObserver {
@@ -68,6 +73,31 @@ public class CreateProductPane extends SubTaskPane implements
 		pane.add(btnCancel, "flowx,cell 1 2");
 
 		JButton btnCreate = new JButton("Create");
+		btnCreate.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Category> categories = new LinkedList<>();
+				categories.addAll(categoryList.getSelectedValuesList());
+				Product product = new Product();
+				String productName = productNameField.getText().trim();
+				product.setProductName(productName);
+				product.setCategories(categories);
+
+				try {
+
+					controller.validate(product);
+					product = controller.save(product);
+
+				} catch (NullFieldException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Product Name can't be empty");
+				} catch (EntityNameExistsException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Product Name already exists");
+
+				}
+			}
+		});
 		pane.add(btnCreate, "cell 1 2");
 	}
 
