@@ -26,7 +26,7 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import javax.swing.JButton;
 
 public class CreateWarehousePane extends SubTaskPane implements
-		WarehouseModelObserver, CreateWarehousePaneModelObserver {
+		CreateWarehousePaneModelObserver {
 	
 	@Inject
 	private CreateWarehousePaneController controller;
@@ -96,9 +96,4 @@ public class CreateWarehousePane extends SubTaskPane implements
 		return pane;
 	}
 
-	@Override
-	public void updateWarehouse(List<Warehouse> warehouses) {
-		// TODO Auto-generated method stub
-		
-	}
 }

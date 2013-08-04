@@ -40,16 +40,16 @@ public class StockMgmtPane extends TaskPane{
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0,alignx center");
 		
-		JButton btnUpdateStock=new JButton("Update Stock");
-		btnUpdateStock.addActionListener(new ActionListener() {
+		JButton btnCreateStock=new JButton("Create Stock");
+		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockController.updateStock();
+				stockController.create();
 				
 			}
 			
 		});
-		pane.add(btnUpdateStock,"flowx,cell 0 1");
+		pane.add(btnCreateStock,"flowx,cell 0 1");
 		
 		JButton btnCreateWarehouse = new JButton("Create Warehouse");
 		btnCreateWarehouse.addActionListener(new ActionListener() {

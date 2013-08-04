@@ -14,7 +14,7 @@ import devopsdistilled.operp.client.items.panes.ListItemPane;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.EditWarehousePane;
 import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
-import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.CreateStockPane;
 import devopsdistilled.operp.client.items.panes.ListProductPane;
 
 @Configuration
@@ -66,8 +66,8 @@ public class MvcViewContext {
 	}
 	
 	@Bean
-	public UpdateStockPane updateStockpane(){
-		return new UpdateStockPane();
+	public CreateStockPane createStock(){
+		return new CreateStockPane();
 	}
 	
 	@Bean

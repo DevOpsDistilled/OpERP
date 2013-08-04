@@ -1,12 +1,14 @@
 package devopsdistilled.operp.client.stock.panes.controllers;
 
+import javax.persistence.EntityExistsException;
+
 import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
-public interface UpdateStockPaneController extends SubTaskPaneController {
+public interface CreateStockPaneController extends SubTaskPaneController {
 
-		void validate(Stock stock) throws NullFieldException ;
-		
-		Stock update(Stock stock);
+		void validate(Stock stock) throws NullFieldException;
+
+		Stock save(Stock stock);
 }
