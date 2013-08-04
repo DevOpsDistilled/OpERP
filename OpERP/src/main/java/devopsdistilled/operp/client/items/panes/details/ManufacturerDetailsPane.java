@@ -30,6 +30,8 @@ public class ManufacturerDetailsPane extends
 
 	public ManufacturerDetailsPane() {
 		pane = new JPanel();
+		getDialog().getContentPane().add(getPane());
+
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
 		JLabel lblManufacturerId = new JLabel("Manufacturer ID");
