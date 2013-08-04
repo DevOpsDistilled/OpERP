@@ -24,4 +24,15 @@ public class ManufacturerServiceImpl extends
 		return repo;
 	}
 
+	@Override
+	public boolean isManufacturerNameExists(String manufacturerName) {
+		Manufacturer manufacturer = repo
+				.findByManufacturerName(manufacturerName);
+
+		if (manufacturer != null)
+			return true;
+
+		return false;
+	}
+
 }

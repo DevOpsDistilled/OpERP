@@ -5,4 +5,6 @@ import devopsdistilled.operp.server.data.service.EntityService;
 
 public interface ManufacturerService extends EntityService<Manufacturer, Long> {
 
+	boolean isManufacturerNameExists(String manufacturerName);
+
 }
