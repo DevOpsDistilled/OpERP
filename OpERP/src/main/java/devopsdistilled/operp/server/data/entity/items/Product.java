@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Product extends Entiti {
+public class Product extends Entiti<Long> {
 
 	private static final long serialVersionUID = -3781064523477859914L;
 
