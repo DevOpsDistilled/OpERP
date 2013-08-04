@@ -1,5 +1,6 @@
 package devopsdistilled.operp.server.data.entity.items;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Brand extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long brandID;
 
+	@Column(unique = true)
 	private String brandName;
 
 	@ManyToOne
@@ -49,5 +51,10 @@ public class Brand extends Entiti<Long> {
 	@Override
 	public Long id() {
 		return getBrandID();
+	}
+
+	@Override
+	public String toString() {
+		return getBrandName();
 	}
 }

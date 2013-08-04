@@ -82,4 +82,9 @@ public class Item extends Entiti<Long> {
 		return getItemId();
 	}
 
+	@Override
+	public String toString() {
+		return getItemName();
+	}
+
 }

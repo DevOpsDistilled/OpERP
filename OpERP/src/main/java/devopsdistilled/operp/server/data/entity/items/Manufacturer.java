@@ -2,6 +2,7 @@ package devopsdistilled.operp.server.data.entity.items;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Manufacturer extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long manufacturerId;
 
+	@Column(unique = true)
 	private String manufacturerName;
 
 	@OneToMany(mappedBy = "manufacturer")
@@ -51,5 +53,10 @@ public class Manufacturer extends Entiti<Long> {
 	@Override
 	public Long id() {
 		return getManufacturerId();
+	}
+
+	@Override
+	public String toString() {
+		return getManufacturerName();
 	}
 }

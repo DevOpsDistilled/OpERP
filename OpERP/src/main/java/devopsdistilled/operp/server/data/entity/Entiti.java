@@ -14,4 +14,7 @@ public abstract class Entiti<ID extends Serializable & Comparable<ID>>
 		return this.id().compareTo(aEntity.id());
 	}
 
+	@Override
+	public abstract String toString();
+
 }

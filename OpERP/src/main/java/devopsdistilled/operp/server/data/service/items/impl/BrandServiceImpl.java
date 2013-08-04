@@ -24,4 +24,9 @@ public class BrandServiceImpl extends
 		return brandRepository;
 	}
 
+	@Override
+	protected Brand findByEntityName(String entityName) {
+		return brandRepository.findByBrandName(entityName);
+	}
+
 }

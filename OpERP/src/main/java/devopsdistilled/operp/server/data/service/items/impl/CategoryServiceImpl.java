@@ -48,4 +48,9 @@ public class CategoryServiceImpl extends
 		return false;
 	}
 
+	@Override
+	protected Category findByEntityName(String entityName) {
+		return repo.findByCategoryName(entityName);
+	}
+
 }
