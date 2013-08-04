@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Brand extends Entiti {
+public class Brand extends Entiti<Long> {
 
 	private static final long serialVersionUID = -8725499929433349001L;
 
