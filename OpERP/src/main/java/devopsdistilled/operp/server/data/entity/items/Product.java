@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.items;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Product extends Entiti implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long productId;
 
+	@Column(unique = true)
 	private String productName;
 
 	@OneToMany(mappedBy = "product")
@@ -61,4 +63,13 @@ public class Product extends Entiti implements Serializable {
 		this.categories = categories;
 	}
 
+	@Override
+	public String toString() {
+		return getProductName();
+	}
+
+	@Override
+	public Long getId() {
+		return getProductId();
+	}
 }

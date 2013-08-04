@@ -3,14 +3,17 @@ package devopsdistilled.operp.client.stock.panes.details;
 import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class WarehouseDetailsPane extends
@@ -99,6 +102,10 @@ public class WarehouseDetailsPane extends
 			JOptionPane.showMessageDialog(getPane(), "Null Warehouse");
 		}
 		
+	}
+	@Override
+	public String getTitle() {
+		return "Warehouse Details";
 	}
 
 }

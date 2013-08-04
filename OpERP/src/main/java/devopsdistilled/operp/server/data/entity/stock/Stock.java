@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
@@ -19,7 +20,7 @@ public class Stock extends Entiti implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int stockId;
+	private Long stockId;
 	private Long quantity;
 
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -54,6 +55,20 @@ public class Stock extends Entiti implements Serializable {
 
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
+	}
+
+	
+
+	public Long getStockId() {
+		return stockId;
+	}
+
+	public void setStockId(Long stockId) {
+		this.stockId = stockId;
+	}
+	@Override
+	public Long getId() {
+		return getStockId();
 	}
 
 }

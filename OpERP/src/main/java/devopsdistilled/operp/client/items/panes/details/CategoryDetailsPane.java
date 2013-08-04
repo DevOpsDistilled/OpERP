@@ -103,4 +103,9 @@ public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
 			JOptionPane.showMessageDialog(getPane(), "Null category");
 		}
 	}
+
+	@Override
+	public String getTitle() {
+		return "Category Details";
+	}
 }

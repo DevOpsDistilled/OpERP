@@ -35,7 +35,6 @@ public class ItemDetailsPane extends AbstractEntityDetailsPane<Item> {
 	private final JButton btnOk;
 
 	public ItemDetailsPane() {
-		dialog.setTitle("Item Details");
 		dialog.setSize(400, 200);
 
 		pane = new JPanel();
@@ -139,5 +138,10 @@ public class ItemDetailsPane extends AbstractEntityDetailsPane<Item> {
 			JOptionPane.showMessageDialog(getPane(), "null object produced");
 		}
 
+	}
+
+	@Override
+	public String getTitle() {
+		return "Item Details";
 	}
 }

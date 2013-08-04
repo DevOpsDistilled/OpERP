@@ -39,4 +39,9 @@ public class Warehouse extends Entiti implements Serializable {
 		this.warehouseName = warehouseName;
 	}
 
+	@Override
+	public Long getId() {
+		return getWarehouseId();
+	}
+
 }
