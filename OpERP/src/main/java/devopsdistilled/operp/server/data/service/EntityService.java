@@ -11,4 +11,6 @@ public interface EntityService<E extends Entiti<?>, ID extends Serializable>
 
 	public boolean isEntityNameExists(String entityName);
 
+	public boolean isEntityNameValidForTheEntity(ID id, String entityName);
+
 }

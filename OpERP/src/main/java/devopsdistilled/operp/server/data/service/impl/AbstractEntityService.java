@@ -27,6 +27,19 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 		return false;
 	}
 
+	@Override
+	public boolean isEntityNameValidForTheEntity(ID id, String entityName) {
+		E entity = findByEntityName(entityName);
+
+		if (entity == null)
+			return true;
+
+		if (entity.id().equals(id))
+			return true;
+
+		return false;
+	}
+
 	protected abstract E findByEntityName(String entityName);
 
 	@Override

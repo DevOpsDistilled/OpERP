@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.client.items.models.ManufacturerModel;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListManufacturerPaneController;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
@@ -17,6 +18,9 @@ public class ManufacturerControllerImpl implements ManufacturerController {
 	private ListManufacturerPaneController listManufacturerPaneController;
 
 	@Inject
+	private EditManufacturerPaneController editManufacturerPaneController;
+
+	@Inject
 	private ManufacturerModel manufacturerModel;
 
 	@Override
@@ -25,9 +29,8 @@ public class ManufacturerControllerImpl implements ManufacturerController {
 	}
 
 	@Override
-	public void edit(Manufacturer entity) {
-		// TODO Auto-generated method stub
-
+	public void edit(Manufacturer manufacturer) {
+		editManufacturerPaneController.init(manufacturer);
 	}
 
 	@Override
