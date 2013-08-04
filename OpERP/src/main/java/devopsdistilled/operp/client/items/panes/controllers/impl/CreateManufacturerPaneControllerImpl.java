@@ -37,8 +37,7 @@ public class CreateManufacturerPaneControllerImpl implements
 
 	@Override
 	public Manufacturer save(Manufacturer manufacturer) {
-		// TODO Auto-generated method stub
-		return null;
+		return manufacturerModel.saveAndUpdateModel(manufacturer);
 	}
 
 	@Override
