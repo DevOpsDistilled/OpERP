@@ -11,12 +11,36 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityService<E extends Entiti, ID extends Serializable, ER extends JpaRepository<E, ID>>
+public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Serializable, ER extends JpaRepository<E, ID>>
 		implements EntityService<E, ID> {
 
 	private static final long serialVersionUID = 4892118695516828793L;
 
 	protected abstract ER getRepo();
+
+	@Override
+	public boolean isEntityNameExists(String entityName) {
+		E entity = findByEntityName(entityName);
+		if (entity != null)
+			return true;
+
+		return false;
+	}
+
+	@Override
+	public boolean isEntityNameValidForTheEntity(ID id, String entityName) {
+		E entity = findByEntityName(entityName);
+
+		if (entity == null)
+			return true;
+
+		if (entity.id().equals(id))
+			return true;
+
+		return false;
+	}
+
+	protected abstract E findByEntityName(String entityName);
 
 	@Override
 	public List<E> findAll() {

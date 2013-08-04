@@ -1,25 +1,31 @@
-package devopsdistilled.operp.client.context;
+package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.ListManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.CreateManufacturerPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.EditManufacturerPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.ListManufacturerPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListProductPaneControllerImpl;
 
 @Configuration
@@ -68,5 +74,20 @@ public class MvcControllerContext {
 	@Bean
 	public EditProductPaneController editProductPaneController() {
 		return new EditProductPaneControllerImpl();
+	}
+
+	@Bean
+	public CreateManufacturerPaneController createManufacturerPaneController() {
+		return new CreateManufacturerPaneControllerImpl();
+	}
+
+	@Bean
+	public ListManufacturerPaneController listManufacturerPaneController() {
+		return new ListManufacturerPaneControllerImpl();
+	}
+
+	@Bean
+	public EditManufacturerPaneController editManufacturerPaneController() {
+		return new EditManufacturerPaneControllerImpl();
 	}
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
-public abstract class AbstractEntityModel<E extends Entiti, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
+public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
 		extends AbstractModel<EO> implements EntityModel<E, ES, EO> {
 
 	protected List<E> entities;

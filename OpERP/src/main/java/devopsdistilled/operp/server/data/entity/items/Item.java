@@ -16,7 +16,7 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "productId",
 		"brandId" }))
-public class Item extends Entiti {
+public class Item extends Entiti<Long> {
 
 	private static final long serialVersionUID = 1137602696634935018L;
 
@@ -80,6 +80,11 @@ public class Item extends Entiti {
 	@Override
 	public Long id() {
 		return getItemId();
+	}
+
+	@Override
+	public String toString() {
+		return getItemName();
 	}
 
 }

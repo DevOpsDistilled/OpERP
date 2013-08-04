@@ -110,6 +110,11 @@ public class ProductDetailsPane extends AbstractEntityDetailsPane<Product> {
 					.getCategories()));
 
 			getDialog().setVisible(true);
+
+		} else {
+
+			getDialog().dispose();
+			JOptionPane.showMessageDialog(getPane(), "Got Null Product");
 		}
 	}
 

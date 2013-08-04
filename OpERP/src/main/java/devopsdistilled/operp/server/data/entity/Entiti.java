@@ -2,16 +2,19 @@ package devopsdistilled.operp.server.data.entity;
 
 import java.io.Serializable;
 
-public abstract class Entiti implements Serializable, Comparable<Entiti> {
+public abstract class Entiti<ID extends Serializable & Comparable<ID>>
+		implements Serializable, Comparable<Entiti<ID>> {
 
 	private static final long serialVersionUID = 1511849548001171832L;
 
-	public abstract Long id();
+	public abstract ID id();
 
 	@Override
-	public int compareTo(Entiti anotherEntity) {
-		return (this.id() < anotherEntity.id()) ? -1
-				: (this.id() > anotherEntity.id()) ? 1 : 0;
+	public int compareTo(Entiti<ID> aEntity) {
+		return this.id().compareTo(aEntity.id());
 	}
+
+	@Override
+	public abstract String toString();
 
 }

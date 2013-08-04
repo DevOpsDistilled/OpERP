@@ -1,16 +1,19 @@
-package devopsdistilled.operp.client.context;
+package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
+import devopsdistilled.operp.client.items.panes.CreateManufacturerPane;
 import devopsdistilled.operp.client.items.panes.CreateProductPane;
 import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
+import devopsdistilled.operp.client.items.panes.EditManufacturerPane;
 import devopsdistilled.operp.client.items.panes.EditProductPane;
 import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
+import devopsdistilled.operp.client.items.panes.ListManufacturerPane;
 import devopsdistilled.operp.client.items.panes.ListProductPane;
 
 @Configuration
@@ -59,5 +62,20 @@ public class MvcViewContext {
 	@Bean
 	public EditProductPane editProductPane() {
 		return new EditProductPane();
+	}
+
+	@Bean
+	public CreateManufacturerPane createManufacturerPane() {
+		return new CreateManufacturerPane();
+	}
+
+	@Bean
+	public ListManufacturerPane listManufacturerPane() {
+		return new ListManufacturerPane();
+	}
+
+	@Bean
+	public EditManufacturerPane editManufacturerPane() {
+		return new EditManufacturerPane();
 	}
 }
