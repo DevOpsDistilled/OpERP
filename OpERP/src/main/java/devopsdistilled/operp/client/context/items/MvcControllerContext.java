@@ -9,6 +9,7 @@ import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPa
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.EditManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
@@ -20,6 +21,7 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.CreateManufactu
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditItemPaneControllerImpl;
+import devopsdistilled.operp.client.items.panes.controllers.impl.EditManufacturerPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.EditProductPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
@@ -82,5 +84,10 @@ public class MvcControllerContext {
 	@Bean
 	public ListManufacturerPaneController listManufacturerPaneController() {
 		return new ListManufacturerPaneControllerImpl();
+	}
+
+	@Bean
+	public EditManufacturerPaneController editManufacturerPaneController() {
+		return new EditManufacturerPaneControllerImpl();
 	}
 }
