@@ -56,7 +56,7 @@ public class Category extends Entiti {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getCategoryId();
 	}
 

@@ -49,7 +49,7 @@ public class Manufacturer extends Entiti {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getManufacturerId();
 	}
 }
