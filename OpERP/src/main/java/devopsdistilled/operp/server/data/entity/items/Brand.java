@@ -50,4 +50,9 @@ public class Brand extends Entiti<Long> {
 	public Long id() {
 		return getBrandID();
 	}
+
+	@Override
+	public String toString() {
+		return getBrandName();
+	}
 }

@@ -54,4 +54,9 @@ public class Manufacturer extends Entiti<Long> {
 	public Long id() {
 		return getManufacturerId();
 	}
+
+	@Override
+	public String toString() {
+		return getManufacturerName();
+	}
 }
