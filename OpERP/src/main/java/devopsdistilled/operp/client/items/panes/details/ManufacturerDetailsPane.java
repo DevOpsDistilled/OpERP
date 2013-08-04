@@ -90,8 +90,20 @@ public class ManufacturerDetailsPane extends
 
 	@Override
 	public void show(Manufacturer manufacturer) {
-		// TODO Auto-generated method stub
+		this.manufacturer = manufacturer;
 
+		if (manufacturer != null) {
+			manufacturerIdField.setText(manufacturer.getManufacturerId()
+					.toString());
+			manufacturerNameField.setText(manufacturer.getManufacturerName());
+
+			getDialog().setVisible(true);
+
+		} else {
+
+			getDialog().dispose();
+			JOptionPane.showMessageDialog(getPane(), "Got Null Manufacturer");
+		}
 	}
 
 	@Override
