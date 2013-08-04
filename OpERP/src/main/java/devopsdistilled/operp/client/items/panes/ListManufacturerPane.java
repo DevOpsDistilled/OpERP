@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
+import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
@@ -31,7 +32,7 @@ public class ListManufacturerPane extends SubTaskPane implements
 	BeanTableModel<Manufacturer> tableModel;
 
 	public ListManufacturerPane() {
-		pane = new JPanel();
+		pane = new JPanel(new MigLayout("fill"));
 
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
