@@ -19,6 +19,17 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 	protected abstract ER getRepo();
 
 	@Override
+	public boolean isEntityNameExists(String entityName) {
+		E entity = findByEntityName(entityName);
+		if (entity != null)
+			return true;
+
+		return false;
+	}
+
+	protected abstract E findByEntityName(String entityName);
+
+	@Override
 	public List<E> findAll() {
 		return getRepo().findAll();
 	}
