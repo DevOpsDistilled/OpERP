@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
+import devopsdistilled.operp.client.items.panes.CreateManufacturerPane;
 import devopsdistilled.operp.client.items.panes.CreateProductPane;
 import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
@@ -59,5 +60,10 @@ public class MvcViewContext {
 	@Bean
 	public EditProductPane editProductPane() {
 		return new EditProductPane();
+	}
+
+	@Bean
+	public CreateManufacturerPane createManufacturerPane() {
+		return new CreateManufacturerPane();
 	}
 }
