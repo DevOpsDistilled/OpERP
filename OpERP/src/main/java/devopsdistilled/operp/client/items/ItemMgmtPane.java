@@ -109,6 +109,15 @@ public final class ItemMgmtPane extends TaskPane {
 		});
 		pane.add(btnCreateManufacturer, "cell 0 7");
 
+		JButton btnListManufacturers = new JButton("List Manufacturers");
+		btnListManufacturers.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manufacturerController.list();
+			}
+		});
+		pane.add(btnListManufacturers, "cell 1 7");
+
 		return pane;
 	}
 }
