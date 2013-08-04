@@ -49,4 +49,9 @@ public class ProductServiceImpl extends
 		return false;
 	}
 
+	@Override
+	protected Product findByEntityName(String entityName) {
+		return productRepository.findByProductName(entityName);
+	}
+
 }

@@ -35,4 +35,9 @@ public class ManufacturerServiceImpl extends
 		return false;
 	}
 
+	@Override
+	protected Manufacturer findByEntityName(String entityName) {
+		return repo.findByManufacturerName(entityName);
+	}
+
 }

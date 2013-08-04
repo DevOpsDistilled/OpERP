@@ -81,4 +81,9 @@ public class ItemServiceImpl extends
 
 		return false;
 	}
+
+	@Override
+	protected Item findByEntityName(String entityName) {
+		return itemRepository.findByItemName(entityName);
+	}
 }
