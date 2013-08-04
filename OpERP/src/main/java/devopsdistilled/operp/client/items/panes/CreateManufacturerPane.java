@@ -16,6 +16,7 @@ import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
+import devopsdistilled.operp.client.items.panes.details.ManufacturerDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateManufacturerPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
@@ -24,6 +25,9 @@ public class CreateManufacturerPane extends SubTaskPane implements
 
 	@Inject
 	private CreateManufacturerPaneController controller;
+
+	@Inject
+	private ManufacturerDetailsPane manufacturerDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField manufacturerNameField;
@@ -61,6 +65,8 @@ public class CreateManufacturerPane extends SubTaskPane implements
 					manufacturer = controller.save(manufacturer);
 
 					getDialog().dispose();
+
+					manufacturerDetailsPane.show(manufacturer);
 
 				} catch (NullFieldException | EntityNameExistsException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
