@@ -68,7 +68,7 @@ public class Product extends Entiti {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getProductId();
 	}
 }

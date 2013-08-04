@@ -47,7 +47,7 @@ public class Brand extends Entiti {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getBrandID();
 	}
 }
