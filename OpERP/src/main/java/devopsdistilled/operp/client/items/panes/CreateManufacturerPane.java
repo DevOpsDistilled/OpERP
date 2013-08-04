@@ -60,6 +60,8 @@ public class CreateManufacturerPane extends SubTaskPane implements
 					controller.validate(manufacturer);
 					manufacturer = controller.save(manufacturer);
 
+					getDialog().dispose();
+
 				} catch (NullFieldException | EntityNameExistsException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
