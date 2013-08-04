@@ -1,14 +1,19 @@
 package devopsdistilled.operp.client.items.controllers.impl;
 
+import javax.inject.Inject;
+
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
+import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class ManufacturerControllerImpl implements ManufacturerController {
 
+	@Inject
+	private CreateManufacturerPaneController createManufacturerPaneController;
+
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-
+		createManufacturerPaneController.init();
 	}
 
 	@Override
