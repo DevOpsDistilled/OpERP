@@ -4,10 +4,11 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
 import devopsdistilled.operp.client.items.panes.models.observers.ListManufacturerPaneModelObserver;
 
 public class ListManufacturerPane extends SubTaskPane implements
-		ListManufacturerPaneModelObserver {
+		ListManufacturerPaneModelObserver, ManufacturerModelObserver {
 
 	private final JPanel pane;
 
