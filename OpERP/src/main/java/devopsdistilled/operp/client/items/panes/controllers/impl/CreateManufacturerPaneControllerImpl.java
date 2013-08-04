@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.items.models.ManufacturerModel;
 import devopsdistilled.operp.client.items.panes.CreateManufacturerPane;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.models.CreateManufacturerPaneModel;
@@ -18,10 +19,12 @@ public class CreateManufacturerPaneControllerImpl implements
 	@Inject
 	private CreateManufacturerPaneModel model;
 
+	@Inject
+	private ManufacturerModel manufacturerModel;
+
 	@Override
 	public void validate(Manufacturer entity) throws NullFieldException,
 			EntityNameExistsException {
-		// TODO Auto-generated method stub
 
 	}
 
