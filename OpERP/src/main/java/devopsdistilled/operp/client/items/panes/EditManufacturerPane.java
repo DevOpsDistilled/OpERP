@@ -94,8 +94,10 @@ public class EditManufacturerPane extends SubTaskPane implements
 
 	@Override
 	public void updateEntity(Manufacturer manufacturer) {
-		// TODO Auto-generated method stub
-
+		this.manufacturer = manufacturer;
+		manufacturerIdField
+				.setText(manufacturer.getManufacturerId().toString());
+		manufacturerNameField.setText(manufacturer.getManufacturerName());
 	}
 
 }
