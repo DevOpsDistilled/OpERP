@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.CreateManufacturerPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
@@ -14,6 +15,7 @@ import devopsdistilled.operp.client.items.panes.models.ListItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateItemPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.CreateManufacturerPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateProductPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
@@ -68,5 +70,10 @@ public class MvcModelContext {
 	@Bean
 	public EditProductPaneModel editProductPaneModel() {
 		return new EditProductPaneModelImpl();
+	}
+
+	@Bean
+	public CreateManufacturerPaneModel createManufacturerPaneModel() {
+		return new CreateManufacturerPaneModelImpl();
 	}
 }
