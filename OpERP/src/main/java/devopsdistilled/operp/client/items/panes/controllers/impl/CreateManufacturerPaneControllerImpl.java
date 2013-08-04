@@ -23,13 +23,20 @@ public class CreateManufacturerPaneControllerImpl implements
 	private ManufacturerModel manufacturerModel;
 
 	@Override
-	public void validate(Manufacturer entity) throws NullFieldException,
+	public void validate(Manufacturer manufacturer) throws NullFieldException,
 			EntityNameExistsException {
 
+		if (manufacturer.getManufacturerName().equalsIgnoreCase(""))
+			throw new NullFieldException("Manufacturer Name can't be empty");
+
+		if (manufacturerModel.getService().isManufacturerNameExists(
+				manufacturer.getManufacturerName()))
+			throw new EntityNameExistsException(
+					"Manufacturer Name already exists");
 	}
 
 	@Override
-	public Manufacturer save(Manufacturer entity) {
+	public Manufacturer save(Manufacturer manufacturer) {
 		// TODO Auto-generated method stub
 		return null;
 	}
