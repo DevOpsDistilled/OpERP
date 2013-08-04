@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.controllers.ItemController;
+import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.client.items.controllers.ProductController;
 
 public final class ItemMgmtPane extends TaskPane {
@@ -25,6 +26,9 @@ public final class ItemMgmtPane extends TaskPane {
 
 	@Inject
 	private ProductController productController;
+
+	@Inject
+	private ManufacturerController manufacturerController;
 
 	@Override
 	public String toString() {
@@ -100,6 +104,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnCreateManufacturer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				manufacturerController.create();
 			}
 		});
 		pane.add(btnCreateManufacturer, "cell 0 7");
