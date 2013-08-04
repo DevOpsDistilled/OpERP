@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.context;
+package devopsdistilled.operp.server.context.items;
 
 import javax.inject.Inject;
 
