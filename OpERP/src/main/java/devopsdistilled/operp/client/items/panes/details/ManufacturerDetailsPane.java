@@ -53,7 +53,6 @@ public class ManufacturerDetailsPane extends
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
 				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
 						getPane(),
 						"Delete Manufactuer: "
