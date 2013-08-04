@@ -78,7 +78,7 @@ public class Item extends Entiti {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getItemId();
 	}
 
