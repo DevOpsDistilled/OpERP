@@ -72,6 +72,8 @@ public class ManufacturerDetailsPane extends
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+				manufacturerController.edit(manufacturer);
 			}
 		});
 		pane.add(btnEdit, "cell 1 3");
