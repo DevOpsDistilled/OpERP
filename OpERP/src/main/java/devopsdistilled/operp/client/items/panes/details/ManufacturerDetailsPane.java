@@ -3,18 +3,26 @@ package devopsdistilled.operp.client.items.panes.details;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class ManufacturerDetailsPane extends
 		AbstractEntityDetailsPane<Manufacturer> {
+
+	@Inject
+	private ManufacturerController manufacturerController;
+
+	private Manufacturer manufacturer;
 
 	private final JPanel pane;
 	private final JTextField manufacturerIdField;
@@ -40,8 +48,19 @@ public class ManufacturerDetailsPane extends
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+						getPane(),
+						"Delete Manufactuer: "
+								+ manufacturer.getManufacturerName() + " ?",
+						"Delete Manufacturer", JOptionPane.YES_NO_OPTION)) {
+
+					getDialog().dispose();
+					manufacturerController.delete(manufacturer);
+				}
 			}
 		});
 		pane.add(btnDelete, "flowx,cell 1 3");
@@ -70,7 +89,7 @@ public class ManufacturerDetailsPane extends
 	}
 
 	@Override
-	public void show(Manufacturer entity) {
+	public void show(Manufacturer manufacturer) {
 		// TODO Auto-generated method stub
 
 	}
