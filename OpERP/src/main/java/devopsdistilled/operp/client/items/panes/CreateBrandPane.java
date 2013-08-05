@@ -15,11 +15,11 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
-import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateBrandPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
@@ -32,7 +32,7 @@ public class CreateBrandPane extends SubTaskPane implements
 	private CreateBrandPaneController controller;
 
 	@Inject
-	private CreateManufacturerPaneController createManufacturerPaneController;
+	private ManufacturerController manufacturerController;
 
 	@Inject
 	private BrandDetailsPane brandDetailsPane;
@@ -63,7 +63,7 @@ public class CreateBrandPane extends SubTaskPane implements
 		btnNewManufacturer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				createManufacturerPaneController.init();
+				manufacturerController.create();
 			}
 		});
 		pane.add(btnNewManufacturer, "cell 1 1");
