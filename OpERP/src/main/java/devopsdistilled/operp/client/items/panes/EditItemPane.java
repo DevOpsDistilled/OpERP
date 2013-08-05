@@ -15,9 +15,6 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
@@ -59,14 +56,14 @@ public class EditItemPane extends SubTaskPane implements
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 1,alignx trailing");
 
-		comboProducts = new JComboBox<Product>();
+		comboProducts = new JComboBox<>();
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 1,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 2,alignx trailing");
 
-		comboBrands = new JComboBox<Brand>();
+		comboBrands = new JComboBox<>();
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 2,growx");
 
@@ -123,17 +120,12 @@ public class EditItemPane extends SubTaskPane implements
 						getDialog().dispose();
 
 						itemDetailsPane.show(item);
-					} catch (NullFieldException ex) {
+
+					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(getPane(),
-								"Required field(s) are Null");
-					} catch (ProductBrandPairExistsException ex) {
-						JOptionPane
-								.showMessageDialog(getPane(),
-										"Item with selected pair of Product and Brand already exists.");
-					} catch (EntityNameExistsException ex) {
-						JOptionPane.showMessageDialog(getPane(),
-								"Item Name already exists");
+								e1.getMessage());
 					}
+
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Price must be a Numeric value");
