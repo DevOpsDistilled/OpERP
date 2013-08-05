@@ -78,15 +78,18 @@ public class EditBrandPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				brand.setBrandName(brandNameField.getText().trim());
-				brand.setManufacturer((Manufacturer) manufacturersCombo
+				Brand newBrand = new Brand();
+				newBrand.setBrandID(brand.getBrandID());
+
+				newBrand.setBrandName(brandNameField.getText().trim());
+				newBrand.setManufacturer((Manufacturer) manufacturersCombo
 						.getSelectedItem());
 
 				try {
-					controller.validate(brand);
-					brand = controller.save(brand);
+					controller.validate(newBrand);
+					newBrand = controller.save(newBrand);
 					getDialog().dispose();
-					brandDetailsPane.show(brand);
+					brandDetailsPane.show(newBrand);
 
 				} catch (NullFieldException | EntityNameExistsException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
