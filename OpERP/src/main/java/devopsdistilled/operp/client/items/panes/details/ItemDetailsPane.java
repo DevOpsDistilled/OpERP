@@ -88,7 +88,7 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getDialog().dispose();
-				itemController.deleteItem(item);
+				itemController.delete(item);
 			}
 		});
 		pane.add(btnDelete, "flowx,cell 1 6");
@@ -98,7 +98,7 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getDialog().dispose();
-				itemController.editItem(item);
+				itemController.edit(item);
 			}
 		});
 		pane.add(btnEdit, "cell 1 6");
