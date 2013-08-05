@@ -63,14 +63,14 @@ public class CreateItemPane extends SubTaskPane implements
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
-		comboProducts = new JComboBox<Product>();
+		comboProducts = new JComboBox<>();
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
-		comboBrands = new JComboBox<Brand>();
+		comboBrands = new JComboBox<>();
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 
