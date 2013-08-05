@@ -64,8 +64,15 @@ public class ListBrandPane extends SubTaskPane implements
 
 	@Override
 	public void updateBrands(List<Brand> brands) {
-		// TODO Auto-generated method stub
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Brand.class, brands);
 
+		for (int i = 0; i < tableModel.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
 	}
 
 }
