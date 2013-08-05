@@ -16,8 +16,6 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
@@ -96,7 +94,7 @@ public class CreateBrandPane extends SubTaskPane implements
 
 					brandDetailsPane.show(brand);
 
-				} catch (NullFieldException | EntityNameExistsException e1) {
+				} catch (Exception e1) {
 
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}

@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.panes.controllers.EditManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.details.ManufacturerDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditManufacturerPaneModelObserver;
@@ -67,6 +65,9 @@ public class EditManufacturerPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long manufacturerId = manufacturer.getManufacturerId();
+				Manufacturer manufacturer = new Manufacturer();
+				manufacturer.setManufacturerId(manufacturerId);
 				String manufacturerName = manufacturerNameField.getText()
 						.trim();
 				manufacturer.setManufacturerName(manufacturerName);
@@ -78,12 +79,21 @@ public class EditManufacturerPane extends SubTaskPane implements
 					getDialog().dispose();
 					manufacturerDetailsPane.show(manufacturer);
 
-				} catch (NullFieldException | EntityNameExistsException e1) {
+				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(manufacturer);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnUpdate, "cell 1 3");
 	}
 
