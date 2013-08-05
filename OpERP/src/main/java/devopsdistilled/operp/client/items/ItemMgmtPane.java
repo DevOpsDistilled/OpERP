@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.items.controllers.BrandController;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
@@ -30,6 +31,9 @@ public final class ItemMgmtPane extends TaskPane {
 	@Inject
 	private ManufacturerController manufacturerController;
 
+	@Inject
+	private BrandController brandController;
+
 	@Override
 	public String toString() {
 		return new String("Items");
@@ -41,12 +45,12 @@ public final class ItemMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][]", "[][][][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][]", "[][][][][][][][][][]"));
 
 		JLabel lblitemManagement = new JLabel("Item Management");
 		pane.add(lblitemManagement, "cell 0 0");
 
-		JButton btnNewItemButton = new JButton("New Item Button");
+		JButton btnNewItemButton = new JButton("Create Item");
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -117,6 +121,24 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnListManufacturers, "cell 1 7");
+
+		JButton btnCreateBranch = new JButton("Create Brand");
+		btnCreateBranch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				brandController.create();
+			}
+		});
+		pane.add(btnCreateBranch, "cell 0 9");
+
+		JButton btnListBranch = new JButton("List Brands");
+		btnListBranch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				brandController.list();
+			}
+		});
+		pane.add(btnListBranch, "cell 1 9");
 
 		return pane;
 	}
