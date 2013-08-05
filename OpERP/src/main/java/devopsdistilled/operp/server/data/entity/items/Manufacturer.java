@@ -1,8 +1,8 @@
 package devopsdistilled.operp.server.data.entity.items;
 
-import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Manufacturer extends Entiti implements Serializable {
+public class Manufacturer extends Entiti<Long> {
 
 	private static final long serialVersionUID = 3771480832066400289L;
 
@@ -20,6 +20,7 @@ public class Manufacturer extends Entiti implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long manufacturerId;
 
+	@Column(unique = true)
 	private String manufacturerName;
 
 	@OneToMany(mappedBy = "manufacturer")
@@ -50,7 +51,12 @@ public class Manufacturer extends Entiti implements Serializable {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getManufacturerId();
+	}
+
+	@Override
+	public String toString() {
+		return getManufacturerName();
 	}
 }

@@ -4,7 +4,7 @@ import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
-public interface EditEntityPaneController<E extends Entiti> {
+public interface EditEntityPaneController<E extends Entiti<?>> {
 
 	public void init(E entity);
 

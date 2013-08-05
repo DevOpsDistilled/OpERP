@@ -79,6 +79,7 @@ public class CreateStockPane extends SubTaskPane implements
 		});
 		pane.add(btnNewItem, "cell 1 0");
 		
+		
 		JLabel lblWarehouseName = new JLabel("Warehouse Name");
 		pane.add(lblWarehouseName, "cell 0 1,alignx trailing");
 		

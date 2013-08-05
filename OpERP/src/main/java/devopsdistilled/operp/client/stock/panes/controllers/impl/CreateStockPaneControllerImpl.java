@@ -50,8 +50,8 @@ public class CreateStockPaneControllerImpl implements CreateStockPaneController{
 
 	@Override
 	public Stock save(Stock stock) {
-		// TODO Auto-generated method stub
-		return null;
+		Stock savedStock=stockModel.saveAndUpdateModel(stock);
+		return savedStock;
 	}
 
 

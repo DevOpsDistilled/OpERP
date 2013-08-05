@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.abstracts;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
-public abstract class AbstractEditEntityPaneModel<E extends Entiti, PMO extends EditEntityPaneModelObserver<E>>
+public abstract class AbstractEditEntityPaneModel<E extends Entiti<?>, PMO extends EditEntityPaneModelObserver<E>>
 		extends AbstractPaneModel<PMO> implements EditEntityPaneModel<E, PMO> {
 
 	protected E entity;

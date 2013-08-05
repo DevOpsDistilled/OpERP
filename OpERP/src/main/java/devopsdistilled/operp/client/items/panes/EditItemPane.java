@@ -174,14 +174,11 @@ public class EditItemPane extends SubTaskPane implements
 		Product prevSelected = (Product) comboProducts.getSelectedItem();
 		comboProducts.removeAllItems();
 
-		for (Product product : products)
+		for (Product product : products) {
 			comboProducts.addItem(product);
-
-		if (products.contains(prevSelected))
-			comboProducts.setSelectedItem(prevSelected);
-		else
-			comboProducts.setSelectedItem(null);
-
+			if (prevSelected.compareTo(product) == 0)
+				comboProducts.setSelectedItem(product);
+		}
 	}
 
 	@Override
@@ -191,11 +188,8 @@ public class EditItemPane extends SubTaskPane implements
 
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
+			if (prevSelected.compareTo(brand) == 0)
+				comboBrands.setSelectedItem(brand);
 		}
-
-		if (brands.contains(prevSelected))
-			comboBrands.setSelectedItem(prevSelected);
-		else
-			comboBrands.setSelectedItem(null);
 	}
 }

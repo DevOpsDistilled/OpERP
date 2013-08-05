@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.context;
+package devopsdistilled.operp.server.context.items;
 
 import javax.inject.Inject;
 
@@ -9,17 +9,22 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.CategoryService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
+import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Configuration
 public class RmiContext {
+
 	@Inject
 	private ItemService itemService;
 
 	@Inject
 	private ProductService productService;
+
+	@Inject
+	private CategoryService categoryService;
 
 	@Inject
 	private BrandService brandService;
@@ -31,7 +36,7 @@ public class RmiContext {
 	private WarehouseService warehouseService;
 
 	@Inject
-	private CategoryService categoryService;
+	private ManufacturerService manufacturerService;
 
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
@@ -88,6 +93,16 @@ public class RmiContext {
 		rmiServiceExporter.setServiceName("CategoryService");
 		rmiServiceExporter.setServiceInterface(CategoryService.class);
 		rmiServiceExporter.setService(categoryService);
+		rmiServiceExporter.setRegistryPort(1099);
+		return rmiServiceExporter;
+	}
+
+	@Bean
+	public RmiServiceExporter rmiManufacturerServiceExporter() {
+		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+		rmiServiceExporter.setServiceName("ManufacturerService");
+		rmiServiceExporter.setServiceInterface(ManufacturerService.class);
+		rmiServiceExporter.setService(manufacturerService);
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
 	}

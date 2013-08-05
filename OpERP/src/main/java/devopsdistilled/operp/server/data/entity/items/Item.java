@@ -1,7 +1,5 @@
 package devopsdistilled.operp.server.data.entity.items;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +16,7 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "productId",
 		"brandId" }))
-public class Item extends Entiti implements Serializable {
+public class Item extends Entiti<Long> {
 
 	private static final long serialVersionUID = 1137602696634935018L;
 
@@ -80,8 +78,13 @@ public class Item extends Entiti implements Serializable {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getItemId();
+	}
+
+	@Override
+	public String toString() {
+		return getItemName();
 	}
 
 }

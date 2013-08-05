@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsSame;
+import org.hibernate.type.YesNoType;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class WarehouseDetailsPane extends
@@ -57,10 +61,22 @@ public class WarehouseDetailsPane extends
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				warehouseController.delete(warehouse);
+				
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+						getPane(),
+						"Delete Warehouse: "
+								+ warehouse.getWarehouseName() + " ?",
+						"Delete Manufacturer", JOptionPane.YES_NO_OPTION)) {
+
+					getDialog().dispose();
+					warehouseController.delete(warehouse);
+				}
+				
+				
+				
 			}
 		});
 		pane.add(btnDelete, "flowx,cell 1 3");

@@ -47,4 +47,9 @@ public class WarehouseServiceImpl extends
 		return false;
 	}
 
+	@Override
+	protected Warehouse findByEntityName(String entityName) {
+		return warehouseRepository.findByWarehouseName(entityName);
+	}
+
 }

@@ -14,7 +14,7 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 @Entity
-public class Stock extends Entiti implements Serializable {
+public class Stock extends Entiti<Long> {
 
 	private static final long serialVersionUID = 6110051890442579005L;
 
@@ -66,9 +66,17 @@ public class Stock extends Entiti implements Serializable {
 	public void setStockId(Long stockId) {
 		this.stockId = stockId;
 	}
+
 	@Override
-	public Long getId() {
-		return getStockId();
+	public Long id() {
+		return stockId;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

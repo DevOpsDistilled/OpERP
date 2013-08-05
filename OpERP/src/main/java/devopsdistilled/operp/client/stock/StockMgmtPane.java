@@ -39,11 +39,11 @@ public class StockMgmtPane extends TaskPane{
 	@Override
 	public JComponent getPane() {
 		JPanel pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[]20[]", "[][][][][]"));
 		
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
-		pane.add(lblStockManagement, "cell 0 0,alignx center");
+		pane.add(lblStockManagement, "cell 0 0 2 1,alignx center");
 		
 		btnCreateStock=new JButton("Create Stock");
 		btnCreateStock.addActionListener(new ActionListener() {
@@ -64,18 +64,6 @@ public class StockMgmtPane extends TaskPane{
 				warehouseController.create();
 			}
 		});
-			
-		
-		pane.add(btnCreateWarehouse, "cell 0 2");
-		
-		btnListWarehouse = new JButton("List Warehouse");
-		btnListWarehouse.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			warehouseController.list();
-			}
-		});
-		pane.add(btnListWarehouse, "cell 0 3");
 		
 		btnListStock = new JButton("List Stock");
 		btnListStock.addActionListener(new ActionListener() {
@@ -85,11 +73,23 @@ public class StockMgmtPane extends TaskPane{
 			}
 		});
 		
-		pane.add(btnListStock, "cell 0 4");
+		pane.add(btnListStock, "cell 1 1");
+			
 		
+		pane.add(btnCreateWarehouse, "flowx,cell 0 2");
 		
+		btnListWarehouse = new JButton("List Warehouse");
+		btnListWarehouse.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			warehouseController.list();
+			}
+		});
+		pane.add(btnListWarehouse, "cell 1 2");
 		
 		return pane;
-	}
+		
+	}	
+
 
 }

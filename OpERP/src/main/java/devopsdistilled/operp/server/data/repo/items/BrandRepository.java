@@ -8,4 +8,6 @@ import devopsdistilled.operp.server.data.entity.items.Brand;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
+	public Brand findByBrandName(String brandName);
+
 }

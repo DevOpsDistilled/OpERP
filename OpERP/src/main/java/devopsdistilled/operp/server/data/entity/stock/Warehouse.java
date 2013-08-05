@@ -11,17 +11,14 @@ import javax.persistence.Id;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Warehouse extends Entiti implements Serializable {
+public class Warehouse extends Entiti<Long> {
 	private static final long serialVersionUID = 3048560317071734805L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseId;
 
-	@Override
-	public String toString() {
-		return warehouseName;
-	}
+	
 
 	@Column(unique = true)
 	private String warehouseName;
@@ -42,9 +39,15 @@ public class Warehouse extends Entiti implements Serializable {
 		this.warehouseName = warehouseName;
 	}
 
+
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getWarehouseId();
+	}
+	
+	@Override
+	public String toString() {
+		return getWarehouseName();
 	}
 
 }

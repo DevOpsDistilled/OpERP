@@ -1,6 +1,5 @@
 package devopsdistilled.operp.server.data.entity.items;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +12,7 @@ import javax.persistence.ManyToMany;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @Entity
-public class Category extends Entiti implements Serializable {
+public class Category extends Entiti<Long> {
 
 	private static final long serialVersionUID = -3809686715120885998L;
 
@@ -57,7 +56,7 @@ public class Category extends Entiti implements Serializable {
 	}
 
 	@Override
-	public Long getId() {
+	public Long id() {
 		return getCategoryId();
 	}
 

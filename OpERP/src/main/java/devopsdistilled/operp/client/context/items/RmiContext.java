@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.context;
+package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +7,7 @@ import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.CategoryService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
+import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
@@ -57,6 +58,14 @@ public class RmiContext {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/CategoryService");
 		rmiProxy.setServiceInterface(CategoryService.class);
+		return rmiProxy;
+	}
+
+	@Bean
+	public RmiProxyFactoryBean manufacturerService() {
+		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
+		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/ManufacturerService");
+		rmiProxy.setServiceInterface(ManufacturerService.class);
 		return rmiProxy;
 	}
 }

@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.abstracts;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
-public interface EntityController<E extends Entiti> {
+public interface EntityController<E extends Entiti<?>> {
 
 	public void create();
 

@@ -1,22 +1,26 @@
-package devopsdistilled.operp.client.context;
+package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.CreateManufacturerPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.EditManufacturerPaneModel;
 import devopsdistilled.operp.client.items.panes.models.EditProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListItemPaneModel;
+import devopsdistilled.operp.client.items.panes.models.ListManufacturerPaneModel;
 import devopsdistilled.operp.client.items.panes.models.ListProductPaneModel;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateItemPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.CreateManufacturerPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.CreateProductPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditItemPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.EditManufacturerPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.EditProductPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListCategoryPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
@@ -30,6 +34,7 @@ import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneMod
 import devopsdistilled.operp.client.stock.panes.models.impl.ListStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateStockPaneModelImpl;
+import devopsdistilled.operp.client.items.panes.models.impl.ListManufacturerPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListProductPaneModelImpl;
 
 @Configuration
@@ -102,5 +107,20 @@ public class MvcModelContext {
 	@Bean
 	public EditProductPaneModel editProductPaneModel() {
 		return new EditProductPaneModelImpl();
+	}
+
+	@Bean
+	public CreateManufacturerPaneModel createManufacturerPaneModel() {
+		return new CreateManufacturerPaneModelImpl();
+	}
+
+	@Bean
+	public ListManufacturerPaneModel listManufacturerPaneModel() {
+		return new ListManufacturerPaneModelImpl();
+	}
+
+	@Bean
+	public EditManufacturerPaneModel editManufacturerPaneModel() {
+		return new EditManufacturerPaneModelImpl();
 	}
 }
