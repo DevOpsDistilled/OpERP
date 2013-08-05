@@ -80,6 +80,6 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 	public void showDetailsPane(JPanel detailsPane) {
 		getPane().add(btnPanel, "south, pad 20 100 20 20");
 		dialog.getContentPane().add(getPane(), "grow");
-
+		getDialog().setVisible(true);
 	}
 }
