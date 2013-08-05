@@ -54,7 +54,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				itemController.createItem();
+				itemController.create();
 			}
 		});
 		pane.add(btnNewItemButton, "cell 0 1");
@@ -71,7 +71,7 @@ public final class ItemMgmtPane extends TaskPane {
 		btnListItems.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				itemController.listItems();
+				itemController.list();
 			}
 		});
 		pane.add(btnListItems, "cell 1 1");

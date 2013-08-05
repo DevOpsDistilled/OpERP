@@ -32,12 +32,12 @@ public class CreateCategoryPaneControllerImpl implements
 	public void validate(Category category) throws NullFieldException,
 			EntityNameExistsException {
 		if (category.getCategoryName().equalsIgnoreCase("")) {
-			throw new NullFieldException();
+			throw new NullFieldException("Category Name can't be empty");
 		}
 
 		if (categoryModel.getService().isCategoryNameExists(
 				category.getCategoryName())) {
-			throw new EntityNameExistsException();
+			throw new EntityNameExistsException("Category Name already exists");
 		}
 	}
 

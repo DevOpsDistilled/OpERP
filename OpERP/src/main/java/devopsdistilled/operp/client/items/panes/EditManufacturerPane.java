@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.panes.controllers.EditManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.details.ManufacturerDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditManufacturerPaneModelObserver;
@@ -81,7 +79,7 @@ public class EditManufacturerPane extends SubTaskPane implements
 					getDialog().dispose();
 					manufacturerDetailsPane.show(manufacturer);
 
-				} catch (NullFieldException | EntityNameExistsException e1) {
+				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 
