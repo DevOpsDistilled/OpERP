@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.context.items;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.items.panes.CreateBrandPane;
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.CreateManufacturerPane;
@@ -77,5 +78,10 @@ public class MvcViewContext {
 	@Bean
 	public EditManufacturerPane editManufacturerPane() {
 		return new EditManufacturerPane();
+	}
+
+	@Bean
+	public CreateBrandPane createBrandPane() {
+		return new CreateBrandPane();
 	}
 }

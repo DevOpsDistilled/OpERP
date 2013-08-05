@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.context.items;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
@@ -15,6 +16,7 @@ import devopsdistilled.operp.client.items.panes.controllers.ListCategoryPaneCont
 import devopsdistilled.operp.client.items.panes.controllers.ListItemPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.ListProductPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.impl.CreateBrandPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateItemPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.CreateManufacturerPaneControllerImpl;
@@ -89,5 +91,10 @@ public class MvcControllerContext {
 	@Bean
 	public EditManufacturerPaneController editManufacturerPaneController() {
 		return new EditManufacturerPaneControllerImpl();
+	}
+
+	@Bean
+	public CreateBrandPaneController createBrandPaneController() {
+		return new CreateBrandPaneControllerImpl();
 	}
 }
