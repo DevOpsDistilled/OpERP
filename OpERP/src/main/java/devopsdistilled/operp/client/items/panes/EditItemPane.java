@@ -48,6 +48,8 @@ public class EditItemPane extends SubTaskPane implements
 	private final JComboBox<Product> comboProducts;
 	private final JTextField itemIdField;
 
+	private Item item;
+
 	public EditItemPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
@@ -141,6 +143,14 @@ public class EditItemPane extends SubTaskPane implements
 
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		pane.add(btnReset, "cell 2 5");
 		pane.add(btnUpdate, "cell 2 5");
 
 		JButton btnNewProduct = new JButton("New Product");
@@ -168,15 +178,6 @@ public class EditItemPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateItem(Item item) {
-		itemIdField.setText(item.getItemId().toString());
-		itemNameField.setText(item.getItemName());
-		priceField.setText(item.getPrice().toString());
-		comboProducts.setSelectedItem(item.getProduct());
-		comboBrands.setSelectedItem(item.getBrand());
-	}
-
-	@Override
 	public void updateProducts(List<Product> products) {
 		Product prevSelected = (Product) comboProducts.getSelectedItem();
 		comboProducts.removeAllItems();
@@ -198,5 +199,15 @@ public class EditItemPane extends SubTaskPane implements
 			if (prevSelected.compareTo(brand) == 0)
 				comboBrands.setSelectedItem(brand);
 		}
+	}
+
+	@Override
+	public void updateEntity(Item item) {
+		this.item = item;
+		itemIdField.setText(item.getItemId().toString());
+		itemNameField.setText(item.getItemName());
+		priceField.setText(item.getPrice().toString());
+		comboProducts.setSelectedItem(item.getProduct());
+		comboBrands.setSelectedItem(item.getBrand());
 	}
 }
