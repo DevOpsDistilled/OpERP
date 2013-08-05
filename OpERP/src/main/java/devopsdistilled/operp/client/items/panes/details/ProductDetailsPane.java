@@ -54,7 +54,6 @@ public class ProductDetailsPane extends
 		productCategoryList = new JList<>();
 		pane.add(productCategoryList, "cell 1 2,grow");
 
-		showDetailsPane(getPane());
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class ProductDetailsPane extends
 			productCategoryList.setListData(new Vector<Category>(product
 					.getCategories()));
 
-			getDialog().setVisible(true);
+			showDetailsPane(getPane());
 
 		} else {
 

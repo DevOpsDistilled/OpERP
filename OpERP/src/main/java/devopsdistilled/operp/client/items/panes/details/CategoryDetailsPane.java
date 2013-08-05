@@ -44,8 +44,6 @@ public class CategoryDetailsPane extends
 		pane.add(categoryNameField, "cell 1 1,growx");
 		categoryNameField.setColumns(10);
 
-		showDetailsPane(getPane());
-
 	}
 
 	@Override
@@ -60,7 +58,7 @@ public class CategoryDetailsPane extends
 			categoryIdField.setText(category.getCategoryId().toString());
 			categoryNameField.setText(category.getCategoryName());
 
-			getDialog().setVisible(true);
+			showDetailsPane(getPane());
 
 		} else {
 

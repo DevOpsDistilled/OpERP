@@ -44,8 +44,6 @@ public class ManufacturerDetailsPane extends
 		pane.add(manufacturerNameField, "cell 1 1,growx");
 		manufacturerNameField.setColumns(10);
 
-		showDetailsPane(getPane());
-
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class ManufacturerDetailsPane extends
 					.toString());
 			manufacturerNameField.setText(manufacturer.getManufacturerName());
 
-			getDialog().setVisible(true);
+			showDetailsPane(getPane());
 
 		} else {
 
