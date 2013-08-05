@@ -31,17 +31,12 @@ public class EditItemPaneControllerImpl implements EditItemPaneController {
 	private BrandModel brandModel;
 
 	@Override
-	public void init() {
-
-	}
-
-	@Override
 	public void init(Item item) {
 		view.init();
-		model.setItem(item);
-		model.registerObserver(view);
 		productModel.registerObserver(view);
 		brandModel.registerObserver(view);
+		model.setItem(item);
+		model.registerObserver(view);
 	}
 
 	@Override
@@ -53,23 +48,31 @@ public class EditItemPaneControllerImpl implements EditItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			EntityNameExistsException, NullFieldException {
 
-		if (item.getItemName().equalsIgnoreCase("")
-				|| item.getProduct() == null || item.getBrand() == null
-				|| item.getPrice() == null) {
+		if (item.getItemId() == null)
+			throw new NullFieldException(
+					"Item Id encountered, Contact Developer");
 
-			throw new NullFieldException();
-		}
+		if (item.getItemName().equalsIgnoreCase(""))
+			throw new NullFieldException("Item Name can't be empty");
+
+		if (item.getProduct() == null)
+			throw new NullFieldException(
+					"Item should be associated with a product");
+
+		if (item.getBrand() == null)
+			throw new NullFieldException(
+					"Item should be associated with a brand");
+
+		if (item.getPrice() == null)
+			throw new NullFieldException("Item Price Null encountered");
 
 		if (!itemModel.getService().isProductBrandPairValidForItem(
-				item.getItemId(), item.getProduct(), item.getBrand())) {
-
-			throw new ProductBrandPairExistsException();
-		}
+				item.getItemId(), item.getProduct(), item.getBrand()))
+			throw new ProductBrandPairExistsException(
+					"Product and Brand Pair already exists");
 
 		if (!itemModel.getService().isItemNameValidForItem(item.getItemId(),
-				item.getItemName())) {
-
-			throw new EntityNameExistsException();
-		}
+				item.getItemName()))
+			throw new EntityNameExistsException("Item Name already exists");
 	}
 }
