@@ -152,7 +152,7 @@ public class CreateItemPane extends SubTaskPane implements
 		btnNewProduct.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				productController.create();
 			}
 		});
 		pane.add(btnNewProduct, "cell 2 0");
