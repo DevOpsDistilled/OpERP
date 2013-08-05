@@ -48,7 +48,7 @@ public class ItemControllerTest {
 		item = itemModel.saveAndUpdateModel(item); // this works fine; Tested
 
 		int beforeDeleteCount = itemModel.getEntities().size();
-		itemController.deleteItem(item);
+		itemController.delete(item);
 		int afterDeleteCount = itemModel.getEntities().size();
 		assertThat(beforeDeleteCount, is(afterDeleteCount + 1));
 

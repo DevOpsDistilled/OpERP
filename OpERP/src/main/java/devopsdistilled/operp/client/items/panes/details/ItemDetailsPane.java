@@ -1,22 +1,18 @@
 package devopsdistilled.operp.client.items.panes.details;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.inject.Inject;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.Copy_2_of_AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
+public class ItemDetailsPane extends
+		AbstractEntityDetailsPane<Item, ItemController> {
 
 	@Inject
 	private ItemController itemController;
@@ -30,9 +26,6 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 	private final JTextField brandField;
 	private final JTextField priceField;
 	private final JTextField productField;
-	private final JButton btnDelete;
-	private final JButton btnEdit;
-	private final JButton btnOk;
 
 	public ItemDetailsPane() {
 		dialog.setSize(400, 200);
@@ -81,41 +74,10 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 		pane.add(priceField, "cell 1 4,growx");
 		priceField.setColumns(10);
 
-		dialog.getContentPane().add(pane);
-
-		btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				itemController.deleteItem(item);
-			}
-		});
-		pane.add(btnDelete, "flowx,cell 1 6");
-
-		btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				itemController.editItem(item);
-			}
-		});
-		pane.add(btnEdit, "cell 1 6");
-
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-			}
-		});
-		pane.add(btnOk, "cell 1 6");
-
 	}
 
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
@@ -131,8 +93,7 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 			brandField.setText(item.getBrand().getBrandName());
 			priceField.setText(item.getPrice().toString());
 
-			getDialog().setVisible(true);
-
+			showDetailsPane(getPane());
 		} else {
 			dialog.dispose();
 			JOptionPane.showMessageDialog(getPane(), "null object produced");
@@ -143,5 +104,15 @@ public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 	@Override
 	public String getTitle() {
 		return "Item Details";
+	}
+
+	@Override
+	public ItemController getEntityController() {
+		return itemController;
+	}
+
+	@Override
+	protected Item getEntity() {
+		return item;
 	}
 }

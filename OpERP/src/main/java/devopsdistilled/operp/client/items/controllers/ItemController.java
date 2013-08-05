@@ -1,14 +1,8 @@
 package devopsdistilled.operp.client.items.controllers;
 
+import devopsdistilled.operp.client.abstracts.EntityController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-public interface ItemController {
+public interface ItemController extends EntityController<Item> {
 
-	public void createItem();
-
-	public void editItem(Item item);
-	
-	public void listItems();
-
-	public void deleteItem(Item item);
 }
