@@ -3,17 +3,17 @@ package devopsdistilled.operp.client.items.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.controllers.BrandController;
-import devopsdistilled.operp.client.items.panes.CreateBrandPane;
+import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 
 public class BrandControllerImpl implements BrandController {
 
 	@Inject
-	private CreateBrandPane createBrandPane;
+	private CreateBrandPaneController createBrandPaneController;
 
 	@Override
 	public void create() {
-		createBrandPane.init();
+		createBrandPaneController.init();
 	}
 
 	@Override
