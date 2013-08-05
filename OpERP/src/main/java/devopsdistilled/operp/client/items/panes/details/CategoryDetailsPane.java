@@ -1,11 +1,6 @@
 package devopsdistilled.operp.client.items.panes.details;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.inject.Inject;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,7 +11,8 @@ import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
-public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
+public class CategoryDetailsPane extends
+		AbstractEntityDetailsPane<Category, CategoryController> {
 
 	@Inject
 	private CategoryController categoryController;
@@ -26,14 +22,10 @@ public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
 	private final JPanel pane;
 	private final JTextField categoryIdField;
 	private final JTextField categoryNameField;
-	private final JButton btnDelete;
-	private final JButton btnEdit;
-	private final JButton btnOk;
 
 	public CategoryDetailsPane() {
 		dialog.setTitle("Category Details");
 		pane = new JPanel();
-		getDialog().getContentPane().add(getPane());
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
 		JLabel lblCategoryId = new JLabel("Category ID");
@@ -52,39 +44,12 @@ public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
 		pane.add(categoryNameField, "cell 1 1,growx");
 		categoryNameField.setColumns(10);
 
-		btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				categoryController.delete(category);
-			}
-		});
-		pane.add(btnDelete, "flowx,cell 1 3");
-
-		btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				categoryController.edit(category);
-			}
-		});
-		pane.add(btnEdit, "cell 1 3");
-
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-			}
-		});
-		pane.add(btnOk, "cell 1 3");
+		showDetailsPane(getPane());
 
 	}
 
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
@@ -107,5 +72,15 @@ public class CategoryDetailsPane extends AbstractEntityDetailsPane<Category> {
 	@Override
 	public String getTitle() {
 		return "Category Details";
+	}
+
+	@Override
+	public CategoryController getEntityController() {
+		return categoryController;
+	}
+
+	@Override
+	protected Category getEntity() {
+		return category;
 	}
 }
