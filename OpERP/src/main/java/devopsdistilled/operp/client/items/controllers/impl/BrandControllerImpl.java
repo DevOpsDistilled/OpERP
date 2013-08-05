@@ -5,12 +5,16 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.items.controllers.BrandController;
 import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
+import devopsdistilled.operp.client.items.panes.controllers.ListBrandPaneController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 
 public class BrandControllerImpl implements BrandController {
 
 	@Inject
 	private CreateBrandPaneController createBrandPaneController;
+
+	@Inject
+	private ListBrandPaneController listBrandPaneController;
 
 	@Inject
 	private BrandModel brandModel;
@@ -28,8 +32,7 @@ public class BrandControllerImpl implements BrandController {
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-
+		listBrandPaneController.init();
 	}
 
 	@Override
