@@ -7,13 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.CopyOfAbstractEntityDetailsPane;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.BrandController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class BrandDetailsPane extends
-		CopyOfAbstractEntityDetailsPane<Brand, BrandController> {
+		AbstractEntityDetailsPane<Brand, BrandController> {
 
 	@Inject
 	private BrandController brandController;
