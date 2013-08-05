@@ -29,11 +29,14 @@ public class EditCategoryPane extends SubTaskPane implements
 	@Inject
 	private CategoryDetailsPane categoryDetailsPane;
 
+	private Category category;
+
 	private final JPanel pane;
 	private final JTextField categoryIdField;
 	private final JTextField categoryNameField;
 	private final JButton btnCancel;
 	private final JButton btnUpdate;
+	private final JButton btnReset;
 
 	public EditCategoryPane() {
 		pane = new JPanel();
@@ -67,10 +70,9 @@ public class EditCategoryPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Category category = new Category();
 
-				Long categoryId = Long.parseLong(categoryIdField.getText()
-						.trim());
+				Long categoryId = category.getCategoryId();
+				Category category = new Category();
 				category.setCategoryId(categoryId);
 
 				String categoryName = categoryNameField.getText().trim();
@@ -92,6 +94,15 @@ public class EditCategoryPane extends SubTaskPane implements
 				}
 			}
 		});
+
+		btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(category);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnUpdate, "cell 1 3");
 
 	}
@@ -103,6 +114,7 @@ public class EditCategoryPane extends SubTaskPane implements
 
 	@Override
 	public void updateEntity(Category category) {
+		this.category = category;
 		categoryIdField.setText(category.getCategoryId().toString());
 		categoryNameField.setText(category.getCategoryName());
 	}

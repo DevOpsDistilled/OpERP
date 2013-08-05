@@ -67,6 +67,9 @@ public class EditManufacturerPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long manufacturerId = manufacturer.getManufacturerId();
+				Manufacturer manufacturer = new Manufacturer();
+				manufacturer.setManufacturerId(manufacturerId);
 				String manufacturerName = manufacturerNameField.getText()
 						.trim();
 				manufacturer.setManufacturerName(manufacturerName);
@@ -84,6 +87,15 @@ public class EditManufacturerPane extends SubTaskPane implements
 
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(manufacturer);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnUpdate, "cell 1 3");
 	}
 
