@@ -55,6 +55,7 @@ public class EditBrandPane extends SubTaskPane implements
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
 			}
 		});
 		pane.add(btnCancel, "flowx,cell 1 4");
