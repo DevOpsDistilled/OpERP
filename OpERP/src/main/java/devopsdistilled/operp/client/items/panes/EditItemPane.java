@@ -148,6 +148,7 @@ public class EditItemPane extends SubTaskPane implements
 		btnReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateEntity(item);
 			}
 		});
 		pane.add(btnReset, "cell 2 5");
