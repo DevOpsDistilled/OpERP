@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.BrandController;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
@@ -32,6 +34,12 @@ public class CreateItemPane extends SubTaskPane implements
 
 	@Inject
 	private CreateItemPaneController controller;
+
+	@Inject
+	private ProductController productController;
+
+	@Inject
+	private BrandController brandController;
 
 	@Inject
 	private ItemDetailsPane itemDetailsPane;
@@ -141,12 +149,19 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(btnSave, "cell 2 4");
 
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		pane.add(btnNewProduct, "cell 2 0");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				brandController.create();
 			}
 		});
 		pane.add(btnNewBrand, "cell 2 1");
