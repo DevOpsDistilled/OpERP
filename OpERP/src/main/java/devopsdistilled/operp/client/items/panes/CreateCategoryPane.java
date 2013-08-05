@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.details.CategoryDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateCategoryPaneModelObserver;
@@ -65,12 +63,8 @@ public class CreateCategoryPane extends SubTaskPane implements
 
 					categoryDetailsPane.show(category);
 
-				} catch (NullFieldException e1) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Category Name Field Empty");
-				} catch (EntityNameExistsException e1) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Category Name already exists");
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 			}
 		});
