@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.exceptions.NullFieldException;
+import devopsdistilled.operp.client.items.models.BrandModel;
 import devopsdistilled.operp.client.items.models.ManufacturerModel;
 import devopsdistilled.operp.client.items.panes.CreateBrandPane;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
@@ -21,6 +22,9 @@ public class CreateBrandPaneControllerImpl implements CreateBrandPaneController 
 	@Inject
 	private ManufacturerModel manufacturerModel;
 
+	@Inject
+	private BrandModel brandModel;
+
 	@Override
 	public void init() {
 		view.init();
@@ -31,6 +35,16 @@ public class CreateBrandPaneControllerImpl implements CreateBrandPaneController 
 	@Override
 	public void validate(Brand brand) throws NullFieldException,
 			EntityNameExistsException {
+
+		if (brand.getBrandName().equalsIgnoreCase(""))
+			throw new NullFieldException("Brand Name can't be empty");
+
+		if (brand.getManufacturer() == null)
+			throw new NullFieldException(
+					"Brand must be associated with a manufacturer");
+
+		if (brandModel.getService().isEntityNameExists(brand.getBrandName()))
+			throw new EntityNameExistsException("Brand Name already exists");
 
 	}
 
