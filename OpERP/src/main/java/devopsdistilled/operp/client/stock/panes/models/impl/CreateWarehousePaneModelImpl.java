@@ -1,8 +1,8 @@
 package devopsdistilled.operp.client.stock.panes.models.impl;
 
 import devopsdistilled.operp.client.abstracts.AbstractPaneModel;
-import devopsdistilled.operp.client.stock.models.observers.CreateWarehousePaneModelObserver;
 import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.observers.CreateWarehousePaneModelObserver;
 
 public class CreateWarehousePaneModelImpl extends 
 		AbstractPaneModel<CreateWarehousePaneModelObserver>

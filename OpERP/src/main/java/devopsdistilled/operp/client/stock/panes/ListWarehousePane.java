@@ -16,13 +16,13 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.stock.models.impl.WarehouseTableModel;
-import devopsdistilled.operp.client.stock.models.observers.ListWarehousePaneObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
+import devopsdistilled.operp.client.stock.panes.models.observers.ListWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class ListWarehousePane extends SubTaskPane implements 
-ListWarehousePaneObserver,WarehouseModelObserver{
+ListWarehousePaneModelObserver,WarehouseModelObserver{
 	
 	@Inject
 	private WarehouseDetailsPane warehouseDetailsPane;

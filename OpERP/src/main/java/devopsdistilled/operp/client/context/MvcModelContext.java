@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateProductPaneModel;
@@ -21,10 +22,12 @@ import devopsdistilled.operp.client.items.panes.models.impl.ListCategoryPaneMode
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.ListStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.CreateStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.ListStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateStockPaneModelImpl;
 import devopsdistilled.operp.client.items.panes.models.impl.ListProductPaneModelImpl;
@@ -65,6 +68,10 @@ public class MvcModelContext {
 	@Bean 
 	public CreateStockPaneModel createStockPaneModel(){
 		return new CreateStockPaneModelImpl();
+	}
+	@Bean
+	public ListStockPaneModel listStockPaneModel(){
+		return new ListStockPaneModelImpl();
 	}
 	
 	@Bean 

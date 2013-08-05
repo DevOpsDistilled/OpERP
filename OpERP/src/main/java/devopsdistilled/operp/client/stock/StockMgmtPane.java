@@ -22,6 +22,11 @@ public class StockMgmtPane extends TaskPane{
 	
 	@Inject
 	private WarehouseController warehouseController;
+
+	private JButton btnListStock;
+	private JButton btnCreateStock;
+	private JButton btnCreateWarehouse;
+	private JButton btnListWarehouse;
 	
 	@Override
 	public String toString() {
@@ -34,13 +39,13 @@ public class StockMgmtPane extends TaskPane{
 	@Override
 	public JComponent getPane() {
 		JPanel pane=new JPanel();
-		pane.setLayout(new MigLayout("", "[grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[grow]", "[][][][][]"));
 		
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0,alignx center");
 		
-		JButton btnCreateStock=new JButton("Create Stock");
+		btnCreateStock=new JButton("Create Stock");
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -51,7 +56,7 @@ public class StockMgmtPane extends TaskPane{
 		});
 		pane.add(btnCreateStock,"flowx,cell 0 1");
 		
-		JButton btnCreateWarehouse = new JButton("Create Warehouse");
+		btnCreateWarehouse = new JButton("Create Warehouse");
 		btnCreateWarehouse.addActionListener(new ActionListener() {
 			
 			@Override
@@ -63,7 +68,7 @@ public class StockMgmtPane extends TaskPane{
 		
 		pane.add(btnCreateWarehouse, "cell 0 2");
 		
-		JButton btnListWarehouse = new JButton("List Warehouse");
+		btnListWarehouse = new JButton("List Warehouse");
 		btnListWarehouse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -71,6 +76,16 @@ public class StockMgmtPane extends TaskPane{
 			}
 		});
 		pane.add(btnListWarehouse, "cell 0 3");
+		
+		btnListStock = new JButton("List Stock");
+		btnListStock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockController.list();
+			}
+		});
+		
+		pane.add(btnListStock, "cell 0 4");
 		
 		
 		

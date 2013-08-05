@@ -1,10 +1,13 @@
 package devopsdistilled.operp.client.stock.controllers.impl;
 
 import javax.inject.Inject;
+
 import org.springframework.context.ApplicationContext;
+
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
 public class StockControllerImpl implements StockController{
@@ -36,8 +39,9 @@ public class StockControllerImpl implements StockController{
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-		
+		ListStockPaneController listStockPaneController=context.
+				getBean(ListStockPaneController.class);
+		listStockPaneController.init();
 	}
 
 	@Override

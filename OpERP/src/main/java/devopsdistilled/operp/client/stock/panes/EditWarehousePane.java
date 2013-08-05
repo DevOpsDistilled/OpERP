@@ -8,9 +8,9 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.stock.models.observers.EditWarehousePaneModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
+import devopsdistilled.operp.client.stock.panes.models.observers.EditWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 import javax.swing.JLabel;

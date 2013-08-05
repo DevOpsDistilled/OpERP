@@ -1,8 +1,8 @@
 package devopsdistilled.operp.client.stock.panes.models.impl;
 
 import devopsdistilled.operp.client.abstracts.AbstractEditEntityPaneModel;
-import devopsdistilled.operp.client.stock.models.observers.EditWarehousePaneModelObserver;
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.observers.EditWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class EditWarehousePaneModelImpl extends 

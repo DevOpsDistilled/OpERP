@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
@@ -21,10 +22,12 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPan
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateStockPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListProductPaneControllerImpl;
@@ -60,6 +63,11 @@ public class MvcControllerContext {
 	@Bean
 	public ListCategoryPaneController listCategoryPaneController() {
 		return new ListCategoryPaneControllerImpl();
+	}
+	
+	@Bean
+	public ListStockPaneController listStockPaneController(){
+		return new ListStockPaneControllerImpl();
 	}
 	
 	@Bean
