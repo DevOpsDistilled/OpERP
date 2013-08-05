@@ -10,7 +10,6 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.BrandController;
 import devopsdistilled.operp.server.data.entity.items.Brand;
-import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class BrandDetailsPane extends
 		AbstractEntityDetailsPane<Brand, BrandController> {
@@ -89,16 +88,6 @@ public class BrandDetailsPane extends
 	@Override
 	protected Brand getEntity() {
 		return brand;
-	}
-
-	public static void main(String[] args) {
-		Brand brand = new Brand();
-		brand.setBrandID(20L);
-		brand.setBrandName("Branded");
-		Manufacturer manufacturer = new Manufacturer();
-		manufacturer.setManufacturerName("Factory");
-		brand.setManufacturer(manufacturer);
-		new BrandDetailsPane().show(brand);
 	}
 
 }
