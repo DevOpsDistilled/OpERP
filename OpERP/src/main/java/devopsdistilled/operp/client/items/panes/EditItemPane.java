@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
@@ -32,6 +33,9 @@ public class EditItemPane extends SubTaskPane implements
 
 	@Inject
 	private ItemDetailsPane itemDetailsPane;
+
+	@Inject
+	private ProductController productController;
 
 	private final JPanel pane;
 	private final JTextField itemNameField;
@@ -136,12 +140,19 @@ public class EditItemPane extends SubTaskPane implements
 		pane.add(btnUpdate, "cell 2 5");
 
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				productController.create();
+			}
+		});
 		pane.add(btnNewProduct, "cell 2 1");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO
 			}
 		});
 		pane.add(btnNewBrand, "cell 2 2");
