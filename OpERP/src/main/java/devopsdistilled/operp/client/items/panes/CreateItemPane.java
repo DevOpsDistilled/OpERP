@@ -17,9 +17,6 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.BrandController;
 import devopsdistilled.operp.client.items.controllers.ProductController;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
@@ -128,17 +125,13 @@ public class CreateItemPane extends SubTaskPane implements
 						getDialog().dispose();
 
 						itemDetailsPane.show(item);
-					} catch (NullFieldException ex) {
+
+					} catch (Exception e1) {
+
 						JOptionPane.showMessageDialog(getPane(),
-								"Required field(s) are Null");
-					} catch (ProductBrandPairExistsException ex) {
-						JOptionPane
-								.showMessageDialog(getPane(),
-										"Item with selected pair of Product and Brand already exists.");
-					} catch (EntityNameExistsException ex) {
-						JOptionPane.showMessageDialog(getPane(),
-								"Item Name already exists");
+								e1.getMessage());
 					}
+
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Price must be a Numeric value");
