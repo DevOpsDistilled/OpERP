@@ -53,8 +53,7 @@ public class EditBrandPaneControllerImpl implements EditBrandPaneController {
 
 	@Override
 	public Brand save(Brand brand) {
-		// TODO Auto-generated method stub
-		return null;
+		return brandModel.saveAndUpdateModel(brand);
 	}
 
 }
