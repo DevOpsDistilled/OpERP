@@ -12,6 +12,7 @@ import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
 import devopsdistilled.operp.client.items.panes.EditManufacturerPane;
 import devopsdistilled.operp.client.items.panes.EditProductPane;
+import devopsdistilled.operp.client.items.panes.ListBrandPane;
 import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
 import devopsdistilled.operp.client.items.panes.ListManufacturerPane;
@@ -83,5 +84,10 @@ public class MvcViewContext {
 	@Bean
 	public CreateBrandPane createBrandPane() {
 		return new CreateBrandPane();
+	}
+
+	@Bean
+	public ListBrandPane listBrandPane() {
+		return new ListBrandPane();
 	}
 }
