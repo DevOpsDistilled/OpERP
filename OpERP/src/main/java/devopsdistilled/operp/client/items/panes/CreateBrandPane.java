@@ -52,6 +52,7 @@ public class CreateBrandPane extends SubTaskPane implements
 		pane.add(lblManufacturer, "cell 0 1,alignx trailing");
 
 		manufacturersCombo = new JComboBox<>();
+		manufacturersCombo.setSelectedItem(null);
 		pane.add(manufacturersCombo, "flowx,cell 1 1,growx");
 
 		JButton btnNewManufacturer = new JButton("New Manufacturer");
