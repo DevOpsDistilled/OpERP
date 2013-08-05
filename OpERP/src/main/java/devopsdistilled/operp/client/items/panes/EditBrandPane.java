@@ -78,6 +78,10 @@ public class EditBrandPane extends SubTaskPane implements
 
 	@Override
 	public void updateEntity(Brand brand) {
+		this.brand = brand;
+		brandIdField.setText(brand.getBrandID().toString());
+		brandNameField.setText(brand.getBrandName());
+		manufacturersCombo.setSelectedItem(brand.getManufacturer());
 	}
 
 	@Override
@@ -92,8 +96,6 @@ public class EditBrandPane extends SubTaskPane implements
 				if (prevSelected.compareTo(manufacturer) == 0)
 					manufacturersCombo.setSelectedItem(manufacturer);
 		}
-	}
-
 	}
 
 }
