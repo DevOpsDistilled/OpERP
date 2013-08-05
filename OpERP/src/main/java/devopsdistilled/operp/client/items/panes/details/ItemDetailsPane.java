@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.abstracts.Copy_2_of_AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-public class ItemDetailsPane extends AbstractEntityDetailsPane<Item> {
+public class ItemDetailsPane extends Copy_2_of_AbstractEntityDetailsPane<Item> {
 
 	@Inject
 	private ItemController itemController;
