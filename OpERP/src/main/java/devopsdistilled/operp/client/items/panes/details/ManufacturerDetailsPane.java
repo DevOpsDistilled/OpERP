@@ -1,11 +1,6 @@
 package devopsdistilled.operp.client.items.panes.details;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.inject.Inject;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +12,7 @@ import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class ManufacturerDetailsPane extends
-		AbstractEntityDetailsPane<Manufacturer> {
+		AbstractEntityDetailsPane<Manufacturer, ManufacturerController> {
 
 	@Inject
 	private ManufacturerController manufacturerController;
@@ -30,7 +25,6 @@ public class ManufacturerDetailsPane extends
 
 	public ManufacturerDetailsPane() {
 		pane = new JPanel();
-		getDialog().getContentPane().add(getPane());
 
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
@@ -50,46 +44,12 @@ public class ManufacturerDetailsPane extends
 		pane.add(manufacturerNameField, "cell 1 1,growx");
 		manufacturerNameField.setColumns(10);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
+		showDetailsPane(getPane());
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
-						getPane(),
-						"Delete Manufactuer: "
-								+ manufacturer.getManufacturerName() + " ?",
-						"Delete Manufacturer", JOptionPane.YES_NO_OPTION)) {
-
-					getDialog().dispose();
-					manufacturerController.delete(manufacturer);
-				}
-			}
-		});
-		pane.add(btnDelete, "flowx,cell 1 3");
-
-		JButton btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-				manufacturerController.edit(manufacturer);
-			}
-		});
-		pane.add(btnEdit, "cell 1 3");
-
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-			}
-		});
-		pane.add(btnOk, "cell 1 3");
 	}
 
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
@@ -114,6 +74,16 @@ public class ManufacturerDetailsPane extends
 	@Override
 	public String getTitle() {
 		return "Manufacturer Details";
+	}
+
+	@Override
+	public ManufacturerController getEntityController() {
+		return manufacturerController;
+	}
+
+	@Override
+	protected Manufacturer getEntity() {
+		return manufacturer;
 	}
 
 }
