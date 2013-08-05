@@ -31,7 +31,7 @@ public class CreateBrandPane extends SubTaskPane implements
 
 	private final JPanel pane;
 	private final JTextField brandNameField;
-	private final JComboBox<Manufacturer> manufacturerCombo;
+	private final JComboBox<Manufacturer> manufacturersCombo;
 
 	public CreateBrandPane() {
 		pane = new JPanel();
@@ -47,8 +47,8 @@ public class CreateBrandPane extends SubTaskPane implements
 		JLabel lblManufacturer = new JLabel("Manufacturer");
 		pane.add(lblManufacturer, "cell 0 1,alignx trailing");
 
-		manufacturerCombo = new JComboBox<>();
-		pane.add(manufacturerCombo, "flowx,cell 1 1,growx");
+		manufacturersCombo = new JComboBox<>();
+		pane.add(manufacturersCombo, "flowx,cell 1 1,growx");
 
 		JButton btnNewManufacturer = new JButton("New Manufacturer");
 		pane.add(btnNewManufacturer, "cell 1 1");
@@ -69,7 +69,7 @@ public class CreateBrandPane extends SubTaskPane implements
 				Brand brand = new Brand();
 				String brandName = brandNameField.getText().trim();
 				brand.setBrandName(brandName);
-				Manufacturer manufacturer = (Manufacturer) manufacturerCombo
+				Manufacturer manufacturer = (Manufacturer) manufacturersCombo
 						.getSelectedItem();
 				brand.setManufacturer(manufacturer);
 
@@ -86,7 +86,6 @@ public class CreateBrandPane extends SubTaskPane implements
 			}
 		});
 		pane.add(btnCreate, "cell 1 3");
-		// TODO
 	}
 
 	@Override
@@ -96,8 +95,15 @@ public class CreateBrandPane extends SubTaskPane implements
 
 	@Override
 	public void updateManufacturers(List<Manufacturer> manufacturers) {
-		// TODO Auto-generated method stub
+		Manufacturer prevSelected = (Manufacturer) manufacturersCombo
+				.getSelectedItem();
+		manufacturersCombo.removeAllItems();
 
+		for (Manufacturer manufacturer : manufacturers) {
+			manufacturersCombo.addItem(manufacturer);
+			if (prevSelected.compareTo(manufacturer) == 0)
+				manufacturersCombo.setSelectedItem(manufacturer);
+		}
 	}
 
 }
