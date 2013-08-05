@@ -103,6 +103,10 @@ public class EditProductPane extends SubTaskPane implements
 		btnCreate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long productId = product.getProductId();
+				Product product = new Product();
+				product.setProductId(productId);
+
 				List<Category> categories = new LinkedList<>();
 				categories.addAll(categoryList.getSelectedValuesList());
 				String productName = productNameField.getText().trim();
@@ -125,6 +129,15 @@ public class EditProductPane extends SubTaskPane implements
 				}
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(product);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnCreate, "cell 1 3");
 	}
 
