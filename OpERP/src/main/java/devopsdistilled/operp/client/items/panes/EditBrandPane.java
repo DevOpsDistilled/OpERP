@@ -93,6 +93,15 @@ public class EditBrandPane extends SubTaskPane implements
 				}
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(brand);
+			}
+		});
+		pane.add(btnReset, "cell 1 4");
 		pane.add(btnUpdate, "cell 1 4");
 	}
 
