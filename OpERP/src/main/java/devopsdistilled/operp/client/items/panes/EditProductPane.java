@@ -20,8 +20,6 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
@@ -121,9 +119,7 @@ public class EditProductPane extends SubTaskPane implements
 					getDialog().dispose();
 					productDetailsPane.show(product);
 
-				} catch (NullFieldException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				} catch (EntityNameExistsException e1) {
+				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 
 				}
