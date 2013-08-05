@@ -26,6 +26,8 @@ public class EditBrandPane extends SubTaskPane implements
 	private final JTextField brandNameField;
 	private final JComboBox<Manufacturer> manufacturersCombo;
 
+	private Brand brand;
+
 	public EditBrandPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
@@ -76,13 +78,21 @@ public class EditBrandPane extends SubTaskPane implements
 
 	@Override
 	public void updateEntity(Brand brand) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void updateManufacturers(List<Manufacturer> manufacturers) {
-		// TODO Auto-generated method stub
+		Manufacturer prevSelected = (Manufacturer) manufacturersCombo
+				.getSelectedItem();
+		manufacturersCombo.removeAllItems();
+
+		for (Manufacturer manufacturer : manufacturers) {
+			manufacturersCombo.addItem(manufacturer);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(manufacturer) == 0)
+					manufacturersCombo.setSelectedItem(manufacturer);
+		}
+	}
 
 	}
 
