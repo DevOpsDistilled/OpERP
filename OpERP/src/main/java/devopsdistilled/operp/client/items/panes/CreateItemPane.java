@@ -165,8 +165,9 @@ public class CreateItemPane extends SubTaskPane implements
 
 		for (Product product : products) {
 			comboProducts.addItem(product);
-			if (prevSelected.compareTo(product) == 0)
-				comboProducts.setSelectedItem(product);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(product) == 0)
+					comboProducts.setSelectedItem(product);
 		}
 	}
 
@@ -177,8 +178,9 @@ public class CreateItemPane extends SubTaskPane implements
 
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
-			if (prevSelected.compareTo(brand) == 0)
-				comboBrands.setSelectedItem(brand);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(brand) == 0)
+					comboBrands.setSelectedItem(brand);
 		}
 	}
 }

@@ -112,8 +112,9 @@ public class CreateBrandPane extends SubTaskPane implements
 
 		for (Manufacturer manufacturer : manufacturers) {
 			manufacturersCombo.addItem(manufacturer);
-			if (prevSelected.compareTo(manufacturer) == 0)
-				manufacturersCombo.setSelectedItem(manufacturer);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(manufacturer) == 0)
+					manufacturersCombo.setSelectedItem(manufacturer);
 		}
 	}
 
