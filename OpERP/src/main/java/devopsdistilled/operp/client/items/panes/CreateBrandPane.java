@@ -20,6 +20,7 @@ import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
+import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateBrandPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
@@ -32,6 +33,9 @@ public class CreateBrandPane extends SubTaskPane implements
 
 	@Inject
 	private CreateManufacturerPaneController createManufacturerPaneController;
+
+	@Inject
+	private BrandDetailsPane brandDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField brandNameField;
@@ -89,6 +93,8 @@ public class CreateBrandPane extends SubTaskPane implements
 					brand = controller.save(brand);
 
 					getDialog().dispose();
+
+					brandDetailsPane.show(brand);
 
 				} catch (NullFieldException | EntityNameExistsException e1) {
 
