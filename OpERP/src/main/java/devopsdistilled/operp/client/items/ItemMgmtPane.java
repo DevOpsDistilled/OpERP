@@ -50,7 +50,7 @@ public final class ItemMgmtPane extends TaskPane {
 		JLabel lblitemManagement = new JLabel("Item Management");
 		pane.add(lblitemManagement, "cell 0 0");
 
-		JButton btnNewItemButton = new JButton("New Item Button");
+		JButton btnNewItemButton = new JButton("Create Item");
 		btnNewItemButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,7 +122,7 @@ public final class ItemMgmtPane extends TaskPane {
 		});
 		pane.add(btnListManufacturers, "cell 1 7");
 
-		JButton btnCreateBranch = new JButton("Create Branch");
+		JButton btnCreateBranch = new JButton("Create Brand");
 		btnCreateBranch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -131,7 +131,7 @@ public final class ItemMgmtPane extends TaskPane {
 		});
 		pane.add(btnCreateBranch, "cell 0 9");
 
-		JButton btnListBranch = new JButton("List Branch");
+		JButton btnListBranch = new JButton("List Brands");
 		btnListBranch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
