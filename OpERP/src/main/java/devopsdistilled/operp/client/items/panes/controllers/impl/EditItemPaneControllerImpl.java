@@ -35,7 +35,7 @@ public class EditItemPaneControllerImpl implements EditItemPaneController {
 		view.init();
 		productModel.registerObserver(view);
 		brandModel.registerObserver(view);
-		model.setItem(item);
+		model.setEntity(item);
 		model.registerObserver(view);
 	}
 
