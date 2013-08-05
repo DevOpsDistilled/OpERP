@@ -4,22 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
+import devopsdistilled.operp.client.items.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
+import devopsdistilled.operp.client.items.panes.controllers.EditBrandPaneController;
+import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditBrandPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
 
 public class EditBrandPane extends SubTaskPane implements
 		EditBrandPaneModelObserver, ManufacturerModelObserver {
+
+	@Inject
+	private EditBrandPaneController controller;
+
+	@Inject
+	private BrandDetailsPane brandDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField brandIdField;
@@ -66,6 +78,19 @@ public class EditBrandPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				brand.setBrandName(brandNameField.getText().trim());
+				brand.setManufacturer((Manufacturer) manufacturersCombo
+						.getSelectedItem());
+
+				try {
+					controller.validate(brand);
+					brand = controller.save(brand);
+					getDialog().dispose();
+					brandDetailsPane.show(brand);
+
+				} catch (NullFieldException | EntityNameExistsException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
 			}
 		});
 		pane.add(btnUpdate, "cell 1 4");
