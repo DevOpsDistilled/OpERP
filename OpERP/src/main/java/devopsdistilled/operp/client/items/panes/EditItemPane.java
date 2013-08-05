@@ -104,8 +104,8 @@ public class EditItemPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long itemId = item.getItemId();
 				Item item = new Item();
-				Long itemId = Long.parseLong(itemIdField.getText().trim());
 				item.setItemId(itemId);
 				Brand brand = (Brand) comboBrands.getSelectedItem();
 				item.setBrand(brand);
