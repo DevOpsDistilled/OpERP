@@ -70,10 +70,9 @@ public class EditCategoryPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Category category = new Category();
 
-				Long categoryId = Long.parseLong(categoryIdField.getText()
-						.trim());
+				Long categoryId = category.getCategoryId();
+				Category category = new Category();
 				category.setCategoryId(categoryId);
 
 				String categoryName = categoryNameField.getText().trim();
