@@ -1,6 +1,8 @@
 package devopsdistilled.operp.client.items.exceptions;
 
-public class EntityNameExistsException extends Exception {
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
+
+public class EntityNameExistsException extends EntityValidationException {
 
 	private static final long serialVersionUID = 7326121173982471895L;
 

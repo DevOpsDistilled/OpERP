@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.panes.controllers.CreateManufacturerPaneController;
 import devopsdistilled.operp.client.items.panes.details.ManufacturerDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateManufacturerPaneModelObserver;
@@ -66,7 +67,7 @@ public class CreateManufacturerPane extends SubTaskPane implements
 
 					manufacturerDetailsPane.show(manufacturer);
 
-				} catch (Exception e1) {
+				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 			}
