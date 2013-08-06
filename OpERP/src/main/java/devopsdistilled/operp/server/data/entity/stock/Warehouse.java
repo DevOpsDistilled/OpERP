@@ -1,12 +1,14 @@
 package devopsdistilled.operp.server.data.entity.stock;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
@@ -17,11 +19,13 @@ public class Warehouse extends Entiti<Long> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseId;
-
 	
-
+	
 	@Column(unique = true)
 	private String warehouseName;
+	
+	@ManyToMany
+	private List<ItemWarehouseCatalog> itemWarehouses;
 
 	public Long getWarehouseId() {
 		return warehouseId;
@@ -37,6 +41,14 @@ public class Warehouse extends Entiti<Long> {
 
 	public void setWarehouseName(String warehouseName) {
 		this.warehouseName = warehouseName;
+	}
+	
+	public List<ItemWarehouseCatalog> getItemWarehouses() {
+		return itemWarehouses;
+	}
+
+	public void setItemWarehouses(List<ItemWarehouseCatalog> itemWarehouses) {
+		this.itemWarehouses = itemWarehouses;
 	}
 
 
