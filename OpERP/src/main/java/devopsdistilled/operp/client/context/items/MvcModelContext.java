@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import devopsdistilled.operp.client.items.panes.models.CreateBrandPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateCategoryPaneModel;
 import devopsdistilled.operp.client.items.panes.models.CreateItemPaneModel;
@@ -32,11 +33,13 @@ import devopsdistilled.operp.client.items.panes.models.impl.ListCategoryPaneMode
 import devopsdistilled.operp.client.items.panes.models.impl.ListItemPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.ListItemWarehouseCatalogPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.CreateStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.ListItemWarehouseCatalogPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateStockPaneModelImpl;
@@ -143,5 +146,9 @@ public class MvcModelContext {
 	@Bean
 	public EditBrandPaneModel editBrandPaneModel() {
 		return new EditBrandPaneModelImpl();
+	}
+	@Bean
+	public ListItemWarehouseCatalogPaneModel listItemWarehouseCatalogPaneModel(){
+		return new ListItemWarehouseCatalogPaneModelImpl();
 	}
 }

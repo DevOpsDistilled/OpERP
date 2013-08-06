@@ -18,6 +18,7 @@ import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.EditWarehousePane;
+import devopsdistilled.operp.client.stock.panes.ListItemWarehouseCatalogPane;
 import devopsdistilled.operp.client.stock.panes.ListStockPane;
 import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
 import devopsdistilled.operp.client.stock.panes.CreateStockPane;
@@ -125,5 +126,10 @@ public class MvcViewContext {
 	@Bean
 	public EditBrandPane editBrandPane() {
 		return new EditBrandPane();
+	}
+	
+	@Bean
+	public ListItemWarehouseCatalogPane itemWarehouseCatalogPane(){
+		return new ListItemWarehouseCatalogPane();
 	}
 }

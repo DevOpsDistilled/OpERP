@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
@@ -32,11 +33,13 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPan
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListItemWarehouseCatalogPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListItemWarehouseCatalogPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateStockPaneControllerImpl;
@@ -145,4 +148,10 @@ public class MvcControllerContext {
 	public EditBrandPaneController editBrandPaneController() {
 		return new EditBrandPaneControllerImpl();
 	}
+	
+	@Bean
+	public ListItemWarehouseCatalogPaneController listItemWarehouseCatalogPaneController(){
+		return new ListItemWarehouseCatalogPaneControllerImpl();
+	}
+	
 }
