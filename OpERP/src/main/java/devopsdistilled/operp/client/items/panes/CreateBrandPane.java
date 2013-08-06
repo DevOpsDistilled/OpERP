@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.client.items.models.observers.ManufacturerModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
@@ -94,7 +95,7 @@ public class CreateBrandPane extends SubTaskPane implements
 
 					brandDetailsPane.show(brand);
 
-				} catch (Exception e1) {
+				} catch (EntityValidationException e1) {
 
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
