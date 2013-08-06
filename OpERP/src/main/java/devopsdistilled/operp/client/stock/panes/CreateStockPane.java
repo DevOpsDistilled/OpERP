@@ -50,14 +50,6 @@ public class CreateStockPane extends SubTaskPane implements
 	private final JComboBox<Warehouse>  comboWarehouses;
 	
 	
-	@Override
-	public void init(){
-		super.init();
-		
-		// Other JDialog properties goes here
-				// getDialog.setSize(...);
-	}
-	
 	public CreateStockPane(){
 		pane=new JPanel();
 		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][]"));
@@ -157,20 +149,29 @@ public class CreateStockPane extends SubTaskPane implements
 
 	@Override
 	public void updateItems(List<Item> items) {
-		//TODo
+		Item prevSelected=(Item)comboItems.getSelectedItem();
+		comboItems.removeAllItems();
+		
+		for(Item item : items){
+			comboItems.addItem(item);
+			if(prevSelected!=null)
+				if(prevSelected.compareTo(item)==0)
+					comboItems.setSelectedItem(item);
+			}
 	}
+
 	
 	@Override
 	public void updateWarehouse(List<Warehouse> warehouses) {
 		Warehouse prevSelected = (Warehouse) comboWarehouses.getSelectedItem();
 		comboWarehouses.removeAllItems();
+		
 		for (Warehouse warehouse :warehouses)	{
 			comboWarehouses.addItem(warehouse);
+			if(prevSelected!=null)
+				if (prevSelected.compareTo(warehouse)==0)
+					comboWarehouses.setSelectedItem(warehouse);
 		}
-		if (warehouses.contains(prevSelected))
-			comboWarehouses.setSelectedItem(prevSelected);
-		else
-			comboWarehouses.setSelectedItem(null);
 	}
 }
 	

@@ -1,16 +1,13 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
 import javax.inject.Inject;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -85,6 +82,7 @@ public class StockDetailsPane extends
 		pane.add(btnDelete, "flowx,cell 1 5");
 		
 		btnEdit = new JButton("Edit");
+		//TODO
 		pane.add(btnEdit, "cell 1 5");
 		
 		btnOk = new JButton("Ok");
