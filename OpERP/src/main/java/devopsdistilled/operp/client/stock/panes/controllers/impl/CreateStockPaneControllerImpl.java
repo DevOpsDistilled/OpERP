@@ -1,8 +1,6 @@
 package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
 import javax.inject.Inject;
-import javax.persistence.EntityExistsException;
-import javax.swing.JOptionPane;
 
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.stock.models.StockModel;
@@ -25,6 +23,7 @@ public class CreateStockPaneControllerImpl implements CreateStockPaneController{
 	
 	@Inject
 	private StockModel stockModel;
+	
 	
 	
 	@Override
@@ -53,6 +52,9 @@ public class CreateStockPaneControllerImpl implements CreateStockPaneController{
 		Stock savedStock=stockModel.saveAndUpdateModel(stock);
 		return savedStock;
 	}
+
+
+	
 
 
 

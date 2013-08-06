@@ -17,6 +17,7 @@ import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneContr
 import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.CreateStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.ItemWarehouseCatalog;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
@@ -42,6 +43,7 @@ public class CreateStockPane extends SubTaskPane implements
 	
 	@Inject
 	private ItemController itemController;
+	
 	
 	
 	private final JPanel pane;
@@ -112,6 +114,7 @@ public class CreateStockPane extends SubTaskPane implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Stock stock=new Stock();
+				ItemWarehouseCatalog catalog=new ItemWarehouseCatalog();
 				Item item=(Item)comboItems.getSelectedItem();
 				stock.setItem(item);
 				Warehouse warehouse=(Warehouse)comboWarehouses.getSelectedItem();
@@ -120,7 +123,7 @@ public class CreateStockPane extends SubTaskPane implements
 				
 				try{
 					Long quantity=Long.parseLong(itemquantity);
-					stock.setQuantity(quantity);
+						catalog.setQuantity(quantity);
 					try{
 						controller.validate(stock);
 						stock=controller.save(stock);
@@ -173,6 +176,10 @@ public class CreateStockPane extends SubTaskPane implements
 					comboWarehouses.setSelectedItem(warehouse);
 		}
 	}
+
+	
+		
+	
 }
 	
 	

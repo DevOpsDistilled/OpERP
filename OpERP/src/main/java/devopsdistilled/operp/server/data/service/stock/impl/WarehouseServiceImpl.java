@@ -1,5 +1,8 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -50,6 +53,8 @@ public class WarehouseServiceImpl extends
 	@Override
 	protected Warehouse findByEntityName(String entityName) {
 		return warehouseRepository.findByWarehouseName(entityName);
+		
+
 	}
 
 }

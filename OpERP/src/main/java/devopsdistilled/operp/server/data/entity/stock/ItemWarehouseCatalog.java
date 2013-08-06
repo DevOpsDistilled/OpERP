@@ -16,7 +16,8 @@ public class ItemWarehouseCatalog extends Entiti<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long itemWarehouseCatalogId;
+	private Long CatalogId;
+	private Long quantity;
 	
 	//@ManyToMany(mappedBy="itemWarehouse")
 	//private List<Item> item;
@@ -24,11 +25,11 @@ public class ItemWarehouseCatalog extends Entiti<Long> {
 	@ManyToMany(mappedBy="itemWarehouses")
 	private List<Warehouse> warehouses;
 	
-	public Long getItemWarehouseCatalogId() {
-		return itemWarehouseCatalogId;
+	public Long getCatalogId() {
+		return CatalogId;
 	}
-	public void setItemWarehouseCatalogId(Long itemWarehouseCatalogId) {
-		this.itemWarehouseCatalogId = itemWarehouseCatalogId;
+	public void setCatalogId(Long catalogId) {
+		CatalogId = catalogId;
 	}
 	public List<Warehouse> getWarehouses() {
 		return warehouses;
@@ -42,11 +43,11 @@ public class ItemWarehouseCatalog extends Entiti<Long> {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
-	private Long quantity;
+	
 
 	@Override
 	public Long id() {
-		return itemWarehouseCatalogId;
+		return CatalogId;
 	}
 	@Override
 	public String toString() {
