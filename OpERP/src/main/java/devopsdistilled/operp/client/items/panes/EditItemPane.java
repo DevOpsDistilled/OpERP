@@ -15,9 +15,8 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
+import devopsdistilled.operp.client.items.controllers.BrandController;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.EditItemPaneController;
@@ -36,12 +35,20 @@ public class EditItemPane extends SubTaskPane implements
 	@Inject
 	private ItemDetailsPane itemDetailsPane;
 
+	@Inject
+	private ProductController productController;
+
+	@Inject
+	private BrandController brandController;
+
 	private final JPanel pane;
 	private final JTextField itemNameField;
 	private final JTextField priceField;
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
 	private final JTextField itemIdField;
+
+	private Item item;
 
 	public EditItemPane() {
 		pane = new JPanel();
@@ -59,14 +66,14 @@ public class EditItemPane extends SubTaskPane implements
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 1,alignx trailing");
 
-		comboProducts = new JComboBox<Product>();
+		comboProducts = new JComboBox<>();
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 1,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 2,alignx trailing");
 
-		comboBrands = new JComboBox<Brand>();
+		comboBrands = new JComboBox<>();
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 2,growx");
 
@@ -97,8 +104,8 @@ public class EditItemPane extends SubTaskPane implements
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long itemId = item.getItemId();
 				Item item = new Item();
-				Long itemId = Long.parseLong(itemIdField.getText().trim());
 				item.setItemId(itemId);
 				Brand brand = (Brand) comboBrands.getSelectedItem();
 				item.setBrand(brand);
@@ -123,17 +130,12 @@ public class EditItemPane extends SubTaskPane implements
 						getDialog().dispose();
 
 						itemDetailsPane.show(item);
-					} catch (NullFieldException ex) {
+
+					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(getPane(),
-								"Required field(s) are Null");
-					} catch (ProductBrandPairExistsException ex) {
-						JOptionPane
-								.showMessageDialog(getPane(),
-										"Item with selected pair of Product and Brand already exists.");
-					} catch (EntityNameExistsException ex) {
-						JOptionPane.showMessageDialog(getPane(),
-								"Item Name already exists");
+								e1.getMessage());
 					}
+
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Price must be a Numeric value");
@@ -141,15 +143,31 @@ public class EditItemPane extends SubTaskPane implements
 
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(item);
+			}
+		});
+		pane.add(btnReset, "cell 2 5");
 		pane.add(btnUpdate, "cell 2 5");
 
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				productController.create();
+			}
+		});
 		pane.add(btnNewProduct, "cell 2 1");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				brandController.create();
 			}
 		});
 		pane.add(btnNewBrand, "cell 2 2");
@@ -161,23 +179,15 @@ public class EditItemPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateItem(Item item) {
-		itemIdField.setText(item.getItemId().toString());
-		itemNameField.setText(item.getItemName());
-		priceField.setText(item.getPrice().toString());
-		comboProducts.setSelectedItem(item.getProduct());
-		comboBrands.setSelectedItem(item.getBrand());
-	}
-
-	@Override
 	public void updateProducts(List<Product> products) {
 		Product prevSelected = (Product) comboProducts.getSelectedItem();
 		comboProducts.removeAllItems();
 
 		for (Product product : products) {
 			comboProducts.addItem(product);
-			if (prevSelected.compareTo(product) == 0)
-				comboProducts.setSelectedItem(product);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(product) == 0)
+					comboProducts.setSelectedItem(product);
 		}
 	}
 
@@ -188,8 +198,19 @@ public class EditItemPane extends SubTaskPane implements
 
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
-			if (prevSelected.compareTo(brand) == 0)
-				comboBrands.setSelectedItem(brand);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(brand) == 0)
+					comboBrands.setSelectedItem(brand);
 		}
+	}
+
+	@Override
+	public void updateEntity(Item item) {
+		this.item = item;
+		itemIdField.setText(item.getItemId().toString());
+		itemNameField.setText(item.getItemName());
+		priceField.setText(item.getPrice().toString());
+		comboProducts.setSelectedItem(item.getProduct());
+		comboBrands.setSelectedItem(item.getBrand());
 	}
 }

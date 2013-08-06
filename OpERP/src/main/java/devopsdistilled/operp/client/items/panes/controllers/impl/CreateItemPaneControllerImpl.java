@@ -41,23 +41,23 @@ public class CreateItemPaneControllerImpl implements CreateItemPaneController {
 	public void validate(Item item) throws ProductBrandPairExistsException,
 			EntityNameExistsException, NullFieldException {
 
-		if (item.getItemName().equalsIgnoreCase("")
-				|| item.getProduct() == null || item.getBrand() == null
-				|| item.getPrice() == null) {
+		if (item.getItemName().equalsIgnoreCase(""))
+			throw new NullFieldException("Item Name can't be empty");
 
-			throw new NullFieldException();
-		}
+		if (item.getProduct() == null)
+			throw new NullFieldException(
+					"Item must be associated with a product");
+
+		if (item.getBrand() == null)
+			throw new NullFieldException("Item must be associated with a brand");
 
 		if (itemModel.getService().isProductBrandPairExists(item.getProduct(),
-				item.getBrand())) {
+				item.getBrand()))
+			throw new ProductBrandPairExistsException(
+					"Product and Brand Pair already exists");
 
-			throw new ProductBrandPairExistsException();
-		}
-
-		if (itemModel.getService().isItemNameExists(item.getItemName())) {
-
-			throw new EntityNameExistsException();
-		}
+		if (itemModel.getService().isItemNameExists(item.getItemName()))
+			throw new EntityNameExistsException("Item Name already exists");
 	}
 
 	@Override

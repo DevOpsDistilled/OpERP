@@ -3,14 +3,17 @@ package devopsdistilled.operp.client.context.items;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.items.panes.CreateBrandPane;
 import devopsdistilled.operp.client.items.panes.CreateCategoryPane;
 import devopsdistilled.operp.client.items.panes.CreateItemPane;
 import devopsdistilled.operp.client.items.panes.CreateManufacturerPane;
 import devopsdistilled.operp.client.items.panes.CreateProductPane;
+import devopsdistilled.operp.client.items.panes.EditBrandPane;
 import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.EditItemPane;
 import devopsdistilled.operp.client.items.panes.EditManufacturerPane;
 import devopsdistilled.operp.client.items.panes.EditProductPane;
+import devopsdistilled.operp.client.items.panes.ListBrandPane;
 import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
@@ -107,5 +110,20 @@ public class MvcViewContext {
 	@Bean
 	public EditManufacturerPane editManufacturerPane() {
 		return new EditManufacturerPane();
+	}
+
+	@Bean
+	public CreateBrandPane createBrandPane() {
+		return new CreateBrandPane();
+	}
+
+	@Bean
+	public ListBrandPane listBrandPane() {
+		return new ListBrandPane();
+	}
+
+	@Bean
+	public EditBrandPane editBrandPane() {
+		return new EditBrandPane();
 	}
 }

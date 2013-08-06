@@ -1,14 +1,9 @@
 package devopsdistilled.operp.client.items.panes.controllers;
 
-import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
-import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
+import devopsdistilled.operp.client.abstracts.CreateEntityPaneController;
 import devopsdistilled.operp.server.data.entity.items.Category;
 
-public interface CreateCategoryPaneController extends SubTaskPaneController {
+public interface CreateCategoryPaneController extends
+		CreateEntityPaneController<Category> {
 
-	void validate(Category category) throws NullFieldException, EntityNameExistsException;
-
-	Category save(Category category);
-	
 }

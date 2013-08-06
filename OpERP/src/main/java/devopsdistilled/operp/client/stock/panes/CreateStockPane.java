@@ -74,7 +74,7 @@ public class CreateStockPane extends SubTaskPane implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getDialog().dispose();
-				itemController.createItem();
+				itemController.create();
 			}
 		});
 		pane.add(btnNewItem, "cell 1 0");

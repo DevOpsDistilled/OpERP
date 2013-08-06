@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -18,9 +17,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateProductPaneController;
 import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
@@ -106,9 +103,7 @@ public class CreateProductPane extends SubTaskPane implements
 					getDialog().dispose();
 					productDetailsPane.show(product);
 
-				} catch (NullFieldException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				} catch (EntityNameExistsException e1) {
+				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 
 				}

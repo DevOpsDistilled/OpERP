@@ -33,11 +33,11 @@ public class EditCategoryPaneControllerImpl implements
 			NullFieldException {
 
 		if (category.getCategoryName().equalsIgnoreCase(""))
-			throw new NullFieldException();
+			throw new NullFieldException("Category Name can't be empty");
 
 		if (!categoryModel.getService().isCategoryNameValidForCategory(
 				category.getCategoryId(), category.getCategoryName()))
-			throw new EntityNameExistsException();
+			throw new EntityNameExistsException("Category Name already exists");
 
 	}
 

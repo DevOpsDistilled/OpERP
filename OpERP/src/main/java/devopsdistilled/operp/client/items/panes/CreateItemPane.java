@@ -3,7 +3,6 @@ package devopsdistilled.operp.client.items.panes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,12 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.items.exceptions.ProductBrandPairExistsException;
+import devopsdistilled.operp.client.items.controllers.BrandController;
+import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.models.observers.BrandModelObserver;
 import devopsdistilled.operp.client.items.models.observers.ProductModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
@@ -32,6 +29,12 @@ public class CreateItemPane extends SubTaskPane implements
 
 	@Inject
 	private CreateItemPaneController controller;
+
+	@Inject
+	private ProductController productController;
+
+	@Inject
+	private BrandController brandController;
 
 	@Inject
 	private ItemDetailsPane itemDetailsPane;
@@ -58,14 +61,14 @@ public class CreateItemPane extends SubTaskPane implements
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
-		comboProducts = new JComboBox<Product>();
+		comboProducts = new JComboBox<>();
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
-		comboBrands = new JComboBox<Brand>();
+		comboBrands = new JComboBox<>();
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 
@@ -120,17 +123,13 @@ public class CreateItemPane extends SubTaskPane implements
 
 						getDialog().dispose();
 						itemDetailsPane.show(item);
-					} catch (NullFieldException ex) {
+
+					} catch (Exception e1) {
+
 						JOptionPane.showMessageDialog(getPane(),
-								"Required field(s) are Null");
-					} catch (ProductBrandPairExistsException ex) {
-						JOptionPane
-								.showMessageDialog(getPane(),
-										"Item with selected pair of Product and Brand already exists.");
-					} catch (EntityNameExistsException ex) {
-						JOptionPane.showMessageDialog(getPane(),
-								"Item Name already exists");
+								e1.getMessage());
 					}
+
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Price must be a Numeric value");
@@ -141,12 +140,19 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(btnSave, "cell 2 4");
 
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				productController.create();
+			}
+		});
 		pane.add(btnNewProduct, "cell 2 0");
 
 		JButton btnNewBrand = new JButton("New Brand");
 		btnNewBrand.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				brandController.create();
 			}
 		});
 		pane.add(btnNewBrand, "cell 2 1");
@@ -165,8 +171,9 @@ public class CreateItemPane extends SubTaskPane implements
 
 		for (Product product : products) {
 			comboProducts.addItem(product);
-			if (prevSelected.compareTo(product) == 0)
-				comboProducts.setSelectedItem(product);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(product) == 0)
+					comboProducts.setSelectedItem(product);
 		}
 	}
 
@@ -177,8 +184,9 @@ public class CreateItemPane extends SubTaskPane implements
 
 		for (Brand brand : brands) {
 			comboBrands.addItem(brand);
-			if (prevSelected.compareTo(brand) == 0)
-				comboBrands.setSelectedItem(brand);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(brand) == 0)
+					comboBrands.setSelectedItem(brand);
 		}
 	}
 }

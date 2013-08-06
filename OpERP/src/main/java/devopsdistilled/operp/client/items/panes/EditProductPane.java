@@ -19,9 +19,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.controllers.CategoryController;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.models.observers.CategoryModelObserver;
 import devopsdistilled.operp.client.items.panes.controllers.EditProductPaneController;
 import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
@@ -103,6 +101,10 @@ public class EditProductPane extends SubTaskPane implements
 		btnCreate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Long productId = product.getProductId();
+				Product product = new Product();
+				product.setProductId(productId);
+
 				List<Category> categories = new LinkedList<>();
 				categories.addAll(categoryList.getSelectedValuesList());
 				String productName = productNameField.getText().trim();
@@ -117,14 +119,21 @@ public class EditProductPane extends SubTaskPane implements
 					getDialog().dispose();
 					productDetailsPane.show(product);
 
-				} catch (NullFieldException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				} catch (EntityNameExistsException e1) {
+				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 
 				}
 			}
 		});
+
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(product);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnCreate, "cell 1 3");
 	}
 

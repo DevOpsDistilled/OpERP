@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class StockDetailsPane extends 
-	AbstractEntityDetailsPane<Stock>{
+	AbstractEntityDetailsPane<Stock,StockController>{
 	
 	@Inject
 	private StockController stockController;
@@ -100,7 +100,7 @@ public class StockDetailsPane extends
 		
 	}
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
@@ -122,6 +122,16 @@ public class StockDetailsPane extends
 	@Override
 	public String getTitle() {
 		return "Stock Details";
+	}
+	@Override
+	public StockController getEntityController() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	protected Stock getEntity() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -21,7 +21,7 @@ import org.hibernate.type.YesNoType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class WarehouseDetailsPane extends
-		AbstractEntityDetailsPane<Warehouse>{
+		AbstractEntityDetailsPane<Warehouse,WarehouseController>{
 	
 	@Inject
 	private WarehouseController warehouseController;
@@ -102,7 +102,7 @@ public class WarehouseDetailsPane extends
 		
 	}
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
@@ -122,6 +122,16 @@ public class WarehouseDetailsPane extends
 	@Override
 	public String getTitle() {
 		return "Warehouse Details";
+	}
+	@Override
+	public WarehouseController getEntityController() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	protected Warehouse getEntity() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

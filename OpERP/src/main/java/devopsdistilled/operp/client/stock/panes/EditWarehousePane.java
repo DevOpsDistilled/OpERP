@@ -81,14 +81,13 @@ public class EditWarehousePane extends SubTaskPane implements
 					getDialog().dispose();
 					warehouseDetailsPane.show(warehouse);
 					
-				}catch(NullFieldException e1){
+				}catch(Exception e1){
 					JOptionPane.showMessageDialog(getPane(),
-							"Warehouse Name should not be empty");
+							e1.getMessage());
 
-				} catch (EntityNameExistsException e1) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Warehouse Name already exists");
-				}
+				} 
+				
+			
 				
 			}
 		});
