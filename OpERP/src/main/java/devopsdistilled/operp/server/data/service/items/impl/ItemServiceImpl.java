@@ -10,6 +10,7 @@ import devopsdistilled.operp.server.data.entity.items.Product;
 import devopsdistilled.operp.server.data.repo.items.ItemRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
+import devopsdistilled.operp.server.data.service.items.ProductService;
 
 @Service
 public class ItemServiceImpl extends
@@ -20,6 +21,9 @@ public class ItemServiceImpl extends
 
 	@Inject
 	private ItemRepository itemRepository;
+
+	@Inject
+	private ProductService productService;
 
 	@Override
 	protected ItemRepository getRepo() {
@@ -85,5 +89,17 @@ public class ItemServiceImpl extends
 	@Override
 	protected Item findByEntityName(String entityName) {
 		return itemRepository.findByItemName(entityName);
+	}
+
+	@Override
+	public <S extends Item> S save(S item) {
+		if (item.getProduct() != null) {
+			Product product = productService.findOne(item.getProduct()
+					.getProductId());
+			item.setProduct(product);
+			// itemRepository.save(item);
+		}
+
+		return super.save(item);
 	}
 }
