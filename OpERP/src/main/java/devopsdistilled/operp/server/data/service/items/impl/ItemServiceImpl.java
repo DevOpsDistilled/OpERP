@@ -59,9 +59,9 @@ public class ItemServiceImpl extends
 			return true;
 
 		if (item.getItemId().equals(itemId))
-			return false;
+			return true;
 
-		return true;
+		return false;
 	}
 
 	/**
