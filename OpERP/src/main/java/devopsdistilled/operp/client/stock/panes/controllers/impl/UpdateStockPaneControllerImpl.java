@@ -3,26 +3,30 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.NullFieldException;
+import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
-import devopsdistilled.operp.client.stock.panes.CreateStockPane;
-import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
-import devopsdistilled.operp.client.stock.panes.models.CreateStockPaneModel;
+import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
-public class CreateStockPaneControllerImpl implements CreateStockPaneController{
+public class UpdateStockPaneControllerImpl implements UpdateStockPaneController{
 	
 	@Inject 
-	private CreateStockPaneModel model;
+	private UpdateStockPaneModel model;
 	
 	@Inject
-	private CreateStockPane view;
+	private UpdateStockPane view;
 	
 	@Inject 
 	private WarehouseModel warehouseModel;
 	
 	@Inject
 	private StockModel stockModel;
+	
+	@Inject
+	private ItemModel itemModel;
 	
 	
 	
@@ -31,6 +35,7 @@ public class CreateStockPaneControllerImpl implements CreateStockPaneController{
 		view.init();
 		model.registerObserver(view);
 		warehouseModel.registerObserver(view);
+		itemModel.registerObserver(view);
 		
 	}
 

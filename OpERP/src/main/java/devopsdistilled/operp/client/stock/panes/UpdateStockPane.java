@@ -5,7 +5,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
@@ -13,11 +12,10 @@ import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
-import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
-import devopsdistilled.operp.client.stock.panes.models.observers.CreateStockPaneModelObserver;
+import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.entity.stock.ItemWarehouseCatalog;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
@@ -29,11 +27,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-public class CreateStockPane extends SubTaskPane implements
-		CreateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver{
+public class UpdateStockPane extends SubTaskPane implements
+		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver{
 	
 	@Inject
-	private CreateStockPaneController controller;
+	private UpdateStockPaneController controller;
 	
 	@Inject
 	private StockDetailsPane stockDetailsPane;
@@ -52,7 +50,7 @@ public class CreateStockPane extends SubTaskPane implements
 	private final JComboBox<Warehouse>  comboWarehouses;
 	
 	
-	public CreateStockPane(){
+	public UpdateStockPane(){
 		pane=new JPanel();
 		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][]"));
 		
@@ -108,13 +106,12 @@ public class CreateStockPane extends SubTaskPane implements
 		});
 		pane.add(btnCancel, "flowx,split 3,cell 1 4");
 		
-		JButton btnUpdate = new JButton("Create");
+		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Stock stock=new Stock();
-				ItemWarehouseCatalog catalog=new ItemWarehouseCatalog();
 				Item item=(Item)comboItems.getSelectedItem();
 				stock.setItem(item);
 				Warehouse warehouse=(Warehouse)comboWarehouses.getSelectedItem();
@@ -123,7 +120,7 @@ public class CreateStockPane extends SubTaskPane implements
 				
 				try{
 					Long quantity=Long.parseLong(itemquantity);
-						catalog.setQuantity(quantity);
+						stock.setQuantity(quantity);
 					try{
 						controller.validate(stock);
 						stock=controller.save(stock);

@@ -5,13 +5,11 @@ import javax.inject.Inject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
-
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.CategoryService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
-import devopsdistilled.operp.server.data.service.stock.ItemWarehouseCatalogService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
@@ -39,8 +37,6 @@ public class RmiContext {
 	@Inject
 	private ManufacturerService manufacturerService;
 	
-	@Inject 
-	private ItemWarehouseCatalogService itemWarehouseCatalogService;
 	
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
@@ -111,13 +107,4 @@ public class RmiContext {
 		return rmiServiceExporter;
 	}
 	
-	@Bean
-	public RmiServiceExporter rmiItemWarehouseCatalogServiceExporter(){
-		RmiServiceExporter rmiServiceExporter=new RmiServiceExporter();
-		rmiServiceExporter.setServiceName("ItemWarehouseCatalogService");
-		rmiServiceExporter.setServiceInterface(ItemWarehouseCatalogService.class);
-		rmiServiceExporter.setService(itemWarehouseCatalogService);
-		rmiServiceExporter.setRegistryPort(1099);
-		return rmiServiceExporter;
-	}
 }

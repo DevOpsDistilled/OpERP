@@ -20,12 +20,8 @@ public class Warehouse extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long warehouseId;
 	
-	
 	@Column(unique = true)
 	private String warehouseName;
-	
-	@ManyToMany
-	private List<ItemWarehouseCatalog> itemWarehouses;
 
 	public Long getWarehouseId() {
 		return warehouseId;
@@ -41,14 +37,6 @@ public class Warehouse extends Entiti<Long> {
 
 	public void setWarehouseName(String warehouseName) {
 		this.warehouseName = warehouseName;
-	}
-	
-	public List<ItemWarehouseCatalog> getItemWarehouses() {
-		return itemWarehouses;
-	}
-
-	public void setItemWarehouses(List<ItemWarehouseCatalog> itemWarehouses) {
-		this.itemWarehouses = itemWarehouses;
 	}
 
 

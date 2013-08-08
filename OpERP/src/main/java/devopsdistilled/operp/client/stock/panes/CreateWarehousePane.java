@@ -2,7 +2,6 @@ package devopsdistilled.operp.client.stock.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.swing.JComponent;
@@ -17,7 +16,6 @@ import javax.swing.JTextField;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
-import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.CreateWarehousePaneModelObserver;
@@ -35,14 +33,6 @@ public class CreateWarehousePane extends SubTaskPane implements
 	private WarehouseDetailsPane warehouseDetailsPane;
 	private JPanel pane;
 	private JTextField warehouseNameField;
-	
-	@Override
-	public void init() {
-		super.init();
-
-		// Other JDialog properties goes here
-		// getDialog.setSize(...);
-	}
 
 	public CreateWarehousePane() {
 		pane = new JPanel();

@@ -4,7 +4,7 @@ import devopsdistilled.operp.client.abstracts.SubTaskPaneController;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
-public interface CreateStockPaneController extends SubTaskPaneController {
+public interface UpdateStockPaneController extends SubTaskPaneController {
 
 		void validate(Stock stock) throws NullFieldException;
 

@@ -13,10 +13,8 @@ import devopsdistilled.operp.client.items.models.impl.CategoryModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ItemModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ManufacturerModelImpl;
 import devopsdistilled.operp.client.items.models.impl.ProductModelImpl;
-import devopsdistilled.operp.client.stock.models.ItemWarehouseCatalogModel;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
-import devopsdistilled.operp.client.stock.models.impl.ItemWarehouseCatalogModelImpl;
 import devopsdistilled.operp.client.stock.models.impl.StockModelImpl;
 import devopsdistilled.operp.client.stock.models.impl.WarehouseModelImpl;
 
@@ -57,9 +55,5 @@ public class EntityModelContext {
 		return new ManufacturerModelImpl();
 	}
 	
-	@Bean
-	public ItemWarehouseCatalogModel itemWarehouseCatalogModel(){
-		return new ItemWarehouseCatalogModelImpl();
-	}
 
 }

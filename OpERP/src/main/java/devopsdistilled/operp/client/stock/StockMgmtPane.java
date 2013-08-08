@@ -5,10 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
-import devopsdistilled.operp.client.stock.controllers.ItemWarehouseCatalogController;
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import java.awt.event.ActionListener;
@@ -23,14 +21,10 @@ public class StockMgmtPane extends TaskPane{
 	@Inject
 	private WarehouseController warehouseController;
 	
-	@Inject
-	private ItemWarehouseCatalogController itemWarehouseCatalogController;
-
 	private JButton btnListStock;
 	private JButton btnCreateStock;
 	private JButton btnCreateWarehouse;
 	private JButton btnListWarehouse;
-	private JButton btnListItemwarehouse;
 	
 	@Override
 	public String toString() {
@@ -49,7 +43,7 @@ public class StockMgmtPane extends TaskPane{
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0 2 1,alignx center");
 		
-		btnCreateStock=new JButton("Create Stock");
+		btnCreateStock=new JButton("Update Stock");
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -90,15 +84,6 @@ public class StockMgmtPane extends TaskPane{
 			}
 		});
 		pane.add(btnListWarehouse, "cell 1 2");
-		
-		btnListItemwarehouse = new JButton("List ItemWarehouse");
-		btnListItemwarehouse.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				itemWarehouseCatalogController.list();
-			}
-		});
-		pane.add(btnListItemwarehouse, "cell 1 3");
 		
 		return pane;
 		

@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.models.StockModel;
-import devopsdistilled.operp.client.stock.panes.controllers.CreateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
@@ -25,8 +25,8 @@ public class StockControllerImpl implements StockController{
 
 	@Override
 	public void create() {
-		CreateStockPaneController createStockPaneController=context.
-			getBean(CreateStockPaneController.class);
+		UpdateStockPaneController createStockPaneController=context.
+			getBean(UpdateStockPaneController.class);
 		createStockPaneController.init();
 		
 	}

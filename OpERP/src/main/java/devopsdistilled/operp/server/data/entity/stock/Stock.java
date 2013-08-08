@@ -1,8 +1,5 @@
 package devopsdistilled.operp.server.data.entity.stock;
 
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +20,13 @@ public class Stock extends Entiti<Long> {
 	private Long stockId;
 	private Long quantity;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
+	//(cascade=CascadeType.ALL)
 	@JoinColumn(name="itemId")
 	private Item item;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
+	//(cascade=CascadeType.ALL)
 	@JoinColumn(name="warehouseId")
 	private Warehouse warehouse;
 	

@@ -9,9 +9,6 @@ import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class StockDetailsPane extends 
 	AbstractEntityDetailsPane<Stock,StockController>{
@@ -20,7 +17,6 @@ public class StockDetailsPane extends
 	private StockController stockController;
 	
 	private Stock stock;
-	
 	private JPanel pane;
 	private JTextField stockIdField;
 	private JLabel lblItem;
@@ -29,15 +25,10 @@ public class StockDetailsPane extends
 	private JTextField warehouseField;
 	private JLabel lblQuantity;
 	private JTextField quantityField;
-	private JButton btnDelete;
-	private JButton btnEdit;
-	private JButton btnOk;
 	
 	public StockDetailsPane(){
-		dialog.setTitle("Stock Details");
+		dialog.setSize(400,200);
 		pane=new JPanel(new MigLayout("debug", "[][grow]", "[][][][][][]"));
-		getDialog().getContentPane().add(getPane());
-		
 		JLabel lblStockId = new JLabel("Stock Id");
 		pane.add(lblStockId, "cell 0 0");
 		
@@ -70,32 +61,6 @@ public class StockDetailsPane extends
 		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 		
-		btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			getDialog().dispose();
-			stockController.delete(stock);
-			}
-			
-		});
-		pane.add(btnDelete, "flowx,cell 1 5");
-		
-		btnEdit = new JButton("Edit");
-		//TODO
-		pane.add(btnEdit, "cell 1 5");
-		
-		btnOk = new JButton("Ok");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-			}
-		});
-		pane.add(btnOk, "cell 1 5");
-		
-		
-		
 	}
 	@Override
 	public JPanel getPane() {
@@ -104,13 +69,15 @@ public class StockDetailsPane extends
 
 	@Override
 	public void show(Stock stock) {
+		
 		this.stock=stock;
+		
 		if(stock!=null){
 			stockIdField.setText(stock.getStockId().toString());
 			itemField.setText(stock.getItem().getItemName());
 			warehouseField.setText(stock.getWarehouse().getWarehouseName());
 			quantityField.setText(stock.getQuantity().toString());
-			getDialog().setVisible(true);
+			showDetailsPane(getPane());
 		}else{
 			dialog.dispose();
 			JOptionPane.showMessageDialog(getPane(),"Stock is null");
@@ -123,13 +90,11 @@ public class StockDetailsPane extends
 	}
 	@Override
 	public StockController getEntityController() {
-		// TODO Auto-generated method stub
-		return null;
+		return stockController;
 	}
 	@Override
 	protected Stock getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return stock;
 	}
 
 }
