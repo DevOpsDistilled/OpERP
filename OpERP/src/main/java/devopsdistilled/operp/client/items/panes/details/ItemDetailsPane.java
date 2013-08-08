@@ -28,8 +28,6 @@ public class ItemDetailsPane extends
 	private final JTextField productField;
 
 	public ItemDetailsPane() {
-		dialog.setSize(400, 200);
-
 		pane = new JPanel();
 
 		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][][][][][]"));
