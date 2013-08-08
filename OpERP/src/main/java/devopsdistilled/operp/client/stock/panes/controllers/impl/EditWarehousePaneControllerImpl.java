@@ -10,15 +10,15 @@ import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneCon
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-public class EditWarehousePaneControllerImpl implements 
+public class EditWarehousePaneControllerImpl implements
 		EditWarehousePaneController {
-	
+
 	@Inject
 	private EditWarehousePane view;
-	
+
 	@Inject
 	private EditWarehousePaneModel model;
-	
+
 	@Inject
 	private WarehouseModel warehouseModel;
 
@@ -27,23 +27,24 @@ public class EditWarehousePaneControllerImpl implements
 		view.init();
 		model.setEntity(warehouse);
 		model.registerObserver(view);
-	
-		
+
 	}
+
 	@Override
 	public void validate(Warehouse warehouse) throws NullFieldException,
 			EntityNameExistsException {
-		if(warehouse.getWarehouseName().equalsIgnoreCase("")){
+		if (warehouse.getWarehouseName().equalsIgnoreCase("")) {
 			throw new NullFieldException();
 		}
-		
-		if(!warehouseModel.getService().isWarehouseNameValidForWarehouse(
-				warehouse.getWarehouseId(), warehouse.getWarehouseName())){
-				
+
+		if (!warehouseModel.getService().isWarehouseNameValidForWarehouse(
+				warehouse.getWarehouseId(), warehouse.getWarehouseName())) {
+
 			throw new EntityNameExistsException();
-			
+
 		}
 	}
+
 	@Override
 	public Warehouse save(Warehouse warehouse) {
 		return warehouseModel.saveAndUpdateModel(warehouse);

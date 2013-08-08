@@ -76,31 +76,32 @@ public class MvcModelContext {
 	public ListCategoryPaneModel listCategoryPaneModel() {
 		return new ListCategoryPaneModelImpl();
 	}
-	
-	@Bean 
-	public UpdateStockPaneModel createStockPaneModel(){
+
+	@Bean
+	public UpdateStockPaneModel createStockPaneModel() {
 		return new UpdateStockPaneModelImpl();
 	}
+
 	@Bean
-	public ListStockPaneModel listStockPaneModel(){
+	public ListStockPaneModel listStockPaneModel() {
 		return new ListStockPaneModelImpl();
 	}
-	
-	@Bean 
-	public CreateWarehousePaneModel createWarehousePaneModel(){
+
+	@Bean
+	public CreateWarehousePaneModel createWarehousePaneModel() {
 		return new CreateWarehousePaneModelImpl();
 	}
-	
+
 	@Bean
-	public ListWarehousePaneModel listWarehousePaneModel(){
+	public ListWarehousePaneModel listWarehousePaneModel() {
 		return new ListWarehousePaneModelImpl();
 	}
-	
+
 	@Bean
-	public EditWarehousePaneModel editWarehousePaneModel(){
+	public EditWarehousePaneModel editWarehousePaneModel() {
 		return new EditWarehousePaneModelImpl();
 	}
-	
+
 	@Bean
 	public CreateProductPaneModel createProductPaneModel() {
 		return new CreateProductPaneModelImpl();

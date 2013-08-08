@@ -10,6 +10,7 @@ import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
+
 @Configuration
 public class RmiContext {
 
@@ -36,22 +37,24 @@ public class RmiContext {
 		rmiProxy.setServiceInterface(BrandService.class);
 		return rmiProxy;
 	}
+
 	@Bean
-	public RmiProxyFactoryBean stockService(){
-		RmiProxyFactoryBean rmiProxy=new RmiProxyFactoryBean();
+	public RmiProxyFactoryBean stockService() {
+		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/StockService");
 		rmiProxy.setServiceInterface(StockService.class);
 		return rmiProxy;
-		
+
 	}
-	
+
 	@Bean
-	public RmiProxyFactoryBean warehouseService(){
-		RmiProxyFactoryBean rmiProxy=new RmiProxyFactoryBean();
+	public RmiProxyFactoryBean warehouseService() {
+		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
 		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/WarehouseService");
 		rmiProxy.setServiceInterface(WarehouseService.class);
 		return rmiProxy;
 	}
+
 	@Bean
 	public RmiProxyFactoryBean categoryService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
@@ -67,5 +70,5 @@ public class RmiContext {
 		rmiProxy.setServiceInterface(ManufacturerService.class);
 		return rmiProxy;
 	}
-	
+
 }

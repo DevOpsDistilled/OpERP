@@ -34,14 +34,14 @@ public class EntityModelContext {
 	public BrandModel brandModel() {
 		return new BrandModelImpl();
 	}
-	
+
 	@Bean
-	public StockModel stockModel(){
+	public StockModel stockModel() {
 		return new StockModelImpl();
 	}
-	
+
 	@Bean
-	public WarehouseModel warehouseModel(){
+	public WarehouseModel warehouseModel() {
 		return new WarehouseModelImpl();
 	}
 
@@ -54,6 +54,5 @@ public class EntityModelContext {
 	public ManufacturerModel manufacturerModel() {
 		return new ManufacturerModelImpl();
 	}
-	
 
 }

@@ -4,6 +4,6 @@ import devopsdistilled.operp.client.abstracts.EditEntityPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public interface EditWarehousePaneModelObserver extends
-		EditEntityPaneModelObserver<Warehouse>{
+		EditEntityPaneModelObserver<Warehouse> {
 
 }

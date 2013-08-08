@@ -59,7 +59,7 @@ public class EditItemPaneControllerTest {
 		assertNotNull(editItemPaneController);
 	}
 
-	//@Test
+	// @Test
 	public void testEditItem() {
 
 		// This test doesn't work.

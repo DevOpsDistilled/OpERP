@@ -18,24 +18,24 @@ public class CategoryPane {
 	public CategoryPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[70px][grow]", "[15px][][]"));
-		
+
 		JLabel lblCategoryId = new JLabel("Category ID");
 		pane.add(lblCategoryId, "cell 0 0,alignx trailing");
-		
+
 		textField = new JTextField();
 		pane.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
-		
+
 		JLabel lblCategoryName = new JLabel("Category Name");
 		pane.add(lblCategoryName, "cell 0 1,alignx trailing");
-		
+
 		textField_1 = new JTextField();
 		pane.add(textField_1, "cell 1 1,growx");
 		textField_1.setColumns(10);
-		
+
 		JButton btnCancel = new JButton("Cancel");
 		pane.add(btnCancel, "flowx,cell 1 2");
-		
+
 		JButton btnSave = new JButton("Save");
 		pane.add(btnSave, "cell 1 2");
 	}

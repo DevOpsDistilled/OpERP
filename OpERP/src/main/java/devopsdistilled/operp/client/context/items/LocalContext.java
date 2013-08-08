@@ -7,7 +7,8 @@ import devopsdistilled.operp.client.context.MainWindowContext;
 
 @Configuration
 @Import({ MainWindowContext.class, EntityModelContext.class,
-		EntityControllerContext.class, MvcContext.class, EntityDetailsContext.class })
+		EntityControllerContext.class, MvcContext.class,
+		EntityDetailsContext.class })
 public class LocalContext {
 
 }

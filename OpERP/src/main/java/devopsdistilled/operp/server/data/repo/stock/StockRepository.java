@@ -7,6 +7,5 @@ import devopsdistilled.operp.server.data.entity.stock.Stock;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
-	
 
 }

@@ -25,16 +25,17 @@ public class EntityControllerContext {
 	public ItemController itemController() {
 		return new ItemControllerImpl();
 	}
+
 	@Bean
-	public StockController stockController(){
+	public StockController stockController() {
 		return new StockControllerImpl();
 	}
-	
+
 	@Bean
-	public WarehouseController warehouseController(){
+	public WarehouseController warehouseController() {
 		return new WarehouseControllerImpl();
 	}
-	
+
 	@Bean
 	public CategoryController categoryController() {
 		return new CategoryControllerImpl();
@@ -52,9 +53,7 @@ public class EntityControllerContext {
 
 	@Bean
 	public BrandController brandController() {
-		return new BrandControllerImpl(); 
+		return new BrandControllerImpl();
 	}
-	
+
 }
-
-

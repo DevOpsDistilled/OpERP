@@ -11,56 +11,47 @@ import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneContr
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
-public class UpdateStockPaneControllerImpl implements UpdateStockPaneController{
-	
-	@Inject 
+public class UpdateStockPaneControllerImpl implements UpdateStockPaneController {
+
+	@Inject
 	private UpdateStockPaneModel model;
-	
+
 	@Inject
 	private UpdateStockPane view;
-	
-	@Inject 
+
+	@Inject
 	private WarehouseModel warehouseModel;
-	
+
 	@Inject
 	private StockModel stockModel;
-	
+
 	@Inject
 	private ItemModel itemModel;
-	
-	
-	
+
 	@Override
 	public void init() {
 		view.init();
 		model.registerObserver(view);
 		warehouseModel.registerObserver(view);
 		itemModel.registerObserver(view);
-		
-	}
 
+	}
 
 	@Override
 	public void validate(Stock stock) throws NullFieldException {
-		
-		if (stock.getItem()==null || stock.getQuantity()==null || stock.getWarehouse()==null){
-		
+
+		if (stock.getItem() == null || stock.getQuantity() == null
+				|| stock.getWarehouse() == null) {
+
 			throw new NullFieldException();
 		}
-		
-		
-	}
 
+	}
 
 	@Override
 	public Stock save(Stock stock) {
-		Stock savedStock=stockModel.saveAndUpdateModel(stock);
+		Stock savedStock = stockModel.saveAndUpdateModel(stock);
 		return savedStock;
 	}
-
-
-	
-
-
 
 }

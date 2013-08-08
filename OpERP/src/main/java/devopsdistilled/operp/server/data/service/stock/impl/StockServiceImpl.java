@@ -11,11 +11,11 @@ import devopsdistilled.operp.server.data.service.stock.StockService;
 
 @Service
 public class StockServiceImpl extends
-		AbstractEntityService<Stock, Long, StockRepository> 
-		implements StockService{
-	
-private static final long serialVersionUID = -7737068540744137395L;
-	
+		AbstractEntityService<Stock, Long, StockRepository> implements
+		StockService {
+
+	private static final long serialVersionUID = -7737068540744137395L;
+
 	@Inject
 	private StockRepository stockRepository;
 
@@ -29,8 +29,5 @@ private static final long serialVersionUID = -7737068540744137395L;
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
-
 
 }

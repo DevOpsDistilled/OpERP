@@ -6,7 +6,7 @@ import devopsdistilled.operp.server.data.entity.stock.Stock;
 
 public interface UpdateStockPaneController extends SubTaskPaneController {
 
-		void validate(Stock stock) throws NullFieldException;
+	void validate(Stock stock) throws NullFieldException;
 
-		Stock save(Stock stock);
+	Stock save(Stock stock);
 }

@@ -56,32 +56,32 @@ public class MvcViewContext {
 	public ListCategoryPane listCategoryPane() {
 		return new ListCategoryPane();
 	}
-	
+
 	@Bean
-	public CreateWarehousePane createWarehousePane(){
+	public CreateWarehousePane createWarehousePane() {
 		return new CreateWarehousePane();
 	}
-	
+
 	@Bean
-	public ListWarehousePane listWarehousePane(){
+	public ListWarehousePane listWarehousePane() {
 		return new ListWarehousePane();
 	}
-	
+
 	@Bean
-	public EditWarehousePane editWarehousePane(){
+	public EditWarehousePane editWarehousePane() {
 		return new EditWarehousePane();
 	}
-	
+
 	@Bean
-	public UpdateStockPane createStock(){
+	public UpdateStockPane createStock() {
 		return new UpdateStockPane();
 	}
-	
+
 	@Bean
-	public ListStockPane listStockPane(){
+	public ListStockPane listStockPane() {
 		return new ListStockPane();
 	}
-	
+
 	@Bean
 	public CreateProductPane createProductPane() {
 		return new CreateProductPane();
@@ -126,5 +126,5 @@ public class MvcViewContext {
 	public EditBrandPane editBrandPane() {
 		return new EditBrandPane();
 	}
-	
+
 }

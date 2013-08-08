@@ -27,17 +27,16 @@ public class RmiContext {
 
 	@Inject
 	private BrandService brandService;
-	
-	@Inject 
+
+	@Inject
 	private StockService stockService;
-	
+
 	@Inject
 	private WarehouseService warehouseService;
 
 	@Inject
 	private ManufacturerService manufacturerService;
-	
-	
+
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
@@ -67,26 +66,27 @@ public class RmiContext {
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
 	}
-	
+
 	@Bean
-	public RmiServiceExporter rmiStockServiceExporter(){
-		RmiServiceExporter rmiServiceExportor=new RmiServiceExporter();
+	public RmiServiceExporter rmiStockServiceExporter() {
+		RmiServiceExporter rmiServiceExportor = new RmiServiceExporter();
 		rmiServiceExportor.setServiceName("StockService");
 		rmiServiceExportor.setServiceInterface(StockService.class);
 		rmiServiceExportor.setService(stockService);
 		rmiServiceExportor.setRegistryPort(1099);
 		return rmiServiceExportor;
-		
+
 	}
-	
+
 	@Bean
-	public RmiServiceExporter rmiWarehouseServiceExporter(){
-		RmiServiceExporter rmiServiceExporter=new RmiServiceExporter();
+	public RmiServiceExporter rmiWarehouseServiceExporter() {
+		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
 		rmiServiceExporter.setServiceName("WarehouseService");
 		rmiServiceExporter.setServiceInterface(WarehouseService.class);
 		rmiServiceExporter.setService(warehouseService);
 		return rmiServiceExporter;
 	}
+
 	@Bean
 	public RmiServiceExporter rmiCategoryServiceExporter() {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
@@ -106,5 +106,5 @@ public class RmiContext {
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
 	}
-	
+
 }

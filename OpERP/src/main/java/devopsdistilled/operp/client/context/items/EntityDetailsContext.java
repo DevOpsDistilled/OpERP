@@ -23,9 +23,9 @@ public class EntityDetailsContext {
 	public CategoryDetailsPane categoryDetailsPane() {
 		return new CategoryDetailsPane();
 	}
-	
+
 	@Bean
-	public WarehouseDetailsPane warehouseDetailsPane(){
+	public WarehouseDetailsPane warehouseDetailsPane() {
 		return new WarehouseDetailsPane();
 	}
 
@@ -33,9 +33,9 @@ public class EntityDetailsContext {
 	public ProductDetailsPane productDetailsPane() {
 		return new ProductDetailsPane();
 	}
-	
+
 	@Bean
-	public StockDetailsPane stockDetailsPane(){
+	public StockDetailsPane stockDetailsPane() {
 		return new StockDetailsPane();
 	}
 

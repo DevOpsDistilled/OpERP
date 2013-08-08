@@ -13,56 +13,57 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class StockMgmtPane extends TaskPane{
+public class StockMgmtPane extends TaskPane {
 
 	@Inject
 	private StockController stockController;
-	
+
 	@Inject
 	private WarehouseController warehouseController;
-	
+
 	private JButton btnListStock;
 	private JButton btnCreateStock;
 	private JButton btnCreateWarehouse;
 	private JButton btnListWarehouse;
-	
+
 	@Override
 	public String toString() {
 		return new String("Stock Management");
 	}
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	
+
 	@Override
 	public JComponent getPane() {
-		JPanel pane=new JPanel();
+		JPanel pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[]20[]", "[][][][][]"));
-		
+
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0 2 1,alignx center");
-		
-		btnCreateStock=new JButton("Update Stock");
+
+		btnCreateStock = new JButton("Update Stock");
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				stockController.create();
-				
+
 			}
-			
+
 		});
-		pane.add(btnCreateStock,"flowx,cell 0 1");
-		
+		pane.add(btnCreateStock, "flowx,cell 0 1");
+
 		btnCreateWarehouse = new JButton("Create Warehouse");
 		btnCreateWarehouse.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				warehouseController.create();
 			}
 		});
-		
+
 		btnListStock = new JButton("List Stock");
 		btnListStock.addActionListener(new ActionListener() {
 			@Override
@@ -70,24 +71,22 @@ public class StockMgmtPane extends TaskPane{
 				stockController.list();
 			}
 		});
-		
+
 		pane.add(btnListStock, "cell 1 1");
-			
-		
+
 		pane.add(btnCreateWarehouse, "flowx,cell 0 2");
-		
+
 		btnListWarehouse = new JButton("List Warehouse");
 		btnListWarehouse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-			warehouseController.list();
+				warehouseController.list();
 			}
 		});
 		pane.add(btnListWarehouse, "cell 1 2");
-		
-		return pane;
-		
-	}	
 
+		return pane;
+
+	}
 
 }

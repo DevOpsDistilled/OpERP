@@ -10,7 +10,6 @@ import devopsdistilled.operp.client.party.PartyMgmtPane;
 import devopsdistilled.operp.client.sales.SalesPane;
 import devopsdistilled.operp.client.stock.StockMgmtPane;
 
-
 @Configuration
 public class NavigationContext {
 

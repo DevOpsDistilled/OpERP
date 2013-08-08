@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 @Repository
-public interface StockKeeperRepository extends JpaRepository<StockKeeper, Long>{
-	
+public interface StockKeeperRepository extends JpaRepository<StockKeeper, Long> {
+
 }

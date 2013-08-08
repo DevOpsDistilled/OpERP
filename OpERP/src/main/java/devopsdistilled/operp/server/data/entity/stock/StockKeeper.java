@@ -15,14 +15,14 @@ public class StockKeeper implements Serializable {
 	private static final long serialVersionUID = 7096369854036054036L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private StockKeeper stockKeeperId;
 	private Long quantity;
 	private Date date;
-	
+
 	@OneToOne
 	private Stock stock;
-	
+
 	public Long getQuantity() {
 		return quantity;
 	}

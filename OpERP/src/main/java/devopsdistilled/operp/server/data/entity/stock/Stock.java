@@ -16,20 +16,20 @@ public class Stock extends Entiti<Long> {
 	private static final long serialVersionUID = 6110051890442579005L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stockId;
 	private Long quantity;
 
 	@ManyToOne
-	//(cascade=CascadeType.ALL)
-	@JoinColumn(name="itemId")
+	// (cascade=CascadeType.ALL)
+	@JoinColumn(name = "itemId")
 	private Item item;
-	
+
 	@ManyToOne
-	//(cascade=CascadeType.ALL)
-	@JoinColumn(name="warehouseId")
+	// (cascade=CascadeType.ALL)
+	@JoinColumn(name = "warehouseId")
 	private Warehouse warehouse;
-	
+
 	public Item getItem() {
 		return item;
 	}
@@ -46,8 +46,6 @@ public class Stock extends Entiti<Long> {
 		this.warehouse = warehouse;
 	}
 
-	
-	
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -55,8 +53,6 @@ public class Stock extends Entiti<Long> {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
-
-	
 
 	public Long getStockId() {
 		return stockId;
@@ -76,6 +72,5 @@ public class Stock extends Entiti<Long> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }

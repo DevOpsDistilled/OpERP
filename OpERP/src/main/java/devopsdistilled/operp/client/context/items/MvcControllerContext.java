@@ -75,32 +75,32 @@ public class MvcControllerContext {
 	public ListCategoryPaneController listCategoryPaneController() {
 		return new ListCategoryPaneControllerImpl();
 	}
-	
+
 	@Bean
-	public ListStockPaneController listStockPaneController(){
+	public ListStockPaneController listStockPaneController() {
 		return new ListStockPaneControllerImpl();
 	}
-	
+
 	@Bean
-	public UpdateStockPaneController createStockPaneController(){
+	public UpdateStockPaneController createStockPaneController() {
 		return new UpdateStockPaneControllerImpl();
 	}
-	
+
 	@Bean
-	public CreateWarehousePaneController createWarehousePaneController(){
+	public CreateWarehousePaneController createWarehousePaneController() {
 		return new CreateWareHousePaneControllerImpl();
 	}
-	
+
 	@Bean
-	public ListWarehousePaneController listWarehousePaneController(){
+	public ListWarehousePaneController listWarehousePaneController() {
 		return new ListWarehousePaneControllerImpl();
 	}
-	
+
 	@Bean
-	public EditWarehousePaneController editWarehousePaneController(){
+	public EditWarehousePaneController editWarehousePaneController() {
 		return new EditWarehousePaneControllerImpl();
 	}
-	
+
 	@Bean
 	public CreateProductPaneController createProductPaneController() {
 		return new CreateProductPaneControllerImpl();
@@ -145,5 +145,5 @@ public class MvcControllerContext {
 	public EditBrandPaneController editBrandPaneController() {
 		return new EditBrandPaneControllerImpl();
 	}
-	
+
 }

@@ -15,64 +15,63 @@ import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
-import devopsdistilled.operp.client.stock.models.impl.WarehouseTableModel;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.ListWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-public class ListWarehousePane extends SubTaskPane implements 
-ListWarehousePaneModelObserver,WarehouseModelObserver{
-	
+public class ListWarehousePane extends SubTaskPane implements
+		ListWarehousePaneModelObserver, WarehouseModelObserver {
+
 	@Inject
 	private WarehouseDetailsPane warehouseDetailsPane;
-	
-	private JPanel pane;
-	private JTable table;
+
+	private final JPanel pane;
+	private final JTable table;
 	BeanTableModel<Warehouse> tableModel;
 
-	public ListWarehousePane(){
-		pane=new JPanel();
+	public ListWarehousePane() {
+		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug,fill"));
-		table=new JTable(tableModel);
+		table = new JTable(tableModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e){
-				if(SwingUtilities.isLeftMouseButton(e) 
+			public void mousePressed(MouseEvent e) {
+				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
-						&& table.getSelectedRow() != -1){
-					Warehouse warehouse=tableModel.getRow(table.getSelectedRow());
+						&& table.getSelectedRow() != -1) {
+					Warehouse warehouse = tableModel.getRow(table
+							.getSelectedRow());
 					warehouseDetailsPane.show(warehouse);
-					
+
 				}
 			}
 		});
-		
-		
-		final JScrollPane scrollPane=new JScrollPane(table,
+
+		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pane.add(scrollPane,"grow");
-	
+		pane.add(scrollPane, "grow");
+
 	}
-	
+
 	@Override
 	public JComponent getPane() {
 		return pane;
 	}
 
 	@Override
-	public void updateWarehouse(List<Warehouse> warehouses){
-		tableModel=null;
-		tableModel=new BeanTableModel<>(Warehouse.class,warehouses);
-		
-		for(int i=0;i<table.getColumnCount();i++){
+	public void updateWarehouse(List<Warehouse> warehouses) {
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Warehouse.class, warehouses);
+
+		for (int i = 0; i < table.getColumnCount(); i++) {
 			tableModel.setColumnEditable(i, false);
 		}
 		tableModel.setModelEditable(false);
 		table.setModel(tableModel);
-		
+
 	}
-	
+
 }
