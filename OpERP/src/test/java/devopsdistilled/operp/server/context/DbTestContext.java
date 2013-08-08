@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("server/application.properties")
 @ComponentScan("devopsdistilled.operp.server.data")
-public class DbContext {
+public class DbTestContext {
 
 	@Value("devopsdistilled.operp.server.data.entity")
 	private String packagesToScan;
