@@ -86,4 +86,5 @@ public class ItemServiceImpl extends
 	protected Item findByEntityName(String entityName) {
 		return itemRepository.findByItemName(entityName);
 	}
+
 }
