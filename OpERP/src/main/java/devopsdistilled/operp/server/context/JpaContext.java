@@ -27,7 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "devopsdistilled.operp.server.data.repo", repositoryImplementationPostfix = "CustomImpl")
 @EnableTransactionManagement
-@PropertySource("server/jdbc.properties")
+@PropertySource(value = { "server/jdbc.properties",
+		"server/hibernate.properties" })
 @ComponentScan("devopsdistilled.operp.server.data")
 public class JpaContext {
 
@@ -92,7 +93,16 @@ public class JpaContext {
 	@Bean
 	public Properties hibernateProperties() {
 		Properties hibernateProps = new Properties();
-		hibernateProps.setProperty("hibernate.hbm2ddl.auto", "create");
+		hibernateProps.setProperty("hibernate.hbm2ddl.auto",
+				env.getProperty("hibernate.hbm2ddl.auto"));
+		hibernateProps.setProperty("hibernate.format_sql",
+				env.getProperty("hibernate.format_sql"));
+		hibernateProps.setProperty("hibernate.show_sql",
+				env.getProperty("hibernate.show_sql"));
+		hibernateProps.setProperty("hibernate.use_sql_comments",
+				env.getProperty("hibernate.use_sql_comments"));
+		hibernateProps.setProperty("hibernate.generate_statistics",
+				env.getProperty("hibernate.generate_statistics"));
 		return hibernateProps;
 	}
 
