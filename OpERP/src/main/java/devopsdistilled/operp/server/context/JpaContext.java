@@ -22,6 +22,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -99,6 +100,16 @@ public class JpaContext {
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
 		return new PersistenceExceptionTranslationPostProcessor();
+	}
+
+	@Bean
+	public RmiServiceExporter rmiTransactionManagerServiceExporter() {
+		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+		rmiServiceExporter.setServiceName("TransactionManager");
+		rmiServiceExporter.setServiceInterface(JpaTransactionManager.class);
+		rmiServiceExporter.setService(this.transactionManager());
+		rmiServiceExporter.setRegistryPort(1099);
+		return rmiServiceExporter;
 	}
 
 }
