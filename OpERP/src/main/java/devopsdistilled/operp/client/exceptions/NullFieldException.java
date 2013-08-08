@@ -1,6 +1,8 @@
 package devopsdistilled.operp.client.exceptions;
 
-public class NullFieldException extends Exception {
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
+
+public class NullFieldException extends EntityValidationException {
 
 	private static final long serialVersionUID = -629948828110637464L;
 

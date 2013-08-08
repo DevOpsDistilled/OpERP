@@ -1,6 +1,8 @@
 package devopsdistilled.operp.client.items.exceptions;
 
-public class ProductBrandPairExistsException extends Exception {
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
+
+public class ProductBrandPairExistsException extends EntityValidationException {
 
 	public ProductBrandPairExistsException(String message) {
 		super(message);
