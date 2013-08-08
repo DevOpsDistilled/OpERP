@@ -14,8 +14,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.CreateWarehousePaneModelObserver;

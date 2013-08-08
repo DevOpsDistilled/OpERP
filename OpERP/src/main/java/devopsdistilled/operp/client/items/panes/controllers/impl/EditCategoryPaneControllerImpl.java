@@ -1,8 +1,9 @@
 package devopsdistilled.operp.client.items.panes.controllers.impl;
 
 import javax.inject.Inject;
+
+import devopsdistilled.operp.client.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.items.models.CategoryModel;
 import devopsdistilled.operp.client.items.panes.EditCategoryPane;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
