@@ -100,5 +100,4 @@ public class JpaContext {
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
-
 }
