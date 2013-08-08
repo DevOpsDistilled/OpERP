@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.panes.controllers.EditCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.details.CategoryDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditCategoryPaneModelObserver;
@@ -82,7 +83,7 @@ public class EditCategoryPane extends SubTaskPane implements
 					getDialog().dispose();
 					categoryDetailsPane.show(category);
 
-				} catch (Exception e1) {
+				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 			}

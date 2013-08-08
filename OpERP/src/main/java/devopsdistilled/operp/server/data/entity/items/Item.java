@@ -1,6 +1,5 @@
 package devopsdistilled.operp.server.data.entity.items;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,11 +28,13 @@ public class Item extends Entiti<Long> {
 
 	private Double price;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	// (cascade = CascadeType.ALL)
 	@JoinColumn(name = "productId")
 	private Product product;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	// (cascade = CascadeType.ALL)
 	@JoinColumn(name = "brandId")
 	private Brand brand;
 
