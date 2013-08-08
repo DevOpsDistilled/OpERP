@@ -111,53 +111,5 @@ public class DbContext {
 			SessionFactory sessionFactory) {
 		return new HibernateTransactionManager(sessionFactory);
 	}
-	
-	/*
-	 * @Bean public static PropertySourcesPlaceholderConfigurer
-	 * getPropertySourcesPlaceholderConfigurer() { return new
-	 * PropertySourcesPlaceholderConfigurer(); }
-	 * 
-	 * @Bean public JpaVendorAdapter jpaVendorAdapter() {
-	 * HibernateJpaVendorAdapter jpaVendorAdapter = new
-	 * HibernateJpaVendorAdapter(); jpaVendorAdapter.setDatabase(Database.HSQL);
-	 * jpaVendorAdapter.setGenerateDdl(true); jpaVendorAdapter.setShowSql(true);
-	 * jpaVendorAdapter
-	 * .setDatabasePlatform("org.hibernate.dialect.HSQLDialect"); return
-	 * jpaVendorAdapter; }
-	 * 
-	 * @Bean public LocalContainerEntityManagerFactoryBean
-	 * entityManagerFactory() { LocalContainerEntityManagerFactoryBean emf = new
-	 * LocalContainerEntityManagerFactoryBean();
-	 * emf.setDataSource(this.hsqlDataSource());
-	 * emf.setJpaVendorAdapter(this.jpaVendorAdapter());
-	 * emf.setPackagesToScan(packagesToScan);
-	 * emf.setJpaProperties(this.hibernateProperties()); return emf; }
-	 *//**
-	 * 
-	 * This is setting up the hibernate transaction manager
-	 * 
-	 */
-	/*
-	 * @Bean public HibernateTransactionManager hibernateTransactionManager(
-	 * SessionFactory sessionFactory) { return new
-	 * HibernateTransactionManager(sessionFactory); }
-	 */
-	/*
-	 * @Bean public JpaDialect jpaDialect() { return new HibernateJpaDialect();
-	 * }
-	 * 
-	 * @Bean public JpaTransactionManager transactionManager() {
-	 * JpaTransactionManager transactionManager = new JpaTransactionManager();
-	 * transactionManager.setEntityManagerFactory(entityManagerFactory()
-	 * .getObject()); transactionManager.setJpaDialect(jpaDialect()); return
-	 * transactionManager; }
-	 * 
-	 * @Bean public Properties hibernateProperties() { Properties hibernateProps
-	 * = new Properties(); hibernateProps.setProperty("hibernate.hbm2ddl.auto",
-	 * "create"); return hibernateProps; }
-	 * 
-	 * @Bean public PersistenceExceptionTranslationPostProcessor
-	 * exceptionTranslationPostProcessor() { return new
-	 * PersistenceExceptionTranslationPostProcessor(); }
-	 */
+
 }
