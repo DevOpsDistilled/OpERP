@@ -78,9 +78,13 @@ public class ItemServiceTest {
 
 		Product detProduct = new Product();
 		detProduct.setProductId(product.getProductId());
-		detProduct.setProductName(product.getProductName());
+		detProduct.setProductName("DetachedProduct");
 		// To test if save() is successful even with detached product
 		item.setProduct(detProduct);
+
+		Brand detBrand = new Brand();
+		detBrand.setBrandID(brand.getBrandID());
+		detBrand.setBrandName("DetachedBrand");
 		item.setBrand(brand);
 
 		item = itemService.save(item);
