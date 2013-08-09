@@ -1,17 +1,19 @@
 package devopsdistilled.operp.client.stock;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
 
 public class StockMgmtPane extends TaskPane {
 
@@ -25,6 +27,7 @@ public class StockMgmtPane extends TaskPane {
 	private JButton btnCreateStock;
 	private JButton btnCreateWarehouse;
 	private JButton btnListWarehouse;
+	private JButton btnTransferStock;
 
 	@Override
 	public String toString() {
@@ -84,6 +87,9 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnListWarehouse, "cell 1 2");
+		
+		btnTransferStock = new JButton("Transfer Stock");
+		pane.add(btnTransferStock, "cell 0 4");
 
 		return pane;
 
