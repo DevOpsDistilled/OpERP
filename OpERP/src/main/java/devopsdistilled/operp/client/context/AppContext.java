@@ -7,7 +7,7 @@ import devopsdistilled.operp.client.context.items.ItemContext;
 import devopsdistilled.operp.client.context.stock.StockContext;
 
 @Configuration
-@Import({ ItemContext.class, StockContext.class })
+@Import({ RmiContext.class, StockContext.class, ItemContext.class })
 public class AppContext {
 
 }
