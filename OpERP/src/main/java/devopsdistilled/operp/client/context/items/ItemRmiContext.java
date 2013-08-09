@@ -11,7 +11,7 @@ import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
 
 @Configuration
-public class RmiContext {
+public class ItemRmiContext {
 
 	@Bean
 	public RmiProxyFactoryBean itemService() {

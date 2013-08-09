@@ -8,7 +8,7 @@ import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Configuration
-public class RmiContext {
+public class StockRmiContext {
 
 	@Bean
 	public RmiProxyFactoryBean stockService() {
