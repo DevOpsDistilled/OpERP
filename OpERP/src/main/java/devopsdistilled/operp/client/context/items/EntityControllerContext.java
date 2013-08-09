@@ -11,10 +11,6 @@ import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.items.controllers.impl.BrandControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.CategoryControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.ItemControllerImpl;
-import devopsdistilled.operp.client.stock.controllers.StockController;
-import devopsdistilled.operp.client.stock.controllers.WarehouseController;
-import devopsdistilled.operp.client.stock.controllers.impl.StockControllerImpl;
-import devopsdistilled.operp.client.stock.controllers.impl.WarehouseControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.ManufacturerControllerImpl;
 import devopsdistilled.operp.client.items.controllers.impl.ProductControllerImpl;
 
@@ -24,16 +20,6 @@ public class EntityControllerContext {
 	@Bean
 	public ItemController itemController() {
 		return new ItemControllerImpl();
-	}
-
-	@Bean
-	public StockController stockController() {
-		return new StockControllerImpl();
-	}
-
-	@Bean
-	public WarehouseController warehouseController() {
-		return new WarehouseControllerImpl();
 	}
 
 	@Bean
