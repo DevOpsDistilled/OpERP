@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;

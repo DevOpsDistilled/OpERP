@@ -41,4 +41,5 @@ public class EntityControllerContext {
 	public BrandController brandController() {
 		return new BrandControllerImpl();
 	}
+
 }
