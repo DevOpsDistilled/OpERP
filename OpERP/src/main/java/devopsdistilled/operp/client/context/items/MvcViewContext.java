@@ -73,7 +73,7 @@ public class MvcViewContext {
 	}
 	
 	@Bean
-	public UpdateStockPane createStock(){
+	public UpdateStockPane updateStock(){
 		return new UpdateStockPane();
 	}
 	

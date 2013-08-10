@@ -78,7 +78,7 @@ public class MvcModelContext {
 	}
 	
 	@Bean 
-	public UpdateStockPaneModel createStockPaneModel(){
+	public UpdateStockPaneModel updateStockPaneModel(){
 		return new UpdateStockPaneModelImpl();
 	}
 	@Bean

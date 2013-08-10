@@ -82,7 +82,7 @@ public class MvcControllerContext {
 	}
 	
 	@Bean
-	public UpdateStockPaneController createStockPaneController(){
+	public UpdateStockPaneController updateStockPaneController(){
 		return new UpdateStockPaneControllerImpl();
 	}
 	
