@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -13,12 +14,16 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class TransferStockPane extends SubTaskPane implements
 		TransferStockPaneModelObserver, WarehouseModelObserver {
+
+	@Inject
+	private WarehouseController warehouseController;
 
 	private final JPanel pane;
 	private final JTextField quantityField;
@@ -45,6 +50,12 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblQuantity, "cell 0 2,alignx trailing");
 
 		JButton btnNewWarehouse = new JButton("New Warehouse");
+		btnNewWarehouse.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warehouseController.create();
+			}
+		});
 		pane.add(btnNewWarehouse, "cell 1 1");
 
 		quantityField = new JTextField();
