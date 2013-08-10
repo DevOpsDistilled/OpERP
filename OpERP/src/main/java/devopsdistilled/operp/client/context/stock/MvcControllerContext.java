@@ -8,12 +8,12 @@ import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneCon
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
-import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.TransferStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
 
 @Configuration
