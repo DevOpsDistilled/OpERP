@@ -18,11 +18,6 @@ import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModel
 public class MvcModelContext {
 
 	@Bean
-	public UpdateStockPaneModel createStockPaneModel() {
-		return new UpdateStockPaneModelImpl();
-	}
-
-	@Bean
 	public ListStockPaneModel listStockPaneModel() {
 		return new ListStockPaneModelImpl();
 	}
