@@ -5,7 +5,7 @@ import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public class MainModelImpl extends AbstractModel<MainModelObserver> implements
 		MainModel {
-
+	
 	private TaskPane selectedTaskPane;
 	private String title;
 

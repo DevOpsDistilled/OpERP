@@ -2,7 +2,6 @@ package devopsdistilled.operp.client.context.items;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import devopsdistilled.operp.client.items.panes.controllers.CreateBrandPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateCategoryPaneController;
 import devopsdistilled.operp.client.items.panes.controllers.CreateItemPaneController;
@@ -31,6 +30,16 @@ import devopsdistilled.operp.client.items.panes.controllers.impl.EditProductPane
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListBrandPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListCategoryPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListItemPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListStockPaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.UpdateStockPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListManufacturerPaneControllerImpl;
 import devopsdistilled.operp.client.items.panes.controllers.impl.ListProductPaneControllerImpl;
 
@@ -66,7 +75,32 @@ public class MvcControllerContext {
 	public ListCategoryPaneController listCategoryPaneController() {
 		return new ListCategoryPaneControllerImpl();
 	}
-
+	
+	@Bean
+	public ListStockPaneController listStockPaneController(){
+		return new ListStockPaneControllerImpl();
+	}
+	
+	@Bean
+	public UpdateStockPaneController updateStockPaneController(){
+		return new UpdateStockPaneControllerImpl();
+	}
+	
+	@Bean
+	public CreateWarehousePaneController createWarehousePaneController(){
+		return new CreateWareHousePaneControllerImpl();
+	}
+	
+	@Bean
+	public ListWarehousePaneController listWarehousePaneController(){
+		return new ListWarehousePaneControllerImpl();
+	}
+	
+	@Bean
+	public EditWarehousePaneController editWarehousePaneController(){
+		return new EditWarehousePaneControllerImpl();
+	}
+	
 	@Bean
 	public CreateProductPaneController createProductPaneController() {
 		return new CreateProductPaneControllerImpl();
@@ -111,4 +145,5 @@ public class MvcControllerContext {
 	public EditBrandPaneController editBrandPaneController() {
 		return new EditBrandPaneControllerImpl();
 	}
+	
 }

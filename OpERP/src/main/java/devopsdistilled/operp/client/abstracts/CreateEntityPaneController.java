@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.abstracts;
 
+
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.Entiti;
 

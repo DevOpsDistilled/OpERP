@@ -5,12 +5,13 @@ import javax.inject.Inject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
-
 import devopsdistilled.operp.server.data.service.items.BrandService;
 import devopsdistilled.operp.server.data.service.items.CategoryService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
 import devopsdistilled.operp.server.data.service.items.ManufacturerService;
 import devopsdistilled.operp.server.data.service.items.ProductService;
+import devopsdistilled.operp.server.data.service.stock.StockService;
+import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Configuration
 public class RmiContext {
@@ -26,10 +27,17 @@ public class RmiContext {
 
 	@Inject
 	private BrandService brandService;
+	
+	@Inject 
+	private StockService stockService;
+	
+	@Inject
+	private WarehouseService warehouseService;
 
 	@Inject
 	private ManufacturerService manufacturerService;
-
+	
+	
 	@Bean
 	public RmiServiceExporter rmiItemServiceExporter() {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
@@ -59,7 +67,26 @@ public class RmiContext {
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
 	}
-
+	
+	@Bean
+	public RmiServiceExporter rmiStockServiceExporter(){
+		RmiServiceExporter rmiServiceExportor=new RmiServiceExporter();
+		rmiServiceExportor.setServiceName("StockService");
+		rmiServiceExportor.setServiceInterface(StockService.class);
+		rmiServiceExportor.setService(stockService);
+		rmiServiceExportor.setRegistryPort(1099);
+		return rmiServiceExportor;
+		
+	}
+	
+	@Bean
+	public RmiServiceExporter rmiWarehouseServiceExporter(){
+		RmiServiceExporter rmiServiceExporter=new RmiServiceExporter();
+		rmiServiceExporter.setServiceName("WarehouseService");
+		rmiServiceExporter.setServiceInterface(WarehouseService.class);
+		rmiServiceExporter.setService(warehouseService);
+		return rmiServiceExporter;
+	}
 	@Bean
 	public RmiServiceExporter rmiCategoryServiceExporter() {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
@@ -79,4 +106,5 @@ public class RmiContext {
 		rmiServiceExporter.setRegistryPort(1099);
 		return rmiServiceExporter;
 	}
+	
 }
