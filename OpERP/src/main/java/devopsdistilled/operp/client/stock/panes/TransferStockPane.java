@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -16,11 +17,15 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
+import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
 import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class TransferStockPane extends SubTaskPane implements
 		TransferStockPaneModelObserver, WarehouseModelObserver {
+
+	@Inject
+	private TransferStockPaneController controller;
 
 	@Inject
 	private WarehouseController warehouseController;
@@ -75,6 +80,23 @@ public class TransferStockPane extends SubTaskPane implements
 		btnTransfer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Warehouse fromWarehouse = (Warehouse) fromWarehouseCombo
+						.getSelectedItem();
+				Warehouse toWarehouse = (Warehouse) toWarehouseCombo
+						.getSelectedItem();
+
+				try {
+					Long quantity = Long.parseLong(quantityField.getText()
+							.trim());
+
+					controller.validate(fromWarehouse, toWarehouse, quantity);
+
+					controller.transfer(fromWarehouse, toWarehouse, quantity);
+
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Quantity must be a numeric value");
+				}
 			}
 		});
 		pane.add(btnTransfer, "cell 1 4");
