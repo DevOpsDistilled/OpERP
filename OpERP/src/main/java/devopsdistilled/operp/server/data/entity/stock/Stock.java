@@ -80,7 +80,8 @@ public class Stock extends Entiti<Long> {
 
 	@Override
 	public String toString() {
-		return "test";
+		return new String(getQuantity().toString() + " " + getItem() + " -> "
+				+ getWarehouse());
 	}
 
 }
