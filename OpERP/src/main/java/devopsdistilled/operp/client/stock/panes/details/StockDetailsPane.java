@@ -25,6 +25,8 @@ public class StockDetailsPane extends
 	private JTextField warehouseField;
 	private JLabel lblQuantity;
 	private JTextField quantityField;
+	private JLabel lblDate;
+	private JTextField dateField;
 	
 	public StockDetailsPane(){
 		dialog.setSize(400,200);
@@ -61,6 +63,14 @@ public class StockDetailsPane extends
 		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 		
+		lblDate = new JLabel("Date");
+		pane.add(lblDate, "cell 0 4,alignx trailing");
+		
+		dateField = new JTextField();
+		dateField.setEditable(false);
+		pane.add(dateField, "cell 1 4,growx");
+		dateField.setColumns(10);
+		
 	}
 	@Override
 	public JPanel getPane() {
@@ -77,6 +87,7 @@ public class StockDetailsPane extends
 			itemField.setText(stock.getItem().getItemName());
 			warehouseField.setText(stock.getWarehouse().getWarehouseName());
 			quantityField.setText(stock.getQuantity().toString());
+			dateField.setText(stock.getDate().toString());
 			showDetailsPane(getPane());
 		}else{
 			dialog.dispose();

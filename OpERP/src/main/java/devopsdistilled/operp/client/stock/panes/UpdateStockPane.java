@@ -18,13 +18,12 @@ import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPane
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
-
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 import java.util.List;
 
 public class UpdateStockPane extends SubTaskPane implements
@@ -65,7 +64,6 @@ public class UpdateStockPane extends SubTaskPane implements
 		btnNewItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
 				itemController.create();
 			}
 		});
@@ -83,7 +81,6 @@ public class UpdateStockPane extends SubTaskPane implements
 		btnNewWarehouse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
 				warehouseController.create();
 			}
 		});
@@ -117,18 +114,22 @@ public class UpdateStockPane extends SubTaskPane implements
 				Warehouse warehouse=(Warehouse)comboWarehouses.getSelectedItem();
 				stock.setWarehouse(warehouse);
 				String itemquantity=quantityField.getText().trim();
+				Date date=new Date();
+				stock.setDate(date);
 				
 				try{
+					
 					Long quantity=Long.parseLong(itemquantity);
 						stock.setQuantity(quantity);
+						
 					try{
 						controller.validate(stock);
 						stock=controller.save(stock);
 						getDialog().dispose();
 						stockDetailsPane.show(stock);
 						
-					}catch(NullFieldException ex){
-						JOptionPane.showMessageDialog(getPane(), "Required Fields are Null");
+					}catch(NullFieldException e1){
+						JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 					}
 				}catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),
