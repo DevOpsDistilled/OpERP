@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.stock.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -112,19 +113,23 @@ public class UpdateStockPane extends SubTaskPane implements
 						.getSelectedItem();
 				stock.setWarehouse(warehouse);
 				String itemquantity = quantityField.getText().trim();
+				Date date = new Date();
+				stock.setDate(date);
 
 				try {
+
 					Long quantity = Long.parseLong(itemquantity);
 					stock.setQuantity(quantity);
+
 					try {
 						controller.validate(stock);
 						stock = controller.save(stock);
 						getDialog().dispose();
 						stockDetailsPane.show(stock);
 
-					} catch (NullFieldException ex) {
+					} catch (NullFieldException e1) {
 						JOptionPane.showMessageDialog(getPane(),
-								"Required Fields are Null");
+								e1.getMessage());
 					}
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(getPane(),

@@ -40,10 +40,19 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	@Override
 	public void validate(Stock stock) throws NullFieldException {
 
-		if (stock.getItem() == null || stock.getQuantity() == null
-				|| stock.getWarehouse() == null) {
+		if (stock.getQuantity() == null)
+			throw new NullFieldException("Quantity cant't be empty");
 
-			throw new NullFieldException();
+		if (stock.getItem() == null)
+			throw new NullFieldException("Stock must be associated with Item");
+
+		if (stock.getWarehouse() == null)
+			throw new NullFieldException(
+					"Stock must be associated with Warehouse");
+
+		if (stockModel.getService().isItemWarehousePairExists(stock.getItem(),
+				stock.getWarehouse())) {
+			// TODO
 		}
 
 	}
@@ -52,6 +61,7 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	public Stock save(Stock stock) {
 		Stock savedStock = stockModel.saveAndUpdateModel(stock);
 		return savedStock;
+
 	}
 
 }

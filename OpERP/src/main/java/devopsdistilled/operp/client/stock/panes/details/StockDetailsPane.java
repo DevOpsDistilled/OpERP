@@ -1,14 +1,15 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
-import javax.swing.JLabel;
 
 public class StockDetailsPane extends
 		AbstractEntityDetailsPane<Stock, StockController> {
@@ -17,17 +18,18 @@ public class StockDetailsPane extends
 	private StockController stockController;
 
 	private Stock stock;
-	private JPanel pane;
-	private JTextField stockIdField;
-	private JLabel lblItem;
-	private JTextField itemField;
-	private JLabel lblWarehouse;
-	private JTextField warehouseField;
-	private JLabel lblQuantity;
-	private JTextField quantityField;
+	private final JPanel pane;
+	private final JTextField stockIdField;
+	private final JLabel lblItem;
+	private final JTextField itemField;
+	private final JLabel lblWarehouse;
+	private final JTextField warehouseField;
+	private final JLabel lblQuantity;
+	private final JTextField quantityField;
+	private final JLabel lblDate;
+	private final JTextField dateField;
 
 	public StockDetailsPane() {
-		dialog.setSize(400, 200);
 		pane = new JPanel(new MigLayout("debug", "[][grow]", "[][][][][][]"));
 		JLabel lblStockId = new JLabel("Stock Id");
 		pane.add(lblStockId, "cell 0 0");
@@ -61,6 +63,14 @@ public class StockDetailsPane extends
 		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 
+		lblDate = new JLabel("Date");
+		pane.add(lblDate, "cell 0 4,alignx trailing");
+
+		dateField = new JTextField();
+		dateField.setEditable(false);
+		pane.add(dateField, "cell 1 4,growx");
+		dateField.setColumns(10);
+
 	}
 
 	@Override
@@ -78,6 +88,7 @@ public class StockDetailsPane extends
 			itemField.setText(stock.getItem().getItemName());
 			warehouseField.setText(stock.getWarehouse().getWarehouseName());
 			quantityField.setText(stock.getQuantity().toString());
+			dateField.setText(stock.getDate().toString());
 			showDetailsPane(getPane());
 		} else {
 			dialog.dispose();

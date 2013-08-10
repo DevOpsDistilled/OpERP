@@ -28,12 +28,13 @@ public class MvcViewContext {
 	}
 
 	@Bean
-	public UpdateStockPane createStock() {
-		return new UpdateStockPane();
-	}
-
-	@Bean
 	public ListStockPane listStockPane() {
 		return new ListStockPane();
 	}
+
+	@Bean
+	public UpdateStockPane updateStockPane() {
+		return new UpdateStockPane();
+	}
+
 }

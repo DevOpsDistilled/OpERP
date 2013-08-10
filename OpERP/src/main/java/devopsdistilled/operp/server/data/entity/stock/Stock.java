@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.entity.stock;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,12 +15,13 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 @Entity
 public class Stock extends Entiti<Long> {
 
-	private static final long serialVersionUID = 6110051890442579005L;
+	private static final long serialVersionUID = 6110042579005L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stockId;
 	private Long quantity;
+	private Date date;
 
 	@ManyToOne
 	// (cascade=CascadeType.ALL)
@@ -62,6 +65,14 @@ public class Stock extends Entiti<Long> {
 		this.stockId = stockId;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public Long id() {
 		return stockId;
@@ -69,8 +80,7 @@ public class Stock extends Entiti<Long> {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "test";
 	}
 
 }
