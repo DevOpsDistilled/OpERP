@@ -1,6 +1,5 @@
-package devopsdistilled.operp.client.items.exceptions;
+package devopsdistilled.operp.client.exceptions;
 
-import devopsdistilled.operp.client.exceptions.EntityValidationException;
 
 public class EntityNameExistsException extends EntityValidationException {
 

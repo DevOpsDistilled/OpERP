@@ -8,22 +8,22 @@ import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserve
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
-public class WarehouseModelImpl extends 
+public class WarehouseModelImpl
+		extends
 		AbstractEntityModel<Warehouse, WarehouseService, WarehouseModelObserver>
-		implements WarehouseModel{
-	
+		implements WarehouseModel {
+
 	@Inject
-	private  WarehouseService service;
-	
+	private WarehouseService service;
+
 	@Override
 	public WarehouseService getService() {
-		return service ;
+		return service;
 	}
 
 	@Override
 	protected Class<WarehouseModelObserver> getObserverClass() {
 		return WarehouseModelObserver.class;
 	}
-
 
 }

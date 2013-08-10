@@ -2,8 +2,8 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
 import javax.inject.Inject;
 
+import devopsdistilled.operp.client.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;

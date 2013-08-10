@@ -5,9 +5,9 @@ import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.observers.EditWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-public class EditWarehousePaneModelImpl extends 
+public class EditWarehousePaneModelImpl extends
 		AbstractEditEntityPaneModel<Warehouse, EditWarehousePaneModelObserver>
-		implements EditWarehousePaneModel{
+		implements EditWarehousePaneModel {
 
 	@Override
 	public String getTitle() {

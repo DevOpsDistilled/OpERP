@@ -19,40 +19,42 @@ import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.ListStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 
-public class ListStockPane extends SubTaskPane
-		implements ListStockPaneModelObserver,StockModelObserver {
+public class ListStockPane extends SubTaskPane implements
+		ListStockPaneModelObserver, StockModelObserver {
 
 	@Inject
 	private StockDetailsPane stockDetailsPane;
-	
-	private JPanel pane;
-	private JTable table;
+
+	private final JPanel pane;
+	private final JTable table;
 	BeanTableModel<Stock> tableModel;
-	
-	public ListStockPane(){
-		pane=new JPanel();
-		pane.setLayout(new MigLayout("debug,fill","[]","[]"));
-		table=new JTable(tableModel);
+
+	public ListStockPane() {
+		pane = new JPanel();
+		pane.setLayout(new MigLayout("debug,fill", "[]", "[]"));
+		table = new JTable(tableModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e){
-				if(SwingUtilities.isLeftMouseButton(e) 
+			public void mousePressed(MouseEvent e) {
+				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
-						&& table.getSelectedRow() != -1){
-					Stock stock=tableModel.getRow(table.getSelectedRow());
+						&& table.getSelectedRow() != -1) {
+					Stock stock = tableModel.getRow(table.getSelectedRow());
 					stockDetailsPane.show(stock);
 				}
 			}
 		});
-		
-		final JScrollPane scrollPane=new JScrollPane(table,
+
+		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
-		pane.add(scrollPane,"grow");
-		
+
+		pane.add(scrollPane, "grow");
+
 	}
+
 	@Override
 	public JPanel getPane() {
 		return pane;
@@ -60,10 +62,10 @@ public class ListStockPane extends SubTaskPane
 
 	@Override
 	public void updateStock(List<Stock> stocks) {
-		tableModel=null;
-		tableModel=new BeanTableModel<>(Stock.class,stocks);
-		
-		for(int i=0;i<tableModel.getColumnCount();i++){
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Stock.class, stocks);
+
+		for (int i = 0; i < tableModel.getColumnCount(); i++) {
 			tableModel.setColumnEditable(i, false);
 		}
 		tableModel.setModelEditable(false);

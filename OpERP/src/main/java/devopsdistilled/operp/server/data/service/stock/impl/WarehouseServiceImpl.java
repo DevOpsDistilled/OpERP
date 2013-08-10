@@ -1,8 +1,5 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -37,15 +34,15 @@ public class WarehouseServiceImpl extends
 		return false;
 	}
 
-
 	@Override
 	public boolean isWarehouseNameValidForWarehouse(Long warehouseId,
 			String warehouseName) {
-		Warehouse warehouse=warehouseRepository.findByWarehouseName(warehouseName);
-		if(warehouse==null){
+		Warehouse warehouse = warehouseRepository
+				.findByWarehouseName(warehouseName);
+		if (warehouse == null) {
 			return true;
 		}
-		if(warehouse.getWarehouseId().equals(warehouseId))
+		if (warehouse.getWarehouseId().equals(warehouseId))
 			return true;
 		return false;
 	}
@@ -53,8 +50,6 @@ public class WarehouseServiceImpl extends
 	@Override
 	protected Warehouse findByEntityName(String entityName) {
 		return warehouseRepository.findByWarehouseName(entityName);
-		
-
 	}
 
 }

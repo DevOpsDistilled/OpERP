@@ -18,21 +18,21 @@ public class Stock extends Entiti<Long> {
 	private static final long serialVersionUID = 6110042579005L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stockId;
 	private Long quantity;
 	private Date date;
 
 	@ManyToOne
-	//(cascade=CascadeType.ALL)
-	@JoinColumn(name="itemId")
+	// (cascade=CascadeType.ALL)
+	@JoinColumn(name = "itemId")
 	private Item item;
-	
+
 	@ManyToOne
-	//(cascade=CascadeType.ALL)
-	@JoinColumn(name="warehouseId")
+	// (cascade=CascadeType.ALL)
+	@JoinColumn(name = "warehouseId")
 	private Warehouse warehouse;
-	
+
 	public Item getItem() {
 		return item;
 	}
@@ -49,8 +49,6 @@ public class Stock extends Entiti<Long> {
 		this.warehouse = warehouse;
 	}
 
-	
-	
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -59,8 +57,6 @@ public class Stock extends Entiti<Long> {
 		this.quantity = quantity;
 	}
 
-	
-
 	public Long getStockId() {
 		return stockId;
 	}
@@ -68,7 +64,7 @@ public class Stock extends Entiti<Long> {
 	public void setStockId(Long stockId) {
 		this.stockId = stockId;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -76,7 +72,6 @@ public class Stock extends Entiti<Long> {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
 
 	@Override
 	public Long id() {
@@ -87,7 +82,5 @@ public class Stock extends Entiti<Long> {
 	public String toString() {
 		return "test";
 	}
-
-	
 
 }

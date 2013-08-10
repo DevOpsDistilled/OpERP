@@ -16,11 +16,6 @@ import devopsdistilled.operp.client.items.panes.EditProductPane;
 import devopsdistilled.operp.client.items.panes.ListBrandPane;
 import devopsdistilled.operp.client.items.panes.ListCategoryPane;
 import devopsdistilled.operp.client.items.panes.ListItemPane;
-import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
-import devopsdistilled.operp.client.stock.panes.EditWarehousePane;
-import devopsdistilled.operp.client.stock.panes.ListStockPane;
-import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
-import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.items.panes.ListManufacturerPane;
 import devopsdistilled.operp.client.items.panes.ListProductPane;
 
@@ -56,32 +51,7 @@ public class MvcViewContext {
 	public ListCategoryPane listCategoryPane() {
 		return new ListCategoryPane();
 	}
-	
-	@Bean
-	public CreateWarehousePane createWarehousePane(){
-		return new CreateWarehousePane();
-	}
-	
-	@Bean
-	public ListWarehousePane listWarehousePane(){
-		return new ListWarehousePane();
-	}
-	
-	@Bean
-	public EditWarehousePane editWarehousePane(){
-		return new EditWarehousePane();
-	}
-	
-	@Bean
-	public UpdateStockPane updateStock(){
-		return new UpdateStockPane();
-	}
-	
-	@Bean
-	public ListStockPane listStockPane(){
-		return new ListStockPane();
-	}
-	
+
 	@Bean
 	public CreateProductPane createProductPane() {
 		return new CreateProductPane();
@@ -126,5 +96,5 @@ public class MvcViewContext {
 	public EditBrandPane editBrandPane() {
 		return new EditBrandPane();
 	}
-	
+
 }

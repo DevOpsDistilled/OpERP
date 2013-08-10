@@ -96,7 +96,7 @@ public class CreateItemPane extends SubTaskPane implements
 			}
 		});
 		pane.add(btnCancel, "flowx,cell 2 4");
-		
+
 		JButton btnSave = new JButton("Create");
 		btnSave.addActionListener(new ActionListener() {
 			@Override

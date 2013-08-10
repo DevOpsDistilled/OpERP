@@ -50,7 +50,6 @@ public class UIContext {
 		return new ItemControllerImpl();
 	}
 
-
 	@Bean
 	public ItemModel itemModel() {
 		return new ItemModelImpl();
@@ -72,20 +71,18 @@ public class UIContext {
 	}
 
 	@Bean
-	private StockModel stockModel(){
+	private StockModel stockModel() {
 		return new StockModelImpl();
 	}
 
 	@Bean
-	public WarehouseController warehouseController(){
+	public WarehouseController warehouseController() {
 		return new WarehouseControllerImpl();
 	}
-		
+
 	@Bean
-	private WarehouseModel warehouseModel(){
+	private WarehouseModel warehouseModel() {
 		return new WarehouseModelImpl();
 	}
-	
-	
-	
+
 }

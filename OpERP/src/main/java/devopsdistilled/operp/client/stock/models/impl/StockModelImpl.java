@@ -8,10 +8,10 @@ import devopsdistilled.operp.client.stock.models.observers.StockModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 
-public class StockModelImpl extends 
-		AbstractEntityModel<Stock, StockService, StockModelObserver>
-		implements StockModel{
-	
+public class StockModelImpl extends
+		AbstractEntityModel<Stock, StockService, StockModelObserver> implements
+		StockModel {
+
 	@Inject
 	private StockService service;
 

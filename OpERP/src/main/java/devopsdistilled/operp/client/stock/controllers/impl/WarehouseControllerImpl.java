@@ -11,51 +11,42 @@ import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneCon
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-public class WarehouseControllerImpl implements WarehouseController{
-	
+public class WarehouseControllerImpl implements WarehouseController {
+
 	@Inject
 	private ApplicationContext context;
-	
+
 	@Inject
 	private WarehouseModel warehouseModel;
-	
-	
+
 	@Override
 	public void create() {
-		CreateWarehousePaneController createWarehousePaneController=context
+		CreateWarehousePaneController createWarehousePaneController = context
 				.getBean(CreateWarehousePaneController.class);
 		createWarehousePaneController.init();
-		
-	}
 
+	}
 
 	@Override
 	public void list() {
-		ListWarehousePaneController listWarehousePaneController=context
+		ListWarehousePaneController listWarehousePaneController = context
 				.getBean(ListWarehousePaneController.class);
 		listWarehousePaneController.init();
-		
-		
+
 	}
 
 	@Override
 	public void edit(Warehouse warehouse) {
-		EditWarehousePaneController editWarehousePaneController=context.
-				getBean(EditWarehousePaneController.class);
+		EditWarehousePaneController editWarehousePaneController = context
+				.getBean(EditWarehousePaneController.class);
 		editWarehousePaneController.init(warehouse);
-		
+
 	}
-	
+
 	@Override
 	public void delete(Warehouse warehouse) {
 		warehouseModel.deleteAndUpdateModel(warehouse);
-		
+
 	}
-
-
-
-
-
-	
 
 }

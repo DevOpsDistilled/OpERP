@@ -14,8 +14,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
-import devopsdistilled.operp.client.items.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.CreateWarehousePaneModelObserver;
@@ -25,10 +25,10 @@ import javax.swing.JButton;
 
 public class CreateWarehousePane extends SubTaskPane implements
 		CreateWarehousePaneModelObserver {
-	
+
 	@Inject
 	private CreateWarehousePaneController controller;
-	
+
 	@Inject
 	private WarehouseDetailsPane warehouseDetailsPane;
 	private JPanel pane;
@@ -64,10 +64,10 @@ public class CreateWarehousePane extends SubTaskPane implements
 				warehouse.setWarehouseName(warehouseName);
 				try {
 					controller.validate(warehouse);
-					warehouse=controller.save(warehouse);
+					warehouse = controller.save(warehouse);
 					getDialog().dispose();
 					warehouseDetailsPane.show(warehouse);
-					
+
 				} catch (NullFieldException ex) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Required field(s) are Null");

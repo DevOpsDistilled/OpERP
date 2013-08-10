@@ -50,9 +50,11 @@ public class ItemModelTest {
 
 	@Test
 	public void testGetObserverClass() {
-		// After changing getObserverClass to protected, this method can't be tested this way.
+		// After changing getObserverClass to protected, this method can't be
+		// tested this way.
 		/*
-		assertEquals(((ItemModelImpl) itemModel).getObserverClass(),
-				ItemModelObserver.class);*/
+		 * assertEquals(((ItemModelImpl) itemModel).getObserverClass(),
+		 * ItemModelObserver.class);
+		 */
 	}
 }

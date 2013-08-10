@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.context.items;
+package devopsdistilled.operp.client.context.stock;
 
 import org.springframework.context.annotation.Configuration;
 
