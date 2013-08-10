@@ -7,11 +7,13 @@ import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.TransferStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.TransferStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 
 @Configuration
@@ -42,4 +44,8 @@ public class MvcModelContext {
 		return new UpdateStockPaneModelImpl();
 	}
 
+	@Bean
+	public TransferStockPaneModel transferStockPaneModel() {
+		return new TransferStockPaneModelImpl();
+	}
 }

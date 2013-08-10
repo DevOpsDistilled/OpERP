@@ -7,6 +7,8 @@ import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneC
 import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
@@ -42,4 +44,8 @@ public class MvcControllerContext {
 		return new UpdateStockPaneControllerImpl();
 	}
 
+	@Bean
+	public TransferStockPaneController transferStockPaneController() {
+		return new TransferStockPaneControllerImpl();
+	}
 }
