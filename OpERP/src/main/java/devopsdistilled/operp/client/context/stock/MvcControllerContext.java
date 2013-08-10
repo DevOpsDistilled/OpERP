@@ -23,11 +23,6 @@ public class MvcControllerContext {
 	}
 
 	@Bean
-	public UpdateStockPaneController createStockPaneController() {
-		return new UpdateStockPaneControllerImpl();
-	}
-
-	@Bean
 	public CreateWarehousePaneController createWarehousePaneController() {
 		return new CreateWareHousePaneControllerImpl();
 	}
