@@ -42,4 +42,9 @@ public class MvcModelContext {
 		return new EditWarehousePaneModelImpl();
 	}
 
+	@Bean
+	public UpdateStockPaneModel updateStockPaneModel() {
+		return new UpdateStockPaneModelImpl();
+	}
+
 }
