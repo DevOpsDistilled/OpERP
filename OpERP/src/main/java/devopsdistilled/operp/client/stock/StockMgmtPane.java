@@ -87,8 +87,14 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnListWarehouse, "cell 1 2");
-		
+
 		btnTransferStock = new JButton("Transfer Stock");
+		btnTransferStock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockController.transfer();
+			}
+		});
 		pane.add(btnTransferStock, "cell 0 4");
 
 		return pane;
