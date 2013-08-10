@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.stock.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,14 +13,17 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class TransferStockPane extends SubTaskPane implements
-		TransferStockPaneModelObserver {
+		TransferStockPaneModelObserver, WarehouseModelObserver {
 
 	private final JPanel pane;
 	private final JTextField quantityField;
-	private final JComboBox toWarehouseCombo;
+	private final JComboBox<Warehouse> toWarehouseCombo;
+	private final JComboBox<Warehouse> fromWarehouseCombo;
 
 	public TransferStockPane() {
 		pane = new JPanel();
@@ -28,13 +32,13 @@ public class TransferStockPane extends SubTaskPane implements
 		JLabel lblFromWarehouse = new JLabel("From Warehouse");
 		pane.add(lblFromWarehouse, "cell 0 0,alignx trailing");
 
-		JComboBox fromWarehouseCombo = new JComboBox();
+		fromWarehouseCombo = new JComboBox<>();
 		pane.add(fromWarehouseCombo, "cell 1 0,growx");
 
 		JLabel lblToWarehouse = new JLabel("To Warehouse");
 		pane.add(lblToWarehouse, "cell 0 1,alignx trailing");
 
-		toWarehouseCombo = new JComboBox();
+		toWarehouseCombo = new JComboBox<>();
 		pane.add(toWarehouseCombo, "flowx,cell 1 1,growx");
 
 		JLabel lblQuantity = new JLabel("Quantity");
@@ -68,6 +72,30 @@ public class TransferStockPane extends SubTaskPane implements
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateWarehouse(List<Warehouse> warehouses) {
+		Warehouse prevSelectedFrom = (Warehouse) fromWarehouseCombo
+				.getSelectedItem();
+		Warehouse prevSelectedTo = (Warehouse) toWarehouseCombo
+				.getSelectedItem();
+
+		fromWarehouseCombo.removeAllItems();
+		toWarehouseCombo.removeAllItems();
+
+		for (Warehouse warehouse : warehouses) {
+			fromWarehouseCombo.addItem(warehouse);
+			toWarehouseCombo.addItem(warehouse);
+
+			if (prevSelectedFrom != null)
+				if (prevSelectedFrom.compareTo(warehouse) == 0)
+					fromWarehouseCombo.setSelectedItem(warehouse);
+
+			if (prevSelectedTo != null)
+				if (prevSelectedTo.compareTo(warehouse) == 0)
+					toWarehouseCombo.setSelectedItem(warehouse);
+		}
 	}
 
 }
