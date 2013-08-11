@@ -13,7 +13,7 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
 @Entity
-public class Stock extends Entiti<Long> {
+public class StockKeeper extends Entiti<Long> {
 
 	private static final long serialVersionUID = 6110042579005L;
 

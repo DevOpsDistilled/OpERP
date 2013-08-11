@@ -9,7 +9,7 @@ import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
-import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class UpdateStockPaneControllerImpl implements UpdateStockPaneController {
 
@@ -38,28 +38,28 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	}
 
 	@Override
-	public void validate(Stock stock) throws NullFieldException {
+	public void validate(StockKeeper stockKeeper) throws NullFieldException {
 
-		if (stock.getQuantity() == null)
+		if (stockKeeper.getQuantity() == null)
 			throw new NullFieldException("Quantity cant't be empty");
 
-		if (stock.getItem() == null)
+		if (stockKeeper.getItem() == null)
 			throw new NullFieldException("Stock must be associated with Item");
 
-		if (stock.getWarehouse() == null)
+		if (stockKeeper.getWarehouse() == null)
 			throw new NullFieldException(
 					"Stock must be associated with Warehouse");
 
-		if (stockModel.getService().isItemWarehousePairExists(stock.getItem(),
-				stock.getWarehouse())) {
+		if (stockModel.getService().isItemWarehousePairExists(stockKeeper.getItem(),
+				stockKeeper.getWarehouse())) {
 			// TODO
 		}
 
 	}
 
 	@Override
-	public Stock save(Stock stock) {
-		Stock savedStock = stockModel.saveAndUpdateModel(stock);
+	public StockKeeper save(StockKeeper stockKeeper) {
+		StockKeeper savedStock = stockModel.saveAndUpdateModel(stockKeeper);
 		return savedStock;
 
 	}

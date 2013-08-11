@@ -7,7 +7,7 @@ import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
-import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class StockControllerImpl implements StockController {
 
@@ -29,7 +29,7 @@ public class StockControllerImpl implements StockController {
 	}
 
 	@Override
-	public void edit(Stock entity) {
+	public void edit(StockKeeper entity) {
 		// TODO Auto-generated method stub
 
 	}
@@ -40,8 +40,8 @@ public class StockControllerImpl implements StockController {
 	}
 
 	@Override
-	public void delete(Stock stock) {
-		stockModel.deleteAndUpdateModel(stock);
+	public void delete(StockKeeper stockKeeper) {
+		stockModel.deleteAndUpdateModel(stockKeeper);
 	}
 
 	@Override

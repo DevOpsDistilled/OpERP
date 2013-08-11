@@ -17,7 +17,7 @@ import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.stock.models.observers.StockModelObserver;
 import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.ListStockPaneModelObserver;
-import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class ListStockPane extends SubTaskPane implements
 		ListStockPaneModelObserver, StockModelObserver {
@@ -27,7 +27,7 @@ public class ListStockPane extends SubTaskPane implements
 
 	private final JPanel pane;
 	private final JTable table;
-	BeanTableModel<Stock> tableModel;
+	BeanTableModel<StockKeeper> tableModel;
 
 	public ListStockPane() {
 		pane = new JPanel();
@@ -41,8 +41,8 @@ public class ListStockPane extends SubTaskPane implements
 				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
 						&& table.getSelectedRow() != -1) {
-					Stock stock = tableModel.getRow(table.getSelectedRow());
-					stockDetailsPane.show(stock);
+					StockKeeper stockKeeper = tableModel.getRow(table.getSelectedRow());
+					stockDetailsPane.show(stockKeeper);
 				}
 			}
 		});
@@ -61,9 +61,9 @@ public class ListStockPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateStock(List<Stock> stocks) {
+	public void updateStock(List<StockKeeper> stockKeepers) {
 		tableModel = null;
-		tableModel = new BeanTableModel<>(Stock.class, stocks);
+		tableModel = new BeanTableModel<>(StockKeeper.class, stockKeepers);
 
 		for (int i = 0; i < tableModel.getColumnCount(); i++) {
 			tableModel.setColumnEditable(i, false);

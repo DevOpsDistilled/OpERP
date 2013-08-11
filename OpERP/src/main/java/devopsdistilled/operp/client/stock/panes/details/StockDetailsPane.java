@@ -9,15 +9,15 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
-import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class StockDetailsPane extends
-		AbstractEntityDetailsPane<Stock, StockController> {
+		AbstractEntityDetailsPane<StockKeeper, StockController> {
 
 	@Inject
 	private StockController stockController;
 
-	private Stock stock;
+	private StockKeeper stockKeeper;
 	private final JPanel pane;
 	private final JTextField stockIdField;
 	private final JLabel lblItem;
@@ -79,16 +79,16 @@ public class StockDetailsPane extends
 	}
 
 	@Override
-	public void show(Stock stock) {
+	public void show(StockKeeper stockKeeper) {
 
-		this.stock = stock;
+		this.stockKeeper = stockKeeper;
 
-		if (stock != null) {
-			stockIdField.setText(stock.getStockId().toString());
-			itemField.setText(stock.getItem().getItemName());
-			warehouseField.setText(stock.getWarehouse().getWarehouseName());
-			quantityField.setText(stock.getQuantity().toString());
-			dateField.setText(stock.getDate().toString());
+		if (stockKeeper != null) {
+			stockIdField.setText(stockKeeper.getStockId().toString());
+			itemField.setText(stockKeeper.getItem().getItemName());
+			warehouseField.setText(stockKeeper.getWarehouse().getWarehouseName());
+			quantityField.setText(stockKeeper.getQuantity().toString());
+			dateField.setText(stockKeeper.getDate().toString());
 			showDetailsPane(getPane());
 		} else {
 			dialog.dispose();
@@ -107,8 +107,8 @@ public class StockDetailsPane extends
 	}
 
 	@Override
-	protected Stock getEntity() {
-		return stock;
+	protected StockKeeper getEntity() {
+		return stockKeeper;
 	}
 
 }

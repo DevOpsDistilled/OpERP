@@ -25,7 +25,7 @@ import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneContr
 import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class UpdateStockPane extends SubTaskPane implements
@@ -106,26 +106,26 @@ public class UpdateStockPane extends SubTaskPane implements
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Stock stock = new Stock();
+				StockKeeper stockKeeper = new StockKeeper();
 				Item item = (Item) comboItems.getSelectedItem();
-				stock.setItem(item);
+				stockKeeper.setItem(item);
 				Warehouse warehouse = (Warehouse) comboWarehouses
 						.getSelectedItem();
-				stock.setWarehouse(warehouse);
+				stockKeeper.setWarehouse(warehouse);
 				String itemquantity = quantityField.getText().trim();
 				Date date = new Date();
-				stock.setDate(date);
+				stockKeeper.setDate(date);
 
 				try {
 
 					Long quantity = Long.parseLong(itemquantity);
-					stock.setQuantity(quantity);
+					stockKeeper.setQuantity(quantity);
 
 					try {
-						controller.validate(stock);
-						stock = controller.save(stock);
+						controller.validate(stockKeeper);
+						stockKeeper = controller.save(stockKeeper);
 						getDialog().dispose();
-						stockDetailsPane.show(stock);
+						stockDetailsPane.show(stockKeeper);
 
 					} catch (NullFieldException e1) {
 						JOptionPane.showMessageDialog(getPane(),
