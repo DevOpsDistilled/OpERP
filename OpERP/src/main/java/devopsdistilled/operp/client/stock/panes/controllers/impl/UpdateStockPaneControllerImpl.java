@@ -2,7 +2,7 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
 import javax.inject.Inject;
 
-import devopsdistilled.operp.client.exceptions.NullFieldException;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
@@ -34,12 +34,12 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	}
 
 	@Override
-	public void validate(StockKeeper stockKeeper) throws NullFieldException {
+	public void validate() throws EntityValidationException {
 		// TODO
 	}
 
 	@Override
-	public StockKeeper save(StockKeeper stockKeeper) {
+	public StockKeeper save() {
 		// XXX
 		return null;
 	}
