@@ -2,12 +2,15 @@ package devopsdistilled.operp.server.data.entity.stock;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
@@ -20,6 +23,8 @@ public class StockKeeper extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stockKeeperId;
 
+	@Column(insertable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date stockUpdateDate;
 
 	@ManyToOne
