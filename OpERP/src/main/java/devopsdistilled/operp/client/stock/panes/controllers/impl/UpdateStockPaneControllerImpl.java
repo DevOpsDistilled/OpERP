@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.ItemModel;
-import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
@@ -23,9 +22,6 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	private WarehouseModel warehouseModel;
 
 	@Inject
-	private StockModel stockModel;
-
-	@Inject
 	private ItemModel itemModel;
 
 	@Override
@@ -39,29 +35,18 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 
 	@Override
 	public void validate(StockKeeper stockKeeper) throws NullFieldException {
-
-		if (stockKeeper.getQuantity() == null)
-			throw new NullFieldException("Quantity cant't be empty");
-
-		if (stockKeeper.getItem() == null)
-			throw new NullFieldException("Stock must be associated with Item");
-
-		if (stockKeeper.getWarehouse() == null)
-			throw new NullFieldException(
-					"Stock must be associated with Warehouse");
-
-		if (stockModel.getService().isItemWarehousePairExists(stockKeeper.getItem(),
-				stockKeeper.getWarehouse())) {
-			// TODO
-		}
-
+		// TODO
 	}
 
 	@Override
 	public StockKeeper save(StockKeeper stockKeeper) {
-		StockKeeper savedStock = stockModel.saveAndUpdateModel(stockKeeper);
-		return savedStock;
+		// XXX
+		return null;
+	}
 
+	@Override
+	public UpdateStockPaneModel getModel() {
+		return model;
 	}
 
 }
