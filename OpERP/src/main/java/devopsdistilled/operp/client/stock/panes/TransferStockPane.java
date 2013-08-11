@@ -19,6 +19,7 @@ import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
 import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class TransferStockPane extends SubTaskPane implements
@@ -34,10 +35,11 @@ public class TransferStockPane extends SubTaskPane implements
 	private final JTextField quantityField;
 	private final JComboBox<Warehouse> toWarehouseCombo;
 	private final JComboBox<Warehouse> fromWarehouseCombo;
+	private final JComboBox<Item> itemsCombo;
 
 	public TransferStockPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
 		JLabel lblFromWarehouse = new JLabel("From Warehouse");
 		pane.add(lblFromWarehouse, "cell 0 0,alignx trailing");
@@ -45,14 +47,20 @@ public class TransferStockPane extends SubTaskPane implements
 		fromWarehouseCombo = new JComboBox<>();
 		pane.add(fromWarehouseCombo, "cell 1 0,growx");
 
+		JLabel lblItem = new JLabel("Item");
+		pane.add(lblItem, "cell 0 1,alignx trailing");
+
+		itemsCombo = new JComboBox<>();
+		pane.add(itemsCombo, "cell 1 1,growx");
+
 		JLabel lblToWarehouse = new JLabel("To Warehouse");
-		pane.add(lblToWarehouse, "cell 0 1,alignx trailing");
+		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
 
 		toWarehouseCombo = new JComboBox<>();
-		pane.add(toWarehouseCombo, "flowx,cell 1 1,growx");
+		pane.add(toWarehouseCombo, "flowx,cell 1 2,growx");
 
 		JLabel lblQuantity = new JLabel("Quantity");
-		pane.add(lblQuantity, "cell 0 2,alignx trailing");
+		pane.add(lblQuantity, "cell 0 3,alignx trailing");
 
 		JButton btnNewWarehouse = new JButton("New Warehouse");
 		btnNewWarehouse.addActionListener(new ActionListener() {
@@ -61,10 +69,10 @@ public class TransferStockPane extends SubTaskPane implements
 				warehouseController.create();
 			}
 		});
-		pane.add(btnNewWarehouse, "cell 1 1");
+		pane.add(btnNewWarehouse, "cell 1 2");
 
 		quantityField = new JTextField();
-		pane.add(quantityField, "cell 1 2,growx");
+		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -74,7 +82,7 @@ public class TransferStockPane extends SubTaskPane implements
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 1 4");
+		pane.add(btnCancel, "flowx,cell 1 5");
 
 		JButton btnTransfer = new JButton("Transfer");
 		btnTransfer.addActionListener(new ActionListener() {
@@ -99,7 +107,7 @@ public class TransferStockPane extends SubTaskPane implements
 				}
 			}
 		});
-		pane.add(btnTransfer, "cell 1 4");
+		pane.add(btnTransfer, "cell 1 5");
 	}
 
 	@Override
