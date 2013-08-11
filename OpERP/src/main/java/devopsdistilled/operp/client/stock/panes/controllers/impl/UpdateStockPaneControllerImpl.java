@@ -50,11 +50,6 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 			throw new NullFieldException(
 					"Stock must be associated with Warehouse");
 
-		if (stockModel.getService().isItemWarehousePairExists(stock.getItem(),
-				stock.getWarehouse())) {
-			// TODO
-		}
-
 	}
 
 	@Override
