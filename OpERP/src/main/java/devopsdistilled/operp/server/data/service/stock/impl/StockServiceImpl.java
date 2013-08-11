@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.items.Item;
-import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.repo.stock.StockRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
@@ -15,32 +15,17 @@ import devopsdistilled.operp.server.data.service.stock.StockService;
 
 @Service
 public class StockServiceImpl extends
-		AbstractEntityService<StockKeeper, Long, StockRepository> implements
+		AbstractEntityService<Stock, Long, StockRepository> implements
 		StockService {
 
 	private static final long serialVersionUID = -7737068540744137395L;
 
 	@Inject
-	private StockRepository stockRepository;
+	private StockRepository repo;
 
 	@Override
 	protected StockRepository getRepo() {
-		return stockRepository;
-	}
-
-	@Override
-	protected StockKeeper findByEntityName(String entityName) {
-
-		return null;
-	}
-
-	@Override
-	public boolean isItemWarehousePairExists(Item item, Warehouse warehouse) {
-		StockKeeper stockKeeper = stockRepository.findByItemAndWarehouse(item, warehouse);
-		if (stockKeeper != null)
-			return true;
-		else
-			return false;
+		return repo;
 	}
 
 	@Override
@@ -53,6 +38,18 @@ public class StockServiceImpl extends
 	@Override
 	public Long getQuantityOfItemInWarehouse(Long itemId, Long warehouseId) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isItemWarehousePairExists(Item itemName,
+			Warehouse warehouseName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected Stock findByEntityName(String entityName) {
 		return null;
 	}
 
