@@ -5,11 +5,11 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.observers.StockModelObserver;
-import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 
 public class StockModelImpl extends
-		AbstractEntityModel<StockKeeper, StockService, StockModelObserver> implements
+		AbstractEntityModel<Stock, StockService, StockModelObserver> implements
 		StockModel {
 
 	@Inject
@@ -18,11 +18,6 @@ public class StockModelImpl extends
 	@Override
 	public StockService getService() {
 		return service;
-	}
-
-	@Override
-	protected Class<StockModelObserver> getObserverClass() {
-		return StockModelObserver.class;
 	}
 
 }
