@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.stock.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
@@ -45,18 +48,47 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblFromWarehouse, "cell 0 0,alignx trailing");
 
 		fromWarehouseCombo = new JComboBox<>();
+		fromWarehouseCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent event) {
+				if (event.getStateChange() == ItemEvent.SELECTED) {
+					Warehouse fromWarehouse = (Warehouse) event.getItem();
+					controller.getModel().setFromWarehouse(fromWarehouse);
+				}
+
+			}
+		});
 		pane.add(fromWarehouseCombo, "cell 1 0,growx");
 
 		JLabel lblItem = new JLabel("Item");
 		pane.add(lblItem, "cell 0 1,alignx trailing");
 
 		itemsCombo = new JComboBox<>();
+		itemsCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED)
+					controller.getModel().setItemToTransfer((Item) e.getItem());
+			}
+		});
 		pane.add(itemsCombo, "cell 1 1,growx");
 
 		JLabel lblToWarehouse = new JLabel("To Warehouse");
 		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
 
 		toWarehouseCombo = new JComboBox<>();
+		toWarehouseCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				Warehouse toWarehouse = (Warehouse) e.getItem();
+				if (toWarehouse.compareTo(controller.getModel()
+						.getFromWarehouse()) == 0)
+					JOptionPane.showMessageDialog(getPane(),
+							"Source and Destination Warehouse can't be same");
+				else
+					controller.getModel().setToWarehouse(toWarehouse);
+			}
+		});
 		pane.add(toWarehouseCombo, "flowx,cell 1 2,growx");
 
 		JLabel lblQuantity = new JLabel("Quantity");
@@ -72,6 +104,19 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(btnNewWarehouse, "cell 1 2");
 
 		quantityField = new JTextField();
+		quantityField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Long quantity = Long.parseLong(quantityField.getText()
+							.trim());
+					controller.getModel().setQuantity(quantity);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Quantity Field must be numeric value");
+				}
+			}
+		});
 		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 
@@ -88,22 +133,12 @@ public class TransferStockPane extends SubTaskPane implements
 		btnTransfer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Warehouse fromWarehouse = (Warehouse) fromWarehouseCombo
-						.getSelectedItem();
-				Warehouse toWarehouse = (Warehouse) toWarehouseCombo
-						.getSelectedItem();
-
 				try {
-					Long quantity = Long.parseLong(quantityField.getText()
-							.trim());
+					controller.validate();
+					controller.transfer();
 
-					controller.validate(fromWarehouse, toWarehouse, quantity);
-
-					controller.transfer(fromWarehouse, toWarehouse, quantity);
-
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(getPane(),
-							"Quantity must be a numeric value");
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 			}
 		});
@@ -127,7 +162,8 @@ public class TransferStockPane extends SubTaskPane implements
 
 		for (Warehouse warehouse : warehouses) {
 			fromWarehouseCombo.addItem(warehouse);
-			toWarehouseCombo.addItem(warehouse);
+			if (prevSelectedFrom.compareTo(warehouse) != 0)
+				toWarehouseCombo.addItem(warehouse);
 
 			if (prevSelectedFrom != null)
 				if (prevSelectedFrom.compareTo(warehouse) == 0)
@@ -136,6 +172,19 @@ public class TransferStockPane extends SubTaskPane implements
 			if (prevSelectedTo != null)
 				if (prevSelectedTo.compareTo(warehouse) == 0)
 					toWarehouseCombo.setSelectedItem(warehouse);
+		}
+	}
+
+	@Override
+	public void updateItems(List<Item> fromWarehouseItems) {
+		Item prevSelectedItem = (Item) itemsCombo.getSelectedItem();
+		itemsCombo.removeAllItems();
+
+		for (Item item : fromWarehouseItems) {
+			itemsCombo.addItem(item);
+			if (prevSelectedItem != null)
+				if (prevSelectedItem.compareTo(item) == 0)
+					itemsCombo.setSelectedItem(item);
 		}
 	}
 
