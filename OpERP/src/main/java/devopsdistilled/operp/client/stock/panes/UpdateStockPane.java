@@ -23,8 +23,10 @@ import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
+import devopsdistilled.operp.client.stock.panes.details.StockKeepingDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class UpdateStockPane extends SubTaskPane implements
@@ -38,6 +40,9 @@ public class UpdateStockPane extends SubTaskPane implements
 
 	@Inject
 	private ItemController itemController;
+
+	@Inject
+	private StockKeepingDetailsPane stockKeepingDetailsPane;
 
 	private final JPanel pane;
 	private final JTextField quantityField;
@@ -131,9 +136,10 @@ public class UpdateStockPane extends SubTaskPane implements
 			public void actionPerformed(ActionEvent e) {
 				try {
 					controller.validate();
-					controller.save();
-
+					StockKeeper stockKeeper = controller.save();
 					getDialog().dispose();
+					stockKeepingDetailsPane.show(stockKeeper);
+
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
