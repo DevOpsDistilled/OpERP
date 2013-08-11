@@ -45,8 +45,11 @@ public class StockServiceImpl extends
 
 	@Override
 	public Long getQuantityOfItemInWarehouse(Long itemId, Long warehouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		Item item = itemRepository.findOne(itemId);
+		Warehouse warehouse = warehouseRepository.findOne(warehouseId);
+		Stock stock = repo.findByItemAndWarehouse(item, warehouse);
+
+		return stock.getQuantity();
 	}
 
 	@Override
