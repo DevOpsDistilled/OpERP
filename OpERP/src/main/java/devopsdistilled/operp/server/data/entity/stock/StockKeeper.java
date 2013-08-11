@@ -6,11 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
-import devopsdistilled.operp.server.data.entity.items.Item;
 
 @Entity
 public class StockKeeper extends Entiti<Long> {
@@ -19,34 +18,40 @@ public class StockKeeper extends Entiti<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long stockId;
+	private Long stockKeeperId;
+
+	private Date stockUpdateDate;
+
+	@ManyToOne
+	private Stock stock;
+
 	private Long quantity;
-	private Date date;
 
-	@ManyToOne
-	// (cascade=CascadeType.ALL)
-	@JoinColumn(name = "itemId")
-	private Item item;
+	@OneToOne
+	private StockKeeper transferStockKeeper;
 
-	@ManyToOne
-	// (cascade=CascadeType.ALL)
-	@JoinColumn(name = "warehouseId")
-	private Warehouse warehouse;
-
-	public Item getItem() {
-		return item;
+	public Long getStockKeeperId() {
+		return stockKeeperId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setStockKeeperId(Long stockKeeperId) {
+		this.stockKeeperId = stockKeeperId;
 	}
 
-	public Warehouse getWarehouse() {
-		return warehouse;
+	public Date getStockUpdateDate() {
+		return stockUpdateDate;
 	}
 
-	public void setWarehouse(Warehouse warehouse) {
-		this.warehouse = warehouse;
+	public void setStockUpdateDate(Date stockUpdateDate) {
+		this.stockUpdateDate = stockUpdateDate;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
 	}
 
 	public Long getQuantity() {
@@ -57,31 +62,22 @@ public class StockKeeper extends Entiti<Long> {
 		this.quantity = quantity;
 	}
 
-	public Long getStockId() {
-		return stockId;
+	public StockKeeper getTransferStockKeeper() {
+		return transferStockKeeper;
 	}
 
-	public void setStockId(Long stockId) {
-		this.stockId = stockId;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTransferStockKeeper(StockKeeper transferStockKeeper) {
+		this.transferStockKeeper = transferStockKeeper;
 	}
 
 	@Override
 	public Long id() {
-		return stockId;
+		return getStockKeeperId();
 	}
 
 	@Override
 	public String toString() {
-		return new String(getQuantity().toString() + " " + getItem() + " -> "
-				+ getWarehouse());
+		return new String(getQuantity() + " " + getStock().toString());
 	}
 
 }
