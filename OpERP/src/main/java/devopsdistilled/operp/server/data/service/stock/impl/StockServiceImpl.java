@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -39,6 +41,19 @@ public class StockServiceImpl extends
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public List<Item> getItemsInWarehouse(Long warehouseId) {
+		return null;
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Long getQuantityOfItemInWarehouse(Long itemId, Long warehouseId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
