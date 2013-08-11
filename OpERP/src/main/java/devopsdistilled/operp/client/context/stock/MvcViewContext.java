@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.stock.panes.CreateWarehousePane;
+import devopsdistilled.operp.client.stock.panes.EditStockPane;
 import devopsdistilled.operp.client.stock.panes.EditWarehousePane;
 import devopsdistilled.operp.client.stock.panes.ListStockPane;
 import devopsdistilled.operp.client.stock.panes.ListWarehousePane;
@@ -35,6 +36,11 @@ public class MvcViewContext {
 	@Bean
 	public UpdateStockPane updateStockPane() {
 		return new UpdateStockPane();
+	}
+	
+	@Bean
+	public EditStockPane editStockPane(){
+		return new EditStockPane();
 	}
 
 }

@@ -4,11 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.EditStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.EditWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListWarehousePaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.CreateWareHousePaneControllerImpl;
+import devopsdistilled.operp.client.stock.panes.controllers.impl.EditStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.EditWarehousePaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListStockPaneControllerImpl;
 import devopsdistilled.operp.client.stock.panes.controllers.impl.ListWarehousePaneControllerImpl;
@@ -20,11 +22,6 @@ public class MvcControllerContext {
 	@Bean
 	public ListStockPaneController listStockPaneController() {
 		return new ListStockPaneControllerImpl();
-	}
-
-	@Bean
-	public UpdateStockPaneController createStockPaneController() {
-		return new UpdateStockPaneControllerImpl();
 	}
 
 	@Bean
@@ -46,5 +43,9 @@ public class MvcControllerContext {
 	public UpdateStockPaneController updateStockPaneController() {
 		return new UpdateStockPaneControllerImpl();
 	}
-
+	
+	@Bean
+	public EditStockPaneController editStockPaneController(){
+		return new EditStockPaneControllerImpl();
+	}
 }

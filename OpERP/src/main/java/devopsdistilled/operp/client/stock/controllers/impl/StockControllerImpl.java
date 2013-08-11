@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.models.StockModel;
+import devopsdistilled.operp.client.stock.panes.controllers.EditStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
@@ -27,9 +28,10 @@ public class StockControllerImpl implements StockController {
 	}
 
 	@Override
-	public void edit(Stock entity) {
-		// TODO Auto-generated method stub
-
+	public void edit(Stock stock) {
+		EditStockPaneController editStockPaneController =context
+				.getBean(EditStockPaneController.class);
+		editStockPaneController.init(stock);
 	}
 
 	@Override
