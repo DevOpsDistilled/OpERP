@@ -11,6 +11,7 @@ import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.UpdateStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class UpdateStockPaneControllerImpl implements UpdateStockPaneController {
@@ -69,8 +70,13 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 
 	@Override
 	public StockKeeper save() {
-		// XXX
-		return null;
+		Stock stock = new Stock();
+		stock.setItem(model.getItem());
+		stock.setWarehouse(model.getWarehouse());
+		StockKeeper stockKeeper = new StockKeeper();
+		stockKeeper.setStock(stock);
+		stockKeeper.setQuantity(model.getQuantity());
+		return stockKeeperModel.getService().save(stockKeeper);
 	}
 
 	@Override
