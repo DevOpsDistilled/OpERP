@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.stock.panes.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
@@ -40,8 +41,23 @@ public class EditStockPaneControllerImpl implements
 	}
 
 	@Override
-	public void validate(Stock entity) throws EntityValidationException {
-		// TODO Auto-generated method stub
+	public void validate(Stock stock) throws EntityValidationException,
+			NullFieldException{
+		if(stock.getStockId()== null)
+			throw new NullFieldException(
+					"Stock Id encountered,Contact Developer");
+		if(stock.getItem() == null)
+			throw  new NullFieldException(
+					"Stock should be associated with an Item");
+		
+		if(stock.getWarehouse() == null)
+			throw  new NullFieldException(
+					"Stock should be associated with a Warehouse");
+		
+		if(stock.getQuantity() == null)
+			throw new NullFieldException(
+					"Quantity can't be Empty");
+		
 		
 	}
 

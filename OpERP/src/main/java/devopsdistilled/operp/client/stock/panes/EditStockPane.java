@@ -1,37 +1,58 @@
 package devopsdistilled.operp.client.stock.panes;
 
+import java.util.Date;
 import java.util.List;
-
+import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.EditStockPaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
+import devopsdistilled.operp.client.stock.panes.controllers.EditStockPaneController;
+import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class EditStockPane extends SubTaskPane
 		implements EditStockPaneModelObserver,ItemModelObserver,WarehouseModelObserver{
 
+	@Inject
+	private EditStockPaneController controller;
+	
+	@Inject
+	private ItemController itemController;
+	
+	@Inject
+	private WarehouseController warehouseController;
+	
+	@Inject
+	private StockDetailsPane stockDetailsPane;
+	
 	
 	private JPanel pane;
 	private JTextField stockIdField;
 	private JTextField quantityField;
 	private JTextField dateField;
-	
-	private Stock stock;
 	private JComboBox<Item> comboItems;
 	private JComboBox<Warehouse> comboWarehouses;
+	private Date date;
 	
+	private Stock stock;
 	
 	public EditStockPane(){
 		pane=new JPanel();
@@ -53,6 +74,12 @@ public class EditStockPane extends SubTaskPane
 		pane.add(comboItems, "flowx,cell 1 1,growx");
 		
 		JButton btnNewItem = new JButton("New Item");
+		btnNewItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				itemController.create();
+			}
+		});
 		pane.add(btnNewItem, "cell 1 1");
 		
 		JLabel lblWarehouseName = new JLabel("Warehouse  Name");
@@ -63,6 +90,12 @@ public class EditStockPane extends SubTaskPane
 		pane.add(comboWarehouses, "flowx,cell 1 2,growx");
 		
 		JButton btnNewWarehouse = new JButton("New Warehouse");
+		btnNewWarehouse.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warehouseController.create();
+			}
+		});
 		pane.add(btnNewWarehouse, "cell 1 2");
 		
 		JLabel lblQuantity = new JLabel("Quantity");
@@ -81,12 +114,58 @@ public class EditStockPane extends SubTaskPane
 		dateField.setColumns(10);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getDialog().dispose();
+			}
+		});
 		pane.add(btnCancel, "flowx,cell 1 6");
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(stock);
+			}
+		});
 		pane.add(btnReset, "cell 1 6");
 		
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Long stockId=stock.getStockId();
+				Stock stock=new Stock();
+				stock.setStockId(stockId);
+				Item item=(Item) comboItems.getSelectedItem();
+				stock.setItem(item); 
+				Warehouse warehouse=(Warehouse) comboWarehouses.getSelectedItem();
+				stock.setWarehouse(warehouse);
+				String stockQuantity=quantityField.getText().trim();
+				date=new Date();
+				stock.setDate(date);
+				try{
+					Long quantity=Long.parseLong(stockQuantity);
+					stock.setQuantity(quantity);
+					
+					try{
+						controller.validate(stock);
+						stock=controller.save(stock);
+						getDialog().dispose();
+						stockDetailsPane.show(stock);
+					}catch (EntityValidationException e1){
+						JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+					}
+					
+				}catch (NumberFormatException ex){
+					JOptionPane.showMessageDialog(getPane(),
+							"Quantity must be a numeric value");
+				
+			}
+				
+		}
+	});
 		pane.add(btnUpdate, "cell 1 6");
 		
 	}
