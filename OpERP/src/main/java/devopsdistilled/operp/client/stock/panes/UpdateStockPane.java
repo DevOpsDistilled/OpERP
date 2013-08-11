@@ -59,7 +59,7 @@ public class UpdateStockPane extends SubTaskPane implements
 					controller.getModel().setItem((Item) e.getItem());
 			}
 		});
-		comboItems.setSelectedItem(controller.getModel().getItem());
+		comboItems.setSelectedItem(null);
 		pane.add(comboItems, "flowx,split 2,cell 1 0,growx");
 
 		JButton btnNewItem = new JButton("New Item");
@@ -82,7 +82,7 @@ public class UpdateStockPane extends SubTaskPane implements
 					controller.getModel().setWarehouse((Warehouse) e.getItem());
 			}
 		});
-		comboWarehouses.setSelectedItem(controller.getModel().getWarehouse());
+		comboWarehouses.setSelectedItem(null);
 		pane.add(comboWarehouses, "flowx,split 2,cell 1 1,growx");
 
 		JButton btnNewWarehouse = new JButton("New Warehouse");
