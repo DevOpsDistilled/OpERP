@@ -161,7 +161,7 @@ public class UpdateStockPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateWarehouse(List<Warehouse> warehouses) {
+	public void updateWarehouses(List<Warehouse> warehouses) {
 		Warehouse prevSelected = (Warehouse) comboWarehouses.getSelectedItem();
 		comboWarehouses.removeAllItems();
 
