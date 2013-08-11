@@ -1,5 +1,6 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,9 +39,14 @@ public class StockServiceImpl extends
 
 	@Override
 	public List<Item> getItemsInWarehouse(Long warehouseId) {
-		// TODO Auto-generated method stub
-		return null;
+		Warehouse warehouse = warehouseRepository.findOne(warehouseId);
+		List<Stock> stocks = repo.findByWarehouse(warehouse);
+		List<Item> items = new LinkedList<>();
+		for (Stock stock : stocks) {
+			items.add(stock.getItem());
+		}
 
+		return items;
 	}
 
 	@Override
