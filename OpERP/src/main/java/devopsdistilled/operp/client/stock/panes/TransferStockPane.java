@@ -141,8 +141,7 @@ public class TransferStockPane extends SubTaskPane implements
 
 					getDialog().dispose();
 
-					transferStockDetailsPane.show(stockKeepers.get(0),
-							stockKeepers.get(1));
+					transferStockDetailsPane.show(stockKeepers.get(0));
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

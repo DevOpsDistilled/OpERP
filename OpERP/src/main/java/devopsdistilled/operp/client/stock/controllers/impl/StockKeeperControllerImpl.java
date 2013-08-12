@@ -45,7 +45,11 @@ public class StockKeeperControllerImpl implements StockKeeperController {
 	}
 
 	@Override
-	public void delete(StockKeeper entity) {
-		stockKeeperModel.deleteAndUpdateModel(entity);
+	public void delete(StockKeeper stockKeeper) {
+		if (stockKeeper.getTransferStockKeeper() == null)
+			stockKeeperModel.deleteAndUpdateModel(stockKeeper);
+		else
+			stockKeeperModel.deleteAndUpdateModel(stockKeeper,
+					stockKeeper.getTransferStockKeeper());
 	}
 }

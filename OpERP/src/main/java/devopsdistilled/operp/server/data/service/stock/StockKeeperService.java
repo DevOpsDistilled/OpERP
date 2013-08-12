@@ -10,4 +10,6 @@ public interface StockKeeperService extends EntityService<StockKeeper, Long> {
 	List<StockKeeper> saveTransfer(StockKeeper srcStockKeeper,
 			StockKeeper destStockKeeper);
 
+	void delete(StockKeeper srcStockKeeper, StockKeeper destStockKeeper);
+
 }
