@@ -56,4 +56,15 @@ public class StockKeeperServiceImpl extends
 		return super.save(stockKeeper);
 
 	}
+
+	@Override
+	@Transactional
+	public void delete(StockKeeper stockKeeper) {
+		Stock stock = stockKeeper.getStock();
+		stock.setQuantity(stock.getQuantity() - stockKeeper.getQuantity());
+		stock = stockRepository.save(stock);
+		stockKeeper.setStock(stock);
+
+		super.delete(stockKeeper);
+	}
 }
