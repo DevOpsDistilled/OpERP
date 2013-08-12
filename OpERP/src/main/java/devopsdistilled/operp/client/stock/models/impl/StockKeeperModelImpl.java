@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.stock.models.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
@@ -19,6 +21,13 @@ public class StockKeeperModelImpl
 	@Override
 	public StockKeeperService getService() {
 		return service;
+	}
+
+	@Override
+	public List<StockKeeper> saveAndUpdateModel(List<StockKeeper> stockKeepers) {
+		List<StockKeeper> savedStockKeepers = getService().save(stockKeepers);
+		update();
+		return savedStockKeepers;
 	}
 
 }
