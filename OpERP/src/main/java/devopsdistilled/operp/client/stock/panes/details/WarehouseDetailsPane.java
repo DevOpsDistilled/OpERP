@@ -1,31 +1,50 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.inject.Inject;
-import javax.swing.JPanel;
-import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
-import devopsdistilled.operp.client.stock.controllers.WarehouseController;
-import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+import devopsdistilled.operp.client.stock.models.StockModel;
+import devopsdistilled.operp.client.stock.models.observers.StockModelObserver;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+
 public class WarehouseDetailsPane extends
-		AbstractEntityDetailsPane<Warehouse, WarehouseController> {
+		AbstractEntityDetailsPane<Warehouse, WarehouseController> implements
+		StockModelObserver {
 
 	@Inject
 	private WarehouseController warehouseController;
 
+	@Inject
+	private StockModel stockModel;
+
 	private Warehouse warehouse;
 
-	private JPanel pane;
-	private JTextField warehouseIdField;
-	private JTextField warehouseNameField;
+	private final JPanel pane;
+	private final JTextField warehouseIdField;
+	private final JTextField warehouseNameField;
+
+	private final JTable table;
+	BeanTableModel<Stock> tableModel;
+	private final JLabel lblItemsInThis;
 
 	public WarehouseDetailsPane() {
 		dialog.setTitle("Warehouse Details");
+
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow,center]", "[][][][]"));
 
 		JLabel lblWarehouseId = new JLabel("Warehouse Id");
 		pane.add(lblWarehouseId, "cell 0 0,alignx trailing");
@@ -43,6 +62,15 @@ public class WarehouseDetailsPane extends
 		warehouseNameField.setEditable(false);
 		warehouseNameField.setColumns(10);
 
+		lblItemsInThis = new JLabel("Items In this Warehouse");
+		pane.add(lblItemsInThis, "cell 1 2");
+
+		table = new JTable(tableModel);
+		final JScrollPane scrollPane = new JScrollPane(table,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		pane.add(scrollPane, "cell 1 3,grow");
+
 	}
 
 	@Override
@@ -53,6 +81,9 @@ public class WarehouseDetailsPane extends
 	@Override
 	public void show(Warehouse warehouse) {
 		this.warehouse = warehouse;
+
+		stockModel.registerObserver(this);
+
 		if (warehouse != null) {
 			warehouseIdField.setText(warehouse.getWarehouseId().toString());
 			warehouseNameField.setText(warehouse.getWarehouseName());
@@ -77,6 +108,26 @@ public class WarehouseDetailsPane extends
 	@Override
 	protected Warehouse getEntity() {
 		return warehouse;
+	}
+
+	@Override
+	public void updateStock(List<Stock> stocks) {
+
+		List<Stock> warehouseStock = new LinkedList<>();
+		for (Stock stock : stocks) {
+			if (stock.getWarehouse().compareTo(getEntity()) == 0) {
+				warehouseStock.add(stock);
+			}
+		}
+
+		tableModel = null;
+		tableModel = new BeanTableModel<>(Stock.class, warehouseStock);
+
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
 	}
 
 }
