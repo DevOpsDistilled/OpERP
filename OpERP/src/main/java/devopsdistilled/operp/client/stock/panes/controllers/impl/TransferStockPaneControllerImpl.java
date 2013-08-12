@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -74,7 +76,7 @@ public class TransferStockPaneControllerImpl implements
 	}
 
 	@Override
-	public void transfer() {
+	public List<StockKeeper> transfer() {
 		Stock srcStock = new Stock();
 		srcStock.setItem(model.getItemToTransfer());
 		srcStock.setWarehouse(model.getFromWarehouse());
@@ -91,7 +93,8 @@ public class TransferStockPaneControllerImpl implements
 		destStockKeeper.setStock(destStock);
 		destStockKeeper.setQuantity(model.getQuantity());
 
-		stockKeeperModel.saveAndUpdateModel(srcStockKeeper, destStockKeeper);
+		return stockKeeperModel.saveAndUpdateModel(srcStockKeeper,
+				destStockKeeper);
 
 	}
 

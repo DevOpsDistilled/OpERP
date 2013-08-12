@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.details.StockKeepingDetailsPane;
+import devopsdistilled.operp.client.stock.panes.details.TransferStockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 
 @Configuration
@@ -24,4 +25,10 @@ public class EntityDetailsContext {
 	public StockKeepingDetailsPane stockKeepingDetailsPane() {
 		return new StockKeepingDetailsPane();
 	}
+
+	@Bean
+	public TransferStockDetailsPane transferStockDetailsPane() {
+		return new TransferStockDetailsPane();
+	}
+
 }
