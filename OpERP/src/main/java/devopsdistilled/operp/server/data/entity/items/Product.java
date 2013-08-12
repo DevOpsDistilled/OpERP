@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -28,6 +29,7 @@ public class Product extends Entiti<Long> {
 	private List<Item> items;
 
 	@ManyToMany
+	@JoinTable(name = "ProductCategory")
 	private List<Category> categories;
 
 	public Long getProductId() {

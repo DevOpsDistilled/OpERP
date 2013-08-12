@@ -48,7 +48,7 @@ public class CreateProductPane extends SubTaskPane implements
 
 	public CreateProductPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][grow][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
@@ -61,8 +61,7 @@ public class CreateProductPane extends SubTaskPane implements
 		pane.add(lblCategory, "cell 0 1");
 
 		categoryPanel = new JPanel();
-		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
-				"[23px,grow]"));
+		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]", "[23px]"));
 		JButton btnNewCategory = new JButton("New Category");
 		btnNewCategory.addActionListener(new ActionListener() {
 			@Override

@@ -21,7 +21,7 @@ public class EntityControllerContext {
 	public ItemController itemController() {
 		return new ItemControllerImpl();
 	}
-	
+
 	@Bean
 	public CategoryController categoryController() {
 		return new CategoryControllerImpl();
@@ -41,6 +41,5 @@ public class EntityControllerContext {
 	public BrandController brandController() {
 		return new BrandControllerImpl();
 	}
+
 }
-
-

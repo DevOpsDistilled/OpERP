@@ -111,4 +111,5 @@ public class MvcControllerContext {
 	public EditBrandPaneController editBrandPaneController() {
 		return new EditBrandPaneControllerImpl();
 	}
+
 }
