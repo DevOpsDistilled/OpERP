@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.stock.controllers.StockController;
 import devopsdistilled.operp.client.stock.controllers.StockKeeperController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 
@@ -21,6 +22,9 @@ public class StockMgmtPane extends TaskPane {
 	private StockKeeperController stockKeeperController;
 
 	@Inject
+	private StockController stockController;
+
+	@Inject
 	private WarehouseController warehouseController;
 
 	private JButton btnListStock;
@@ -28,6 +32,7 @@ public class StockMgmtPane extends TaskPane {
 	private JButton btnCreateWarehouse;
 	private JButton btnListWarehouse;
 	private JButton btnTransferStock;
+	private JButton btnListStock_1;
 
 	@Override
 	public String toString() {
@@ -66,15 +71,14 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 
-		btnListStock = new JButton("List Stock Activites");
-		btnListStock.addActionListener(new ActionListener() {
+		btnListStock_1 = new JButton("List Stock");
+		btnListStock_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockKeeperController.list();
+				stockController.list();
 			}
 		});
-
-		pane.add(btnListStock, "cell 1 1");
+		pane.add(btnListStock_1, "cell 1 1");
 
 		pane.add(btnCreateWarehouse, "flowx,cell 0 2");
 
@@ -95,6 +99,16 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnTransferStock, "cell 0 4");
+
+		btnListStock = new JButton("List Stock Activites");
+		btnListStock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockKeeperController.list();
+			}
+		});
+
+		pane.add(btnListStock, "cell 1 4");
 
 		return pane;
 
