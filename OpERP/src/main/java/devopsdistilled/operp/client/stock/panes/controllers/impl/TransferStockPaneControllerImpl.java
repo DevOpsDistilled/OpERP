@@ -1,8 +1,5 @@
 package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -94,13 +91,7 @@ public class TransferStockPaneControllerImpl implements
 		destStockKeeper.setStock(destStock);
 		destStockKeeper.setQuantity(model.getQuantity());
 
-		srcStockKeeper.setTransferStockKeeper(destStockKeeper);
-
-		List<StockKeeper> stockKeepers = new LinkedList<>();
-		stockKeepers.add(srcStockKeeper);
-		stockKeepers.add(destStockKeeper);
-
-		stockKeeperModel.saveAndUpdateModel(stockKeepers);
+		stockKeeperModel.saveAndUpdateModel(srcStockKeeper, destStockKeeper);
 
 	}
 
