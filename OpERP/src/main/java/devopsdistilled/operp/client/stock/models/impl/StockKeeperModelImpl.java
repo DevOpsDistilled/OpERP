@@ -24,8 +24,10 @@ public class StockKeeperModelImpl
 	}
 
 	@Override
-	public List<StockKeeper> saveAndUpdateModel(List<StockKeeper> stockKeepers) {
-		List<StockKeeper> savedStockKeepers = getService().save(stockKeepers);
+	public List<StockKeeper> saveAndUpdateModel(StockKeeper srcStockKeeper,
+			StockKeeper destStockKeeper) {
+		List<StockKeeper> savedStockKeepers = getService().saveTransfer(
+				srcStockKeeper, destStockKeeper);
 		update();
 		return savedStockKeepers;
 	}

@@ -10,6 +10,7 @@ import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
 public interface StockKeeperModel extends
 		EntityModel<StockKeeper, StockKeeperService, StockKeeperModelObserver> {
 
-	List<StockKeeper> saveAndUpdateModel(List<StockKeeper> stockKeepers);
+	List<StockKeeper> saveAndUpdateModel(StockKeeper srcStockKeeper,
+			StockKeeper destStockKeeper);
 
 }
