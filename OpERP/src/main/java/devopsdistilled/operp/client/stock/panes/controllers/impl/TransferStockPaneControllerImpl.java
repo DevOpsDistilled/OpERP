@@ -1,14 +1,20 @@
 package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
+import devopsdistilled.operp.client.stock.models.StockKeeperModel;
 import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.client.stock.panes.TransferStockPane;
 import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
 import devopsdistilled.operp.client.stock.panes.models.TransferStockPaneModel;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class TransferStockPaneControllerImpl implements
 		TransferStockPaneController {
@@ -24,6 +30,9 @@ public class TransferStockPaneControllerImpl implements
 
 	@Inject
 	private StockModel stockModel;
+
+	@Inject
+	private StockKeeperModel stockKeeperModel;
 
 	@Override
 	public void init() {
@@ -65,7 +74,29 @@ public class TransferStockPaneControllerImpl implements
 
 	@Override
 	public void transfer() {
-		// TODO Auto-generated method stub
+		Stock srcStock = new Stock();
+		srcStock.setItem(model.getItemToTransfer());
+		srcStock.setWarehouse(model.getFromWarehouse());
+
+		Stock destStock = new Stock();
+		destStock.setItem(model.getItemToTransfer());
+		destStock.setWarehouse(model.getToWarehouse());
+
+		StockKeeper srcStockKeeper = new StockKeeper();
+		srcStockKeeper.setStock(srcStock);
+		srcStockKeeper.setQuantity(model.getQuantity() * (-1));
+
+		StockKeeper destStockKeeper = new StockKeeper();
+		destStockKeeper.setStock(destStock);
+		destStockKeeper.setQuantity(model.getQuantity());
+
+		srcStockKeeper.setTransferStockKeeper(destStockKeeper);
+
+		List<StockKeeper> stockKeepers = new LinkedList<>();
+		stockKeepers.add(srcStockKeeper);
+		stockKeepers.add(destStockKeeper);
+
+		stockKeeperModel.saveAndUpdateModel(stockKeepers);
 
 	}
 
