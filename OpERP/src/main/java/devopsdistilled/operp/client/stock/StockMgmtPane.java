@@ -66,7 +66,7 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 
-		btnListStock = new JButton("List Stock");
+		btnListStock = new JButton("List Stock Activites");
 		btnListStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
