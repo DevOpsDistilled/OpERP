@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -49,6 +51,7 @@ public class StockKeeperServiceImpl extends
 		}
 		stock = stockRepository.save(stock);
 		stockKeeper.setStock(stock);
+		stockKeeper.setStockUpdateDate(new Date());
 
 		return super.save(stockKeeper);
 
