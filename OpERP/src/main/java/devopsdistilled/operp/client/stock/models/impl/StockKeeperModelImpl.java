@@ -32,4 +32,11 @@ public class StockKeeperModelImpl
 		return savedStockKeepers;
 	}
 
+	@Override
+	public void deleteAndUpdateModel(StockKeeper srcStockKeeper,
+			StockKeeper destStockKeeper) {
+		getService().delete(srcStockKeeper, destStockKeeper);
+		update();
+	}
+
 }

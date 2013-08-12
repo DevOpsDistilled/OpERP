@@ -13,4 +13,7 @@ public interface StockKeeperModel extends
 	List<StockKeeper> saveAndUpdateModel(StockKeeper srcStockKeeper,
 			StockKeeper destStockKeeper);
 
+	void deleteAndUpdateModel(StockKeeper srcStockKeeper,
+			StockKeeper destStockKeeper);
+
 }
