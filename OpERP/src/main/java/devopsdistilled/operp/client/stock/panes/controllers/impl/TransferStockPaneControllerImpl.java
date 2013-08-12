@@ -57,9 +57,9 @@ public class TransferStockPaneControllerImpl implements
 					"Can't transfer negative number of items");
 
 		if (srcQuantity.compareTo(model.getQuantity()) < 0)
-			throw new EntityValidationException(model.getQuantity() + " "
-					+ model.getItemToTransfer() + " not available in "
-					+ model.getFromWarehouse());
+			throw new EntityValidationException("Only "
+					+ srcQuantity.toString() + " " + model.getItemToTransfer()
+					+ " available in " + model.getFromWarehouse());
 
 	}
 
