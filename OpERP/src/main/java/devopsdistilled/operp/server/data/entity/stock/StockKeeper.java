@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -32,6 +33,7 @@ public class StockKeeper extends Entiti<Long> {
 	private Long quantity;
 
 	@OneToOne
+	@JoinColumn(name = "transferStockKeeperId")
 	private StockKeeper transferStockKeeper;
 
 	public Long getStockKeeperId() {
