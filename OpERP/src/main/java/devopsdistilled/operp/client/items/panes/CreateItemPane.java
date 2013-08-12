@@ -3,7 +3,6 @@ package devopsdistilled.operp.client.items.panes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -98,6 +96,7 @@ public class CreateItemPane extends SubTaskPane implements
 			}
 		});
 		pane.add(btnCancel, "flowx,cell 2 4");
+
 		JButton btnSave = new JButton("Create");
 		btnSave.addActionListener(new ActionListener() {
 			@Override
@@ -124,7 +123,6 @@ public class CreateItemPane extends SubTaskPane implements
 						item = controller.save(item);
 
 						getDialog().dispose();
-
 						itemDetailsPane.show(item);
 
 					} catch (EntityValidationException e1) {

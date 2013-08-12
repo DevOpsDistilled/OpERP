@@ -49,21 +49,17 @@ public class ProductRepositoryTest {
 				productRepository.findOne(testProduct.getProductId()));
 	}
 
-	/*@Test
-	public void testFindByProductName() {
-		Product savedProduct = productRepository.save(testProduct);
-		List<Product> returnedProducts = productRepository
-				.findByProductName("Test Product");
-		assertNotNull(returnedProducts);
-		System.out.println(returnedProducts.size());
-		Assert.assertEquals(1, returnedProducts.size());
-		Assert.assertThat(
-				"Must have saved productName",
-				savedProduct.getProductName(),
-				CoreMatchers.is(returnedProducts.get(
-						returnedProducts.size() - 1).getProductName()));
-	}
-*/
+	/*
+	 * @Test public void testFindByProductName() { Product savedProduct =
+	 * productRepository.save(testProduct); List<Product> returnedProducts =
+	 * productRepository .findByProductName("Test Product");
+	 * assertNotNull(returnedProducts);
+	 * System.out.println(returnedProducts.size()); Assert.assertEquals(1,
+	 * returnedProducts.size()); Assert.assertThat(
+	 * "Must have saved productName", savedProduct.getProductName(),
+	 * CoreMatchers.is(returnedProducts.get( returnedProducts.size() -
+	 * 1).getProductName())); }
+	 */
 	@Test
 	public void testSaveCustom() {
 		/*

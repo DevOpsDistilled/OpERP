@@ -111,4 +111,5 @@ public class MvcModelContext {
 	public EditBrandPaneModel editBrandPaneModel() {
 		return new EditBrandPaneModelImpl();
 	}
+
 }

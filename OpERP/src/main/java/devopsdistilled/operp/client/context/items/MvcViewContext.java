@@ -96,4 +96,5 @@ public class MvcViewContext {
 	public EditBrandPane editBrandPane() {
 		return new EditBrandPane();
 	}
+
 }
