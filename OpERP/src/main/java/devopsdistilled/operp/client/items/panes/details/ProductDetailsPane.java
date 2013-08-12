@@ -30,7 +30,7 @@ public class ProductDetailsPane extends
 
 	public ProductDetailsPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
 		JLabel lblProductId = new JLabel("Product ID");
 		pane.add(lblProductId, "cell 0 0,alignx trailing");
