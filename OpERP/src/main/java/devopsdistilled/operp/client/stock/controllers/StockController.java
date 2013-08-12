@@ -5,6 +5,4 @@ import devopsdistilled.operp.server.data.entity.stock.Stock;
 
 public interface StockController extends EntityController<Stock> {
 
-	public void transfer();
-
 }
