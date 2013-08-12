@@ -12,13 +12,13 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
-import devopsdistilled.operp.client.stock.controllers.StockController;
+import devopsdistilled.operp.client.stock.controllers.StockKeeperController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 
 public class StockMgmtPane extends TaskPane {
 
 	@Inject
-	private StockController stockController;
+	private StockKeeperController stockKeeperController;
 
 	@Inject
 	private WarehouseController warehouseController;
@@ -51,8 +51,7 @@ public class StockMgmtPane extends TaskPane {
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockController.create();
-
+				stockKeeperController.create();
 			}
 
 		});
@@ -71,7 +70,7 @@ public class StockMgmtPane extends TaskPane {
 		btnListStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockController.list();
+				stockKeeperController.list();
 			}
 		});
 
@@ -92,7 +91,7 @@ public class StockMgmtPane extends TaskPane {
 		btnTransferStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockController.transfer();
+				stockKeeperController.transfer();
 			}
 		});
 		pane.add(btnTransferStock, "cell 0 4");
