@@ -50,8 +50,7 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 					if (stockKeeper.getTransferStockKeeper() == null)
 						stockKeepingDetailsPane.show(stockKeeper);
 					else {
-						transferStockDetailsPane.show(stockKeeper,
-								stockKeeper.getTransferStockKeeper());
+						transferStockDetailsPane.show(stockKeeper);
 					}
 
 				}

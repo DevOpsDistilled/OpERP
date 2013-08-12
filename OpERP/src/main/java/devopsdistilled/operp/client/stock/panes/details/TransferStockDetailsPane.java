@@ -1,23 +1,27 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
+import javax.inject.Inject;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.AbstractEntityDetailsPane;
+import devopsdistilled.operp.client.stock.controllers.StockKeeperController;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
-public class TransferStockDetailsPane extends SubTaskPane {
+public class TransferStockDetailsPane extends
+		AbstractEntityDetailsPane<StockKeeper, StockKeeperController> {
+
+	@Inject
+	private StockKeeperController stockKeeperController;
 
 	private final JSplitPane splitPane;
+
 	private final JPanel pane;
+
+	private StockKeeper srcStockKeeper;
 
 	public TransferStockDetailsPane() {
 		pane = new JPanel();
@@ -33,40 +37,30 @@ public class TransferStockDetailsPane extends SubTaskPane {
 		splitPane.setResizeWeight(0.5);
 		splitPane.setContinuousLayout(false);
 		pane.add(splitPane, "cell 0 2 2 1,alignx left,aligny top,grow");
-
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		pane.add(btnDelete, "flowx,cell 0 3 2 1");
-
-		JButton btnEdit = new JButton("Edit");
-		pane.add(btnEdit, "cell 0 3 2 1");
-
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
-			}
-		});
-		pane.add(btnOk, "cell 0 3 2 1");
 	}
 
 	@Override
-	public JComponent getPane() {
+	public JPanel getPane() {
 		return pane;
 	}
 
-	public void show(StockKeeper srcStockKeeper, StockKeeper destStockKeeper) {
+	@Override
+	public StockKeeperController getEntityController() {
+		return stockKeeperController;
+	}
 
-		// Check if transfer stock pair
-		if (srcStockKeeper.compareTo(destStockKeeper.getTransferStockKeeper()) == 0
-				&& destStockKeeper.compareTo(srcStockKeeper
-						.getTransferStockKeeper()) == 0) {
+	@Override
+	protected StockKeeper getEntity() {
+		return srcStockKeeper;
+	}
+
+	@Override
+	public void show(StockKeeper srcStockKeeper) {
+		if (srcStockKeeper.getTransferStockKeeper() != null) {
+
+			this.srcStockKeeper = srcStockKeeper;
+			StockKeeper destStockKeeper = srcStockKeeper
+					.getTransferStockKeeper();
 
 			StockKeepingDetailsPane srcDetails = new StockKeepingDetailsPane();
 			StockKeepingDetailsPane destDetails = new StockKeepingDetailsPane();
@@ -77,15 +71,19 @@ public class TransferStockDetailsPane extends SubTaskPane {
 			splitPane.setLeftComponent(srcDetails.getPane());
 			splitPane.setRightComponent(destDetails.getPane());
 
-			getDialog().getContentPane().add(getPane(), "grow");
-			getDialog().setSize(800, 400);
-			getDialog().setTitle("Stock Transfer Details");
-			getDialog().setVisible(true);
+			showDetailsPane(getPane());
+
 		} else {
+
 			getDialog().dispose();
 			JOptionPane.showMessageDialog(getPane(),
-					"Stock Activity pair not a transaction");
+					"StockKeeper is not a Transfer Pair");
 		}
 
+	}
+
+	@Override
+	public String getTitle() {
+		return "Transfer Stock Details";
 	}
 }
