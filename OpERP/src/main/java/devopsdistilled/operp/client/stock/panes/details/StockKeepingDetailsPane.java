@@ -32,7 +32,7 @@ public class StockKeepingDetailsPane extends
 
 	public StockKeepingDetailsPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][grow]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][69.00]"));
 
 		JLabel lblStockKeepingId = new JLabel("Stock Keeping ID");
 		pane.add(lblStockKeepingId, "cell 0 0,alignx trailing");
@@ -75,7 +75,7 @@ public class StockKeepingDetailsPane extends
 		dateField.setColumns(10);
 
 		JPanel stockPanel = new JPanel();
-		pane.add(stockPanel, "cell 1 6,grow");
+		pane.add(stockPanel, "cell 1 6,growx,aligny top");
 		stockPanel.setLayout(new MigLayout("", "[72.00][grow]", "[][][][]"));
 
 		JLabel lblUpdatedStockSummary = new JLabel("Updated Stock Summary");
@@ -101,6 +101,7 @@ public class StockKeepingDetailsPane extends
 		stockPanel.add(lblQuantity_1, "cell 0 3,alignx trailing");
 
 		stockQuantityField = new JTextField();
+		stockQuantityField.setEditable(false);
 		stockPanel.add(stockQuantityField, "cell 1 3,growx");
 		stockQuantityField.setColumns(10);
 	}
@@ -135,6 +136,7 @@ public class StockKeepingDetailsPane extends
 			stockWarehouseField.setText(stock.getWarehouse().toString());
 			stockItemField.setText(stock.getItem().toString());
 			stockQuantityField.setText(stock.getQuantity().toString());
+
 			showDetailsPane(getPane());
 		} else {
 			dialog.dispose();
