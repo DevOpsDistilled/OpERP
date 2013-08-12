@@ -86,4 +86,11 @@ public class StockKeeperServiceImpl extends
 
 		return savedStockKeepers;
 	}
+
+	@Override
+	@Transactional
+	public void delete(StockKeeper srcStockKeeper, StockKeeper destStockKeeper) {
+		delete(srcStockKeeper);
+		delete(destStockKeeper);
+	}
 }
