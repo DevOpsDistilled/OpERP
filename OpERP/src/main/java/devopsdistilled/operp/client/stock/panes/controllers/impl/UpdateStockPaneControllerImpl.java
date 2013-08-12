@@ -45,9 +45,11 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 	@Override
 	public void validate() throws EntityValidationException {
 		if (model.getItem() == null || model.getWarehouse() == null
-				|| model.getQuantity() == null
-				|| model.getQuantity().compareTo(0L) == 0)
+				|| model.getQuantity() == null)
 			throw new NullFieldException();
+
+		if (model.getQuantity().compareTo(0L) == 0)
+			throw new NullFieldException("O isn't a valid quantity");
 
 		if (model.getQuantity().compareTo(0L) < 0) {
 			if (!stockModel.getService().isItemExistsInWarehouse(
