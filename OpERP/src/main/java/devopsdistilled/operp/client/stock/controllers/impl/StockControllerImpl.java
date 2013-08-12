@@ -19,11 +19,8 @@ public class StockControllerImpl implements StockController {
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-
+		// XXX
 	}
-
-	
 
 	@Override
 	public void delete(Stock entity) {
