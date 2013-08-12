@@ -134,6 +134,8 @@ public class TransferStockPane extends SubTaskPane implements
 					controller.validate();
 					controller.transfer();
 
+					getDialog().dispose();
+
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
