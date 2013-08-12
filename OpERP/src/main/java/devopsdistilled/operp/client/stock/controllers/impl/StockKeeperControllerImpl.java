@@ -1,14 +1,31 @@
 package devopsdistilled.operp.client.stock.controllers.impl;
 
+import javax.inject.Inject;
+
 import devopsdistilled.operp.client.stock.controllers.StockKeeperController;
+import devopsdistilled.operp.client.stock.models.StockKeeperModel;
+import devopsdistilled.operp.client.stock.panes.controllers.ListStockActivitiesPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.TransferStockPaneController;
+import devopsdistilled.operp.client.stock.panes.controllers.UpdateStockPaneController;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
 public class StockKeeperControllerImpl implements StockKeeperController {
 
+	@Inject
+	private UpdateStockPaneController updateStockPaneController;
+
+	@Inject
+	private ListStockActivitiesPaneController listStockActivitiesPaneController;
+
+	@Inject
+	private TransferStockPaneController transferStockPaneController;
+
+	@Inject
+	private StockKeeperModel stockKeeperModel;
+
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-
+		updateStockPaneController.init();
 	}
 
 	@Override
@@ -19,14 +36,16 @@ public class StockKeeperControllerImpl implements StockKeeperController {
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
+		listStockActivitiesPaneController.init();
+	}
 
+	@Override
+	public void transfer() {
+		transferStockPaneController.init();
 	}
 
 	@Override
 	public void delete(StockKeeper entity) {
-		// TODO Auto-generated method stub
-
+		stockKeeperModel.deleteAndUpdateModel(entity);
 	}
-
 }
