@@ -7,6 +7,6 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public interface WarehouseModelObserver extends EntityModelObserver {
 
-	public void updateWarehouse(List<Warehouse> warehouses);
+	public void updateWarehouses(List<Warehouse> warehouses);
 
 }

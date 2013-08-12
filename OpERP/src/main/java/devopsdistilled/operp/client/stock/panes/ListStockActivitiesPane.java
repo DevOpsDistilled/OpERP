@@ -15,24 +15,28 @@ import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
-import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
-import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
-import devopsdistilled.operp.client.stock.panes.models.observers.ListWarehousePaneModelObserver;
-import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import devopsdistilled.operp.client.stock.models.observers.StockKeeperModelObserver;
+import devopsdistilled.operp.client.stock.panes.details.StockKeepingDetailsPane;
+import devopsdistilled.operp.client.stock.panes.details.TransferStockDetailsPane;
+import devopsdistilled.operp.client.stock.panes.models.observers.ListStockActivitiesPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
-public class ListWarehousePane extends SubTaskPane implements
-		ListWarehousePaneModelObserver, WarehouseModelObserver {
+public class ListStockActivitiesPane extends SubTaskPane implements
+		ListStockActivitiesPaneModelObserver, StockKeeperModelObserver {
 
 	@Inject
-	private WarehouseDetailsPane warehouseDetailsPane;
+	private StockKeepingDetailsPane stockKeepingDetailsPane;
+
+	@Inject
+	private TransferStockDetailsPane transferStockDetailsPane;
 
 	private final JPanel pane;
 	private final JTable table;
-	BeanTableModel<Warehouse> tableModel;
+	BeanTableModel<StockKeeper> tableModel;
 
-	public ListWarehousePane() {
+	public ListStockActivitiesPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug,fill"));
+		pane.setLayout(new MigLayout("fill"));
 		table = new JTable(tableModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
@@ -41,9 +45,13 @@ public class ListWarehousePane extends SubTaskPane implements
 				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
 						&& table.getSelectedRow() != -1) {
-					Warehouse warehouse = tableModel.getRow(table
+					StockKeeper stockKeeper = tableModel.getRow(table
 							.getSelectedRow());
-					warehouseDetailsPane.show(warehouse);
+					if (stockKeeper.getTransferStockKeeper() == null)
+						stockKeepingDetailsPane.show(stockKeeper);
+					else {
+						transferStockDetailsPane.show(stockKeeper);
+					}
 
 				}
 			}
@@ -62,16 +70,14 @@ public class ListWarehousePane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateWarehouses(List<Warehouse> warehouses) {
+	public void updateStockActivities(List<StockKeeper> stockActivities) {
 		tableModel = null;
-		tableModel = new BeanTableModel<>(Warehouse.class, warehouses);
+		tableModel = new BeanTableModel<>(StockKeeper.class, stockActivities);
 
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			tableModel.setColumnEditable(i, false);
 		}
 		tableModel.setModelEditable(false);
 		table.setModel(tableModel);
-
 	}
-
 }

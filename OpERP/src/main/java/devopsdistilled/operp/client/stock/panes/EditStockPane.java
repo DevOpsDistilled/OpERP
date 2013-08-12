@@ -1,6 +1,5 @@
 package devopsdistilled.operp.client.stock.panes;
 
-import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.swing.JComponent;
@@ -50,7 +49,6 @@ public class EditStockPane extends SubTaskPane
 	private JTextField dateField;
 	private JComboBox<Item> comboItems;
 	private JComboBox<Warehouse> comboWarehouses;
-	private Date date;
 	
 	private Stock stock;
 	
@@ -143,8 +141,6 @@ public class EditStockPane extends SubTaskPane
 				Warehouse warehouse=(Warehouse) comboWarehouses.getSelectedItem();
 				stock.setWarehouse(warehouse);
 				String stockQuantity=quantityField.getText().trim();
-				date=new Date();
-				stock.setDate(date);
 				try{
 					Long quantity=Long.parseLong(stockQuantity);
 					stock.setQuantity(quantity);
@@ -153,7 +149,6 @@ public class EditStockPane extends SubTaskPane
 						controller.validate(stock);
 						stock=controller.save(stock);
 						getDialog().dispose();
-						stockDetailsPane.show(stock);
 					}catch (EntityValidationException e1){
 						JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 					}
@@ -176,7 +171,7 @@ public class EditStockPane extends SubTaskPane
 	}
 	
 	@Override
-	public void updateWarehouse(List<Warehouse> warehouses) {
+	public void updateWarehouses(List<Warehouse> warehouses) {
 		Warehouse prevSelected=(Warehouse) comboWarehouses.getSelectedItem();
 		comboWarehouses.removeAllItems();
 		
@@ -209,7 +204,6 @@ public class EditStockPane extends SubTaskPane
 		comboItems.setSelectedItem(stock.getItem());
 		comboWarehouses.setSelectedItem(stock.getWarehouse());
 		quantityField.setText(stock.getQuantity().toString());
-		dateField.setText(stock.getDate().toString());
 
 	}
 

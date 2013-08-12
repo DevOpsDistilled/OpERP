@@ -14,9 +14,13 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.stock.controllers.StockController;
+import devopsdistilled.operp.client.stock.controllers.StockKeeperController;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 
 public class StockMgmtPane extends TaskPane {
+
+	@Inject
+	private StockKeeperController stockKeeperController;
 
 	@Inject
 	private StockController stockController;
@@ -34,6 +38,7 @@ public class StockMgmtPane extends TaskPane {
 	private ImageIcon iconListStock;
 	private ImageIcon iconCreateWarehouse;
 	private ImageIcon iconListWarehouse;
+	private JButton btnListStock_1;
 	@Override
 	public String toString() {
 		return new String("Stock Management");
@@ -56,8 +61,7 @@ public class StockMgmtPane extends TaskPane {
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stockController.create();
-
+				stockKeeperController.create();
 			}
 
 		});
@@ -80,11 +84,11 @@ public class StockMgmtPane extends TaskPane {
 
 		btnCreateWarehouse = new JButton("<html>Create<br/>Warehouse</html>");
 		btnCreateWarehouse.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
 				warehouseController.create();
 			}
+			
 		});
 		iconCreateWarehouse=new ImageIcon(StockMgmtPane.class.
 					getResource("/client/icons/Accounting.png"));
@@ -94,7 +98,7 @@ public class StockMgmtPane extends TaskPane {
 		btnListWarehouse = new JButton("<html>List<br/>Warehouse<html>");
 		btnListWarehouse.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				warehouseController.list();
 			}
 		});
@@ -104,7 +108,24 @@ public class StockMgmtPane extends TaskPane {
 		pane.add(SetButtonSize(btnListWarehouse), "cell 1 2");
 		
 		btnTransferStock = new JButton("<html>Transfer<br/>Stock<html>");
-		pane.add(SetButtonSize(btnTransferStock), "flowx,cell 0 3");
+		btnTransferStock = new JButton("Transfer Stock");
+		btnTransferStock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockKeeperController.transfer();
+			}
+		});
+		pane.add(btnTransferStock, "cell 0 4");
+
+		btnListStock_1 = new JButton("List Stock Activites");
+		btnListStock_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockKeeperController.list();
+			}
+		});
+
+		pane.add(btnListStock_1, "cell 1 4");
 
 		return pane;
 

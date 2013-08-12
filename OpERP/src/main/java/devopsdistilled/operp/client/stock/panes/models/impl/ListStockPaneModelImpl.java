@@ -10,7 +10,6 @@ public class ListStockPaneModelImpl extends
 
 	@Override
 	public String getTitle() {
-
 		return "Stock List";
 	}
 

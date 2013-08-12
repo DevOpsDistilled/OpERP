@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.repo.stock;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,7 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
 	Stock findByItemAndWarehouse(Item item, Warehouse warehouse);
+
+	List<Stock> findByWarehouse(Warehouse warehouse);
 
 }

@@ -6,22 +6,27 @@ import org.springframework.context.annotation.Configuration;
 import devopsdistilled.operp.client.stock.panes.models.CreateWarehousePaneModel;
 import devopsdistilled.operp.client.stock.panes.models.EditStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.EditWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.ListStockActivitiesPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.ListWarehousePaneModel;
+import devopsdistilled.operp.client.stock.panes.models.TransferStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.UpdateStockPaneModel;
 import devopsdistilled.operp.client.stock.panes.models.impl.CreateWarehousePaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.EditStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.EditWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.ListStockActivitiesPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.ListWarehousePaneModelImpl;
+import devopsdistilled.operp.client.stock.panes.models.impl.TransferStockPaneModelImpl;
 import devopsdistilled.operp.client.stock.panes.models.impl.UpdateStockPaneModelImpl;
 
 @Configuration
 public class MvcModelContext {
 
+	
 	@Bean
-	public ListStockPaneModel listStockPaneModel() {
-		return new ListStockPaneModelImpl();
+	public ListStockActivitiesPaneModel listStockActivitiesPaneModel() {
+		return new ListStockActivitiesPaneModelImpl();
 	}
 
 	@Bean
@@ -49,4 +54,13 @@ public class MvcModelContext {
 		return new EditStockPaneModelImpl();
 	}
 
+	@Bean
+	public TransferStockPaneModel transferStockPaneModel() {
+		return new TransferStockPaneModelImpl();
+	}
+
+	@Bean
+	public ListStockPaneModel listStockPaneModel() {
+		return new ListStockPaneModelImpl();
+	}
 }
