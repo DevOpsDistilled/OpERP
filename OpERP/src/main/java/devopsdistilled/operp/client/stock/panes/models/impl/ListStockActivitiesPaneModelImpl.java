@@ -11,7 +11,7 @@ public class ListStockActivitiesPaneModelImpl extends
 	@Override
 	public String getTitle() {
 
-		return "Stock List";
+		return "Stock Activities List";
 	}
 
 }
