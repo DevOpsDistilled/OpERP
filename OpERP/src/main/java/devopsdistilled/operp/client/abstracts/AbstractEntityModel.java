@@ -68,7 +68,7 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 	}
 
 	@Override
-//	@Transactional
+	// @Transactional
 	public E saveAndUpdateModel(E entity) {
 		E savedEntity = getService().save(entity);
 		update();

@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Import;
 @Import({ JpaTestContext.class })
 public class AppTestContext {
 
-	/*@Bean
-	public ServerApp serverApp() {
-		return new ServerApp();
-	}*/
+	/*
+	 * @Bean public ServerApp serverApp() { return new ServerApp(); }
+	 */
 }
