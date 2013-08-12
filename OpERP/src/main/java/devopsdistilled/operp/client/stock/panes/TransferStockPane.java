@@ -151,7 +151,7 @@ public class TransferStockPane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateWarehouse(List<Warehouse> warehouses) {
+	public void updateWarehouses(List<Warehouse> warehouses) {
 		Warehouse prevSelectedFrom = (Warehouse) fromWarehouseCombo
 				.getSelectedItem();
 		Warehouse prevSelectedTo = (Warehouse) toWarehouseCombo
