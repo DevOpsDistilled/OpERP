@@ -70,6 +70,10 @@ public class TransferStockPaneControllerImpl implements
 					+ srcQuantity.toString() + " " + model.getItemToTransfer()
 					+ " available in " + model.getFromWarehouse());
 
+		if (model.getToWarehouse().compareTo(model.getFromWarehouse()) == 0)
+			throw new EntityValidationException(
+					"Source and Destination Warehouses can't be same");
+
 	}
 
 	@Override
