@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.stock.models.StockKeeperModel;
+import devopsdistilled.operp.client.stock.models.StockModel;
 import devopsdistilled.operp.client.stock.models.observers.StockKeeperModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
@@ -17,6 +18,9 @@ public class StockKeeperModelImpl
 
 	@Inject
 	private StockKeeperService service;
+
+	@Inject
+	private StockModel stockModel;
 
 	@Override
 	public StockKeeperService getService() {
@@ -39,4 +43,9 @@ public class StockKeeperModelImpl
 		update();
 	}
 
+	@Override
+	public void update() {
+		super.update();
+		stockModel.update();
+	}
 }
