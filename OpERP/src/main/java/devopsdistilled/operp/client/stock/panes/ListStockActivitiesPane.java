@@ -17,6 +17,7 @@ import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.stock.models.observers.StockKeeperModelObserver;
 import devopsdistilled.operp.client.stock.panes.details.StockKeepingDetailsPane;
+import devopsdistilled.operp.client.stock.panes.details.TransferStockDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.ListStockActivitiesPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 
@@ -25,6 +26,9 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
+
+	@Inject
+	private TransferStockDetailsPane transferStockDetailsPane;
 
 	private final JPanel pane;
 	private final JTable table;
@@ -43,7 +47,12 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 						&& table.getSelectedRow() != -1) {
 					StockKeeper stockKeeper = tableModel.getRow(table
 							.getSelectedRow());
-					stockKeepingDetailsPane.show(stockKeeper);
+					if (stockKeeper.getTransferStockKeeper() == null)
+						stockKeepingDetailsPane.show(stockKeeper);
+					else {
+						transferStockDetailsPane.show(stockKeeper,
+								stockKeeper.getTransferStockKeeper());
+					}
 
 				}
 			}
