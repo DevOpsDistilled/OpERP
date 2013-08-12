@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -28,7 +29,11 @@ public class StockMgmtPane extends TaskPane {
 	private JButton btnCreateWarehouse;
 	private JButton btnListWarehouse;
 	private JButton btnTransferStock;
-
+	
+	private ImageIcon iconCreateStock;
+	private ImageIcon iconListStock;
+	private ImageIcon iconCreateWarehouse;
+	private ImageIcon iconListWarehouse;
 	@Override
 	public String toString() {
 		return new String("Stock Management");
@@ -41,13 +46,13 @@ public class StockMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]20[]", "[][][][][]"));
+		pane.setLayout(new MigLayout("debug", "[]50[]", "[][]25[]25[][]"));
 
 		JLabel lblStockManagement = new JLabel("Stock Management");
 		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
 		pane.add(lblStockManagement, "cell 0 0 2 1,alignx center");
 
-		btnCreateStock = new JButton("Update Stock");
+		btnCreateStock = new JButton("<html>Update<br/>Stock</html>");
 		btnCreateStock.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -56,9 +61,24 @@ public class StockMgmtPane extends TaskPane {
 			}
 
 		});
-		pane.add(btnCreateStock, "flowx,cell 0 1");
+		iconCreateStock=new ImageIcon(StockMgmtPane.class.
+					getResource("/client/icons/Accounting.png"));
+		btnCreateStock.setIcon(SetSizeForImage(iconCreateStock));
+		pane.add(SetButtonSize(btnCreateStock), "flowx,cell 0 1");
+		
+		btnListStock = new JButton("<html>List<br/> Stock</html>");
+		btnListStock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stockController.list();
+			}
+		});
+		iconListStock= new ImageIcon(StockMgmtPane.class.
+					getResource("/client/icons/Accounting.png"));
+		btnListStock.setIcon(SetSizeForImage(iconListStock));
+		pane.add(SetButtonSize(btnListStock), "cell 1 1");
 
-		btnCreateWarehouse = new JButton("Create Warehouse");
+		btnCreateWarehouse = new JButton("<html>Create<br/>Warehouse</html>");
 		btnCreateWarehouse.addActionListener(new ActionListener() {
 
 			@Override
@@ -66,30 +86,25 @@ public class StockMgmtPane extends TaskPane {
 				warehouseController.create();
 			}
 		});
+		iconCreateWarehouse=new ImageIcon(StockMgmtPane.class.
+					getResource("/client/icons/Accounting.png"));
+		btnCreateWarehouse.setIcon(SetSizeForImage(iconCreateWarehouse));
+		pane.add(SetButtonSize(btnCreateWarehouse), "flowx,cell 0 2");
 
-		btnListStock = new JButton("List Stock");
-		btnListStock.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				stockController.list();
-			}
-		});
-
-		pane.add(btnListStock, "cell 1 1");
-
-		pane.add(btnCreateWarehouse, "flowx,cell 0 2");
-
-		btnListWarehouse = new JButton("List Warehouse");
+		btnListWarehouse = new JButton("<html>List<br/>Warehouse<html>");
 		btnListWarehouse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				warehouseController.list();
 			}
 		});
-		pane.add(btnListWarehouse, "cell 1 2");
+		iconListWarehouse=new ImageIcon(StockMgmtPane.class.
+				getResource("/client/icons/Accounting.png"));
+		btnListWarehouse.setIcon(SetSizeForImage(iconListWarehouse));
+		pane.add(SetButtonSize(btnListWarehouse), "cell 1 2");
 		
-		btnTransferStock = new JButton("Transfer Stock");
-		pane.add(btnTransferStock, "cell 0 4");
+		btnTransferStock = new JButton("<html>Transfer<br/>Stock<html>");
+		pane.add(SetButtonSize(btnTransferStock), "flowx,cell 0 3");
 
 		return pane;
 
