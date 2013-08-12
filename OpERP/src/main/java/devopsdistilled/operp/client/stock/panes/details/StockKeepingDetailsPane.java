@@ -121,8 +121,7 @@ public class StockKeepingDetailsPane extends
 		return pane;
 	}
 
-	@Override
-	public void show(StockKeeper stockKeeper) {
+	public void init(StockKeeper stockKeeper) {
 		this.stockKeeper = stockKeeper;
 		if (stockKeeper != null) {
 			stockKeeperIdField.setText(stockKeeper.getStockKeeperId()
@@ -137,12 +136,17 @@ public class StockKeepingDetailsPane extends
 			stockItemField.setText(stock.getItem().toString());
 			stockQuantityField.setText(stock.getQuantity().toString());
 
-			showDetailsPane(getPane());
 		} else {
 			dialog.dispose();
-			JOptionPane.showMessageDialog(getPane(), "Null Warehouse");
+			JOptionPane.showMessageDialog(getPane(), "Null StockKeeper");
 		}
+	}
 
+	@Override
+	public void show(StockKeeper stockKeeper) {
+		init(stockKeeper);
+		if (stockKeeper != null)
+			showDetailsPane(getPane());
 	}
 
 	@Override
