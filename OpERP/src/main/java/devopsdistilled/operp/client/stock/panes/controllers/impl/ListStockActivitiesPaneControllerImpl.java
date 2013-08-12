@@ -1,27 +1,24 @@
 package devopsdistilled.operp.client.stock.panes.controllers.impl;
 
 import javax.inject.Inject;
-import devopsdistilled.operp.client.stock.models.StockModel;
-import devopsdistilled.operp.client.stock.panes.ListStockPane;
-import devopsdistilled.operp.client.stock.panes.controllers.ListStockPaneController;
-import devopsdistilled.operp.client.stock.panes.models.ListStockPaneModel;
 
-public class ListStockPaneControllerImpl implements ListStockPaneController {
+import devopsdistilled.operp.client.stock.panes.ListStockActivitiesPane;
+import devopsdistilled.operp.client.stock.panes.controllers.ListStockActivitiesPaneController;
+import devopsdistilled.operp.client.stock.panes.models.ListStockActivitiesPaneModel;
 
-	@Inject
-	private ListStockPane view;
+public class ListStockActivitiesPaneControllerImpl implements
+		ListStockActivitiesPaneController {
 
 	@Inject
-	private ListStockPaneModel model;
+	private ListStockActivitiesPane view;
 
 	@Inject
-	private StockModel stockModel;
+	private ListStockActivitiesPaneModel model;
 
 	@Override
 	public void init() {
 		view.init();
 		model.registerObserver(view);
-		stockModel.registerObserver(view);
 
 	}
 
