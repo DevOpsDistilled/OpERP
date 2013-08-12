@@ -162,17 +162,16 @@ public class TransferStockPane extends SubTaskPane implements
 			toWarehouseCombo.addItem(warehouse);
 
 			if (prevSelectedFrom != null)
-				if (prevSelectedFrom.compareTo(warehouse) != 0)
-					toWarehouseCombo.removeItem(warehouse);
-
-			if (prevSelectedFrom != null)
-				if (prevSelectedFrom.compareTo(warehouse) == 0)
+				if (prevSelectedFrom.compareTo(warehouse) == 0) {
 					fromWarehouseCombo.setSelectedItem(warehouse);
+					toWarehouseCombo.removeItem(warehouse);
+				}
 
 			if (prevSelectedTo != null)
 				if (prevSelectedTo.compareTo(warehouse) == 0)
 					toWarehouseCombo.setSelectedItem(warehouse);
 		}
+
 	}
 
 	@Override
