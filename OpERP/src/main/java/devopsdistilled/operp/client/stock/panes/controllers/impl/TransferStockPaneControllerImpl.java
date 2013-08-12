@@ -34,8 +34,8 @@ public class TransferStockPaneControllerImpl implements
 	@Override
 	public void init() {
 		view.init();
-		warehouseModel.registerObserver(view);
 		model.registerObserver(view);
+		warehouseModel.registerObserver(view);
 	}
 
 	@Override
