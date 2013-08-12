@@ -20,9 +20,4 @@ public class StockModelImpl extends
 		return service;
 	}
 
-	@Override
-	protected Class<StockModelObserver> getObserverClass() {
-		return StockModelObserver.class;
-	}
-
 }

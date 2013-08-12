@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -59,7 +60,7 @@ public class CreateCategoryPane extends SubTaskPane implements
 				try {
 					controller.validate(category);
 					category = controller.save(category);
-					// getDialog().dispose();
+					getDialog().dispose();
 
 					categoryDetailsPane.show(category);
 

@@ -62,7 +62,7 @@ public class ListWarehousePane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateWarehouse(List<Warehouse> warehouses) {
+	public void updateWarehouses(List<Warehouse> warehouses) {
 		tableModel = null;
 		tableModel = new BeanTableModel<>(Warehouse.class, warehouses);
 
