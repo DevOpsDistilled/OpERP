@@ -2,7 +2,6 @@ package devopsdistilled.operp.server.data.entity.stock;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
+import devopsdistilled.operp.server.data.entity.items.Item;
 
 @Entity
 public class StockKeeper extends Entiti<Long> {
@@ -23,7 +23,6 @@ public class StockKeeper extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long stockKeeperId;
 
-	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date stockUpdateDate;
 
@@ -73,6 +72,14 @@ public class StockKeeper extends Entiti<Long> {
 
 	public void setTransferStockKeeper(StockKeeper transferStockKeeper) {
 		this.transferStockKeeper = transferStockKeeper;
+	}
+
+	public Item getItem() {
+		return getStock().getItem();
+	}
+
+	public Warehouse getWarehouse() {
+		return getStock().getWarehouse();
 	}
 
 	@Override
