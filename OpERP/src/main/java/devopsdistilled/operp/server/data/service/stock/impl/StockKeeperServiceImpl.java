@@ -1,6 +1,8 @@
 package devopsdistilled.operp.server.data.service.stock.impl;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -66,5 +68,22 @@ public class StockKeeperServiceImpl extends
 		stockKeeper.setStock(stock);
 
 		super.delete(stockKeeper);
+	}
+
+	@Override
+	@Transactional
+	public List<StockKeeper> saveTransfer(StockKeeper srcStockKeeper,
+			StockKeeper destStockKeeper) {
+		List<StockKeeper> savedStockKeepers = new LinkedList<>();
+		srcStockKeeper = save(srcStockKeeper);
+		destStockKeeper = save(destStockKeeper);
+
+		srcStockKeeper.setTransferStockKeeper(destStockKeeper);
+		destStockKeeper.setTransferStockKeeper(srcStockKeeper);
+
+		savedStockKeepers.add(srcStockKeeper);
+		savedStockKeepers.add(destStockKeeper);
+
+		return savedStockKeepers;
 	}
 }
