@@ -83,12 +83,7 @@ public class TransferStockPane extends SubTaskPane implements
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				Warehouse toWarehouse = (Warehouse) e.getItem();
-				if (toWarehouse.compareTo(controller.getModel()
-						.getFromWarehouse()) == 0)
-					JOptionPane.showMessageDialog(getPane(),
-							"Source and Destination Warehouse can't be same");
-				else
-					controller.getModel().setToWarehouse(toWarehouse);
+				controller.getModel().setToWarehouse(toWarehouse);
 			}
 		});
 		pane.add(toWarehouseCombo, "flowx,cell 1 2,growx");
@@ -164,8 +159,11 @@ public class TransferStockPane extends SubTaskPane implements
 
 		for (Warehouse warehouse : warehouses) {
 			fromWarehouseCombo.addItem(warehouse);
-			if (prevSelectedFrom.compareTo(warehouse) != 0)
-				toWarehouseCombo.addItem(warehouse);
+			toWarehouseCombo.addItem(warehouse);
+
+			if (prevSelectedFrom != null)
+				if (prevSelectedFrom.compareTo(warehouse) != 0)
+					toWarehouseCombo.removeItem(warehouse);
 
 			if (prevSelectedFrom != null)
 				if (prevSelectedFrom.compareTo(warehouse) == 0)
