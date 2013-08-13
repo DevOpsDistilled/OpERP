@@ -20,6 +20,7 @@ public abstract class SubTaskPane implements PaneModelObserver {
 		dialog.getContentPane().add(getPane(), "grow");
 		dialog.setSize(400, 600);
 		dialog.setLocationRelativeTo(null);
+		dialog.requestFocus();
 		dialog.setVisible(true);
 	}
 
