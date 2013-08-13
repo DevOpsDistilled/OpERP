@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.items.panes.details;
 import java.util.Vector;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -62,7 +63,7 @@ public class ProductDetailsPane extends
 	}
 
 	@Override
-	public void show(Product product) {
+	public void show(Product product, JComponent owner) {
 		this.product = product;
 		if (product != null) {
 			productIdField.setText(product.getProductId().toString());
@@ -71,7 +72,7 @@ public class ProductDetailsPane extends
 			productCategoryList.setListData(new Vector<Category>(product
 					.getCategories()));
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 
 		} else {
 

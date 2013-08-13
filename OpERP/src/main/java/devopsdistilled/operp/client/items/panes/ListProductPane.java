@@ -45,7 +45,7 @@ public class ListProductPane extends SubTaskPane implements
 
 					Product product = tableModel.getRow(table.getSelectedRow());
 
-					productDetailsPane.show(product);
+					productDetailsPane.show(product, getPane());
 				}
 			}
 		});

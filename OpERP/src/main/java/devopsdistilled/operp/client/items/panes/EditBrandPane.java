@@ -88,7 +88,7 @@ public class EditBrandPane extends SubTaskPane implements
 					controller.validate(newBrand);
 					newBrand = controller.save(newBrand);
 					getDialog().dispose();
-					brandDetailsPane.show(newBrand);
+					brandDetailsPane.show(newBrand, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

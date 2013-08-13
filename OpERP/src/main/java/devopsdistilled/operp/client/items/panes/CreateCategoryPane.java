@@ -62,7 +62,7 @@ public class CreateCategoryPane extends SubTaskPane implements
 					category = controller.save(category);
 					getDialog().dispose();
 
-					categoryDetailsPane.show(category);
+					categoryDetailsPane.show(category, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

@@ -45,7 +45,7 @@ public class ListBrandPane extends SubTaskPane implements
 
 					Brand brand = tableModel.getRow(table.getSelectedRow());
 
-					brandDetailsPane.show(brand);
+					brandDetailsPane.show(brand, getPane());
 				}
 			}
 		});

@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.items.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -52,7 +53,7 @@ public class ManufacturerDetailsPane extends
 	}
 
 	@Override
-	public void show(Manufacturer manufacturer) {
+	public void show(Manufacturer manufacturer, JComponent owner) {
 		this.manufacturer = manufacturer;
 
 		if (manufacturer != null) {
@@ -60,7 +61,7 @@ public class ManufacturerDetailsPane extends
 					.toString());
 			manufacturerNameField.setText(manufacturer.getManufacturerName());
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 
 		} else {
 

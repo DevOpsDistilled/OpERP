@@ -61,7 +61,8 @@ public class CreateProductPane extends SubTaskPane implements
 		pane.add(lblCategory, "cell 0 1");
 
 		categoryPanel = new JPanel();
-		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]", "[23px]"));
+		categoryPanel
+				.setLayout(new MigLayout("flowy", "[92px,grow]", "[23px]"));
 		JButton btnNewCategory = new JButton("New Category");
 		btnNewCategory.addActionListener(new ActionListener() {
 			@Override
@@ -102,7 +103,7 @@ public class CreateProductPane extends SubTaskPane implements
 					product = controller.save(product);
 
 					getDialog().dispose();
-					productDetailsPane.show(product);
+					productDetailsPane.show(product, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

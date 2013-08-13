@@ -48,9 +48,9 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 					StockKeeper stockKeeper = tableModel.getRow(table
 							.getSelectedRow());
 					if (stockKeeper.getTransferStockKeeper() == null)
-						stockKeepingDetailsPane.show(stockKeeper);
+						stockKeepingDetailsPane.show(stockKeeper, getPane());
 					else {
-						transferStockDetailsPane.show(stockKeeper);
+						transferStockDetailsPane.show(stockKeeper, getPane());
 					}
 
 				}
