@@ -1,18 +1,14 @@
 package devopsdistilled.operp.client.context;
 
-import javax.swing.JMenuBar;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
 import devopsdistilled.operp.client.main.MainWindowController;
 import devopsdistilled.operp.client.main.MainWindowControllerImpl;
-import devopsdistilled.operp.client.main.utils.MenuBar;
-import devopsdistilled.operp.client.main.utils.StandardButton;
 
 @Configuration
 @Import({ NavigationContext.class })
@@ -34,8 +30,4 @@ public class MainWindowContext {
 		return window;
 	}
 	
-	@Bean
-	public StandardButton standardButton(){
-		return new StandardButton();
-	}
 }

@@ -10,22 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class StandardButton {
-	private static StandardButton standardButton;
-	
-	public StandardButton(){
-	
-	}
-	
-	public static StandardButton getStandardButton() {
-		return standardButton;
-	}
+public class StandardButtonHelper {
 
-	public static void setStandardButton(StandardButton standardButton) {
-		StandardButton.standardButton = standardButton;
-	}
-	
-	public  Icon SetStandardSizeForImage(ImageIcon icon){
+	public static Icon SetStandardSizeForImage(ImageIcon icon){
 		Image img=icon.getImage();
 		BufferedImage bi=new BufferedImage(60, 60, BufferedImage.TYPE_INT_ARGB);
 		Graphics g=bi.createGraphics();
@@ -35,7 +22,7 @@ public class StandardButton {
 		
 	}
 	
-	public JButton SetStandardSizeForButton(JButton btn){
+	public static JButton SetStandardSizeForButton(JButton btn){
 		btn.setMaximumSize(new Dimension(90, 90));
 		btn.setMinimumSize(new Dimension(90,90));
 		btn.setHorizontalTextPosition(SwingConstants.CENTER);
