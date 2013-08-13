@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -78,10 +77,9 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 		return dialog;
 	}
 
-	public void showDetailsPane(JPanel detailsPane, JComponent owner) {
+	public void showDetailsPane(JPanel detailsPane) {
 		getPane().add(btnPanel, "south, pad 20 100 20 20");
 		dialog.getContentPane().add(getPane(), "grow");
-		getDialog().setLocationRelativeTo(owner);
 		getDialog().setVisible(true);
 	}
 
