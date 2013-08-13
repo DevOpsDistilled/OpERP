@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -143,10 +144,10 @@ public class StockKeepingDetailsPane extends
 	}
 
 	@Override
-	public void show(StockKeeper stockKeeper) {
+	public void show(StockKeeper stockKeeper, JComponent owner) {
 		init(stockKeeper);
 		if (stockKeeper != null)
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 	}
 
 	@Override

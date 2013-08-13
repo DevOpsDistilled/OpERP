@@ -93,7 +93,7 @@ public class CreateBrandPane extends SubTaskPane implements
 
 					getDialog().dispose();
 
-					brandDetailsPane.show(brand);
+					brandDetailsPane.show(brand, getPane());
 
 				} catch (EntityValidationException e1) {
 

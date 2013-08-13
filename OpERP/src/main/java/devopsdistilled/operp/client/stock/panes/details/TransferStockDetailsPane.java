@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -55,7 +56,7 @@ public class TransferStockDetailsPane extends
 	}
 
 	@Override
-	public void show(StockKeeper srcStockKeeper) {
+	public void show(StockKeeper srcStockKeeper, JComponent owner) {
 		if (srcStockKeeper.getTransferStockKeeper() != null) {
 
 			this.srcStockKeeper = srcStockKeeper;
@@ -71,7 +72,7 @@ public class TransferStockDetailsPane extends
 			splitPane.setLeftComponent(srcDetails.getPane());
 			splitPane.setRightComponent(destDetails.getPane());
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 
 		} else {
 

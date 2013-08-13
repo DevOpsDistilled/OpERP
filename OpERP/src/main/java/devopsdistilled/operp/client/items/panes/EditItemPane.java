@@ -130,7 +130,7 @@ public class EditItemPane extends SubTaskPane implements
 
 						getDialog().dispose();
 
-						itemDetailsPane.show(item);
+						itemDetailsPane.show(item, getPane());
 
 					} catch (EntityValidationException e1) {
 						JOptionPane.showMessageDialog(getPane(),

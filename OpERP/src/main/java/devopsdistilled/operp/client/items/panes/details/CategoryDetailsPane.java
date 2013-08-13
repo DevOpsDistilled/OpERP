@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.items.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -52,13 +53,13 @@ public class CategoryDetailsPane extends
 	}
 
 	@Override
-	public void show(Category category) {
+	public void show(Category category, JComponent owner) {
 		this.category = category;
 		if (category != null) {
 			categoryIdField.setText(category.getCategoryId().toString());
 			categoryNameField.setText(category.getCategoryName());
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 
 		} else {
 
