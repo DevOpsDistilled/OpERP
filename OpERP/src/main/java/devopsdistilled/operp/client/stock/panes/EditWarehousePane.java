@@ -79,7 +79,7 @@ public class EditWarehousePane extends SubTaskPane implements
 					controller.validate(warehouse);
 					warehouse = controller.save(warehouse);
 					getDialog().dispose();
-					warehouseDetailsPane.show(warehouse);
+					warehouseDetailsPane.show(warehouse, getPane());
 
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

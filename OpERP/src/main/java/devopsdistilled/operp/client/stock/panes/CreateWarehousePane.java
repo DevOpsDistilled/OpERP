@@ -4,15 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JTextField;
 
+import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.EntityNameExistsException;
 import devopsdistilled.operp.client.exceptions.NullFieldException;
@@ -20,8 +19,6 @@ import devopsdistilled.operp.client.stock.panes.controllers.CreateWarehousePaneC
 import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
 import devopsdistilled.operp.client.stock.panes.models.observers.CreateWarehousePaneModelObserver;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
-
-import javax.swing.JButton;
 
 public class CreateWarehousePane extends SubTaskPane implements
 		CreateWarehousePaneModelObserver {
@@ -31,8 +28,8 @@ public class CreateWarehousePane extends SubTaskPane implements
 
 	@Inject
 	private WarehouseDetailsPane warehouseDetailsPane;
-	private JPanel pane;
-	private JTextField warehouseNameField;
+	private final JPanel pane;
+	private final JTextField warehouseNameField;
 
 	public CreateWarehousePane() {
 		pane = new JPanel();
@@ -66,7 +63,7 @@ public class CreateWarehousePane extends SubTaskPane implements
 					controller.validate(warehouse);
 					warehouse = controller.save(warehouse);
 					getDialog().dispose();
-					warehouseDetailsPane.show(warehouse);
+					warehouseDetailsPane.show(warehouse, getPane());
 
 				} catch (NullFieldException ex) {
 					JOptionPane.showMessageDialog(getPane(),

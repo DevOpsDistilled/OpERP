@@ -140,7 +140,7 @@ public class UpdateStockPane extends SubTaskPane implements
 					controller.validate();
 					StockKeeper stockKeeper = controller.save();
 					getDialog().dispose();
-					stockKeepingDetailsPane.show(stockKeeper);
+					stockKeepingDetailsPane.show(stockKeeper, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

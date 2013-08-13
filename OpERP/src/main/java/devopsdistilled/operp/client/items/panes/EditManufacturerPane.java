@@ -78,7 +78,7 @@ public class EditManufacturerPane extends SubTaskPane implements
 					manufacturer = controller.save(manufacturer);
 
 					getDialog().dispose();
-					manufacturerDetailsPane.show(manufacturer);
+					manufacturerDetailsPane.show(manufacturer, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
