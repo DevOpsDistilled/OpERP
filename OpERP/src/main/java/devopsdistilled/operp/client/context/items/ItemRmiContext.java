@@ -25,7 +25,7 @@ public class ItemRmiContext extends RmiContext {
 	@Bean
 	public RmiProxyFactoryBean productService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/ProductService");
+		rmiProxy.setServiceUrl(rmiUrl + "/ProductService");
 		rmiProxy.setServiceInterface(ProductService.class);
 		return rmiProxy;
 	}
@@ -33,7 +33,7 @@ public class ItemRmiContext extends RmiContext {
 	@Bean
 	public RmiProxyFactoryBean brandService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/BrandService");
+		rmiProxy.setServiceUrl(rmiUrl + "/BrandService");
 		rmiProxy.setServiceInterface(BrandService.class);
 		return rmiProxy;
 	}
@@ -41,7 +41,7 @@ public class ItemRmiContext extends RmiContext {
 	@Bean
 	public RmiProxyFactoryBean categoryService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/CategoryService");
+		rmiProxy.setServiceUrl(rmiUrl + "/CategoryService");
 		rmiProxy.setServiceInterface(CategoryService.class);
 		return rmiProxy;
 	}
@@ -49,7 +49,7 @@ public class ItemRmiContext extends RmiContext {
 	@Bean
 	public RmiProxyFactoryBean manufacturerService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/ManufacturerService");
+		rmiProxy.setServiceUrl(rmiUrl + "/ManufacturerService");
 		rmiProxy.setServiceInterface(ManufacturerService.class);
 		return rmiProxy;
 	}
