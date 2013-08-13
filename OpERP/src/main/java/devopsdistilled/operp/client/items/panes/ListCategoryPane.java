@@ -46,7 +46,7 @@ public class ListCategoryPane extends SubTaskPane implements
 					Category category = tableModel.getRow(table
 							.getSelectedRow());
 
-					categoryDetailsPane.show(category);
+					categoryDetailsPane.show(category, getPane());
 				}
 			}
 		});

@@ -46,7 +46,7 @@ public class ListManufacturerPane extends SubTaskPane implements
 					Manufacturer manufacturer = tableModel.getRow(table
 							.getSelectedRow());
 
-					manufacturerDetailsPane.show(manufacturer);
+					manufacturerDetailsPane.show(manufacturer, getPane());
 				}
 			}
 		});
