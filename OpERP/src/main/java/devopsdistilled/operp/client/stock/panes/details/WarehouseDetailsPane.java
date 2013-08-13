@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -79,7 +80,7 @@ public class WarehouseDetailsPane extends
 	}
 
 	@Override
-	public void show(Warehouse warehouse) {
+	public void show(Warehouse warehouse, JComponent owner) {
 		this.warehouse = warehouse;
 
 		stockModel.registerObserver(this);
@@ -87,7 +88,7 @@ public class WarehouseDetailsPane extends
 		if (warehouse != null) {
 			warehouseIdField.setText(warehouse.getWarehouseId().toString());
 			warehouseNameField.setText(warehouse.getWarehouseName());
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 		} else {
 			dialog.dispose();
 			JOptionPane.showMessageDialog(getPane(), "Null Warehouse");
