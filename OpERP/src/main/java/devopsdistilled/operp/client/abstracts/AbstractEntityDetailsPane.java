@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,8 +16,6 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 	protected final JDialog dialog;
 
 	protected JPanel btnPanel;
-
-	protected JComponent owner;
 
 	public AbstractEntityDetailsPane() {
 		dialog = new JDialog();
@@ -66,10 +63,6 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 		btnPanel.add(btnOk);
 	}
 
-	public void setOwner(JComponent owner) {
-		this.owner = owner;
-	}
-
 	public abstract EC getEntityController();
 
 	protected abstract E getEntity();
@@ -87,11 +80,7 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 	public void showDetailsPane(JPanel detailsPane) {
 		getPane().add(btnPanel, "south, pad 20 100 20 20");
 		dialog.getContentPane().add(getPane(), "grow");
-		getDialog().setLocationRelativeTo(getOwner());
 		getDialog().setVisible(true);
 	}
 
-	private JComponent getOwner() {
-		return owner;
-	}
 }
