@@ -36,7 +36,8 @@ public class CreateAddressPane extends SubTaskPane implements
 		countryField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-
+				getController().getModel().getAddress()
+						.setCountry(countryField.getText().trim());
 			}
 		});
 		pane.add(countryField, "cell 1 0,growx");
@@ -46,6 +47,13 @@ public class CreateAddressPane extends SubTaskPane implements
 		pane.add(lblZone, "cell 0 1,alignx trailing");
 
 		zoneField = new JTextField();
+		zoneField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getController().getModel().getAddress()
+						.setZone(zoneField.getText().trim());
+			}
+		});
 		pane.add(zoneField, "cell 1 1,growx");
 		zoneField.setColumns(10);
 
@@ -53,6 +61,13 @@ public class CreateAddressPane extends SubTaskPane implements
 		pane.add(lblDistrict, "cell 0 2,alignx trailing");
 
 		districtField = new JTextField();
+		districtField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getController().getModel().getAddress()
+						.setDistrict(districtField.getText().trim());
+			}
+		});
 		pane.add(districtField, "cell 1 2,growx");
 		districtField.setColumns(10);
 
@@ -60,6 +75,13 @@ public class CreateAddressPane extends SubTaskPane implements
 		pane.add(lblCity, "cell 0 3,alignx trailing");
 
 		cityField = new JTextField();
+		cityField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getController().getModel().getAddress()
+						.setCity(cityField.getText().trim());
+			}
+		});
 		pane.add(cityField, "cell 1 3,growx");
 		cityField.setColumns(10);
 
@@ -67,6 +89,13 @@ public class CreateAddressPane extends SubTaskPane implements
 		pane.add(lblStreet, "cell 0 4,alignx trailing");
 
 		streetField = new JTextField();
+		streetField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getController().getModel().getAddress()
+						.setStreet(streetField.getText().trim());
+			}
+		});
 		pane.add(streetField, "cell 1 4,growx");
 		streetField.setColumns(10);
 	}
