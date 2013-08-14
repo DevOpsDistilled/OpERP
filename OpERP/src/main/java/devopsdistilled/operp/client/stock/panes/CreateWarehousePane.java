@@ -33,7 +33,13 @@ public class CreateWarehousePane extends SubTaskPane implements
 	private WarehouseDetailsPane warehouseDetailsPane;
 	private JPanel pane;
 	private JTextField warehouseNameField;
-
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(400, 200);
+	}
+	
 	public CreateWarehousePane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));

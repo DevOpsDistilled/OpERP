@@ -51,9 +51,15 @@ public class EditItemPane extends SubTaskPane implements
 
 	private Item item;
 
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(500, 300);
+	}
+	
 	public EditItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
+		pane.setLayout(new MigLayout("debug", "[][][][]",
 				"[][][][][][]"));
 
 		JLabel lblItemId_1 = new JLabel("Item ID");

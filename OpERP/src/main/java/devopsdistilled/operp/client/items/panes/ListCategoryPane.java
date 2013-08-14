@@ -30,6 +30,13 @@ public class ListCategoryPane extends SubTaskPane implements
 
 	private final JTable table;
 	BeanTableModel<Category> tableModel;
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(400, 600);
+		getDialog().setLocationRelativeTo(null);
+	}
 
 	public ListCategoryPane() {
 		pane = new JPanel(new MigLayout("debug, fill"));

@@ -37,6 +37,12 @@ public class EditCategoryPane extends SubTaskPane implements
 	private final JButton btnUpdate;
 	private final JButton btnReset;
 
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(400, 200);
+	}
+	
 	public EditCategoryPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));

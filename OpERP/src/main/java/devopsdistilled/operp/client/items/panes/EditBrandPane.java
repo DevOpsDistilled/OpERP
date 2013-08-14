@@ -38,10 +38,15 @@ public class EditBrandPane extends SubTaskPane implements
 	private final JComboBox<Manufacturer> manufacturersCombo;
 
 	private Brand brand;
-
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(400, 200);
+	}
 	public EditBrandPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("debug", "[][]", "[][][][][]"));
 
 		JLabel lblBrandId = new JLabel("Brand ID");
 		pane.add(lblBrandId, "cell 0 0,alignx trailing");

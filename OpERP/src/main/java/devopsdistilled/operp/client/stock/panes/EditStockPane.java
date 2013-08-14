@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.stock.panes;
 
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -13,7 +14,6 @@ import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.client.stock.models.observers.EditStockPaneModelObserver;
 import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.client.stock.panes.controllers.EditStockPaneController;
-import devopsdistilled.operp.client.stock.panes.details.StockDetailsPane;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
@@ -39,8 +39,11 @@ public class EditStockPane extends SubTaskPane
 	@Inject
 	private WarehouseController warehouseController;
 	
-	@Inject
-	private StockDetailsPane stockDetailsPane;
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(500, 300);
+	}
 	
 	
 	private JPanel pane;

@@ -45,7 +45,13 @@ public class CreateProductPane extends SubTaskPane implements
 
 	DefaultListModel<Category> listModel;
 	private final JList<Category> categoryList;
-
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(500, 400);
+	}
+	
 	public CreateProductPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
@@ -69,12 +75,12 @@ public class CreateProductPane extends SubTaskPane implements
 				categoryController.create();
 			}
 		});
-		categoryPanel.add(btnNewCategory, "south");
+		categoryPanel.add(btnNewCategory, "south,flowy");
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
 
 		categoryList = new JList<>();
 		categoryPanel.add(categoryList, "cell 0 0,grow");
-		pane.add(scrollPane, "cell 1 1,grow");
+		pane.add(scrollPane, "cell 1 1 ,grow");
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
