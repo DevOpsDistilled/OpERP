@@ -42,6 +42,7 @@ public class StockMgmtPane extends TaskPane {
 	private ImageIcon iconListWarehouse;
 	private ImageIcon iconTransferStock;
 	private ImageIcon iconListStockActivities;
+	
 	@Override
 	public String toString() {
 		return new String("Stock Management");
@@ -54,11 +55,11 @@ public class StockMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("debug", "[]50[]50[grow]", "[][]25[]25[][]"));
+		pane.setLayout(new MigLayout("debug", "[]50[]50[][grow]", "[]20[]25[]25[][]"));
 
 		JLabel lblStockManagement = new JLabel("Stock Management");
-		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 16));
-		pane.add(lblStockManagement, "cell 0 0 2 1,alignx center");
+		lblStockManagement.setFont(new Font("Dialog", Font.BOLD, 20));
+		pane.add(lblStockManagement, "cell 0 0 5 1,alignx center");
 
 		btnCreateStock = new JButton("<html>Update<br/>Stock</html>");
 		btnCreateStock.addActionListener(new ActionListener() {
@@ -96,7 +97,7 @@ public class StockMgmtPane extends TaskPane {
 		iconCreateWarehouse=new ImageIcon(StockMgmtPane.class.
 					getResource("/client/icons/Accounting.png"));
 		btnCreateWarehouse.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateWarehouse));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateWarehouse), "flowx,cell 0 2");
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateWarehouse), "flowx,cell 2 1");
 
 		btnListWarehouse = new JButton("<html>List<br/>Warehouse<html>");
 		btnListWarehouse.addActionListener(new ActionListener() {
@@ -108,7 +109,7 @@ public class StockMgmtPane extends TaskPane {
 		iconListWarehouse=new ImageIcon(StockMgmtPane.class.
 				getResource("/client/icons/Accounting.png"));
 		btnListWarehouse.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListWarehouse));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListWarehouse), "cell 1 2");
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListWarehouse), "cell 0 2");
 		
 		btnTransferStock = new JButton("<html>Transfer<br/>Stock<html>");
 		btnTransferStock.addActionListener(new ActionListener() {
@@ -120,7 +121,7 @@ public class StockMgmtPane extends TaskPane {
 		iconTransferStock=new ImageIcon(StockMgmtPane.class.
 				getResource("/client/icons/Accounting.png")); 
 		btnTransferStock.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconTransferStock));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnTransferStock), "cell 0 4");
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnTransferStock), "flowx,cell 1 2");
 
 		btnListStockActivities = new JButton("<html>List Stock<br/> Activites</html>");
 		btnListStockActivities.addActionListener(new ActionListener() {
@@ -132,7 +133,7 @@ public class StockMgmtPane extends TaskPane {
 		iconListStockActivities=new ImageIcon(StockMgmtPane.class.
 				getResource("/client/icons/Accounting.png"));
 		btnListStockActivities.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListStockActivities));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListStockActivities), "cell 1 4");
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListStockActivities), "cell 2 2");
 
 		return pane;
 
