@@ -2,7 +2,10 @@ package devopsdistilled.operp.server.data.entity.party;
 
 import java.util.Date;
 
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
@@ -11,10 +14,12 @@ public abstract class Party extends Entiti<Long> {
 
 	private static final long serialVersionUID = 5183636412272320506L;
 
+	@Id
 	private Long partyId;
 
 	private String partyName;
 
+	@Temporal(TemporalType.DATE)
 	private Date registerdDate;
 
 	public Long getPartyId() {
