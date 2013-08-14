@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.repo.commons.ContactInfoRepository;
+import devopsdistilled.operp.server.data.service.commons.ContactInfoService;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 
 @Service
 public class ContactInfoServiceImpl extends
-		AbstractEntityService<ContactInfo, Long, ContactInfoRepository> {
+		AbstractEntityService<ContactInfo, Long, ContactInfoRepository>
+		implements ContactInfoService {
 
 	private static final long serialVersionUID = 3910975586559308476L;
 
