@@ -3,11 +3,13 @@ package devopsdistilled.operp.client.context;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import devopsdistilled.operp.client.context.commons.CommonsContext;
 import devopsdistilled.operp.client.context.items.ItemContext;
 import devopsdistilled.operp.client.context.stock.StockContext;
 
 @Configuration
-@Import({ MainWindowContext.class, ItemContext.class, StockContext.class })
+@Import({ UIContext.class, ItemContext.class, StockContext.class,
+		CommonsContext.class })
 public class LocalContext {
 
 }
