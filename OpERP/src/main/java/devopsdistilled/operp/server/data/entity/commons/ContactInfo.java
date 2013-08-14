@@ -1,6 +1,7 @@
 package devopsdistilled.operp.server.data.entity.commons;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -76,8 +77,19 @@ public class ContactInfo extends Entiti<Long> {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder contactInfo = new StringBuilder();
+		contactInfo.append("Email: " + getEmail());
+		contactInfo.append(System.lineSeparator());
+		contactInfo.append("Phone Numbers");
+		contactInfo.append(System.lineSeparator());
+		for (Entry<PhoneType, String> number : getPhoneNumbers().entrySet()) {
+			contactInfo.append("\t" + number.getKey() + ": "
+					+ number.getValue());
+			contactInfo.append(System.lineSeparator());
+		}
+		contactInfo.append("Address");
+		contactInfo.append(System.lineSeparator());
+		contactInfo.append(getAddress());
+		return contactInfo.toString();
 	}
-
 }
