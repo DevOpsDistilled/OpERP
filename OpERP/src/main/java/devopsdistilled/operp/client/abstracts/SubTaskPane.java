@@ -12,6 +12,7 @@ public abstract class SubTaskPane implements PaneModelObserver {
 		dialog = new JDialog();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.getContentPane().setLayout(new MigLayout("fill"));
+		
 	}
 
 	public abstract JComponent getPane();
@@ -20,6 +21,9 @@ public abstract class SubTaskPane implements PaneModelObserver {
 		dialog.getContentPane().add(getPane(), "grow");
 		dialog.setSize(400, 600);
 		dialog.setVisible(true);
+		dialog.setLocationRelativeTo(null);
+
+		
 
 	}
 
