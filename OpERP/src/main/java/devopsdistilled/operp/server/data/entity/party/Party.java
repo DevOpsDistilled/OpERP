@@ -2,6 +2,8 @@ package devopsdistilled.operp.server.data.entity.party;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -15,6 +17,7 @@ public abstract class Party extends Entiti<Long> {
 	private static final long serialVersionUID = 5183636412272320506L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long partyId;
 
 	private String partyName;
