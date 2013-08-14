@@ -18,6 +18,11 @@ public class CreateAddressPaneControllerImpl implements
 	private CreateAddressPaneModel model;
 
 	@Override
+	public CreateAddressPane getView() {
+		return view;
+	}
+
+	@Override
 	public CreateAddressPaneModel getModel() {
 		return model;
 	}
