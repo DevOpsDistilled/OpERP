@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.party.models.VendorModel;
 import devopsdistilled.operp.client.party.panes.CreateVendorPane;
 import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.CreateVendorPaneModel;
@@ -22,16 +23,25 @@ public class CreateVendorPaneControllerImpl implements
 	@Inject
 	private CreateContactInfoPaneController createContactInfoPaneController;
 
+	@Inject
+	private VendorModel vendorModel;
+
 	@Override
-	public void validate(Vendor entity) throws EntityValidationException {
-		// TODO Auto-generated method stub
+	public void validate(Vendor vendor) throws EntityValidationException {
+		createContactInfoPaneController
+				.validate(createContactInfoPaneController.getModel()
+						.getContactInfo());
+		model.getVendor().setContactInfo(
+				createContactInfoPaneController.getModel().getContactInfo());
+
+		if (vendor.getPartyName().equalsIgnoreCase(""))
+			throw new EntityValidationException("Vendor Name can't be empty");
 
 	}
 
 	@Override
-	public Vendor save(Vendor entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vendor save(Vendor vendor) {
+		return vendorModel.saveAndUpdateModel(vendor);
 	}
 
 	@Override
