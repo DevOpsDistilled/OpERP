@@ -40,4 +40,9 @@ public class CreateContactInfoPaneControllerImpl implements
 		model.registerObserver(view);
 	}
 
+	@Override
+	public CreateContactInfoPane getView() {
+		return view;
+	}
+
 }
