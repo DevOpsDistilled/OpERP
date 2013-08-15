@@ -1,5 +1,8 @@
 package devopsdistilled.operp.client.abstracts;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 
@@ -18,8 +21,13 @@ public abstract class SubTaskPane implements PaneModelObserver {
 
 	public void init() {
 		dialog.getContentPane().add(getPane(), "grow");
-		dialog.setSize(400, 600);
 		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Dimension screenSize = toolkit.getScreenSize();
+		final int x = (screenSize.width - dialog.getWidth()) / 2;
+		final int y = (screenSize.height - dialog.getHeight()) / 2;
+		dialog.setLocation(x, y);
 		dialog.requestFocus();
 		dialog.setVisible(true);
 	}
