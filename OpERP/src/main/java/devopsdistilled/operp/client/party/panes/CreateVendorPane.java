@@ -21,7 +21,7 @@ public class CreateVendorPane extends SubTaskPane implements
 	private final JTextField panVatField;
 	private final JButton btnCancel;
 	private final JButton btnCreate;
-	private final JPanel contactInfopanel;
+	private JPanel contactInfopanel;
 
 	public CreateVendorPane() {
 		pane = new JPanel();
@@ -60,6 +60,10 @@ public class CreateVendorPane extends SubTaskPane implements
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	public void setContactInfopanel(JPanel contactInfopanel) {
+		this.contactInfopanel = contactInfopanel;
 	}
 
 }
