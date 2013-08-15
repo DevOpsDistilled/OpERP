@@ -27,7 +27,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 
 	public CreateContactInfoPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[grow][grow]", "[][grow][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 
 		JLabel lblAddress = new JLabel("Address");
 		pane.add(lblAddress, "flowx,cell 0 0");
