@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.service.party.impl;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,4 +31,9 @@ public class VendorServiceImpl extends
 		return null;
 	}
 
+	@Override
+	public <S extends Vendor> S save(S entity) {
+		entity.setRegisteredDate(new Date());
+		return super.save(entity);
+	}
 }
