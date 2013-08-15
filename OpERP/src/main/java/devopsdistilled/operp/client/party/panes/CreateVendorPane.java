@@ -9,11 +9,13 @@ import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.CreateVendorPaneModelObserver;
 
@@ -71,6 +73,21 @@ public class CreateVendorPane extends SubTaskPane implements
 		pane.add(btnCancel, "flowx,cell 1 3");
 
 		btnCreate = new JButton("Create");
+		btnCreate.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					controller.validate(controller.getModel().getVendor());
+
+					controller.save(controller.getModel().getVendor());
+
+					getDialog().dispose();
+
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
+			}
+		});
 		pane.add(btnCreate, "cell 1 3");
 	}
 
