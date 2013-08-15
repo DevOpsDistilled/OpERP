@@ -76,6 +76,7 @@ public class CreateWarehousePane extends SubTaskPane implements
 			}
 		});
 		pane.add(btnCreate, "cell 1 1");
+		
 
 	}
 

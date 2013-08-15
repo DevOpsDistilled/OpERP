@@ -42,8 +42,6 @@ public class WarehouseDetailsPane extends
 	private final JLabel lblItemsInThis;
 
 	public WarehouseDetailsPane() {
-		dialog.setTitle("Warehouse Details");
-
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow,center]", "[][][][]"));
 

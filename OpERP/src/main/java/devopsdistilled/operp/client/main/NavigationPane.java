@@ -38,6 +38,7 @@ public class NavigationPane extends ViewPane implements TreeSelectionListener {
 		TaskPane oldTaskPane = (TaskPane) prevNode.getUserObject();
 
 		mainWindow.getController().changeTaskPane(newTaskPane, oldTaskPane);
+		
 	}
 
 }

@@ -8,6 +8,9 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.server.data.entity.Entiti;
@@ -24,6 +27,17 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 		dialog.setTitle(getTitle());
 		dialog.setSize(400, 300);
 		dialog.getContentPane().setLayout(new MigLayout("fill", "[]", "[]"));
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		SwingUtilities.updateComponentTreeUI(dialog);
 
 		btnPanel = new JPanel();
 		btnPanel.setLayout(new MigLayout(""));
@@ -62,6 +76,7 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 			}
 		});
 		btnPanel.add(btnOk);
+		
 	}
 
 	public abstract EC getEntityController();
