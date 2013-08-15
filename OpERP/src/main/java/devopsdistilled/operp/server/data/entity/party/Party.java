@@ -2,6 +2,7 @@ package devopsdistilled.operp.server.data.entity.party;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +27,11 @@ public abstract class Party extends Entiti<Long> {
 
 	private String panVat;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private ContactInfo contactInfo;
 
 	@Temporal(TemporalType.DATE)
-	private Date registerdDate;
+	private Date registeredDate;
 
 	public Long getPartyId() {
 		return partyId;
@@ -64,12 +65,12 @@ public abstract class Party extends Entiti<Long> {
 		this.contactInfo = contactInfo;
 	}
 
-	public Date getRegisterdDate() {
-		return registerdDate;
+	public Date getRegisteredDate() {
+		return registeredDate;
 	}
 
-	public void setRegisterdDate(Date registerdDate) {
-		this.registerdDate = registerdDate;
+	public void setRegisteredDate(Date registeredDate) {
+		this.registeredDate = registeredDate;
 	}
 
 	@Override
