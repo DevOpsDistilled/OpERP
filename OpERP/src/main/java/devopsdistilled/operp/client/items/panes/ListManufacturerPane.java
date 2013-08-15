@@ -30,6 +30,13 @@ public class ListManufacturerPane extends SubTaskPane implements
 
 	private final JTable table;
 	BeanTableModel<Manufacturer> tableModel;
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(400, 600);
+		getDialog().setLocationRelativeTo(null);
+	}
 
 	public ListManufacturerPane() {
 		pane = new JPanel(new MigLayout("fill"));
