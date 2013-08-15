@@ -42,6 +42,7 @@ public class CreateAddressPaneControllerImpl implements
 	@Override
 	public void init() {
 		// view.init();
+		view.setController(this);
 		model.registerObserver(view);
 	}
 
