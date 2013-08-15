@@ -24,8 +24,10 @@ public class CreateContactInfoPaneControllerImpl implements
 
 	@Override
 	public void validate(ContactInfo entity) throws EntityValidationException {
-		// TODO Auto-generated method stub
-
+		createAddressPaneController.validate(createAddressPaneController
+				.getModel().getAddress());
+		model.getContactInfo().setAddress(
+				createAddressPaneController.getModel().getAddress());
 	}
 
 	@Override
