@@ -9,7 +9,7 @@ public class CreateAddressPaneModelImpl extends
 		AbstractPaneModel<CreateAddressPaneModelObserver> implements
 		CreateAddressPaneModel {
 
-	private Address address;
+	private final Address address = new Address();
 
 	@Override
 	public String getTitle() {

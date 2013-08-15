@@ -9,7 +9,7 @@ public class CreateVendorPaneModelImpl extends
 		AbstractPaneModel<CreateVendorPaneModelObserver> implements
 		CreateVendorPaneModel {
 
-	private Vendor vendor;
+	private final Vendor vendor = new Vendor();
 
 	@Override
 	public String getTitle() {

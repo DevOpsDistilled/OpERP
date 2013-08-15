@@ -9,7 +9,7 @@ public class CreateContactInfoPaneModelImpl extends
 		AbstractPaneModel<CreateContactInfoPaneModelObserver> implements
 		CreateContactInfoPaneModel {
 
-	private ContactInfo contactInfo;
+	private final ContactInfo contactInfo = new ContactInfo();
 
 	@Override
 	public String getTitle() {
