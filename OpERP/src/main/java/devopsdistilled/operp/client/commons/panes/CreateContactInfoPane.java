@@ -56,8 +56,9 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		workNumField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getContactInfo().getPhoneNumbers()
-						.put(PhoneType.Work, workNumField.getText().trim());
+				if (!workNumField.getText().trim().equalsIgnoreCase(""))
+					controller.getModel().getContactInfo().getPhoneNumbers()
+							.put(PhoneType.Work, workNumField.getText().trim());
 
 			}
 		});
@@ -71,8 +72,13 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		mobileNumField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getContactInfo().getPhoneNumbers()
-						.put(PhoneType.Mobile, mobileNumField.getText().trim());
+				if (!mobileNumField.getText().trim().equalsIgnoreCase(""))
+					controller
+							.getModel()
+							.getContactInfo()
+							.getPhoneNumbers()
+							.put(PhoneType.Mobile,
+									mobileNumField.getText().trim());
 			}
 		});
 		pane.add(mobileNumField, "cell 1 7,growx");
@@ -85,8 +91,9 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		homeNumField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getContactInfo().getPhoneNumbers()
-						.put(PhoneType.Work, mobileNumField.getText().trim());
+				if (!homeNumField.getText().trim().equalsIgnoreCase(""))
+					controller.getModel().getContactInfo().getPhoneNumbers()
+							.put(PhoneType.Home, homeNumField.getText().trim());
 			}
 		});
 		pane.add(homeNumField, "cell 1 8,growx");
