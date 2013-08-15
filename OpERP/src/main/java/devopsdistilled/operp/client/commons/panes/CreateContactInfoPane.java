@@ -27,13 +27,13 @@ public class CreateContactInfoPane extends SubTaskPane implements
 
 	public CreateContactInfoPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 
 		JLabel lblAddress = new JLabel("Address");
 		pane.add(lblAddress, "flowx,cell 0 0");
 
 		JLabel lblEmail = new JLabel("Email");
-		pane.add(lblEmail, "cell 0 2,alignx trailing");
+		pane.add(lblEmail, "cell 0 3");
 
 		emailField = new JTextField();
 		emailField.addFocusListener(new FocusAdapter() {
@@ -43,14 +43,14 @@ public class CreateContactInfoPane extends SubTaskPane implements
 						.setEmail(emailField.getText().trim());
 			}
 		});
-		pane.add(emailField, "cell 1 2,growx");
+		pane.add(emailField, "cell 1 3,growx");
 		emailField.setColumns(10);
 
 		JLabel lblPhone = new JLabel("Phone");
-		pane.add(lblPhone, "cell 0 3");
+		pane.add(lblPhone, "cell 0 5");
 
 		JLabel lblWork = new JLabel("Work");
-		pane.add(lblWork, "cell 0 4,alignx trailing");
+		pane.add(lblWork, "cell 0 6,alignx trailing");
 
 		workNumField = new JTextField();
 		workNumField.addFocusListener(new FocusAdapter() {
@@ -61,11 +61,11 @@ public class CreateContactInfoPane extends SubTaskPane implements
 
 			}
 		});
-		pane.add(workNumField, "cell 1 4,growx");
+		pane.add(workNumField, "cell 1 6,growx");
 		workNumField.setColumns(10);
 
 		JLabel lblMobile = new JLabel("Mobile");
-		pane.add(lblMobile, "cell 0 5,alignx trailing");
+		pane.add(lblMobile, "cell 0 7,alignx trailing");
 
 		mobileNumField = new JTextField();
 		mobileNumField.addFocusListener(new FocusAdapter() {
@@ -75,11 +75,11 @@ public class CreateContactInfoPane extends SubTaskPane implements
 						.put(PhoneType.Mobile, mobileNumField.getText().trim());
 			}
 		});
-		pane.add(mobileNumField, "cell 1 5,growx");
+		pane.add(mobileNumField, "cell 1 7,growx");
 		mobileNumField.setColumns(10);
 
 		JLabel lblHome = new JLabel("Home");
-		pane.add(lblHome, "cell 0 6,alignx trailing");
+		pane.add(lblHome, "cell 0 8,alignx trailing");
 
 		homeNumField = new JTextField();
 		homeNumField.addFocusListener(new FocusAdapter() {
@@ -89,7 +89,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 						.put(PhoneType.Work, mobileNumField.getText().trim());
 			}
 		});
-		pane.add(homeNumField, "cell 1 6,growx");
+		pane.add(homeNumField, "cell 1 8,growx");
 		homeNumField.setColumns(10);
 	}
 
