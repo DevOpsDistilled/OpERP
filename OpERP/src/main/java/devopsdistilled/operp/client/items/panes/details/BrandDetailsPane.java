@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.items.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -60,14 +61,14 @@ public class BrandDetailsPane extends
 	}
 
 	@Override
-	public void show(Brand brand) {
+	public void show(Brand brand, JComponent owner) {
 		this.brand = brand;
 		if (brand != null) {
 			brandIdField.setText(brand.getBrandID().toString());
 			brandNameField.setText(brand.getBrandName());
 			manufacturerField.setText(brand.getManufacturer().toString());
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 		} else {
 
 			getDialog().dispose();

@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.items.panes.details;
 
 import javax.inject.Inject;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -80,7 +81,7 @@ public class ItemDetailsPane extends
 	}
 
 	@Override
-	public void show(Item item) {
+	public void show(Item item, JComponent owner) {
 
 		this.item = item;
 
@@ -91,7 +92,7 @@ public class ItemDetailsPane extends
 			brandField.setText(item.getBrand().getBrandName());
 			priceField.setText(item.getPrice().toString());
 
-			showDetailsPane(getPane());
+			showDetailsPane(getPane(), owner);
 		} else {
 			dialog.dispose();
 			JOptionPane.showMessageDialog(getPane(), "null object produced");

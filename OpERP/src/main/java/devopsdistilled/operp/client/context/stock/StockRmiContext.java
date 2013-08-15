@@ -4,17 +4,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
+import devopsdistilled.operp.client.context.RmiContext;
 import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
 import devopsdistilled.operp.server.data.service.stock.StockService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Configuration
-public class StockRmiContext {
+public class StockRmiContext extends RmiContext {
 
 	@Bean
 	public RmiProxyFactoryBean stockService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/StockService");
+		rmiProxy.setServiceUrl(rmiUrl + "/StockService");
 		rmiProxy.setServiceInterface(StockService.class);
 		return rmiProxy;
 	}
@@ -22,7 +23,7 @@ public class StockRmiContext {
 	@Bean
 	public RmiProxyFactoryBean warehouseService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/WarehouseService");
+		rmiProxy.setServiceUrl(rmiUrl + "/WarehouseService");
 		rmiProxy.setServiceInterface(WarehouseService.class);
 		return rmiProxy;
 	}
@@ -30,7 +31,7 @@ public class StockRmiContext {
 	@Bean
 	public RmiProxyFactoryBean stockKeeperService() {
 		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		rmiProxy.setServiceUrl("rmi://127.0.1.1:1099/StockKeeperService");
+		rmiProxy.setServiceUrl(rmiUrl + "/StockKeeperService");
 		rmiProxy.setServiceInterface(StockKeeperService.class);
 		return rmiProxy;
 	}

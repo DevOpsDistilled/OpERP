@@ -43,7 +43,7 @@ public class ListWarehousePane extends SubTaskPane implements
 						&& table.getSelectedRow() != -1) {
 					Warehouse warehouse = tableModel.getRow(table
 							.getSelectedRow());
-					warehouseDetailsPane.show(warehouse);
+					warehouseDetailsPane.show(warehouse, getPane());
 
 				}
 			}

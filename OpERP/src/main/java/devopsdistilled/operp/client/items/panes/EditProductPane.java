@@ -118,7 +118,7 @@ public class EditProductPane extends SubTaskPane implements
 					product = controller.save(product);
 
 					getDialog().dispose();
-					productDetailsPane.show(product);
+					productDetailsPane.show(product, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());

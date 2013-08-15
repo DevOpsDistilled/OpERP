@@ -45,7 +45,7 @@ public class ListItemPane extends SubTaskPane implements
 
 					Item item = tableModel.getRow(table.getSelectedRow());
 
-					itemDetailsPane.show(item);
+					itemDetailsPane.show(item, getPane());
 				}
 			}
 		});

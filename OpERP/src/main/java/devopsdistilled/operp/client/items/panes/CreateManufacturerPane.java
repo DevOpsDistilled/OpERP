@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -64,7 +65,7 @@ public class CreateManufacturerPane extends SubTaskPane implements
 
 					getDialog().dispose();
 
-					manufacturerDetailsPane.show(manufacturer);
+					manufacturerDetailsPane.show(manufacturer, getPane());
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
