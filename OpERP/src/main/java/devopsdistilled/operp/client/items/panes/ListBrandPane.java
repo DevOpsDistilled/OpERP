@@ -29,8 +29,6 @@ public class ListBrandPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(500, 600);
-		getDialog().setLocationRelativeTo(null);
 	}
 
 	private final JPanel pane;

@@ -34,8 +34,6 @@ public class ListCategoryPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(400, 600);
-		getDialog().setLocationRelativeTo(null);
 	}
 
 	public ListCategoryPane() {
