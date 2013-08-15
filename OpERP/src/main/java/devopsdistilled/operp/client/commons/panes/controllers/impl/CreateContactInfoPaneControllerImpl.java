@@ -41,16 +41,13 @@ public class CreateContactInfoPaneControllerImpl implements
 
 	@Override
 	public void init() {
+		// view.init();
 
+		view.setController(this);
 		createAddressPaneController.init();
-		
-		// Setting controller is required
-		// if Bean scope set to Prototype
-		createAddressPaneController.getView().setController(
-				createAddressPaneController);
+
 		view.setAddressPanel((JPanel) createAddressPaneController.getView()
 				.getPane());
-		// view.init();
 		model.registerObserver(view);
 	}
 
