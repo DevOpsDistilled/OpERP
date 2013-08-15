@@ -40,7 +40,6 @@ public class EditCategoryPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(400, 200);
 	}
 	
 	public EditCategoryPane() {

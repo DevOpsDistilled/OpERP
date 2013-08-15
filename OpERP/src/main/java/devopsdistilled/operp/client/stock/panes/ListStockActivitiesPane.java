@@ -34,13 +34,6 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 	private final JTable table;
 	BeanTableModel<StockKeeper> tableModel;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(1000, 700);
-		getDialog().setLocationRelativeTo(null);
-	}
-
 	public ListStockActivitiesPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("fill"));

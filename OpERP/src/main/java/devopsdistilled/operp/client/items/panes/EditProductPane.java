@@ -53,7 +53,6 @@ public class EditProductPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(500, 400);
 	}
 
 	public EditProductPane() {

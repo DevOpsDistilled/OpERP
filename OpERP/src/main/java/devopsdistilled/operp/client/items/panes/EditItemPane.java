@@ -54,7 +54,6 @@ public class EditItemPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(500, 300);
 	}
 	
 	public EditItemPane() {

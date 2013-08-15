@@ -37,7 +37,6 @@ public class EditManufacturerPane extends SubTaskPane implements
 	@Override
 	public void init(){
 		super.init();
-		getDialog().setSize(500, 200);
 	}
 
 	public EditManufacturerPane() {

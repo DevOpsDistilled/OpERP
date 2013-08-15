@@ -23,6 +23,7 @@ import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateBrandPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
+import java.awt.Dimension;
 
 public class CreateBrandPane extends SubTaskPane implements
 		CreateBrandPaneModelObserver, ManufacturerModelObserver {
@@ -40,12 +41,6 @@ public class CreateBrandPane extends SubTaskPane implements
 	private final JTextField brandNameField;
 	private final JComboBox<Manufacturer> manufacturersCombo;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 200);
-		getDialog().setLocationRelativeTo(null);
-	}
 	
 	public CreateBrandPane() {
 		pane = new JPanel();
@@ -62,6 +57,7 @@ public class CreateBrandPane extends SubTaskPane implements
 		pane.add(lblManufacturer, "cell 0 1,alignx trailing");
 
 		manufacturersCombo = new JComboBox<>();
+		manufacturersCombo.setMinimumSize(new Dimension(100, 24));
 		manufacturersCombo.setSelectedItem(null);
 		pane.add(manufacturersCombo, "flowx,cell 1 1,growx");
 

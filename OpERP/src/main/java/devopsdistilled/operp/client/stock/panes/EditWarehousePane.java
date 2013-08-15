@@ -36,13 +36,6 @@ public class EditWarehousePane extends SubTaskPane implements
 	
 	private Warehouse warehouse;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 200);
-		getDialog().setLocationRelativeTo(null);
-	}
-
 	public EditWarehousePane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));

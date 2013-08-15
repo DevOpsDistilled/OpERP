@@ -30,6 +30,7 @@ import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPane
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import java.awt.Dimension;
 
 public class UpdateStockPane extends SubTaskPane implements
 		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver {
@@ -46,12 +47,6 @@ public class UpdateStockPane extends SubTaskPane implements
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 300);
-	}
-
 	private final JPanel pane;
 	private final JTextField quantityField;
 	private final JComboBox<Item> comboItems;
@@ -65,6 +60,7 @@ public class UpdateStockPane extends SubTaskPane implements
 		pane.add(lblItemName, "cell 0 0,alignx trailing");
 
 		comboItems = new JComboBox<Item>();
+		comboItems.setMinimumSize(new Dimension(100, 24));
 		comboItems.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -88,6 +84,7 @@ public class UpdateStockPane extends SubTaskPane implements
 		pane.add(lblWarehouseName, "cell 0 1,alignx trailing");
 
 		comboWarehouses = new JComboBox<Warehouse>();
+		comboWarehouses.setMinimumSize(new Dimension(100, 24));
 		comboWarehouses.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {

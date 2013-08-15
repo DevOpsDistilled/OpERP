@@ -28,6 +28,7 @@ import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPa
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import java.awt.Dimension;
 
 public class TransferStockPane extends SubTaskPane implements
 		TransferStockPaneModelObserver, WarehouseModelObserver {
@@ -47,12 +48,6 @@ public class TransferStockPane extends SubTaskPane implements
 	private final JComboBox<Warehouse> fromWarehouseCombo;
 	private final JComboBox<Item> itemsCombo;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 300);
-	}
-
 	public TransferStockPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
@@ -61,6 +56,7 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblFromWarehouse, "cell 0 0,alignx trailing");
 
 		fromWarehouseCombo = new JComboBox<>();
+		fromWarehouseCombo.setMinimumSize(new Dimension(100, 24));
 		fromWarehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -77,6 +73,7 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblItem, "cell 0 1,alignx trailing");
 
 		itemsCombo = new JComboBox<>();
+		itemsCombo.setMinimumSize(new Dimension(100, 24));
 		itemsCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -90,6 +87,7 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
 
 		toWarehouseCombo = new JComboBox<>();
+		toWarehouseCombo.setMinimumSize(new Dimension(100, 24));
 		toWarehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {

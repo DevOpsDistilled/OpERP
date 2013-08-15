@@ -26,6 +26,7 @@ import devopsdistilled.operp.client.items.panes.models.observers.CreateItemPaneM
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
+import java.awt.Dimension;
 
 public class CreateItemPane extends SubTaskPane implements
 		CreateItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
@@ -48,12 +49,6 @@ public class CreateItemPane extends SubTaskPane implements
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
 
-	@Override
-	public void init() {
-		super.init();
-		getDialog().setSize(500, 300);
-		getDialog().setLocationRelativeTo(null);
-	}
 
 	public CreateItemPane() {
 		pane = new JPanel();
@@ -64,6 +59,8 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
 		comboProducts = new JComboBox<>();
+		comboProducts.setPreferredSize(new Dimension(50, 24));
+		comboProducts.setMinimumSize(new Dimension(100, 24));
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
@@ -71,6 +68,7 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<>();
+		comboBrands.setMinimumSize(new Dimension(100, 24));
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 
