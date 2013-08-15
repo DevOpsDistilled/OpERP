@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.commons;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -26,7 +27,7 @@ public class ContactInfo extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long contactId;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	private String email;
