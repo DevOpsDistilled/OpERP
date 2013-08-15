@@ -35,6 +35,7 @@ public class CreateCategoryPane extends SubTaskPane implements
 	public void init(){
 		super.init();
 		getDialog().setSize(400,200);
+		getDialog().setLocationRelativeTo(null);
 	}
 
 	public CreateCategoryPane() {

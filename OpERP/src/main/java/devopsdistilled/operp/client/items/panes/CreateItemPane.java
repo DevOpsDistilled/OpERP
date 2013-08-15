@@ -52,6 +52,7 @@ public class CreateItemPane extends SubTaskPane implements
 	public void init() {
 		super.init();
 		getDialog().setSize(500, 300);
+		getDialog().setLocationRelativeTo(null);
 	}
 
 	public CreateItemPane() {

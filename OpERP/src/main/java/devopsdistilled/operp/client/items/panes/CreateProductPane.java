@@ -50,6 +50,7 @@ public class CreateProductPane extends SubTaskPane implements
 	public void init(){
 		super.init();
 		getDialog().setSize(500, 400);
+		getDialog().setLocationRelativeTo(null);
 	}
 	
 	public CreateProductPane() {
