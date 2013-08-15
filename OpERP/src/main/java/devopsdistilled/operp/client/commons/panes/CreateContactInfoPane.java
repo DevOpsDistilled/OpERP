@@ -24,7 +24,6 @@ public class CreateContactInfoPane extends SubTaskPane implements
 	private final JTextField workNumField;
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
-	private JPanel addressPanel;
 
 	public CreateContactInfoPane() {
 		pane = new JPanel();
@@ -32,9 +31,6 @@ public class CreateContactInfoPane extends SubTaskPane implements
 
 		JLabel lblAddress = new JLabel("Address");
 		pane.add(lblAddress, "flowx,cell 0 0");
-
-		addressPanel = new JPanel();
-		pane.add(addressPanel, "cell 1 1,grow");
 
 		JLabel lblEmail = new JLabel("Email");
 		pane.add(lblEmail, "cell 0 2,alignx trailing");
@@ -107,6 +103,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 	}
 
 	public void setAddressPanel(JPanel addressPanel) {
-		this.addressPanel = addressPanel;
+		pane.add(addressPanel, "cell 0 1,grow,span");
+		pane.validate();
 	}
 }
