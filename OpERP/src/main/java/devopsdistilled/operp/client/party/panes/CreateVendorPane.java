@@ -21,11 +21,10 @@ public class CreateVendorPane extends SubTaskPane implements
 	private final JTextField panVatField;
 	private final JButton btnCancel;
 	private final JButton btnCreate;
-	private JPanel contactInfopanel;
 
 	public CreateVendorPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
+		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][grow][]"));
 
 		JLabel lblVendorName = new JLabel("Vendor Name");
 		pane.add(lblVendorName, "cell 0 0,alignx trailing");
@@ -40,9 +39,6 @@ public class CreateVendorPane extends SubTaskPane implements
 		panVatField = new JTextField();
 		pane.add(panVatField, "cell 1 1,growx");
 		panVatField.setColumns(10);
-
-		contactInfopanel = new JPanel();
-		pane.add(contactInfopanel, "cell 1 2,grow");
 
 		btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -63,7 +59,8 @@ public class CreateVendorPane extends SubTaskPane implements
 	}
 
 	public void setContactInfopanel(JPanel contactInfopanel) {
-		this.contactInfopanel = contactInfopanel;
+		pane.add(contactInfopanel, "cell 0 2,grow,span");
+		pane.validate();
 	}
 
 }
