@@ -45,4 +45,9 @@ public class CreateVendorPaneControllerImpl implements
 		model.registerObserver(view);
 	}
 
+	@Override
+	public CreateVendorPaneModel getModel() {
+		return model;
+	}
+
 }
