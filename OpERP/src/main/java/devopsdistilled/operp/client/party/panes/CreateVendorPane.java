@@ -2,7 +2,10 @@ package devopsdistilled.operp.client.party.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -11,10 +14,14 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.CreateVendorPaneModelObserver;
 
 public class CreateVendorPane extends SubTaskPane implements
 		CreateVendorPaneModelObserver {
+
+	@Inject
+	private CreateVendorPaneController controller;
 
 	private final JPanel pane;
 	private final JTextField nameField;
@@ -30,6 +37,13 @@ public class CreateVendorPane extends SubTaskPane implements
 		pane.add(lblVendorName, "cell 0 0,alignx trailing");
 
 		nameField = new JTextField();
+		nameField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				controller.getModel().getVendor()
+						.setPartyName(nameField.getText().trim());
+			}
+		});
 		pane.add(nameField, "cell 1 0,growx");
 		nameField.setColumns(10);
 
@@ -37,6 +51,13 @@ public class CreateVendorPane extends SubTaskPane implements
 		pane.add(lblPanvat, "cell 0 1,alignx trailing");
 
 		panVatField = new JTextField();
+		panVatField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				controller.getModel().getVendor()
+						.setPanVat(panVatField.getText().trim());
+			}
+		});
 		pane.add(panVatField, "cell 1 1,growx");
 		panVatField.setColumns(10);
 
