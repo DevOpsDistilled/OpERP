@@ -36,6 +36,7 @@ public class CreateVendorPaneControllerImpl implements
 
 	@Override
 	public void init() {
+		createContactInfoPaneController.init();
 		createContactInfoPaneController.getView().setController(
 				createContactInfoPaneController);
 		view.setContactInfopanel((JPanel) createContactInfoPaneController
