@@ -24,7 +24,7 @@ public class CreateVendorPane extends SubTaskPane implements
 
 	public CreateVendorPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
 		JLabel lblVendorName = new JLabel("Vendor Name");
 		pane.add(lblVendorName, "cell 0 0,alignx trailing");
