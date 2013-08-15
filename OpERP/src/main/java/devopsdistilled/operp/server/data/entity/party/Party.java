@@ -22,6 +22,8 @@ public abstract class Party extends Entiti<Long> {
 
 	private String partyName;
 
+	private String panVat;
+
 	@Temporal(TemporalType.DATE)
 	private Date registerdDate;
 
@@ -39,6 +41,14 @@ public abstract class Party extends Entiti<Long> {
 
 	public void setPartyName(String partyName) {
 		this.partyName = partyName;
+	}
+
+	public String getPanVat() {
+		return panVat;
+	}
+
+	public void setPanVat(String panVat) {
+		this.panVat = panVat;
 	}
 
 	public Date getRegisterdDate() {
