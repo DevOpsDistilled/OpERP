@@ -24,7 +24,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 	private final JTextField workNumField;
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
-	private final JPanel addressPanel;
+	private JPanel addressPanel;
 
 	public CreateContactInfoPane() {
 		pane = new JPanel();
@@ -104,5 +104,9 @@ public class CreateContactInfoPane extends SubTaskPane implements
 
 	public void setController(CreateContactInfoPaneController controller) {
 		this.controller = controller;
+	}
+
+	public void setAddressPanel(JPanel addressPanel) {
+		this.addressPanel = addressPanel;
 	}
 }
