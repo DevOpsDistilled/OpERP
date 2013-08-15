@@ -1,5 +1,6 @@
 package devopsdistilled.operp.server.data.entity.commons;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -37,7 +38,7 @@ public class ContactInfo extends Entiti<Long> {
 	@MapKeyEnumerated(EnumType.STRING)
 	@MapKeyColumn(name = "phoneType")
 	@Column(name = "phoneNumber")
-	private Map<PhoneType, String> phoneNumbers;
+	private Map<PhoneType, String> phoneNumbers = new HashMap<>();
 
 	public Long getContactId() {
 		return contactId;
