@@ -1,6 +1,6 @@
 package devopsdistilled.operp.client.abstracts;
 
-public abstract class ImSubTaskPane<C extends EntityPaneController<?, ?>>
+public abstract class EntityPane<C extends EntityPaneController<?, ?>>
 		extends SubTaskPane {
 
 	protected C controller;
