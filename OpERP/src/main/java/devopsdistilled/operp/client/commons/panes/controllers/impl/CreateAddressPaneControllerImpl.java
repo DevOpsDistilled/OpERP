@@ -29,13 +29,11 @@ public class CreateAddressPaneControllerImpl implements
 
 	@Override
 	public void validate() throws EntityValidationException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Address save() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
