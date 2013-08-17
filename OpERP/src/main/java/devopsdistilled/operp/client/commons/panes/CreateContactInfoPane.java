@@ -9,12 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.CreateContactInfoPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.commons.PhoneType;
 
-public class CreateContactInfoPane extends SubTaskPane implements
+public class CreateContactInfoPane extends
+		EntityPane<CreateContactInfoPaneController> implements
 		CreateContactInfoPaneModelObserver {
 
 	private CreateContactInfoPaneController controller;
@@ -105,6 +107,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		return pane;
 	}
 
+	@Override
 	public void setController(CreateContactInfoPaneController controller) {
 		this.controller = controller;
 	}
@@ -112,5 +115,14 @@ public class CreateContactInfoPane extends SubTaskPane implements
 	public void setAddressPanel(JPanel addressPanel) {
 		pane.add(addressPanel, "cell 0 1,grow,span");
 		pane.validate();
+	}
+
+	@Override
+	public void updateEntity(ContactInfo contactInfo) {
+		emailField.setText(contactInfo.getEmail());
+		workNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Work));
+		mobileNumField.setText(contactInfo.getPhoneNumbers().get(
+				PhoneType.Mobile));
+		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
 	}
 }
