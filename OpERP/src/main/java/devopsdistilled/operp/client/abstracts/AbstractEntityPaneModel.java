@@ -15,6 +15,9 @@ public abstract class AbstractEntityPaneModel<E extends Entiti<?>, O extends Ent
 	@Override
 	public void setEntity(E entity) {
 		this.entity = entity;
+		for (O observer : observers) {
+			observer.updateEntity(getEntity());
+		}
 	}
 
 }
