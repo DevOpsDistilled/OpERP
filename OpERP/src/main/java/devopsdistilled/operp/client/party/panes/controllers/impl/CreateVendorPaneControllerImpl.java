@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
+import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.CreateVendorPane;
 import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
@@ -22,14 +22,14 @@ public class CreateVendorPaneControllerImpl implements
 	private CreateVendorPaneModel model;
 
 	@Inject
-	private CreateContactInfoPaneController createContactInfoPaneController;
+	private ContactInfoPaneController contactInfoPaneController;
 
 	@Override
 	public void init() {
 		ContactInfo newContactInfo = new ContactInfo();
-		createContactInfoPaneController.init(newContactInfo,
+		contactInfoPaneController.init(newContactInfo,
 				EntityOperation.Create);
-		view.setContactInfopanel((JPanel) createContactInfoPaneController
+		view.setContactInfopanel((JPanel) contactInfoPaneController
 				.getView().getPane());
 		view.init();
 		model.getEntity().setContactInfo(newContactInfo);

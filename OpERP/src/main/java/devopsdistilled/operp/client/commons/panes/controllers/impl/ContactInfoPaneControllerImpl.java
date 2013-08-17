@@ -4,33 +4,32 @@ import javax.inject.Inject;
 import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
-import devopsdistilled.operp.client.commons.panes.CreateContactInfoPane;
+import devopsdistilled.operp.client.commons.panes.ContactInfoPane;
 import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
-import devopsdistilled.operp.client.commons.panes.models.CreateContactInfoPaneModel;
+import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
+import devopsdistilled.operp.client.commons.panes.models.ContactInfoPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 
-public class CreateContactInfoPaneControllerImpl implements
-		CreateContactInfoPaneController {
+public class ContactInfoPaneControllerImpl implements ContactInfoPaneController {
 
 	@Inject
-	private CreateContactInfoPane view;
+	private ContactInfoPane view;
 
 	@Inject
-	private CreateContactInfoPaneModel model;
+	private ContactInfoPaneModel model;
 
 	@Inject
 	private AddressPaneController addressPaneController;
 
 	@Override
-	public CreateContactInfoPaneModel getModel() {
+	public ContactInfoPaneModel getModel() {
 		return model;
 	}
 
 	@Override
-	public CreateContactInfoPane getView() {
+	public ContactInfoPane getView() {
 		return view;
 	}
 
@@ -53,8 +52,7 @@ public class CreateContactInfoPaneControllerImpl implements
 		view.setController(this);
 		addressPaneController.init();
 
-		view.setAddressPanel((JPanel) addressPaneController.getView()
-				.getPane());
+		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 		model.registerObserver(view);
 	}
 
@@ -62,8 +60,7 @@ public class CreateContactInfoPaneControllerImpl implements
 	public void init(ContactInfo contactInfo, EntityOperation op) {
 		Address newAddress = new Address();
 		addressPaneController.init(newAddress, op);
-		view.setAddressPanel((JPanel) addressPaneController.getView()
-				.getPane());
+		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 
 		view.setController(this);
 		contactInfo.setAddress(newAddress);

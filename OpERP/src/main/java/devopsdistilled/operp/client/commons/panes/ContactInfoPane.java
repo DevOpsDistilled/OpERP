@@ -10,16 +10,16 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
-import devopsdistilled.operp.client.commons.panes.models.observers.CreateContactInfoPaneModelObserver;
+import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
+import devopsdistilled.operp.client.commons.panes.models.observers.ContactInfoPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.commons.PhoneType;
 
-public class CreateContactInfoPane extends
-		EntityPane<CreateContactInfoPaneController> implements
-		CreateContactInfoPaneModelObserver {
+public class ContactInfoPane extends
+		EntityPane<ContactInfoPaneController> implements
+		ContactInfoPaneModelObserver {
 
-	private CreateContactInfoPaneController controller;
+	private ContactInfoPaneController controller;
 
 	private final JPanel pane;
 	private final JTextField emailField;
@@ -27,7 +27,7 @@ public class CreateContactInfoPane extends
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
 
-	public CreateContactInfoPane() {
+	public ContactInfoPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 
@@ -108,7 +108,7 @@ public class CreateContactInfoPane extends
 	}
 
 	@Override
-	public void setController(CreateContactInfoPaneController controller) {
+	public void setController(ContactInfoPaneController controller) {
 		this.controller = controller;
 	}
 

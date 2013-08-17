@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
+import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
 import devopsdistilled.operp.client.commons.panes.controllers.impl.AddressPaneControllerImpl;
-import devopsdistilled.operp.client.commons.panes.controllers.impl.CreateContactInfoPaneControllerImpl;
+import devopsdistilled.operp.client.commons.panes.controllers.impl.ContactInfoPaneControllerImpl;
 
 @Configuration
 public class MvcControllerContext {
@@ -21,8 +21,8 @@ public class MvcControllerContext {
 
 	@Bean
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public CreateContactInfoPaneController createContactInfoPaneController() {
-		return new CreateContactInfoPaneControllerImpl();
+	public ContactInfoPaneController contactInfoPaneController() {
+		return new ContactInfoPaneControllerImpl();
 	}
 
 }
