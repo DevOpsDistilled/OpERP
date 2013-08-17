@@ -46,7 +46,7 @@ public class UpdateStockPane extends SubTaskPane implements
 
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
-	
+
 	private final JPanel pane;
 	private final JTextField quantityField;
 	private final JComboBox<Item> comboItems;
@@ -64,8 +64,10 @@ public class UpdateStockPane extends SubTaskPane implements
 		comboItems.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					getDialog().pack();
 					controller.getModel().setItem((Item) e.getItem());
+				}
 			}
 		});
 		comboItems.setSelectedItem(null);
@@ -88,8 +90,10 @@ public class UpdateStockPane extends SubTaskPane implements
 		comboWarehouses.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					getDialog().pack();
 					controller.getModel().setWarehouse((Warehouse) e.getItem());
+				}
 			}
 		});
 		comboWarehouses.setSelectedItem(null);
