@@ -9,14 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.CreateAddressPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class CreateAddressPane extends SubTaskPane implements
-		CreateAddressPaneModelObserver {
-
-	private CreateAddressPaneController controller;
+public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
+		implements CreateAddressPaneModelObserver {
 
 	private final JPanel pane;
 	private final JTextField countryField;
@@ -105,12 +104,13 @@ public class CreateAddressPane extends SubTaskPane implements
 		return pane;
 	}
 
-	public void setController(CreateAddressPaneController controller) {
-		this.controller = controller;
-	}
-
-	public CreateAddressPaneController getController() {
-		return controller;
+	@Override
+	public void updateEntity(Address address) {
+		countryField.setText(address.getCountry());
+		zoneField.setText(address.getZone());
+		districtField.setText(address.getDistrict());
+		cityField.setText(address.getCity());
+		streetField.setText(address.getStreet());
 	}
 
 }

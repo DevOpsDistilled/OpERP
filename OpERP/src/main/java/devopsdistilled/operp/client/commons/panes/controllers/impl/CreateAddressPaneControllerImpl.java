@@ -28,20 +28,19 @@ public class CreateAddressPaneControllerImpl implements
 	}
 
 	@Override
-	public void validate(Address entity) throws EntityValidationException {
+	public void validate() throws EntityValidationException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Address save(Address entity) {
+	public Address save() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void init() {
-		// view.init();
 		view.setController(this);
 		model.registerObserver(view);
 	}
