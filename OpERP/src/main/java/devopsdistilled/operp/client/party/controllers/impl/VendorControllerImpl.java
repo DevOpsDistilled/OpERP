@@ -11,6 +11,7 @@ public class VendorControllerImpl implements VendorController {
 	@Inject
 	private CreateVendorPaneController createVendorPaneController;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void create() {
 		createVendorPaneController.init();

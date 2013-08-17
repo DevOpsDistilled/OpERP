@@ -14,13 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.CreateVendorPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class CreateVendorPane extends SubTaskPane implements
-		CreateVendorPaneModelObserver {
+public class CreateVendorPane extends EntityPane<CreateVendorPaneController>
+		implements CreateVendorPaneModelObserver {
 
 	@Inject
 	private CreateVendorPaneController controller;
@@ -42,7 +43,7 @@ public class CreateVendorPane extends SubTaskPane implements
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getVendor()
+				controller.getModel().getEntity()
 						.setPartyName(nameField.getText().trim());
 			}
 		});
@@ -56,7 +57,7 @@ public class CreateVendorPane extends SubTaskPane implements
 		panVatField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getVendor()
+				controller.getModel().getEntity()
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
@@ -77,9 +78,9 @@ public class CreateVendorPane extends SubTaskPane implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.validate(controller.getModel().getVendor());
+					controller.validate();
 
-					controller.save(controller.getModel().getVendor());
+					controller.save();
 
 					getDialog().dispose();
 
@@ -99,6 +100,12 @@ public class CreateVendorPane extends SubTaskPane implements
 	public void setContactInfopanel(JPanel contactInfopanel) {
 		pane.add(contactInfopanel, "cell 0 2,grow,span");
 		pane.validate();
+	}
+
+	@Override
+	public void updateEntity(Vendor entity) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
