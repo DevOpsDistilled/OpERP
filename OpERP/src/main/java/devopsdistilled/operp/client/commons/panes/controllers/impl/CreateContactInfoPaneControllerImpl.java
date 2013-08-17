@@ -61,7 +61,7 @@ public class CreateContactInfoPaneControllerImpl implements
 	@Override
 	public void init(ContactInfo contactInfo, EntityOperation op) {
 		Address newAddress = new Address();
-		createAddressPaneController.init(newAddress, EntityOperation.Create);
+		createAddressPaneController.init(newAddress, op);
 		view.setAddressPanel((JPanel) createAddressPaneController.getView()
 				.getPane());
 
