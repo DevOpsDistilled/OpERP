@@ -14,4 +14,7 @@ public interface EntityPaneController<E extends Entiti<?>, M extends EntityPaneM
 
 	public abstract V getView();
 
+	@Override
+	@Deprecated
+	public void init();
 }
