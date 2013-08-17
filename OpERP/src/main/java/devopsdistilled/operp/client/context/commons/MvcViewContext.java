@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-import devopsdistilled.operp.client.commons.panes.CreateAddressPane;
+import devopsdistilled.operp.client.commons.panes.AddressPane;
 import devopsdistilled.operp.client.commons.panes.CreateContactInfoPane;
 
 @Configuration
@@ -13,8 +13,8 @@ public class MvcViewContext {
 
 	@Bean
 	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
-	public CreateAddressPane createAddressPane() {
-		return new CreateAddressPane();
+	public AddressPane addressPane() {
+		return new AddressPane();
 	}
 
 	@Bean

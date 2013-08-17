@@ -10,12 +10,12 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
-import devopsdistilled.operp.client.commons.panes.models.observers.CreateAddressPaneModelObserver;
+import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
+import devopsdistilled.operp.client.commons.panes.models.observers.AddressPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
-		implements CreateAddressPaneModelObserver {
+public class AddressPane extends EntityPane<AddressPaneController>
+		implements AddressPaneModelObserver {
 
 	private final JPanel pane;
 	private final JTextField countryField;
@@ -24,7 +24,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 	private final JTextField cityField;
 	private final JTextField streetField;
 
-	public CreateAddressPane() {
+	public AddressPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 

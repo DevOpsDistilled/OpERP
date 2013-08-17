@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.commons.panes.CreateContactInfoPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
+import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
 import devopsdistilled.operp.client.commons.panes.models.CreateContactInfoPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -22,7 +22,7 @@ public class CreateContactInfoPaneControllerImpl implements
 	private CreateContactInfoPaneModel model;
 
 	@Inject
-	private CreateAddressPaneController createAddressPaneController;
+	private AddressPaneController addressPaneController;
 
 	@Override
 	public CreateContactInfoPaneModel getModel() {
@@ -51,9 +51,9 @@ public class CreateContactInfoPaneControllerImpl implements
 	public void init() {
 
 		view.setController(this);
-		createAddressPaneController.init();
+		addressPaneController.init();
 
-		view.setAddressPanel((JPanel) createAddressPaneController.getView()
+		view.setAddressPanel((JPanel) addressPaneController.getView()
 				.getPane());
 		model.registerObserver(view);
 	}
@@ -61,8 +61,8 @@ public class CreateContactInfoPaneControllerImpl implements
 	@Override
 	public void init(ContactInfo contactInfo, EntityOperation op) {
 		Address newAddress = new Address();
-		createAddressPaneController.init(newAddress, op);
-		view.setAddressPanel((JPanel) createAddressPaneController.getView()
+		addressPaneController.init(newAddress, op);
+		view.setAddressPanel((JPanel) addressPaneController.getView()
 				.getPane());
 
 		view.setController(this);

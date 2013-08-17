@@ -3,28 +3,28 @@ package devopsdistilled.operp.client.commons.panes.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
-import devopsdistilled.operp.client.commons.panes.CreateAddressPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
-import devopsdistilled.operp.client.commons.panes.models.CreateAddressPaneModel;
+import devopsdistilled.operp.client.commons.panes.AddressPane;
+import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
+import devopsdistilled.operp.client.commons.panes.models.AddressPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class CreateAddressPaneControllerImpl implements
-		CreateAddressPaneController {
+public class AddressPaneControllerImpl implements
+		AddressPaneController {
 
 	@Inject
-	private CreateAddressPane view;
+	private AddressPane view;
 
 	@Inject
-	private CreateAddressPaneModel model;
+	private AddressPaneModel model;
 
 	@Override
-	public CreateAddressPane getView() {
+	public AddressPane getView() {
 		return view;
 	}
 
 	@Override
-	public CreateAddressPaneModel getModel() {
+	public AddressPaneModel getModel() {
 		return model;
 	}
 
