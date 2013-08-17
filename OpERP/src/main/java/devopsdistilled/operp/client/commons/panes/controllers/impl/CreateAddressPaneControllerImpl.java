@@ -45,9 +45,10 @@ public class CreateAddressPaneControllerImpl implements
 	}
 
 	@Override
-	public void init(Address entity, EntityOperation op) {
-		// TODO Auto-generated method stub
-		
+	public void init(Address address, EntityOperation op) {
+		view.setController(this);
+		model.setEntity(address);
+		model.registerObserver(view);
 	}
 
 }
