@@ -17,4 +17,7 @@ public interface EntityPaneController<E extends Entiti<?>, M extends EntityPaneM
 	@Override
 	@Deprecated
 	public void init();
+
+	public void init(E entity, EntityOperation op);
+
 }

@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.commons.panes.controllers.impl;
 import javax.inject.Inject;
 import javax.swing.JPanel;
 
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.commons.panes.CreateContactInfoPane;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
@@ -44,6 +45,7 @@ public class CreateContactInfoPaneControllerImpl implements
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void init() {
 
@@ -53,6 +55,12 @@ public class CreateContactInfoPaneControllerImpl implements
 		view.setAddressPanel((JPanel) createAddressPaneController.getView()
 				.getPane());
 		model.registerObserver(view);
+	}
+
+	@Override
+	public void init(ContactInfo entity, EntityOperation op) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

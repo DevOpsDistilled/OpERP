@@ -42,6 +42,7 @@ public class CreateVendorPaneControllerImpl implements
 		return vendorModel.saveAndUpdateModel(vendor);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void init() {
 		createContactInfoPaneController.init();

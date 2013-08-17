@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.commons.panes.controllers.impl;
 
 import javax.inject.Inject;
 
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.commons.panes.CreateAddressPane;
 import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
 import devopsdistilled.operp.client.commons.panes.models.CreateAddressPaneModel;
@@ -41,6 +42,12 @@ public class CreateAddressPaneControllerImpl implements
 	public void init() {
 		view.setController(this);
 		model.registerObserver(view);
+	}
+
+	@Override
+	public void init(Address entity, EntityOperation op) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
