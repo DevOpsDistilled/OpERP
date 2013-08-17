@@ -23,27 +23,29 @@ public class CreateContactInfoPaneControllerImpl implements
 	private CreateAddressPaneController createAddressPaneController;
 
 	@Override
-	public void validate(ContactInfo entity) throws EntityValidationException {
-		createAddressPaneController.validate(createAddressPaneController
-				.getModel().getAddress());
-		model.getContactInfo().setAddress(
-				createAddressPaneController.getModel().getAddress());
-	}
-
-	@Override
-	public ContactInfo save(ContactInfo entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public CreateContactInfoPaneModel getModel() {
 		return model;
 	}
 
 	@Override
+	public CreateContactInfoPane getView() {
+		return view;
+	}
+
+	@Override
+	public void validate() throws EntityValidationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public ContactInfo save() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public void init() {
-		// view.init();
 
 		view.setController(this);
 		createAddressPaneController.init();
@@ -51,11 +53,6 @@ public class CreateContactInfoPaneControllerImpl implements
 		view.setAddressPanel((JPanel) createAddressPaneController.getView()
 				.getPane());
 		model.registerObserver(view);
-	}
-
-	@Override
-	public CreateContactInfoPane getView() {
-		return view;
 	}
 
 }
