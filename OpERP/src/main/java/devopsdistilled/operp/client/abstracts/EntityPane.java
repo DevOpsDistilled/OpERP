@@ -1,6 +1,6 @@
 package devopsdistilled.operp.client.abstracts;
 
-public abstract class EntityPane<C extends EntityPaneController<?, ?>>
+public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 		extends SubTaskPane {
 
 	protected C controller;
@@ -13,7 +13,4 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?>>
 		return controller;
 	}
 
-	public void dispose() {
-
-	}
 }
