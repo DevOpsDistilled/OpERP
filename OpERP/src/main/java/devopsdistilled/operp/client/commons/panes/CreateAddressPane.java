@@ -35,7 +35,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 		countryField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setCountry(countryField.getText().trim());
 			}
 		});
@@ -49,7 +49,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 		zoneField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setZone(zoneField.getText().trim());
 			}
 		});
@@ -63,7 +63,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 		districtField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setDistrict(districtField.getText().trim());
 			}
 		});
@@ -77,7 +77,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 		cityField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setCity(cityField.getText().trim());
 			}
 		});
@@ -91,7 +91,7 @@ public class CreateAddressPane extends EntityPane<CreateAddressPaneController>
 		streetField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setStreet(streetField.getText().trim());
 			}
 		});
