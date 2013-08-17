@@ -41,7 +41,7 @@ public class CreateContactInfoPane extends
 		emailField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getContactInfo()
+				controller.getModel().getEntity()
 						.setEmail(emailField.getText().trim());
 			}
 		});
@@ -59,7 +59,7 @@ public class CreateContactInfoPane extends
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (!workNumField.getText().trim().equalsIgnoreCase(""))
-					controller.getModel().getContactInfo().getPhoneNumbers()
+					controller.getModel().getEntity().getPhoneNumbers()
 							.put(PhoneType.Work, workNumField.getText().trim());
 
 			}
@@ -77,7 +77,7 @@ public class CreateContactInfoPane extends
 				if (!mobileNumField.getText().trim().equalsIgnoreCase(""))
 					controller
 							.getModel()
-							.getContactInfo()
+							.getEntity()
 							.getPhoneNumbers()
 							.put(PhoneType.Mobile,
 									mobileNumField.getText().trim());
@@ -94,7 +94,7 @@ public class CreateContactInfoPane extends
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (!homeNumField.getText().trim().equalsIgnoreCase(""))
-					controller.getModel().getContactInfo().getPhoneNumbers()
+					controller.getModel().getEntity().getPhoneNumbers()
 							.put(PhoneType.Home, homeNumField.getText().trim());
 			}
 		});
