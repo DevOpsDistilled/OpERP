@@ -7,6 +7,4 @@ import devopsdistilled.operp.server.data.entity.commons.Address;
 public interface CreateAddressPaneModel extends
 		EntityPaneModel<Address, CreateAddressPaneModelObserver> {
 
-	public Address getAddress();
-
 }
