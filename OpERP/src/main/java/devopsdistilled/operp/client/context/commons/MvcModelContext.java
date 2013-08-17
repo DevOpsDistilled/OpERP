@@ -20,6 +20,7 @@ public class MvcModelContext {
 	}
 
 	@Bean
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public CreateContactInfoPaneModel createContactInfoPaneModel() {
 		return new CreateContactInfoPaneModelImpl();
 	}

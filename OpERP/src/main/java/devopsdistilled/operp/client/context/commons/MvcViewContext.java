@@ -18,6 +18,7 @@ public class MvcViewContext {
 	}
 
 	@Bean
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 	public CreateContactInfoPane createContactInfoPane() {
 		return new CreateContactInfoPane();
 	}
