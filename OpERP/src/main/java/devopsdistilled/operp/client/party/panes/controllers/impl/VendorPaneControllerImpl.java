@@ -6,20 +6,19 @@ import javax.swing.JPanel;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
-import devopsdistilled.operp.client.party.panes.CreateVendorPane;
-import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
-import devopsdistilled.operp.client.party.panes.models.CreateVendorPaneModel;
+import devopsdistilled.operp.client.party.panes.VendorPane;
+import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
+import devopsdistilled.operp.client.party.panes.models.VendorPaneModel;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class CreateVendorPaneControllerImpl implements
-		CreateVendorPaneController {
+public class VendorPaneControllerImpl implements VendorPaneController {
 
 	@Inject
-	private CreateVendorPane view;
+	private VendorPane view;
 
 	@Inject
-	private CreateVendorPaneModel model;
+	private VendorPaneModel model;
 
 	@Inject
 	private ContactInfoPaneController contactInfoPaneController;
@@ -27,17 +26,16 @@ public class CreateVendorPaneControllerImpl implements
 	@Override
 	public void init() {
 		ContactInfo newContactInfo = new ContactInfo();
-		contactInfoPaneController.init(newContactInfo,
-				EntityOperation.Create);
-		view.setContactInfopanel((JPanel) contactInfoPaneController
-				.getView().getPane());
+		contactInfoPaneController.init(newContactInfo, EntityOperation.Create);
+		view.setContactInfopanel((JPanel) contactInfoPaneController.getView()
+				.getPane());
 		view.init();
 		model.getEntity().setContactInfo(newContactInfo);
 		model.registerObserver(view);
 	}
 
 	@Override
-	public CreateVendorPaneModel getModel() {
+	public VendorPaneModel getModel() {
 		return model;
 	}
 
@@ -54,7 +52,7 @@ public class CreateVendorPaneControllerImpl implements
 	}
 
 	@Override
-	public CreateVendorPane getView() {
+	public VendorPane getView() {
 		return view;
 	}
 

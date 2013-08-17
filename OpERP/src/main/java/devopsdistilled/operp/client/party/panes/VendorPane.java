@@ -16,15 +16,15 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
-import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
-import devopsdistilled.operp.client.party.panes.models.observers.CreateVendorPaneModelObserver;
+import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
+import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class CreateVendorPane extends EntityPane<CreateVendorPaneController>
-		implements CreateVendorPaneModelObserver {
+public class VendorPane extends EntityPane<VendorPaneController>
+		implements VendorPaneModelObserver {
 
 	@Inject
-	private CreateVendorPaneController controller;
+	private VendorPaneController controller;
 
 	private final JPanel pane;
 	private final JTextField nameField;
@@ -32,7 +32,7 @@ public class CreateVendorPane extends EntityPane<CreateVendorPaneController>
 	private final JButton btnCancel;
 	private final JButton btnCreate;
 
-	public CreateVendorPane() {
+	public VendorPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
