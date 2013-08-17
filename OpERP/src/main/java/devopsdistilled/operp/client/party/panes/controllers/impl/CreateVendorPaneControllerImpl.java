@@ -28,11 +28,9 @@ public class CreateVendorPaneControllerImpl implements
 
 	@Override
 	public void validate(Vendor vendor) throws EntityValidationException {
-		createContactInfoPaneController
-				.validate(createContactInfoPaneController.getModel()
-						.getContactInfo());
+		createContactInfoPaneController.validate();
 		model.getVendor().setContactInfo(
-				createContactInfoPaneController.getModel().getContactInfo());
+				createContactInfoPaneController.getModel().getEntity());
 
 		if (vendor.getPartyName().equalsIgnoreCase(""))
 			throw new EntityValidationException("Vendor Name can't be empty");
