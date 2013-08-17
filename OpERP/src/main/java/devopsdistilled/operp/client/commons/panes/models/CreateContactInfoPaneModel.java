@@ -7,6 +7,4 @@ import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 public interface CreateContactInfoPaneModel extends
 		EntityPaneModel<ContactInfo, CreateContactInfoPaneModelObserver> {
 
-	ContactInfo getContactInfo();
-
 }
