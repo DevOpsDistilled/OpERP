@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.stock.panes;
+package devopsdistilled.operp.client.party.panes;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,22 +15,23 @@ import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
-import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
-import devopsdistilled.operp.client.stock.panes.details.WarehouseDetailsPane;
-import devopsdistilled.operp.client.stock.panes.models.observers.ListWarehousePaneModelObserver;
-import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import devopsdistilled.operp.client.party.controllers.VendorController;
+import devopsdistilled.operp.client.party.models.observers.VendorModelObserver;
+import devopsdistilled.operp.client.party.panes.models.observers.ListVendorPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.party.Party;
+import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class ListWarehousePane extends SubTaskPane implements
-		ListWarehousePaneModelObserver, WarehouseModelObserver {
+public class ListVendorPane extends SubTaskPane implements
+		ListVendorPaneModelObserver, VendorModelObserver {
 
 	@Inject
-	private WarehouseDetailsPane warehouseDetailsPane;
+	private VendorController vendorController;
 
 	private final JPanel pane;
 	private final JTable table;
-	BeanTableModel<Warehouse> tableModel;
+	BeanTableModel<Vendor> tableModel;
 
-	public ListWarehousePane() {
+	public ListVendorPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("fill"));
 		table = new JTable(tableModel);
@@ -41,9 +42,9 @@ public class ListWarehousePane extends SubTaskPane implements
 				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
 						&& table.getSelectedRow() != -1) {
-					Warehouse warehouse = tableModel.getRow(table
-							.getSelectedRow());
-					warehouseDetailsPane.show(warehouse, getPane());
+					Vendor vendor = tableModel.getRow(table.getSelectedRow());
+
+					vendorController.showDetails(vendor);
 
 				}
 			}
@@ -53,7 +54,6 @@ public class ListWarehousePane extends SubTaskPane implements
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		pane.add(scrollPane, "grow");
-
 	}
 
 	@Override
@@ -62,16 +62,15 @@ public class ListWarehousePane extends SubTaskPane implements
 	}
 
 	@Override
-	public void updateWarehouses(List<Warehouse> warehouses) {
+	public void updateVendors(List<Vendor> vendors) {
 		tableModel = null;
-		tableModel = new BeanTableModel<>(Warehouse.class, warehouses);
+		tableModel = new BeanTableModel<>(Vendor.class, Party.class, vendors);
 
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			tableModel.setColumnEditable(i, false);
 		}
 		tableModel.setModelEditable(false);
 		table.setModel(tableModel);
-
 	}
 
 }

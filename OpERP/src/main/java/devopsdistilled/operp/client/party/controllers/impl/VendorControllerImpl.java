@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.models.VendorModel;
+import devopsdistilled.operp.client.party.panes.controllers.ListVendorPaneController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
@@ -15,6 +16,9 @@ public class VendorControllerImpl implements VendorController {
 
 	@Inject
 	private VendorModel vendorModel;
+
+	@Inject
+	private ListVendorPaneController listVendorPaneController;
 
 	@Override
 	public void create() {
@@ -28,8 +32,7 @@ public class VendorControllerImpl implements VendorController {
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-
+		listVendorPaneController.init();
 	}
 
 	@Override
