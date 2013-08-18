@@ -66,6 +66,7 @@ public class ContactInfoPaneControllerImpl implements ContactInfoPaneController 
 
 		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 		view.setController(this);
+		view.resetComponents();
 
 		model.setEntityAndEntityOperation(contactInfo, entityOperation);
 		model.registerObserver(view);

@@ -105,7 +105,6 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 		pane.add(homeNumField, "cell 1 8,growx");
 		homeNumField.setColumns(10);
 
-		resetComponents();
 	}
 
 	@Override

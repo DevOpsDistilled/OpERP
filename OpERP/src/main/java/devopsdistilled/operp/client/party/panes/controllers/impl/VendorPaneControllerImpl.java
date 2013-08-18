@@ -75,6 +75,7 @@ public class VendorPaneControllerImpl implements VendorPaneController {
 		view.setContactInfopanel((JPanel) contactInfoPaneController.getView()
 				.getPane());
 		view.setController(this);
+		view.resetComponents();
 
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(vendor, entityOperation);

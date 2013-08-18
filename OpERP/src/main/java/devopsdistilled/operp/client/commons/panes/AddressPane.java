@@ -99,7 +99,6 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		pane.add(streetField, "cell 1 4,growx");
 		streetField.setColumns(10);
 
-		resetComponents();
 	}
 
 	@Override

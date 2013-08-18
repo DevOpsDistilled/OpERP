@@ -158,7 +158,6 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 			}
 		});
 
-		resetComponents();
 	}
 
 	@Override
