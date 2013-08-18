@@ -43,4 +43,10 @@ public class BrandControllerImpl implements BrandController {
 		brandModel.deleteAndUpdateModel(brand);
 	}
 
+	@Override
+	public void showDetails(Brand entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
