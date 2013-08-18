@@ -157,6 +157,8 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 				dispose();
 			}
 		});
+
+		resetComponents();
 	}
 
 	@Override
@@ -187,10 +189,10 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 			createEditOpPanel.setVisible(true);
 
 		} else if (EntityOperation.Details == entityOperation) {
+			vendorIdField.setText(vendor.getPartyId().toString());
 			nameField.setEditable(false);
 			panVatField.setEditable(false);
 			detailsOpPanel.setVisible(true);
-
 		}
 
 		btnOperation.setText(entityOperation.toString());
