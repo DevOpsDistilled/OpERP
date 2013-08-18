@@ -26,6 +26,7 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	private final JTextField workNumField;
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
+	private JPanel addressPanel;
 
 	public ContactInfoPane() {
 		pane = new JPanel();
@@ -33,6 +34,9 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 
 		JLabel lblAddress = new JLabel("Address");
 		pane.add(lblAddress, "flowx,cell 0 0");
+
+		addressPanel = new JPanel();
+		pane.add(addressPanel, "cell 0 1,grow,span");
 
 		JLabel lblEmail = new JLabel("Email");
 		pane.add(lblEmail, "cell 0 3");
@@ -113,7 +117,12 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	}
 
 	public void setAddressPanel(JPanel addressPanel) {
-		pane.add(addressPanel, "cell 0 1,grow,span");
+		MigLayout layout = (MigLayout) pane.getLayout();
+		Object constraints = layout.getComponentConstraints(this.addressPanel);
+
+		pane.remove(this.addressPanel);
+		pane.add(addressPanel, constraints);
+		this.addressPanel = addressPanel;
 		pane.validate();
 	}
 
@@ -131,6 +140,6 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	@Override
 	protected void resetComponents() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
