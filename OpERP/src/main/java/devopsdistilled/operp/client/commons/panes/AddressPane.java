@@ -98,6 +98,8 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		});
 		pane.add(streetField, "cell 1 4,growx");
 		streetField.setColumns(10);
+
+		resetComponents();
 	}
 
 	@Override
@@ -117,7 +119,11 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 
 	@Override
 	protected void resetComponents() {
-		// TODO Auto-generated method stub
+		countryField.setEditable(true);
+		zoneField.setEditable(true);
+		districtField.setEditable(true);
+		cityField.setEditable(true);
+		streetField.setEditable(true);
 
 	}
 
