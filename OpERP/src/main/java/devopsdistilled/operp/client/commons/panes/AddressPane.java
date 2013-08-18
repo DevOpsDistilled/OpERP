@@ -115,6 +115,14 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		districtField.setText(address.getDistrict());
 		cityField.setText(address.getCity());
 		streetField.setText(address.getStreet());
+
+		if (EntityOperation.Details == entityOperation) {
+			countryField.setEditable(false);
+			zoneField.setEditable(false);
+			districtField.setEditable(false);
+			cityField.setEditable(false);
+			streetField.setEditable(false);
+		}
 	}
 
 	@Override
