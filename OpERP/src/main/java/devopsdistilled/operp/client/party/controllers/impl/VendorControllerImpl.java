@@ -38,9 +38,8 @@ public class VendorControllerImpl implements VendorController {
 	}
 
 	@Override
-	public void showDetails(Vendor entity) {
-		// TODO Auto-generated method stub
-
+	public void showDetails(Vendor vendor) {
+		vendorPaneController.init(vendor, EntityOperation.Details);
 	}
 
 }
