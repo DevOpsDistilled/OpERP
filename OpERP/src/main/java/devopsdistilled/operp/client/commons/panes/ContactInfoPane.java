@@ -147,7 +147,7 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	}
 
 	@Override
-	protected void resetComponents() {
+	public void resetComponents() {
 		emailField.setEditable(true);
 		workNumField.setEditable(true);
 		mobileNumField.setEditable(true);

@@ -18,5 +18,5 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 		getDialog().dispose();
 	}
 
-	protected abstract void resetComponents();
+	public abstract void resetComponents();
 }

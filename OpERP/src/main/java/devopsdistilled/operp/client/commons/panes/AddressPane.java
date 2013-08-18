@@ -126,7 +126,7 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 	}
 
 	@Override
-	protected void resetComponents() {
+	public void resetComponents() {
 		countryField.setEditable(true);
 		zoneField.setEditable(true);
 		districtField.setEditable(true);

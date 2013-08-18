@@ -201,7 +201,8 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	}
 
 	@Override
-	protected void resetComponents() {
+	public void resetComponents() {
+
 		lblVendorId.setVisible(true);
 		vendorIdField.setVisible(true);
 		nameField.setEditable(true);
