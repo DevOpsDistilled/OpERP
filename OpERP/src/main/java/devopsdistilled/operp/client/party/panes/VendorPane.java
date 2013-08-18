@@ -123,6 +123,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 
