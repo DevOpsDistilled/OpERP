@@ -104,6 +104,8 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 		});
 		pane.add(homeNumField, "cell 1 8,growx");
 		homeNumField.setColumns(10);
+
+		resetComponents();
 	}
 
 	@Override
@@ -135,11 +137,14 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 		mobileNumField.setText(contactInfo.getPhoneNumbers().get(
 				PhoneType.Mobile));
 		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
+
 	}
 
 	@Override
 	protected void resetComponents() {
-		// TODO Auto-generated method stub
-
+		emailField.setEditable(true);
+		workNumField.setEditable(true);
+		mobileNumField.setEditable(true);
+		homeNumField.setEditable(true);
 	}
 }
