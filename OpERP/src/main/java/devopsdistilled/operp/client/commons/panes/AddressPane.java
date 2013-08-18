@@ -9,14 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateAddressPaneController;
-import devopsdistilled.operp.client.commons.panes.models.observers.CreateAddressPaneModelObserver;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
+import devopsdistilled.operp.client.abstracts.EntityPane;
+import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
+import devopsdistilled.operp.client.commons.panes.models.observers.AddressPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class CreateAddressPane extends SubTaskPane implements
-		CreateAddressPaneModelObserver {
-
-	private CreateAddressPaneController controller;
+public class AddressPane extends EntityPane<AddressPaneController> implements
+		AddressPaneModelObserver {
 
 	private final JPanel pane;
 	private final JTextField countryField;
@@ -25,7 +25,7 @@ public class CreateAddressPane extends SubTaskPane implements
 	private final JTextField cityField;
 	private final JTextField streetField;
 
-	public CreateAddressPane() {
+	public AddressPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 
@@ -36,7 +36,7 @@ public class CreateAddressPane extends SubTaskPane implements
 		countryField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setCountry(countryField.getText().trim());
 			}
 		});
@@ -50,7 +50,7 @@ public class CreateAddressPane extends SubTaskPane implements
 		zoneField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setZone(zoneField.getText().trim());
 			}
 		});
@@ -64,7 +64,7 @@ public class CreateAddressPane extends SubTaskPane implements
 		districtField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setDistrict(districtField.getText().trim());
 			}
 		});
@@ -78,7 +78,7 @@ public class CreateAddressPane extends SubTaskPane implements
 		cityField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setCity(cityField.getText().trim());
 			}
 		});
@@ -92,7 +92,7 @@ public class CreateAddressPane extends SubTaskPane implements
 		streetField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getAddress()
+				getController().getModel().getEntity()
 						.setStreet(streetField.getText().trim());
 			}
 		});
@@ -105,12 +105,20 @@ public class CreateAddressPane extends SubTaskPane implements
 		return pane;
 	}
 
-	public void setController(CreateAddressPaneController controller) {
-		this.controller = controller;
+	@Override
+	public void updateEntity(Address address, EntityOperation entityOperation) {
+
+		countryField.setText(address.getCountry());
+		zoneField.setText(address.getZone());
+		districtField.setText(address.getDistrict());
+		cityField.setText(address.getCity());
+		streetField.setText(address.getStreet());
 	}
 
-	public CreateAddressPaneController getController() {
-		return controller;
+	@Override
+	protected void resetComponents() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

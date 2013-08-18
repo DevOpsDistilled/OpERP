@@ -9,15 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
-import devopsdistilled.operp.client.commons.panes.controllers.CreateContactInfoPaneController;
-import devopsdistilled.operp.client.commons.panes.models.observers.CreateContactInfoPaneModelObserver;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
+import devopsdistilled.operp.client.abstracts.EntityPane;
+import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
+import devopsdistilled.operp.client.commons.panes.models.observers.ContactInfoPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.commons.PhoneType;
 
-public class CreateContactInfoPane extends SubTaskPane implements
-		CreateContactInfoPaneModelObserver {
+public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
+		implements ContactInfoPaneModelObserver {
 
-	private CreateContactInfoPaneController controller;
+	private ContactInfoPaneController controller;
 
 	private final JPanel pane;
 	private final JTextField emailField;
@@ -25,7 +27,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
 
-	public CreateContactInfoPane() {
+	public ContactInfoPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 
@@ -39,7 +41,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		emailField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getContactInfo()
+				controller.getModel().getEntity()
 						.setEmail(emailField.getText().trim());
 			}
 		});
@@ -57,7 +59,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (!workNumField.getText().trim().equalsIgnoreCase(""))
-					controller.getModel().getContactInfo().getPhoneNumbers()
+					controller.getModel().getEntity().getPhoneNumbers()
 							.put(PhoneType.Work, workNumField.getText().trim());
 
 			}
@@ -75,7 +77,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 				if (!mobileNumField.getText().trim().equalsIgnoreCase(""))
 					controller
 							.getModel()
-							.getContactInfo()
+							.getEntity()
 							.getPhoneNumbers()
 							.put(PhoneType.Mobile,
 									mobileNumField.getText().trim());
@@ -92,7 +94,7 @@ public class CreateContactInfoPane extends SubTaskPane implements
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (!homeNumField.getText().trim().equalsIgnoreCase(""))
-					controller.getModel().getContactInfo().getPhoneNumbers()
+					controller.getModel().getEntity().getPhoneNumbers()
 							.put(PhoneType.Home, homeNumField.getText().trim());
 			}
 		});
@@ -105,12 +107,30 @@ public class CreateContactInfoPane extends SubTaskPane implements
 		return pane;
 	}
 
-	public void setController(CreateContactInfoPaneController controller) {
+	@Override
+	public void setController(ContactInfoPaneController controller) {
 		this.controller = controller;
 	}
 
 	public void setAddressPanel(JPanel addressPanel) {
 		pane.add(addressPanel, "cell 0 1,grow,span");
 		pane.validate();
+	}
+
+	@Override
+	public void updateEntity(ContactInfo contactInfo,
+			EntityOperation entityOperation) {
+
+		emailField.setText(contactInfo.getEmail());
+		workNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Work));
+		mobileNumField.setText(contactInfo.getPhoneNumbers().get(
+				PhoneType.Mobile));
+		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
+	}
+
+	@Override
+	protected void resetComponents() {
+		// TODO Auto-generated method stub
+		
 	}
 }

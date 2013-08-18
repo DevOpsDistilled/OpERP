@@ -1,22 +1,26 @@
 package devopsdistilled.operp.client.context.commons;
 
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
-import devopsdistilled.operp.client.commons.panes.CreateAddressPane;
-import devopsdistilled.operp.client.commons.panes.CreateContactInfoPane;
+import devopsdistilled.operp.client.commons.panes.AddressPane;
+import devopsdistilled.operp.client.commons.panes.ContactInfoPane;
 
 @Configuration
 public class MvcViewContext {
 
 	@Bean
-	public CreateAddressPane createAddressPane() {
-		return new CreateAddressPane();
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
+	public AddressPane addressPane() {
+		return new AddressPane();
 	}
 
 	@Bean
-	public CreateContactInfoPane createContactInfoPane() {
-		return new CreateContactInfoPane();
+	@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
+	public ContactInfoPane contactInfoPane() {
+		return new ContactInfoPane();
 	}
 
 }

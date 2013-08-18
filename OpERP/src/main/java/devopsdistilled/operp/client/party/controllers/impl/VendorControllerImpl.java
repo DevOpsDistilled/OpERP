@@ -2,18 +2,19 @@ package devopsdistilled.operp.client.party.controllers.impl;
 
 import javax.inject.Inject;
 
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.party.controllers.VendorController;
-import devopsdistilled.operp.client.party.panes.controllers.CreateVendorPaneController;
+import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class VendorControllerImpl implements VendorController {
 
 	@Inject
-	private CreateVendorPaneController createVendorPaneController;
+	private VendorPaneController vendorPaneController;
 
 	@Override
 	public void create() {
-		createVendorPaneController.init();
+		vendorPaneController.init(new Vendor(), EntityOperation.Create);
 	}
 
 	@Override
