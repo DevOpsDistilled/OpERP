@@ -31,4 +31,10 @@ public class StockControllerImpl implements StockController {
 
 	}
 
+	@Override
+	public void showDetails(Stock entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

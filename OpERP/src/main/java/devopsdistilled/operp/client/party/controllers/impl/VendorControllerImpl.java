@@ -37,4 +37,10 @@ public class VendorControllerImpl implements VendorController {
 		vendorModel.deleteAndUpdateModel(vendor);
 	}
 
+	@Override
+	public void showDetails(Vendor entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

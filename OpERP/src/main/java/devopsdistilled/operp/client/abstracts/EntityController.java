@@ -11,4 +11,6 @@ public interface EntityController<E extends Entiti<?>> {
 	public void list();
 
 	public void delete(E entity);
+
+	public void showDetails(E entity);
 }
