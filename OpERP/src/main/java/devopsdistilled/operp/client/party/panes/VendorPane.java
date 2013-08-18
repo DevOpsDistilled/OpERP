@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -16,12 +17,16 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class VendorPane extends EntityPane<VendorPaneController> implements
 		VendorPaneModelObserver {
+
+	@Inject
+	private VendorController vendorController;
 
 	private final JPanel pane;
 	private final JTextField nameField;
@@ -115,6 +120,15 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+						getPane(), "Delete "
+								+ controller.getModel().getEntity().toString()
+								+ " ?", "Delete ?", JOptionPane.YES_NO_OPTION)) {
+
+					dispose();
+					vendorController.delete(controller.getModel().getEntity());
+				}
+
 			}
 		});
 		detailsOpPanel.add(btnDelete, "flowx,cell 0 0");
@@ -132,8 +146,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				controller.init(controller.getModel().getEntity(),
-						EntityOperation.Edit);
+				vendorController.edit(controller.getModel().getEntity());
 			}
 		});
 		detailsOpPanel.add(btnEdit, "cell 0 0");
