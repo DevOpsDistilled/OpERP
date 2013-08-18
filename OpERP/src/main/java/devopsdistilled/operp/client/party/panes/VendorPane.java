@@ -1,22 +1,17 @@
 package devopsdistilled.operp.client.party.panes;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 import javax.inject.Inject;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
-import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
@@ -31,20 +26,14 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	private final JPanel pane;
 	private final JTextField nameField;
 	private final JTextField panVatField;
-	private final JButton btnCancel;
-	private final JButton btnOperation;
 	private final JLabel lblVendorId;
 	private final JTextField vendorIdField;
 	private JPanel contactInfoPanel;
-	private final JPanel createEditOpPanel;
-	private final JButton btnDelete;
-	private final JButton btnEdit;
-	private final JButton btnOk;
-	private final JPanel detailsOpPanel;
+	private JPanel opBtnPanel;
 
 	public VendorPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
 		lblVendorId = new JLabel("Vendor ID");
 		pane.add(lblVendorId, "cell 0 0,alignx trailing");
@@ -85,78 +74,8 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		contactInfoPanel = new JPanel();
 		pane.add(contactInfoPanel, "cell 0 3 2 1,grow");
 
-		createEditOpPanel = new JPanel();
-		pane.add(createEditOpPanel, "cell 1 5,grow");
-		createEditOpPanel.setLayout(new MigLayout("", "[grow]", "[]"));
-
-		btnCancel = new JButton("Cancel");
-		createEditOpPanel.add(btnCancel, "flowx,cell 0 0");
-
-		btnOperation = new JButton("EntityOperation");
-		createEditOpPanel.add(btnOperation, "cell 0 0");
-		btnOperation.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					controller.validate();
-
-					Vendor vendor = controller.save();
-
-					dispose();
-
-					controller.init(vendor, EntityOperation.Details);
-
-				} catch (EntityValidationException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				}
-			}
-		});
-
-		detailsOpPanel = new JPanel();
-		pane.add(detailsOpPanel, "cell 1 6,grow");
-		detailsOpPanel.setLayout(new MigLayout("", "[grow]", "[]"));
-
-		btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
-						getPane(), "Delete "
-								+ controller.getModel().getEntity().toString()
-								+ " ?", "Delete ?", JOptionPane.YES_NO_OPTION)) {
-
-					dispose();
-					vendorController.delete(controller.getModel().getEntity());
-				}
-
-			}
-		});
-		detailsOpPanel.add(btnDelete, "flowx,cell 0 0");
-
-		btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-
-		btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				vendorController.edit(controller.getModel().getEntity());
-			}
-		});
-		detailsOpPanel.add(btnEdit, "cell 0 0");
-		detailsOpPanel.add(btnOk, "cell 0 0");
-		btnCancel.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		opBtnPanel = new JPanel();
+		pane.add(opBtnPanel, "cell 1 5,grow");
 
 	}
 
@@ -179,22 +98,28 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	@Override
 	public void updateEntity(Vendor vendor, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
+
+			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
+
 			lblVendorId.setVisible(false);
 			vendorIdField.setVisible(false);
-			createEditOpPanel.setVisible(true);
 
 		} else if (EntityOperation.Edit == entityOperation) {
+
+			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
+
 			vendorIdField.setText(vendor.getPartyId().toString());
-			createEditOpPanel.setVisible(true);
 
 		} else if (EntityOperation.Details == entityOperation) {
+
+			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
+
 			vendorIdField.setText(vendor.getPartyId().toString());
 			nameField.setEditable(false);
 			panVatField.setEditable(false);
 			detailsOpPanel.setVisible(true);
 		}
 
-		btnOperation.setText(entityOperation.toString());
 		nameField.setText(vendor.getPartyName());
 		panVatField.setText(vendor.getPanVat());
 	}
@@ -206,8 +131,6 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		vendorIdField.setVisible(true);
 		nameField.setEditable(true);
 		panVatField.setEditable(true);
-		createEditOpPanel.setVisible(false);
-		detailsOpPanel.setVisible(false);
 	}
 
 }
