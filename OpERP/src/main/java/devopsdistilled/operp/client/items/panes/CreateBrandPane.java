@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,6 +25,7 @@ import devopsdistilled.operp.client.items.panes.details.BrandDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.CreateBrandPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Manufacturer;
+
 import java.awt.Dimension;
 
 public class CreateBrandPane extends SubTaskPane implements
@@ -58,6 +61,13 @@ public class CreateBrandPane extends SubTaskPane implements
 
 		manufacturersCombo = new JComboBox<>();
 		manufacturersCombo.setMinimumSize(new Dimension(100, 24));
+		manufacturersCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED)
+					getDialog().pack();
+			}
+		});
 		manufacturersCombo.setSelectedItem(null);
 		pane.add(manufacturersCombo, "flowx,cell 1 1,growx");
 
