@@ -39,7 +39,7 @@ public class ProductDetailsPane extends
 		productIdField = new JTextField();
 		productIdField.setEditable(false);
 		pane.add(productIdField, "cell 1 0,growx");
-		productIdField.setColumns(10);
+		productIdField.setColumns(30);
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 1,alignx trailing");
@@ -47,7 +47,7 @@ public class ProductDetailsPane extends
 		productNameField = new JTextField();
 		productNameField.setEditable(false);
 		pane.add(productNameField, "cell 1 1,growx");
-		productNameField.setColumns(10);
+		productNameField.setColumns(30);
 
 		JLabel lblProductCategory = new JLabel("Product Category");
 		pane.add(lblProductCategory, "cell 0 2");
