@@ -28,7 +28,7 @@ public class PartyMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout("", "[]", "[]"));
+		panel.setLayout(new MigLayout("", "[][][]", "[]"));
 
 		JButton btnCreateVendor = new JButton("Create Vendor");
 		btnCreateVendor.addActionListener(new ActionListener() {
@@ -38,6 +38,15 @@ public class PartyMgmtPane extends TaskPane {
 			}
 		});
 		panel.add(btnCreateVendor, "cell 0 0");
+
+		JButton btnListVendors = new JButton("List Vendors");
+		btnListVendors.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vendorController.list();
+			}
+		});
+		panel.add(btnListVendors, "cell 2 0");
 		return panel;
 	}
 
