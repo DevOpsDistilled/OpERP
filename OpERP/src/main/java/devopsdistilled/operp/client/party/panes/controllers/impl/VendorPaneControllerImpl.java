@@ -1,7 +1,6 @@
 package devopsdistilled.operp.client.party.panes.controllers.impl;
 
 import javax.inject.Inject;
-import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
@@ -9,7 +8,6 @@ import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.VendorPane;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.VendorPaneModel;
-import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class VendorPaneControllerImpl implements VendorPaneController {
@@ -22,17 +20,6 @@ public class VendorPaneControllerImpl implements VendorPaneController {
 
 	@Inject
 	private ContactInfoPaneController contactInfoPaneController;
-
-	@Override
-	public void init() {
-		ContactInfo newContactInfo = new ContactInfo();
-		contactInfoPaneController.init(newContactInfo, EntityOperation.Create);
-		view.setContactInfopanel((JPanel) contactInfoPaneController.getView()
-				.getPane());
-		view.init();
-		model.getEntity().setContactInfo(newContactInfo);
-		model.registerObserver(view);
-	}
 
 	@Override
 	public VendorPaneModel getModel() {

@@ -45,17 +45,6 @@ public class ContactInfoPaneControllerImpl implements ContactInfoPaneController 
 		return null;
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void init() {
-
-		view.setController(this);
-		addressPaneController.init();
-
-		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
-		model.registerObserver(view);
-	}
-
 	@Override
 	public void init(ContactInfo contactInfo, EntityOperation op) {
 		Address newAddress = new Address();

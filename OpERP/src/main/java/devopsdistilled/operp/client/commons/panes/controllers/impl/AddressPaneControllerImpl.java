@@ -9,8 +9,7 @@ import devopsdistilled.operp.client.commons.panes.models.AddressPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class AddressPaneControllerImpl implements
-		AddressPaneController {
+public class AddressPaneControllerImpl implements AddressPaneController {
 
 	@Inject
 	private AddressPane view;
@@ -36,12 +35,6 @@ public class AddressPaneControllerImpl implements
 	@Override
 	public Address save() {
 		return null;
-	}
-
-	@Override
-	public void init() {
-		view.setController(this);
-		model.registerObserver(view);
 	}
 
 	@Override
