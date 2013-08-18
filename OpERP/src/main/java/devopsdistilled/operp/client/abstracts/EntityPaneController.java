@@ -13,6 +13,6 @@ public interface EntityPaneController<E extends Entiti<?>, M extends EntityPaneM
 
 	public abstract V getView();
 
-	public void init(E entity, EntityOperation op);
+	public void init(E entity, EntityOperation entityOperation);
 
 }
