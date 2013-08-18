@@ -49,4 +49,10 @@ public class WarehouseControllerImpl implements WarehouseController {
 
 	}
 
+	@Override
+	public void showDetails(Warehouse entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
