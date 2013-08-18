@@ -14,16 +14,9 @@ public abstract class AbstractEntityPaneModel<E extends Entiti<?>, O extends Ent
 		return entity;
 	}
 
-	public void setEntity(E entity) {
-	}
-
 	@Override
 	public EntityOperation getEntityOperation() {
 		return entityOperation;
-	}
-
-	public void setEntityOperation(EntityOperation entityOperation) {
-		this.entityOperation = entityOperation;
 	}
 
 	@Override
