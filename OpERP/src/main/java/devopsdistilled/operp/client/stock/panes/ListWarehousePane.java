@@ -32,7 +32,7 @@ public class ListWarehousePane extends SubTaskPane implements
 
 	public ListWarehousePane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug,fill"));
+		pane.setLayout(new MigLayout("fill"));
 		table = new JTable(tableModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
