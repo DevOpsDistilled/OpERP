@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -24,7 +23,6 @@ import devopsdistilled.operp.server.data.entity.party.Vendor;
 public class VendorPane extends EntityPane<VendorPaneController> implements
 		VendorPaneModelObserver {
 
-	@Inject
 	private VendorPaneController controller;
 
 	private final JPanel pane;
@@ -32,13 +30,23 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	private final JTextField panVatField;
 	private final JButton btnCancel;
 	private final JButton btnCreate;
+	private final JLabel lblVendorId;
+	private final JTextField vendorIdField;
+	private JPanel contactInfoPanel;
 
 	public VendorPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+
+		lblVendorId = new JLabel("Vendor ID");
+		pane.add(lblVendorId, "cell 0 0,alignx trailing");
+
+		vendorIdField = new JTextField();
+		pane.add(vendorIdField, "cell 1 0,growx");
+		vendorIdField.setColumns(10);
 
 		JLabel lblVendorName = new JLabel("Vendor Name");
-		pane.add(lblVendorName, "cell 0 0,alignx trailing");
+		pane.add(lblVendorName, "cell 0 1,alignx trailing");
 
 		nameField = new JTextField();
 		nameField.addFocusListener(new FocusAdapter() {
@@ -48,11 +56,11 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 						.setPartyName(nameField.getText().trim());
 			}
 		});
-		pane.add(nameField, "cell 1 0,growx");
+		pane.add(nameField, "cell 1 1,growx");
 		nameField.setColumns(10);
 
 		JLabel lblPanvat = new JLabel("PAN/VAT");
-		pane.add(lblPanvat, "cell 0 1,alignx trailing");
+		pane.add(lblPanvat, "cell 0 2,alignx trailing");
 
 		panVatField = new JTextField();
 		panVatField.addFocusListener(new FocusAdapter() {
@@ -62,7 +70,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
-		pane.add(panVatField, "cell 1 1,growx");
+		pane.add(panVatField, "cell 1 2,growx");
 		panVatField.setColumns(10);
 
 		btnCancel = new JButton("Cancel");
@@ -72,7 +80,10 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,cell 1 3");
+
+		contactInfoPanel = new JPanel();
+		pane.add(contactInfoPanel, "cell 0 3,grow,span");
+		pane.add(btnCancel, "flowx,cell 1 4");
 
 		btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
@@ -90,7 +101,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 				}
 			}
 		});
-		pane.add(btnCreate, "cell 1 3");
+		pane.add(btnCreate, "cell 1 4");
 	}
 
 	@Override
@@ -98,15 +109,22 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		return pane;
 	}
 
-	public void setContactInfopanel(JPanel contactInfopanel) {
-		pane.add(contactInfopanel, "cell 0 2,grow,span");
+	public void setContactInfopanel(JPanel contactInfoPanel) {
+		MigLayout layout = (MigLayout) pane.getLayout();
+		Object constraints = layout
+				.getComponentConstraints(this.contactInfoPanel);
+
+		pane.remove(this.contactInfoPanel);
+		pane.add(contactInfoPanel, constraints);
+		this.contactInfoPanel = contactInfoPanel;
 		pane.validate();
 	}
 
 	@Override
-	public void updateEntity(Vendor entity, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
-
+	public void updateEntity(Vendor vendor, EntityOperation entityOperation) {
+		if (EntityOperation.Create == entityOperation) {
+			// XXX
+		}
 	}
 
 }
