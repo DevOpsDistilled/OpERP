@@ -29,7 +29,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	private final JTextField nameField;
 	private final JTextField panVatField;
 	private final JButton btnCancel;
-	private final JButton btnCreate;
+	private final JButton btnOperation;
 	private final JLabel lblVendorId;
 	private final JTextField vendorIdField;
 	private JPanel contactInfoPanel;
@@ -78,7 +78,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDialog().dispose();
+				dispose();
 			}
 		});
 
@@ -86,8 +86,8 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		pane.add(contactInfoPanel, "cell 0 3,grow,span");
 		pane.add(btnCancel, "flowx,cell 1 4");
 
-		btnCreate = new JButton("Create");
-		btnCreate.addActionListener(new ActionListener() {
+		btnOperation = new JButton("EntityOperation");
+		btnOperation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -95,14 +95,13 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 
 					controller.save();
 
-					getDialog().dispose();
-
+					dispose();
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
 			}
 		});
-		pane.add(btnCreate, "cell 1 4");
+		pane.add(btnOperation, "cell 1 4");
 	}
 
 	@Override
@@ -133,8 +132,15 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 			vendorIdField.setText(vendor.getPartyId().toString());
 		}
 
+		btnOperation.setText(entityOperation.toString());
 		nameField.setText(vendor.getPartyName());
 		panVatField.setText(vendor.getPanVat());
+	}
+
+	@Override
+	protected void resetComponents() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -127,4 +127,10 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 				PhoneType.Mobile));
 		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
 	}
+
+	@Override
+	protected void resetComponents() {
+		// TODO Auto-generated method stub
+		
+	}
 }

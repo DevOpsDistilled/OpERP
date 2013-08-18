@@ -115,4 +115,10 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		streetField.setText(address.getStreet());
 	}
 
+	@Override
+	protected void resetComponents() {
+		// TODO Auto-generated method stub
+
+	}
+
 }
