@@ -47,15 +47,25 @@ public class ContactInfoPaneControllerImpl implements ContactInfoPaneController 
 
 	@Override
 	public void init(ContactInfo contactInfo, EntityOperation entityOperation) {
-		Address newAddress = new Address();
-		addressPaneController.init(newAddress, entityOperation);
-		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 
+		if (EntityOperation.Create == entityOperation) {
+			Address address = new Address();
+			contactInfo.setAddress(address);
+			addressPaneController.init(address, entityOperation);
+
+		} else if (EntityOperation.Edit == entityOperation) {
+
+			addressPaneController.init(contactInfo.getAddress(),
+					entityOperation);
+		}
+
+		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 		view.setController(this);
-		contactInfo.setAddress(newAddress);
+
 		model.setEntityAndEntityOperation(contactInfo, entityOperation);
 		model.registerObserver(view);
 
+		// view.init(); // Not required as dialog isn't required
 	}
 
 }
