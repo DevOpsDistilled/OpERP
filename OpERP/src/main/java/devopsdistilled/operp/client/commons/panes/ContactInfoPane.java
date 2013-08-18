@@ -9,15 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.ContactInfoPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.commons.PhoneType;
 
-public class ContactInfoPane extends
-		EntityPane<ContactInfoPaneController> implements
-		ContactInfoPaneModelObserver {
+public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
+		implements ContactInfoPaneModelObserver {
 
 	private ContactInfoPaneController controller;
 
@@ -118,7 +118,9 @@ public class ContactInfoPane extends
 	}
 
 	@Override
-	public void updateEntity(ContactInfo contactInfo) {
+	public void updateEntity(ContactInfo contactInfo,
+			EntityOperation entityOperation) {
+
 		emailField.setText(contactInfo.getEmail());
 		workNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Work));
 		mobileNumField.setText(contactInfo.getPhoneNumbers().get(

@@ -8,6 +8,7 @@ import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.VendorPane;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.VendorPaneModel;
+import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class VendorPaneControllerImpl implements VendorPaneController {
@@ -44,9 +45,16 @@ public class VendorPaneControllerImpl implements VendorPaneController {
 	}
 
 	@Override
-	public void init(Vendor entity, EntityOperation op) {
-		// TODO Auto-generated method stub
+	public void init(Vendor vendor, EntityOperation entityOperation) {
+		model.setEntityAndEntityOperation(vendor, entityOperation);
+		ContactInfo contactInfo = new ContactInfo();
+		contactInfoPaneController.init(contactInfo, entityOperation);
 
+		vendor.setContactInfo(contactInfo);
+		view.setController(this);
+		model.registerObserver(view);
+
+		view.init();
 	}
 
 }

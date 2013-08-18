@@ -38,9 +38,9 @@ public class AddressPaneControllerImpl implements AddressPaneController {
 	}
 
 	@Override
-	public void init(Address address, EntityOperation op) {
+	public void init(Address address, EntityOperation entityOperation) {
 		view.setController(this);
-		model.setEntity(address);
+		model.setEntityAndEntityOperation(address, entityOperation);
 		model.registerObserver(view);
 	}
 

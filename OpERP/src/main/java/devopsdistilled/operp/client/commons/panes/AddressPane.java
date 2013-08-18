@@ -9,13 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.AddressPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class AddressPane extends EntityPane<AddressPaneController>
-		implements AddressPaneModelObserver {
+public class AddressPane extends EntityPane<AddressPaneController> implements
+		AddressPaneModelObserver {
 
 	private final JPanel pane;
 	private final JTextField countryField;
@@ -105,7 +106,8 @@ public class AddressPane extends EntityPane<AddressPaneController>
 	}
 
 	@Override
-	public void updateEntity(Address address) {
+	public void updateEntity(Address address, EntityOperation entityOperation) {
+
 		countryField.setText(address.getCountry());
 		zoneField.setText(address.getZone());
 		districtField.setText(address.getDistrict());

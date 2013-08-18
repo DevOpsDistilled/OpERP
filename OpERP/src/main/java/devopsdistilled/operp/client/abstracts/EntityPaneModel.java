@@ -7,5 +7,9 @@ public interface EntityPaneModel<E extends Entiti<?>, O extends EntityPaneModelO
 
 	public E getEntity();
 
-	public void setEntity(E entity);
+	public void setEntityAndEntityOperation(E entity,
+			EntityOperation entityOperation);
+
+	public EntityOperation getEntityOperation();
+
 }

@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.party.controllers.impl;
 
 import javax.inject.Inject;
 
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
@@ -11,10 +12,9 @@ public class VendorControllerImpl implements VendorController {
 	@Inject
 	private VendorPaneController vendorPaneController;
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void create() {
-		vendorPaneController.init();
+		vendorPaneController.init(new Vendor(), EntityOperation.Create);
 	}
 
 	@Override

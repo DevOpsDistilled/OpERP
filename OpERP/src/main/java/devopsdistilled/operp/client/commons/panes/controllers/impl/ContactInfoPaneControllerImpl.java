@@ -46,14 +46,14 @@ public class ContactInfoPaneControllerImpl implements ContactInfoPaneController 
 	}
 
 	@Override
-	public void init(ContactInfo contactInfo, EntityOperation op) {
+	public void init(ContactInfo contactInfo, EntityOperation entityOperation) {
 		Address newAddress = new Address();
-		addressPaneController.init(newAddress, op);
+		addressPaneController.init(newAddress, entityOperation);
 		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
 
 		view.setController(this);
 		contactInfo.setAddress(newAddress);
-		model.setEntity(contactInfo);
+		model.setEntityAndEntityOperation(contactInfo, entityOperation);
 		model.registerObserver(view);
 
 	}

@@ -7,17 +7,35 @@ public abstract class AbstractEntityPaneModel<E extends Entiti<?>, O extends Ent
 
 	protected E entity;
 
+	protected EntityOperation entityOperation;
+
 	@Override
 	public E getEntity() {
 		return entity;
 	}
 
-	@Override
 	public void setEntity(E entity) {
+	}
+
+	@Override
+	public EntityOperation getEntityOperation() {
+		return entityOperation;
+	}
+
+	public void setEntityOperation(EntityOperation entityOperation) {
+		this.entityOperation = entityOperation;
+	}
+
+	@Override
+	public void setEntityAndEntityOperation(E entity,
+			EntityOperation entityOperation) {
 		this.entity = entity;
+		this.entityOperation = entityOperation;
+
 		for (O observer : observers) {
-			observer.updateEntity(getEntity());
+			observer.updateEntity(getEntity(), getEntityOperation());
 		}
+
 	}
 
 }

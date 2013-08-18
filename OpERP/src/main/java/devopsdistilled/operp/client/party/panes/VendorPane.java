@@ -14,14 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class VendorPane extends EntityPane<VendorPaneController>
-		implements VendorPaneModelObserver {
+public class VendorPane extends EntityPane<VendorPaneController> implements
+		VendorPaneModelObserver {
 
 	@Inject
 	private VendorPaneController controller;
@@ -103,7 +104,7 @@ public class VendorPane extends EntityPane<VendorPaneController>
 	}
 
 	@Override
-	public void updateEntity(Vendor entity) {
+	public void updateEntity(Vendor entity, EntityOperation entityOperation) {
 		// TODO Auto-generated method stub
 
 	}
