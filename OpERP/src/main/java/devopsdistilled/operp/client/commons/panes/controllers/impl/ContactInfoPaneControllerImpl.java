@@ -57,6 +57,11 @@ public class ContactInfoPaneControllerImpl implements ContactInfoPaneController 
 
 			addressPaneController.init(contactInfo.getAddress(),
 					entityOperation);
+
+		} else if (EntityOperation.Details == entityOperation) {
+
+			addressPaneController.init(contactInfo.getAddress(),
+					entityOperation);
 		}
 
 		view.setAddressPanel((JPanel) addressPaneController.getView().getPane());
