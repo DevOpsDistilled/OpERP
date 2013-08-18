@@ -138,6 +138,12 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 				PhoneType.Mobile));
 		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
 
+		if (EntityOperation.Details == entityOperation) {
+			emailField.setEditable(false);
+			workNumField.setEditable(false);
+			mobileNumField.setEditable(false);
+			homeNumField.setEditable(false);
+		}
 	}
 
 	@Override
