@@ -64,11 +64,18 @@ public class VendorPaneControllerImpl implements VendorPaneController {
 
 			contactInfoPaneController.init(vendor.getContactInfo(),
 					entityOperation);
+
+		} else if (EntityOperation.Details == entityOperation) {
+
+			contactInfoPaneController.init(vendor.getContactInfo(),
+					entityOperation);
+
 		}
 
 		view.setContactInfopanel((JPanel) contactInfoPaneController.getView()
 				.getPane());
 		view.setController(this);
+		view.resetComponents();
 
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(vendor, entityOperation);

@@ -1,40 +1,41 @@
 package devopsdistilled.operp.client.party.panes;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.JButton;
+import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
-import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.party.Party;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class VendorPane extends EntityPane<VendorPaneController> implements
+public class VendorPane extends
+		EntityPane<Vendor, VendorController, VendorPaneController> implements
 		VendorPaneModelObserver {
+
+	@Inject
+	private VendorController vendorController;
 
 	private final JPanel pane;
 	private final JTextField nameField;
 	private final JTextField panVatField;
-	private final JButton btnCancel;
-	private final JButton btnOperation;
 	private final JLabel lblVendorId;
 	private final JTextField vendorIdField;
 	private JPanel contactInfoPanel;
+	private JPanel opBtnPanel;
 
 	public VendorPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
 		lblVendorId = new JLabel("Vendor ID");
 		pane.add(lblVendorId, "cell 0 0,alignx trailing");
@@ -51,7 +52,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getEntity()
+				((Party) getController().getModel().getEntity())
 						.setPartyName(nameField.getText().trim());
 			}
 		});
@@ -65,41 +66,19 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		panVatField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getEntity()
+				((Party) getController().getModel().getEntity())
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
 		pane.add(panVatField, "cell 1 2,growx");
 		panVatField.setColumns(10);
 
-		btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-
 		contactInfoPanel = new JPanel();
-		pane.add(contactInfoPanel, "cell 0 3,grow,span");
-		pane.add(btnCancel, "flowx,cell 1 4");
+		pane.add(contactInfoPanel, "cell 0 3 2 1,grow");
 
-		btnOperation = new JButton("EntityOperation");
-		btnOperation.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					controller.validate();
+		opBtnPanel = new JPanel();
+		pane.add(opBtnPanel, "cell 1 5,grow");
 
-					controller.save();
-
-					dispose();
-				} catch (EntityValidationException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				}
-			}
-		});
-		pane.add(btnOperation, "cell 1 4");
 	}
 
 	@Override
@@ -121,24 +100,44 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	@Override
 	public void updateEntity(Vendor vendor, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
+
+			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
+
 			lblVendorId.setVisible(false);
 			vendorIdField.setVisible(false);
 
 		} else if (EntityOperation.Edit == entityOperation) {
-			lblVendorId.setVisible(true);
-			vendorIdField.setVisible(true);
+
+			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
+
 			vendorIdField.setText(vendor.getPartyId().toString());
+
+		} else if (EntityOperation.Details == entityOperation) {
+
+			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
+
+			vendorIdField.setText(vendor.getPartyId().toString());
+			nameField.setEditable(false);
+			panVatField.setEditable(false);
+			detailsOpPanel.setVisible(true);
 		}
 
-		btnOperation.setText(entityOperation.toString());
 		nameField.setText(vendor.getPartyName());
 		panVatField.setText(vendor.getPanVat());
 	}
 
 	@Override
-	protected void resetComponents() {
-		// TODO Auto-generated method stub
+	public void resetComponents() {
 
+		lblVendorId.setVisible(true);
+		vendorIdField.setVisible(true);
+		nameField.setEditable(true);
+		panVatField.setEditable(true);
+	}
+
+	@Override
+	public VendorController getEntityController() {
+		return vendorController;
 	}
 
 }

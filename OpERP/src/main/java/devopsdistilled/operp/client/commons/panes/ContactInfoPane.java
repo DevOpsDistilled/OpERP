@@ -11,12 +11,15 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
+import devopsdistilled.operp.client.commons.controllers.ContactInfoController;
 import devopsdistilled.operp.client.commons.panes.controllers.ContactInfoPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.ContactInfoPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.commons.PhoneType;
 
-public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
+public class ContactInfoPane
+		extends
+		EntityPane<ContactInfo, ContactInfoController, ContactInfoPaneController>
 		implements ContactInfoPaneModelObserver {
 
 	private ContactInfoPaneController controller;
@@ -26,6 +29,7 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	private final JTextField workNumField;
 	private final JTextField mobileNumField;
 	private final JTextField homeNumField;
+	private JPanel addressPanel;
 
 	public ContactInfoPane() {
 		pane = new JPanel();
@@ -33,6 +37,9 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 
 		JLabel lblAddress = new JLabel("Address");
 		pane.add(lblAddress, "flowx,cell 0 0");
+
+		addressPanel = new JPanel();
+		pane.add(addressPanel, "cell 0 1,grow,span");
 
 		JLabel lblEmail = new JLabel("Email");
 		pane.add(lblEmail, "cell 0 3");
@@ -100,6 +107,7 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 		});
 		pane.add(homeNumField, "cell 1 8,growx");
 		homeNumField.setColumns(10);
+
 	}
 
 	@Override
@@ -113,7 +121,12 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 	}
 
 	public void setAddressPanel(JPanel addressPanel) {
-		pane.add(addressPanel, "cell 0 1,grow,span");
+		MigLayout layout = (MigLayout) pane.getLayout();
+		Object constraints = layout.getComponentConstraints(this.addressPanel);
+
+		pane.remove(this.addressPanel);
+		pane.add(addressPanel, constraints);
+		this.addressPanel = addressPanel;
 		pane.validate();
 	}
 
@@ -126,11 +139,26 @@ public class ContactInfoPane extends EntityPane<ContactInfoPaneController>
 		mobileNumField.setText(contactInfo.getPhoneNumbers().get(
 				PhoneType.Mobile));
 		homeNumField.setText(contactInfo.getPhoneNumbers().get(PhoneType.Home));
+
+		if (EntityOperation.Details == entityOperation) {
+			emailField.setEditable(false);
+			workNumField.setEditable(false);
+			mobileNumField.setEditable(false);
+			homeNumField.setEditable(false);
+		}
 	}
 
 	@Override
-	protected void resetComponents() {
+	public void resetComponents() {
+		emailField.setEditable(true);
+		workNumField.setEditable(true);
+		mobileNumField.setEditable(true);
+		homeNumField.setEditable(true);
+	}
+
+	@Override
+	public ContactInfoController getEntityController() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }

@@ -6,12 +6,12 @@ import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModel
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class VendorPaneModelImpl extends
-		AbstractEntityPaneModel<Vendor, VendorPaneModelObserver>
-		implements VendorPaneModel {
+		AbstractEntityPaneModel<Vendor, VendorPaneModelObserver> implements
+		VendorPaneModel {
 
 	@Override
 	public String getTitle() {
-		return "Create Vendor";
+		return "Vendor";
 	}
 
 }

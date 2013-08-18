@@ -44,4 +44,10 @@ public class CategoryControllerImpl implements CategoryController {
 	public void delete(Category category) {
 		categoryModel.deleteAndUpdateModel(category);
 	}
+
+	@Override
+	public void showDetails(Category entity) {
+		// TODO Auto-generated method stub
+
+	}
 }

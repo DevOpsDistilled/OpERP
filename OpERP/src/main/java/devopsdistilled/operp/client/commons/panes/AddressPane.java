@@ -11,11 +11,13 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
+import devopsdistilled.operp.client.commons.controllers.AddressController;
 import devopsdistilled.operp.client.commons.panes.controllers.AddressPaneController;
 import devopsdistilled.operp.client.commons.panes.models.observers.AddressPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.commons.Address;
 
-public class AddressPane extends EntityPane<AddressPaneController> implements
+public class AddressPane extends
+		EntityPane<Address, AddressController, AddressPaneController> implements
 		AddressPaneModelObserver {
 
 	private final JPanel pane;
@@ -98,6 +100,7 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		});
 		pane.add(streetField, "cell 1 4,growx");
 		streetField.setColumns(10);
+
 	}
 
 	@Override
@@ -113,12 +116,30 @@ public class AddressPane extends EntityPane<AddressPaneController> implements
 		districtField.setText(address.getDistrict());
 		cityField.setText(address.getCity());
 		streetField.setText(address.getStreet());
+
+		if (EntityOperation.Details == entityOperation) {
+			countryField.setEditable(false);
+			zoneField.setEditable(false);
+			districtField.setEditable(false);
+			cityField.setEditable(false);
+			streetField.setEditable(false);
+		}
 	}
 
 	@Override
-	protected void resetComponents() {
-		// TODO Auto-generated method stub
+	public void resetComponents() {
+		countryField.setEditable(true);
+		zoneField.setEditable(true);
+		districtField.setEditable(true);
+		cityField.setEditable(true);
+		streetField.setEditable(true);
 
+	}
+
+	@Override
+	public AddressController getEntityController() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -43,4 +43,10 @@ public class ProductControllerImpl implements ProductController {
 		productModel.deleteAndUpdateModel(product);
 	}
 
+	@Override
+	public void showDetails(Product entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

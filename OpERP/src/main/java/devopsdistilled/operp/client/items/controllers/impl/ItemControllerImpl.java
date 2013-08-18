@@ -43,4 +43,10 @@ public class ItemControllerImpl implements ItemController {
 		itemModel.deleteAndUpdateModel(item);
 	}
 
+	@Override
+	public void showDetails(Item entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
