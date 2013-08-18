@@ -42,11 +42,12 @@ public abstract class EntityPane<E extends Entiti<?>, EC extends EntityControlle
 				try {
 					getController().validate();
 
+					@SuppressWarnings("unchecked")
 					E entity = (E) getController().save();
 
 					dispose();
 
-//					getController().init(entity, EntityOperation.Details);
+					getEntityController().showDetails(entity);
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
@@ -76,11 +77,12 @@ public abstract class EntityPane<E extends Entiti<?>, EC extends EntityControlle
 				try {
 					getController().validate();
 
+					@SuppressWarnings("unchecked")
 					E entity = (E) getController().save();
 
 					dispose();
 
-					// controller.init(vendor, EntityOperation.Details);
+					getEntityController().showDetails(entity);
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
