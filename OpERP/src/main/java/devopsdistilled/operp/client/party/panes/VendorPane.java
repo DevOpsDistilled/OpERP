@@ -131,6 +131,9 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				controller.init(controller.getModel().getEntity(),
+						EntityOperation.Edit);
 			}
 		});
 		detailsOpPanel.add(btnEdit, "cell 0 0");
