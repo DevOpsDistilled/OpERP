@@ -15,9 +15,11 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.observers.VendorPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.party.Party;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
-public class VendorPane extends EntityPane<VendorPaneController> implements
+public class VendorPane extends
+		EntityPane<Vendor, VendorController, VendorPaneController> implements
 		VendorPaneModelObserver {
 
 	@Inject
@@ -50,7 +52,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getEntity()
+				((Party) getController().getModel().getEntity())
 						.setPartyName(nameField.getText().trim());
 			}
 		});
@@ -64,7 +66,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		panVatField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getEntity()
+				((Party) getController().getModel().getEntity())
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
@@ -131,6 +133,11 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		vendorIdField.setVisible(true);
 		nameField.setEditable(true);
 		panVatField.setEditable(true);
+	}
+
+	@Override
+	public VendorController getEntityController() {
+		return vendorController;
 	}
 
 }

@@ -9,8 +9,9 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.server.data.entity.Entiti;
 
-public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
+public abstract class EntityPane<E extends Entiti<?>, EC extends EntityController<E>, C extends EntityPaneController<?, ?, ?>>
 		extends SubTaskPane {
 
 	protected C controller;
@@ -39,13 +40,13 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.validate();
+					getController().validate();
 
-					// Vendor vendor = controller.save();
+					E entity = (E) getController().save();
 
 					dispose();
 
-					// controller.init(vendor, EntityOperation.Details);
+//					getController().init(entity, EntityOperation.Details);
 
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
@@ -73,9 +74,9 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.validate();
+					getController().validate();
 
-					// Vendor vendor = controller.save();
+					E entity = (E) getController().save();
 
 					dispose();
 
@@ -94,6 +95,7 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
@@ -102,7 +104,8 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 								+ " ?", "Delete ?", JOptionPane.YES_NO_OPTION)) {
 
 					dispose();
-					// vendorController.delete(controller.getModel().getEntity());
+					getEntityController().delete(
+							(E) getController().getModel().getEntity());
 				}
 
 			}
@@ -119,10 +122,12 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				// vendorController.edit(controller.getModel().getEntity());
+				getEntityController().edit(
+						(E) getController().getModel().getEntity());
 			}
 		});
 		detailsOpPanel.add(btnEdit, "cell 0 0");
@@ -160,4 +165,6 @@ public abstract class EntityPane<C extends EntityPaneController<?, ?, ?>>
 		getPane().add(btnPanel, opBtnPanelconstraints);
 		return btnPanel;
 	}
+
+	public abstract EC getEntityController();
 }

@@ -3,7 +3,7 @@ package devopsdistilled.operp.client.abstracts;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
-public interface EntityPaneController<E extends Entiti<?>, M extends EntityPaneModel<E, ?>, V extends EntityPane<?>> {
+public interface EntityPaneController<E extends Entiti<?>, M extends EntityPaneModel<E, ?>, V extends EntityPane<E, ?, ?>> {
 
 	public void validate() throws EntityValidationException;
 
