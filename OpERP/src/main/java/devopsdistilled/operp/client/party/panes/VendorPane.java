@@ -123,7 +123,8 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 	@Override
 	public void updateEntity(Vendor vendor, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
-			// XXX
+			lblVendorId.setVisible(false);
+			vendorIdField.setVisible(false);
 		}
 	}
 
