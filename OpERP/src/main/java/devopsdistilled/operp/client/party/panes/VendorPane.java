@@ -42,6 +42,7 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		pane.add(lblVendorId, "cell 0 0,alignx trailing");
 
 		vendorIdField = new JTextField();
+		vendorIdField.setEditable(false);
 		pane.add(vendorIdField, "cell 1 0,growx");
 		vendorIdField.setColumns(10);
 
@@ -125,7 +126,15 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 		if (EntityOperation.Create == entityOperation) {
 			lblVendorId.setVisible(false);
 			vendorIdField.setVisible(false);
+
+		} else if (EntityOperation.Edit == entityOperation) {
+			lblVendorId.setVisible(true);
+			vendorIdField.setVisible(true);
+			vendorIdField.setText(vendor.getPartyId().toString());
 		}
+
+		nameField.setText(vendor.getPartyName());
+		panVatField.setText(vendor.getPanVat());
 	}
 
 }
