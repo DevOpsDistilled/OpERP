@@ -23,8 +23,6 @@ import devopsdistilled.operp.server.data.entity.party.Vendor;
 public class VendorPane extends EntityPane<VendorPaneController> implements
 		VendorPaneModelObserver {
 
-	private VendorPaneController controller;
-
 	private final JPanel pane;
 	private final JTextField nameField;
 	private final JTextField panVatField;
