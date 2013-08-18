@@ -164,20 +164,14 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 			lblVendorId.setVisible(false);
 			vendorIdField.setVisible(false);
 			createEditOpPanel.setVisible(true);
-			detailsOpPanel.setVisible(false);
 
 		} else if (EntityOperation.Edit == entityOperation) {
-			lblVendorId.setVisible(true);
-			vendorIdField.setVisible(true);
 			vendorIdField.setText(vendor.getPartyId().toString());
 			createEditOpPanel.setVisible(true);
-			detailsOpPanel.setVisible(false);
 
 		} else if (EntityOperation.Details == entityOperation) {
-			lblVendorId.setVisible(true);
-			vendorIdField.setVisible(true);
 			nameField.setEditable(false);
-			createEditOpPanel.setVisible(false);
+			panVatField.setEditable(false);
 			detailsOpPanel.setVisible(true);
 
 		}
@@ -189,8 +183,12 @@ public class VendorPane extends EntityPane<VendorPaneController> implements
 
 	@Override
 	protected void resetComponents() {
-		// TODO Auto-generated method stub
-
+		lblVendorId.setVisible(true);
+		vendorIdField.setVisible(true);
+		nameField.setEditable(true);
+		panVatField.setEditable(true);
+		createEditOpPanel.setVisible(false);
+		detailsOpPanel.setVisible(false);
 	}
 
 }
