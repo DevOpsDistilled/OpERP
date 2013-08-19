@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.repo.party.impl;
+package devopsdistilled.operp.server.data.repo.party;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

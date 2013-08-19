@@ -10,6 +10,7 @@ import devopsdistilled.operp.client.party.models.VendorModel;
 import devopsdistilled.operp.client.party.panes.VendorPane;
 import devopsdistilled.operp.client.party.panes.controllers.VendorPaneController;
 import devopsdistilled.operp.client.party.panes.models.VendorPaneModel;
+import devopsdistilled.operp.server.data.entity.account.PayableAccount;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
@@ -56,6 +57,7 @@ public class VendorPaneControllerImpl implements VendorPaneController {
 
 		if (EntityOperation.Create == entityOperation) {
 
+			vendor.setAccount(new PayableAccount());
 			ContactInfo contactInfo = new ContactInfo();
 			vendor.setContactInfo(contactInfo);
 			contactInfoPaneController.init(contactInfo, entityOperation);
