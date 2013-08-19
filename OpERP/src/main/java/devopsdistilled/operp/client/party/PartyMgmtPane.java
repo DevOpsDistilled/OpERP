@@ -10,12 +10,16 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.party.controllers.CustomerController;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 
 public class PartyMgmtPane extends TaskPane {
 
 	@Inject
 	private VendorController vendorController;
+
+	@Inject
+	private CustomerController customerController;
 
 	@Override
 	public String toString() {
@@ -28,7 +32,7 @@ public class PartyMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout("", "[][][]", "[]"));
+		panel.setLayout(new MigLayout("", "[][][]", "[][][]"));
 
 		JButton btnCreateVendor = new JButton("Create Vendor");
 		btnCreateVendor.addActionListener(new ActionListener() {
@@ -47,6 +51,24 @@ public class PartyMgmtPane extends TaskPane {
 			}
 		});
 		panel.add(btnListVendors, "cell 2 0");
+
+		JButton btnCreateCustomer = new JButton("Create Customer");
+		btnCreateCustomer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				customerController.create();
+			}
+		});
+		panel.add(btnCreateCustomer, "cell 0 2");
+
+		JButton btnListCustomers = new JButton("List Customers");
+		btnListCustomers.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				customerController.list();
+			}
+		});
+		panel.add(btnListCustomers, "cell 2 2");
 		return panel;
 	}
 
