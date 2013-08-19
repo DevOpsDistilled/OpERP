@@ -16,7 +16,7 @@ public abstract class Account extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long accountId;
 
-	private Double balance;
+	private Double balance = 0.0;
 
 	public Long getAccountId() {
 		return accountId;
