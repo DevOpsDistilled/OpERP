@@ -1,5 +1,6 @@
 package devopsdistilled.operp.server.data.entity.party;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -11,7 +12,7 @@ public class Vendor extends Party implements Payable {
 
 	private static final long serialVersionUID = 1438740246885453097L;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private PayableAccount account;
 
 	public PayableAccount getAccount() {
