@@ -1,9 +1,13 @@
 package devopsdistilled.operp.server.data.entity.business;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
@@ -16,7 +20,16 @@ public abstract class BusinessDesc extends Entiti<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long descId;
 
+	@OneToMany
+	private final List<BusinessDescRow> descRows = new LinkedList<>();
+
+	public List<BusinessDescRow> getDescRows() {
+		return descRows;
+	}
+
 	private Double discountAmount;
+
+	private Double TotalAmount;
 
 	public Long getDescId() {
 		return descId;
@@ -32,6 +45,14 @@ public abstract class BusinessDesc extends Entiti<Long> {
 
 	public void setDiscountAmount(Double discountAmount) {
 		this.discountAmount = discountAmount;
+	}
+
+	public Double getTotalAmount() {
+		return TotalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		TotalAmount = totalAmount;
 	}
 
 	@Override
