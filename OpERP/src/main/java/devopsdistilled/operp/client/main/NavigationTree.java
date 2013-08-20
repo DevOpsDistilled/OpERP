@@ -57,8 +57,11 @@ public class NavigationTree {
 						leaf, row, hasFocus);
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 				TaskPane taskPane = (TaskPane) node.getUserObject();
-				setIcon(taskPane.getIcon());
-			
+				if (taskPane.getIcon() != null)
+					setIcon(taskPane.getIcon());
+				else
+					setIcon(leafIcon);
+
 				tree.revalidate();
 				tree.repaint();
 				return this;
