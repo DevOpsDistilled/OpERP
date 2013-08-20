@@ -52,7 +52,7 @@ public class VendorPane extends
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				((Party) getController().getModel().getEntity())
+				((Party<?>) getController().getModel().getEntity())
 						.setPartyName(nameField.getText().trim());
 			}
 		});
@@ -66,7 +66,7 @@ public class VendorPane extends
 		panVatField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				((Party) getController().getModel().getEntity())
+				((Party<?>) getController().getModel().getEntity())
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
