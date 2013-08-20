@@ -46,12 +46,6 @@ public class TransferStockPane extends SubTaskPane implements
 	private final JComboBox<Warehouse> toWarehouseCombo;
 	private final JComboBox<Warehouse> fromWarehouseCombo;
 	private final JComboBox<Item> itemsCombo;
-	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 300);
-	}
 
 	public TransferStockPane() {
 		pane = new JPanel();

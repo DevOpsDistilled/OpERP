@@ -40,11 +40,6 @@ public class CreateBrandPane extends SubTaskPane implements
 	private final JTextField brandNameField;
 	private final JComboBox<Manufacturer> manufacturersCombo;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 200);
-	}
 	
 	public CreateBrandPane() {
 		pane = new JPanel();

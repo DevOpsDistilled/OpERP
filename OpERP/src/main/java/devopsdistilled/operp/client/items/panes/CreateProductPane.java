@@ -46,11 +46,6 @@ public class CreateProductPane extends SubTaskPane implements
 	DefaultListModel<Category> listModel;
 	private final JList<Category> categoryList;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 400);
-	}
 	
 	public CreateProductPane() {
 		pane = new JPanel();

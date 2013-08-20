@@ -39,13 +39,6 @@ public class EditStockPane extends SubTaskPane
 	@Inject
 	private WarehouseController warehouseController;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 300);
-	}
-	
-	
 	private JPanel pane;
 	private JTextField stockIdField;
 	private JTextField quantityField;

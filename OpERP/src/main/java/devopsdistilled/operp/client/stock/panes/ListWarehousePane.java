@@ -30,13 +30,6 @@ public class ListWarehousePane extends SubTaskPane implements
 	private final JTable table;
 	BeanTableModel<Warehouse> tableModel;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 600);
-		getDialog().setLocationRelativeTo(null);
-	}
-
 	public ListWarehousePane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug,fill"));

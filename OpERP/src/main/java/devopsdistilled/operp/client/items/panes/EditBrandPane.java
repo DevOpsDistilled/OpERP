@@ -39,11 +39,6 @@ public class EditBrandPane extends SubTaskPane implements
 
 	private Brand brand;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 200);
-	}
 	public EditBrandPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug", "[][]", "[][][][][]"));

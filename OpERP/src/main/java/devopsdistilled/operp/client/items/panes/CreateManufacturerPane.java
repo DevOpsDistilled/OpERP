@@ -31,11 +31,6 @@ public class CreateManufacturerPane extends SubTaskPane implements
 	private final JPanel pane;
 	private final JTextField manufacturerNameField;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400, 200);
-	}
 
 	public CreateManufacturerPane() {
 		pane = new JPanel();

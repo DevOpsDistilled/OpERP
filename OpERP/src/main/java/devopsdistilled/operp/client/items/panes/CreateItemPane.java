@@ -48,12 +48,6 @@ public class CreateItemPane extends SubTaskPane implements
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
 
-	@Override
-	public void init() {
-		super.init();
-		getDialog().setSize(500, 300);
-	}
-
 	public CreateItemPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",

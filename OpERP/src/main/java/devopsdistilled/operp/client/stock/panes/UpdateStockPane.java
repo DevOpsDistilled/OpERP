@@ -46,12 +46,6 @@ public class UpdateStockPane extends SubTaskPane implements
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(500, 300);
-	}
-
 	private final JPanel pane;
 	private final JTextField quantityField;
 	private final JComboBox<Item> comboItems;

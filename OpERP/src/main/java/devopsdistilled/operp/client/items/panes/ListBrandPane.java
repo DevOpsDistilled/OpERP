@@ -26,11 +26,6 @@ public class ListBrandPane extends SubTaskPane implements
 	@Inject
 	private BrandDetailsPane brandDetailsPane;
 	
-	@Override
-	public void init(){
-		super.init();
-	}
-
 	private final JPanel pane;
 
 	private final JTable table;

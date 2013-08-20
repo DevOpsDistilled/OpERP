@@ -31,11 +31,6 @@ public class CreateCategoryPane extends SubTaskPane implements
 	private final JPanel pane;
 	private final JTextField categoryNameField;
 	
-	@Override
-	public void init(){
-		super.init();
-		getDialog().setSize(400,200);
-	}
 
 	public CreateCategoryPane() {
 		pane = new JPanel();
