@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -32,7 +31,6 @@ public abstract class SubTaskPane implements PaneModelObserver {
 		dialog.setLocation(x, y);
 		dialog.requestFocus();
 		dialog.setVisible(true);
-		SwingUtilities.updateComponentTreeUI(dialog);
 
 		
 

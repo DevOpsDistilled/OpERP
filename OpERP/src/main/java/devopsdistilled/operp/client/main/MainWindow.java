@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
 
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
@@ -51,8 +50,6 @@ public class MainWindow implements MainModelObserver {
 				splitPane.setRightComponent(model.getSelectedTaskPane()
 						.getPane());
 				frame.setVisible(true);
-				SwingUtilities.updateComponentTreeUI(frame);
-				SwingUtilities.updateComponentTreeUI(splitPane);
 			}
 		});
 		
