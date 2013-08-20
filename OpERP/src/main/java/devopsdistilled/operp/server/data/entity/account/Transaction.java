@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -12,7 +13,7 @@ import javax.persistence.TemporalType;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @MappedSuperclass
-public class Transaction extends Entiti<Long> {
+public class Transaction<A extends Account<?>> extends Entiti<Long> {
 
 	private static final long serialVersionUID = -6337337081648140247L;
 
@@ -24,6 +25,9 @@ public class Transaction extends Entiti<Long> {
 	private Date transactionDate;
 
 	private Double amount = 0.0;
+
+	@ManyToOne
+	protected A account;
 
 	public Long getTransactionId() {
 		return transactionId;
@@ -47,6 +51,14 @@ public class Transaction extends Entiti<Long> {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public A getAccount() {
+		return account;
+	}
+
+	public void setAccount(A account) {
+		this.account = account;
 	}
 
 	@Override
