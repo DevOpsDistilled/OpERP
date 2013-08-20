@@ -12,8 +12,7 @@ import devopsdistilled.operp.client.main.MainWindow;
 public class ClientApp {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new AnnotationConfigApplicationContext(
-				AppContext.class);
+		
 		// Apply Nimbus LAF
 				try {
 					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -27,6 +26,8 @@ public class ClientApp {
 							.println("Nimbus Look and Feel not available.\nReverting to default");
 				}
 		
+		ApplicationContext context = new AnnotationConfigApplicationContext(
+				AppContext.class);
 
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();

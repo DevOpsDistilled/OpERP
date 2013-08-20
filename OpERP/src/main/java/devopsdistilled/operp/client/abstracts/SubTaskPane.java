@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
 
