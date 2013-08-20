@@ -52,7 +52,7 @@ public class StockMgmtPane extends TaskPane {
 	@Override
 	public Icon getIcon() {
 		return new ImageIcon(getClass().getResource(
-				"/client/icons/admin_24.png"));	}
+				"/client/icons/stock_24.png"));	}
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -77,7 +77,7 @@ public class StockMgmtPane extends TaskPane {
 
 		});
 		iconCreateStock = new ImageIcon(
-				StockMgmtPane.class.getResource("/client/icons/Accounting.png"));
+				StockMgmtPane.class.getResource("/client/icons/update-stock.png"));
 		btnCreateStock.setIcon(StandardButtonHelper
 				.SetStandardSizeForImage(iconCreateStock));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateStock),
@@ -134,7 +134,7 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		iconTransferStock = new ImageIcon(
-				StockMgmtPane.class.getResource("/client/icons/Accounting.png"));
+				StockMgmtPane.class.getResource("/client/icons/transfer-stock.png"));
 		btnTransferStock.setIcon(StandardButtonHelper
 				.SetStandardSizeForImage(iconTransferStock));
 		pane.add(

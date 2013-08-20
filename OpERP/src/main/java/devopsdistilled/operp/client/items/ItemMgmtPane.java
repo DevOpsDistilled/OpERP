@@ -70,7 +70,7 @@ public final class ItemMgmtPane extends TaskPane {
 	@Override
 	public Icon getIcon() {
 		return new ImageIcon(getClass().getResource(
-				"/client/icons/admin_24.png"));
+				"/client/icons/item_24.png"));
 	}
 
 	/**
@@ -152,7 +152,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconCreateProduct = new ImageIcon(
-				ItemMgmtPane.class.getResource("/client/icons/Alerts.png"));
+				ItemMgmtPane.class.getResource("/client/icons/create-product.png"));
 		btnCreateProduct.setIcon(StandardButtonHelper
 				.SetStandardSizeForImage(iconCreateProduct));
 		pane.add(

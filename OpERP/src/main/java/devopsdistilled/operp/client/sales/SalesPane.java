@@ -25,7 +25,7 @@ public class SalesPane extends TaskPane {
 	@Override
 	public Icon getIcon() {
 		return new ImageIcon(getClass().getResource(
-				"/client/icons/admin_24.png"));
+				"/client/icons/sale_24.png"));
 	}
 
 }
