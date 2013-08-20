@@ -9,13 +9,4 @@ public class Purchase extends Business<Vendor> {
 
 	private static final long serialVersionUID = 4680542154771058958L;
 
-	@Override
-	public Vendor getParty() {
-		return party;
-	}
-
-	@Override
-	public void setParty(Vendor party) {
-		this.party = party;
-	}
 }

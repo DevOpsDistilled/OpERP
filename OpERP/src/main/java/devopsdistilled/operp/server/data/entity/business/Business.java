@@ -54,7 +54,9 @@ public abstract class Business<P extends Party> extends Entiti<Long> {
 		this.amount = amount;
 	}
 
-	public abstract P getParty();
+	public P getParty() {
+		return party;
+	}
 
 	@Override
 	public Long id() {
