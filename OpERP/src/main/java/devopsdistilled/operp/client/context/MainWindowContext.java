@@ -1,9 +1,9 @@
 package devopsdistilled.operp.client.context;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
 import devopsdistilled.operp.client.main.MainModel;
 import devopsdistilled.operp.client.main.MainModelImpl;
 import devopsdistilled.operp.client.main.MainWindow;
@@ -29,4 +29,5 @@ public class MainWindowContext {
 		MainWindow window = MainWindow.getInstance();
 		return window;
 	}
+	
 }

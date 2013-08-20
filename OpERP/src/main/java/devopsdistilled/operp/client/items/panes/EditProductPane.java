@@ -49,6 +49,12 @@ public class EditProductPane extends SubTaskPane implements
 	private final JTextField productIdField;
 
 	private Product product;
+	
+	@Override
+	public void init(){
+		super.init();
+		getDialog().setSize(500, 400);
+	}
 
 	public EditProductPane() {
 		pane = new JPanel();

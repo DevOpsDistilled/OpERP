@@ -30,6 +30,11 @@ public class ListItemPane extends SubTaskPane implements
 
 	private final JTable table;
 	private BeanTableModel<Item> tableModel;
+	
+	@Override
+	public void init(){
+		super.init();
+	}
 
 	public ListItemPane() {
 		pane = new JPanel(new MigLayout("debug, fill"));

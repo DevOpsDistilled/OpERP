@@ -51,9 +51,7 @@ public class CreateItemPane extends SubTaskPane implements
 	@Override
 	public void init() {
 		super.init();
-
-		// Other JDialog properties goes here
-		// getDialog.setSize(...);
+		getDialog().setSize(500, 300);
 	}
 
 	public CreateItemPane() {
