@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -47,6 +48,11 @@ public class StockMgmtPane extends TaskPane {
 	public String toString() {
 		return new String("Stock Management");
 	}
+	@Override
+	public Icon getIcon() {
+		Icon icon=new ImageIcon(StockMgmtPane.class.getResource("/client/icons/admin-24.png"));
+		return icon;
+	}
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -82,7 +88,7 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		iconListStock= new ImageIcon(StockMgmtPane.class.
-					getResource("/client/icons/Accounting.png"));
+					getResource("/client/icons/list.png"));
 		btnListStock.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListStock));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListStock), "cell 1 1");
 
@@ -107,7 +113,7 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		iconListWarehouse=new ImageIcon(StockMgmtPane.class.
-				getResource("/client/icons/Accounting.png"));
+				getResource("/client/icons/list2.png"));
 		btnListWarehouse.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListWarehouse));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListWarehouse), "cell 0 2");
 		
@@ -131,12 +137,14 @@ public class StockMgmtPane extends TaskPane {
 			}
 		});
 		iconListStockActivities=new ImageIcon(StockMgmtPane.class.
-				getResource("/client/icons/Accounting.png"));
+				getResource("/client/icons/list3.png"));
 		btnListStockActivities.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListStockActivities));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListStockActivities), "cell 2 2");
 
 		return pane;
 
 	}
+
+	
 
 }

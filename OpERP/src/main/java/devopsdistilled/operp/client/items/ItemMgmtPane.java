@@ -2,12 +2,15 @@ package devopsdistilled.operp.client.items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.inject.Inject;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.items.controllers.BrandController;
@@ -16,6 +19,7 @@ import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.controllers.ManufacturerController;
 import devopsdistilled.operp.client.items.controllers.ProductController;
 import devopsdistilled.operp.client.main.utils.StandardButtonHelper;
+
 import java.awt.Font;
 
 
@@ -64,6 +68,12 @@ public final class ItemMgmtPane extends TaskPane {
 	public String toString() {
 		return new String("Items");
 	}
+	
+	@Override
+	public Icon getIcon() {
+		Icon icon=new ImageIcon(ItemMgmtPane.class.getResource("/client/icons/admin-24.png"));
+		return icon;
+	}
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -99,7 +109,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconListItems = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/list-items.png"));
+					getResource("/client/icons/list2.png"));
 		btnListItems.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListItems));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListItems), "cell 1 1");
 		
@@ -125,7 +135,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconlistCategories=new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/list-category.png"));	
+					getResource("/client/icons/list3.png"));	
 		btnListCategories.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconlistCategories));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListCategories), "flowx,cell 0 2");
 
@@ -177,7 +187,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconListManufacturer = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/list.png"));
 		btnListManufacturers.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListManufacturer));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListManufacturers), "cell 1 3");
 		
@@ -202,10 +212,11 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconListBrand=new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/list.png"));
 		btnListBrand.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListBrand));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListBrand), "cell 0 4");			
 
 		return pane;
 	}
+	
 }
