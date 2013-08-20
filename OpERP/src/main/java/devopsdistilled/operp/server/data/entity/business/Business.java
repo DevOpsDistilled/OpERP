@@ -15,7 +15,7 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.party.Party;
 
 @MappedSuperclass
-public abstract class Business<P extends Party, D extends BusinessDesc<?>>
+public abstract class Business<P extends Party, D extends BusinessDesc<?, ?>>
 		extends Entiti<Long> {
 
 	private static final long serialVersionUID = -7075903053081563240L;

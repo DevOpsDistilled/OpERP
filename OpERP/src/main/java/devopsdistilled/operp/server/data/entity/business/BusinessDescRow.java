@@ -1,22 +1,23 @@
 package devopsdistilled.operp.server.data.entity.business;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
 
-@Entity
-public class BusinessDescRow extends Entiti<Long> {
+@MappedSuperclass
+public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
+		Entiti<Long> {
 
 	private static final long serialVersionUID = 9140270277994676490L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long descRowId;
+	private Long id;
 
 	@OneToOne
 	private Item item;
@@ -58,7 +59,7 @@ public class BusinessDescRow extends Entiti<Long> {
 
 	@Override
 	public Long id() {
-		return descRowId;
+		return null;
 	}
 
 	@Override

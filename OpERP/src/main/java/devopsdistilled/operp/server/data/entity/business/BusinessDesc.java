@@ -11,8 +11,8 @@ import javax.persistence.OneToOne;
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @MappedSuperclass
-public abstract class BusinessDesc<B extends Business<?, ?>> extends
-		Entiti<Long> {
+public abstract class BusinessDesc<B extends Business<?, ?>, DR extends BusinessDescRow<?>>
+		extends Entiti<Long> {
 
 	private static final long serialVersionUID = 7790361115068372068L;
 
@@ -21,9 +21,10 @@ public abstract class BusinessDesc<B extends Business<?, ?>> extends
 	protected B business;
 
 	@OneToMany
-	protected final List<BusinessDescRow> descRows = new LinkedList<>();
+	// (mappedBy = "businessDesc")
+	protected final List<DR> descRows = new LinkedList<>();
 
-	public List<BusinessDescRow> getDescRows() {
+	public List<DR> getDescRows() {
 		return descRows;
 	}
 
