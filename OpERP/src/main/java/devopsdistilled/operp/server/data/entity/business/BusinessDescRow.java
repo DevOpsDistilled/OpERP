@@ -58,13 +58,12 @@ public class BusinessDescRow extends Entiti<Long> {
 
 	@Override
 	public Long id() {
-		// TODO Auto-generated method stub
-		return null;
+		return descRowId;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String(getQuantity().toString() + " "
+				+ getItem().getItemName() + " at " + getRate().toString());
 	}
 }
