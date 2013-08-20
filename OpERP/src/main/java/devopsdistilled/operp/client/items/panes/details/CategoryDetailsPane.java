@@ -35,7 +35,7 @@ public class CategoryDetailsPane extends
 		categoryIdField = new JTextField();
 		categoryIdField.setEditable(false);
 		pane.add(categoryIdField, "cell 1 0,growx");
-		categoryIdField.setColumns(10);
+		categoryIdField.setColumns(30);
 
 		JLabel lblCategoryName = new JLabel("Category Name");
 		pane.add(lblCategoryName, "cell 0 1,alignx trailing");
@@ -43,7 +43,7 @@ public class CategoryDetailsPane extends
 		categoryNameField = new JTextField();
 		categoryNameField.setEditable(false);
 		pane.add(categoryNameField, "cell 1 1,growx");
-		categoryNameField.setColumns(10);
+		categoryNameField.setColumns(30);
 
 	}
 

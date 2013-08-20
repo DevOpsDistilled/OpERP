@@ -90,7 +90,8 @@ public class UpdateStockPane extends SubTaskPane implements
 		comboWarehouses.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
+
+				if (e.getStateChange() == ItemEvent.SELECTED){
 					getDialog().pack();
 					controller.getModel().setWarehouse((Warehouse) e.getItem());
 				}

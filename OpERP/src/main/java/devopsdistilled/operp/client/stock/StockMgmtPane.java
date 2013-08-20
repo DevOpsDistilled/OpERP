@@ -95,7 +95,7 @@ public class StockMgmtPane extends TaskPane {
 			
 		});
 		iconCreateWarehouse=new ImageIcon(StockMgmtPane.class.
-					getResource("/client/icons/Accounting.png"));
+					getResource("/client/icons/Warehouse.png"));
 		btnCreateWarehouse.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateWarehouse));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateWarehouse), "flowx,cell 2 1");
 

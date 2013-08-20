@@ -27,6 +27,7 @@ import devopsdistilled.operp.client.items.panes.details.ProductDetailsPane;
 import devopsdistilled.operp.client.items.panes.models.observers.EditProductPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.items.Category;
 import devopsdistilled.operp.server.data.entity.items.Product;
+import java.awt.Dimension;
 
 public class EditProductPane extends SubTaskPane implements
 		EditProductPaneModelObserver, CategoryModelObserver {
@@ -78,6 +79,7 @@ public class EditProductPane extends SubTaskPane implements
 		pane.add(lblCategory, "cell 0 2");
 
 		categoryPanel = new JPanel();
+		categoryPanel.setMinimumSize(new Dimension(100, 120));
 		categoryPanel.setLayout(new MigLayout("flowy", "[92px,grow]",
 				"[23px,grow]"));
 		JButton btnNewCategory = new JButton("New Category");
@@ -89,8 +91,10 @@ public class EditProductPane extends SubTaskPane implements
 		});
 		categoryPanel.add(btnNewCategory, "south");
 		JScrollPane scrollPane = new JScrollPane(categoryPanel);
+		scrollPane.setMinimumSize(new Dimension(100, 130));
 
 		categoryList = new JList<>();
+		categoryList.setMinimumSize(new Dimension(0, 100));
 		categoryPanel.add(categoryList, "cell 0 0,grow");
 		pane.add(scrollPane, "cell 1 2,grow");
 

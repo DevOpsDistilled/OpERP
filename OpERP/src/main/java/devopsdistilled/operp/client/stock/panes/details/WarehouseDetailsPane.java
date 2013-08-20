@@ -68,7 +68,7 @@ public class WarehouseDetailsPane extends
 		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pane.add(scrollPane, "cell 1 3,grow");
+		pane.add(scrollPane, "cell 1 3");
 
 	}
 

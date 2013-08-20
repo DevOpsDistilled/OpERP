@@ -86,7 +86,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconCreateItem=new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/create-item.png"));
 		btnNewItemButton.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateItem));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewItemButton), "cell 0 1");
 
@@ -99,7 +99,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconListItems = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/list-items.png"));
 		btnListItems.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListItems));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListItems), "cell 1 1");
 		
@@ -112,7 +112,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconCreateCategory = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/create-category.png"));
 		btnCreateCategory.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateCategory));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateCategory), "flowx, cell 2 1");
 		
@@ -125,7 +125,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconlistCategories=new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));	
+					getResource("/client/icons/list-category.png"));	
 		btnListCategories.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconlistCategories));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListCategories), "flowx,cell 0 2");
 
@@ -151,7 +151,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconListProduct = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/list.png"));
 		btnListProducts.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListProduct));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListProducts), "cell 2 2");
 		
@@ -164,7 +164,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconCreateManufacturer = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/Manufacturer.png"));
 		btnCreateManufacturer.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateManufacturer));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateManufacturer), "cell 0 3");
 		
@@ -190,7 +190,7 @@ public final class ItemMgmtPane extends TaskPane {
 			}
 		});
 		iconCreateBrand = new ImageIcon(ItemMgmtPane.class.
-					getResource("/client/icons/Alerts.png"));
+					getResource("/client/icons/Brand.png"));
 		btnCreateBrand.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateBrand));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateBrand), "cell 2 3");
 
