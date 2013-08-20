@@ -32,7 +32,6 @@ public abstract class SubTaskPane implements PaneModelObserver {
 		dialog.setLocation(x, y);
 		dialog.requestFocus();
 		dialog.setVisible(true);
-		SwingUtilities.updateComponentTreeUI(dialog);
 
 		
 
