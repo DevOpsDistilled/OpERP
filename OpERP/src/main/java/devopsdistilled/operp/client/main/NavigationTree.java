@@ -55,9 +55,14 @@ public class NavigationTree {
 				super.getTreeCellRendererComponent(tree, value, sel, expanded,
 						leaf, row, hasFocus);
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
-				Object o=node.getUserObject();
 				TaskPane taskPane = (TaskPane) node.getUserObject();
-				setIcon(taskPane.getIcon());
+				if (taskPane.getIcon() != null)
+					setIcon(taskPane.getIcon());
+				else
+					setIcon(leafIcon);
+
+				tree.revalidate();
+				tree.repaint();
 				return this;
 			}
 		});

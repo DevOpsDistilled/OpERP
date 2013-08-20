@@ -15,11 +15,11 @@ public class PartyMgmtPane extends TaskPane {
 		return new String("Parties");
 	}
 	
-	public Icon getIcon(){
-	Icon icon=new ImageIcon(PartyMgmtPane.class.getResource("/client/icons/admin_24.png"));
-		return icon;
-		
+	@Override
+	public Icon getIcon() {
+		return new ImageIcon(getClass().getResource("/client/icons/Alerts.png"));
 	}
+
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();

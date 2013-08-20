@@ -6,8 +6,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import devopsdistilled.operp.client.abstracts.TaskPane;
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public class DefaultTaskPane extends TaskPane {
 
@@ -28,5 +28,6 @@ public class DefaultTaskPane extends TaskPane {
 	public Icon getIcon() {
 		Icon icon=new ImageIcon(getClass().getResource("/client/icons/admin_24.png"));
 		return icon;
+
 	}
 }
