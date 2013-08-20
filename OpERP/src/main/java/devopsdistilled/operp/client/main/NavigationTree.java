@@ -4,11 +4,13 @@ import java.awt.Component;
 import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public class NavigationTree {
@@ -19,7 +21,6 @@ public class NavigationTree {
 	private JTree tree;
 
 	private EventListener listener;
-
 
 	public JTree getTree() {
 		return tree;
@@ -61,6 +62,7 @@ public class NavigationTree {
 			}
 		});
 	}
+
 	public void setListener(EventListener listener) {
 		this.listener = listener;
 		tree.addTreeSelectionListener((TreeSelectionListener) this.listener);

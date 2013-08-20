@@ -14,12 +14,12 @@ public class PartyMgmtPane extends TaskPane {
 	public String toString() {
 		return new String("Parties");
 	}
-	
-	public Icon getIcon(){
-	Icon icn=new ImageIcon(PartyMgmtPane.class.getResource("/client/icons/admin_24.png"));
-		return icn;
-		
+
+	@Override
+	public Icon getIcon() {
+		return new ImageIcon("client/Alerts.png");
 	}
+
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
