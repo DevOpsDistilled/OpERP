@@ -16,7 +16,7 @@ import devopsdistilled.operp.server.data.entity.account.Account;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 
 @MappedSuperclass
-public abstract class Party<A extends Account> extends Entiti<Long> {
+public abstract class Party<A extends Account<?>> extends Entiti<Long> {
 
 	private static final long serialVersionUID = 5183636412272320506L;
 
