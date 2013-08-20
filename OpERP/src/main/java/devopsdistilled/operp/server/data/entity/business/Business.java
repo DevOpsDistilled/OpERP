@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -14,7 +15,8 @@ import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.party.Party;
 
 @MappedSuperclass
-public abstract class Business<P extends Party> extends Entiti<Long> {
+public abstract class Business<P extends Party, D extends BusinessDesc<?>>
+		extends Entiti<Long> {
 
 	private static final long serialVersionUID = -7075903053081563240L;
 
@@ -29,6 +31,9 @@ public abstract class Business<P extends Party> extends Entiti<Long> {
 
 	@ManyToOne
 	protected P party;
+
+	@OneToOne(mappedBy = "business")
+	protected D businessDesc;
 
 	public Long getBusinessId() {
 		return businessId;
@@ -58,6 +63,18 @@ public abstract class Business<P extends Party> extends Entiti<Long> {
 		return party;
 	}
 
+	public void setParty(P party) {
+		this.party = party;
+	}
+
+	public D getBusinessDesc() {
+		return businessDesc;
+	}
+
+	public void setBusinessDesc(D businessDesc) {
+		this.businessDesc = businessDesc;
+	}
+
 	@Override
 	public Long id() {
 		return getBusinessId();
@@ -68,10 +85,6 @@ public abstract class Business<P extends Party> extends Entiti<Long> {
 
 		return new String(getBusinessId() + ": " + getDate() + ": "
 				+ getAmount().toString());
-	}
-
-	public void setParty(P party) {
-		this.party = party;
 	}
 
 }
