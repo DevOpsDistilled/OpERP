@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.sales;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +20,12 @@ public class SalesPane extends TaskPane {
 		JPanel pane = new JPanel();
 		pane.add(new JLabel("Sales Management"));
 		return pane;
+	}
+
+	@Override
+	public Icon getIcon() {
+		Icon icon=new ImageIcon(getClass().getResource("/client/icons/admin_24.png"));
+		return icon;
 	}
 
 }
