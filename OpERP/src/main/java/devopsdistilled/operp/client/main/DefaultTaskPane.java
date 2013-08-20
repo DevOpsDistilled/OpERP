@@ -26,6 +26,7 @@ public class DefaultTaskPane extends TaskPane {
 
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon("client/Accounting.png");
+		return new ImageIcon(getClass().getResource(
+				"/client/icons/Accounting.png"));
 	}
 }

@@ -17,7 +17,7 @@ public class PartyMgmtPane extends TaskPane {
 
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon("client/Alerts.png");
+		return new ImageIcon(getClass().getResource("/client/icons/Alerts.png"));
 	}
 
 	@Override

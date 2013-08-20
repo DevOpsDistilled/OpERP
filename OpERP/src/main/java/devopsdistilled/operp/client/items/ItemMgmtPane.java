@@ -67,7 +67,8 @@ public final class ItemMgmtPane extends TaskPane {
 
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon("client/list2.png");
+		return new ImageIcon(getClass().getResource(
+				"/client/icons/admin_24.png"));
 	}
 
 	/**

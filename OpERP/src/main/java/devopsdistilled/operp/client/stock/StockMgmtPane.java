@@ -51,8 +51,8 @@ public class StockMgmtPane extends TaskPane {
 
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon("client/Warehouse.png");
-	}
+		return new ImageIcon(getClass().getResource(
+				"/client/icons/admin_24.png"));	}
 
 	/**
 	 * @wbp.parser.entryPoint

@@ -58,6 +58,9 @@ public class NavigationTree {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 				TaskPane taskPane = (TaskPane) node.getUserObject();
 				setIcon(taskPane.getIcon());
+			
+				tree.revalidate();
+				tree.repaint();
 				return this;
 			}
 		});
