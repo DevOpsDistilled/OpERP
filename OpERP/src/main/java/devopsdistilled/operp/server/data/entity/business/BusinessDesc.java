@@ -3,25 +3,25 @@ package devopsdistilled.operp.server.data.entity.business;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
 @MappedSuperclass
-public abstract class BusinessDesc extends Entiti<Long> {
+public abstract class BusinessDesc<B extends Business<?, ?>> extends
+		Entiti<Long> {
 
 	private static final long serialVersionUID = 7790361115068372068L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long descId;
+	@OneToOne
+	protected B business;
 
 	@OneToMany
-	private final List<BusinessDescRow> descRows = new LinkedList<>();
+	protected final List<BusinessDescRow> descRows = new LinkedList<>();
 
 	public List<BusinessDescRow> getDescRows() {
 		return descRows;
@@ -30,14 +30,6 @@ public abstract class BusinessDesc extends Entiti<Long> {
 	private Double discountAmount;
 
 	private Double TotalAmount;
-
-	public Long getDescId() {
-		return descId;
-	}
-
-	public void setDescId(Long descId) {
-		this.descId = descId;
-	}
 
 	public Double getDiscountAmount() {
 		return discountAmount;
@@ -55,9 +47,17 @@ public abstract class BusinessDesc extends Entiti<Long> {
 		TotalAmount = totalAmount;
 	}
 
+	public B getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(B business) {
+		this.business = business;
+	}
+
 	@Override
 	public Long id() {
-		return getDescId();
+		return getBusiness().getBusinessId();
 	}
 
 	@Override
