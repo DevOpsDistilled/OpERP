@@ -33,8 +33,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	@OneToOne(mappedBy = "businessDesc")
 	protected B business;
 
-	@OneToMany
-	// (mappedBy = "businessDesc")
+	@OneToMany(mappedBy = "businessDesc")
 	protected final List<DR> descRows = new LinkedList<>();
 
 	public List<DR> getDescRows() {
