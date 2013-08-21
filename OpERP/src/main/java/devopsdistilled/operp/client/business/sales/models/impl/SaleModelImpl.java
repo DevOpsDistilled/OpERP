@@ -1,9 +1,9 @@
-package devopsdistilled.operp.client.sales.models.impl;
+package devopsdistilled.operp.client.business.sales.models.impl;
 
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
-import devopsdistilled.operp.client.sales.models.observers.SaleModelObserver;
+import devopsdistilled.operp.client.business.sales.models.observers.SaleModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.service.sales.SaleService;
 

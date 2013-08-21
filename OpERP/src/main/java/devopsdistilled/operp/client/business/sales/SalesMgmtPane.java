@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.sales;
+package devopsdistilled.operp.client.business.sales;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
-import devopsdistilled.operp.client.sales.controllers.SaleController;
+import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 
 public class SalesMgmtPane extends TaskPane {
 

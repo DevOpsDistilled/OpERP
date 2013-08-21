@@ -3,11 +3,11 @@ package devopsdistilled.operp.client.context;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.business.sales.SalesMgmtPane;
 import devopsdistilled.operp.client.items.ItemMgmtPane;
 import devopsdistilled.operp.client.main.NavigationPane;
 import devopsdistilled.operp.client.main.NavigationTree;
 import devopsdistilled.operp.client.party.PartyMgmtPane;
-import devopsdistilled.operp.client.sales.SalesMgmtPane;
 import devopsdistilled.operp.client.stock.StockMgmtPane;
 
 @Configuration

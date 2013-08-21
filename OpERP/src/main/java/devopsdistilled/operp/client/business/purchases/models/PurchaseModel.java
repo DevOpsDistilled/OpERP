@@ -1,7 +1,7 @@
-package devopsdistilled.operp.client.sales.models;
+package devopsdistilled.operp.client.business.purchases.models;
 
 import devopsdistilled.operp.client.abstracts.EntityModel;
-import devopsdistilled.operp.client.sales.models.observers.PurchaseModelObserver;
+import devopsdistilled.operp.client.business.purchases.models.observers.PurchaseModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
 import devopsdistilled.operp.server.data.service.sales.PurchaseService;
 

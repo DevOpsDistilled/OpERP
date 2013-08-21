@@ -1,6 +1,6 @@
-package devopsdistilled.operp.client.sales.controllers.impl;
+package devopsdistilled.operp.client.business.purchases.controllers.impl;
 
-import devopsdistilled.operp.client.sales.controllers.PurchaseController;
+import devopsdistilled.operp.client.business.purchases.controllers.PurchaseController;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
 
 public class PurchaseControllerImpl implements PurchaseController {

@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.sales.models.observers;
+package devopsdistilled.operp.client.business.purchases.models.observers;
 
 import java.util.List;
 
