@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.entity.business;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -15,12 +17,15 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 	private static final long serialVersionUID = 9140270277994676490L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long businessDescRowId;
+
 	@ManyToOne
 	protected D businessDesc;
 
-	@Id
 	@OneToOne
 	protected Item item;
+
 	private Double rate;
 	private Long quantity;
 	private Double amount;

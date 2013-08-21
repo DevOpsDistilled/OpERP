@@ -22,6 +22,16 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long businessId;
 
+	@OneToOne(mappedBy = "businessDesc")
+	protected B business;
+
+	@OneToMany(mappedBy = "businessDesc")
+	protected List<DR> descRows = new LinkedList<>();
+
+	private Double discountAmount;
+
+	private Double TotalAmount;
+
 	public Long getBusinessId() {
 		return businessId;
 	}
@@ -29,20 +39,6 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	public void setBusinessId(Long businessId) {
 		this.businessId = businessId;
 	}
-
-	@OneToOne(mappedBy = "businessDesc")
-	protected B business;
-
-	@OneToMany(mappedBy = "businessDesc")
-	protected final List<DR> descRows = new LinkedList<>();
-
-	public List<DR> getDescRows() {
-		return descRows;
-	}
-
-	private Double discountAmount;
-
-	private Double TotalAmount;
 
 	public Double getDiscountAmount() {
 		return discountAmount;
@@ -66,6 +62,14 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	public void setBusiness(B business) {
 		this.business = business;
+	}
+
+	public List<DR> getDescRows() {
+		return descRows;
+	}
+
+	public void setDescRows(List<DR> descRows) {
+		this.descRows = descRows;
 	}
 
 	@Override
