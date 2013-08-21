@@ -3,6 +3,8 @@ package devopsdistilled.operp.server.data.entity.business;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
@@ -17,7 +19,18 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	private static final long serialVersionUID = 7790361115068372068L;
 
 	@Id
-	@OneToOne
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long businessId;
+
+	public Long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(Long businessId) {
+		this.businessId = businessId;
+	}
+
+	@OneToOne(mappedBy = "businessDesc")
 	protected B business;
 
 	@OneToMany
@@ -58,7 +71,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	@Override
 	public Long id() {
-		return getBusiness().getBusinessId();
+		return getBusinessId();
 	}
 
 	@Override
