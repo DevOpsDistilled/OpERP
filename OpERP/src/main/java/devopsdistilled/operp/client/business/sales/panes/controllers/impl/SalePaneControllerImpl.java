@@ -45,17 +45,13 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 		if (EntityOperation.Create == entityOperation) {
 
-			model.setTitle("New Sale");
 			// XXX
 
 		} else if (EntityOperation.Edit == entityOperation) {
 
-			model.setTitle("Edit Sale Description");
 			// XXX
 
 		} else if (EntityOperation.Details == entityOperation) {
-
-			model.setTitle("Sale Details");
 
 			// XXX
 		}
