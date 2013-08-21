@@ -18,8 +18,9 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 	@ManyToOne
 	protected D businessDesc;
 
+	@Id
 	@OneToOne
-	private Item item;
+	protected Item item;
 	private Double rate;
 	private Long quantity;
 	private Double amount;
@@ -66,4 +67,5 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 		return new String(getQuantity().toString() + " "
 				+ getItem().getItemName() + " at " + getRate().toString());
 	}
+
 }
