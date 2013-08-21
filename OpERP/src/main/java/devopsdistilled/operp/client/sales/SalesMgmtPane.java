@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -11,8 +12,12 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.sales.controllers.SaleController;
 
 public class SalesMgmtPane extends TaskPane {
+
+	@Inject
+	private SaleController saleController;
 
 	@Override
 	public String toString() {
@@ -33,6 +38,7 @@ public class SalesMgmtPane extends TaskPane {
 		btnNewSale.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				saleController.create();
 			}
 		});
 		btnNewSale.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
