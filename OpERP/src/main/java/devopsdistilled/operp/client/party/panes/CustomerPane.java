@@ -114,6 +114,7 @@ public class CustomerPane extends
 	@Override
 	public void updateEntity(Customer customer, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
+			getController().getModel().setTitle("Create Customer");
 
 			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
 
@@ -122,12 +123,15 @@ public class CustomerPane extends
 
 		} else if (EntityOperation.Edit == entityOperation) {
 
+			getController().getModel().setTitle("Edit Customer");
+
 			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
 
 			customerIdField.setText(customer.getPartyId().toString());
 
 		} else if (EntityOperation.Details == entityOperation) {
 
+			getController().getModel().setTitle("Customer Details");
 			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
 
 			customerIdField.setText(customer.getPartyId().toString());
