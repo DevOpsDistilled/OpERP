@@ -101,18 +101,22 @@ public class VendorPane extends
 	public void updateEntity(Vendor vendor, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
 
+			getController().getModel().setTitle("Create Vendor");
+
 			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
 
 			lblVendorId.setVisible(false);
 			vendorIdField.setVisible(false);
 
 		} else if (EntityOperation.Edit == entityOperation) {
+			getController().getModel().setTitle("Edit Vendor");
 
 			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
 
 			vendorIdField.setText(vendor.getPartyId().toString());
 
 		} else if (EntityOperation.Details == entityOperation) {
+			getController().getModel().setTitle("Vendor Details");
 
 			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
 
