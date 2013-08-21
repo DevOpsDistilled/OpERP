@@ -1,14 +1,20 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleDescRowController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDescRowPaneModelObserver;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
+import devopsdistilled.operp.server.data.entity.items.Item;
 
 public class SaleDescRowPane
 		extends
@@ -16,9 +22,48 @@ public class SaleDescRowPane
 		implements SaleDescRowPaneModelObserver {
 
 	private final JPanel pane;
+	private final JTextField priceField;
+	private final JTextField quantityField;
+	private final JTextField amountField;
+	private final JComboBox<Item> comboBox;
 
 	public SaleDescRowPane() {
 		pane = new JPanel();
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+
+		JLabel lblItem = new JLabel("Item");
+		pane.add(lblItem, "cell 0 0,alignx trailing");
+
+		comboBox = new JComboBox<>();
+		pane.add(comboBox, "cell 1 0,growx");
+
+		JLabel lblPrice = new JLabel("Price");
+		pane.add(lblPrice, "cell 0 1,alignx trailing");
+
+		priceField = new JTextField();
+		pane.add(priceField, "cell 1 1,growx");
+		priceField.setColumns(10);
+
+		JLabel lblQuantity = new JLabel("Quantity");
+		pane.add(lblQuantity, "cell 0 2,alignx trailing");
+
+		quantityField = new JTextField();
+		pane.add(quantityField, "cell 1 2,growx");
+		quantityField.setColumns(10);
+
+		JLabel lblAmount = new JLabel("Amount");
+		pane.add(lblAmount, "cell 0 3,alignx trailing");
+
+		amountField = new JTextField();
+		amountField.setEditable(false);
+		pane.add(amountField, "cell 1 3,growx");
+		amountField.setColumns(10);
+
+		JButton btnReset = new JButton("Reset");
+		pane.add(btnReset, "flowx,cell 1 4");
+
+		JButton btnOk = new JButton("OK");
+		pane.add(btnOk, "cell 1 4");
 	}
 
 	@Override
