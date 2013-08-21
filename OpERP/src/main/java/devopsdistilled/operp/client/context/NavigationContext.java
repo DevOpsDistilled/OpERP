@@ -7,7 +7,7 @@ import devopsdistilled.operp.client.items.ItemMgmtPane;
 import devopsdistilled.operp.client.main.NavigationPane;
 import devopsdistilled.operp.client.main.NavigationTree;
 import devopsdistilled.operp.client.party.PartyMgmtPane;
-import devopsdistilled.operp.client.sales.SalesPane;
+import devopsdistilled.operp.client.sales.SalesMgmtPane;
 import devopsdistilled.operp.client.stock.StockMgmtPane;
 
 @Configuration
@@ -29,8 +29,8 @@ public class NavigationContext {
 	}
 
 	@Bean
-	public SalesPane salesPane() {
-		return new SalesPane();
+	public SalesMgmtPane salesMgmtPane() {
+		return new SalesMgmtPane();
 	}
 
 	@Bean
@@ -39,7 +39,7 @@ public class NavigationContext {
 		navTree.addNode(partyMgmtPane(), 0);
 		navTree.addNode(itemMgmtPane(), 1);
 		navTree.addNode(stockMgmtPane(), 2);
-		navTree.addNode(salesPane(), 3);
+		navTree.addNode(salesMgmtPane(), 3);
 
 		return navTree;
 	}

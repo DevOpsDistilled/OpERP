@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
-public class SalesPane extends TaskPane {
+public class SalesMgmtPane extends TaskPane {
 
 	@Override
 	public String toString() {
