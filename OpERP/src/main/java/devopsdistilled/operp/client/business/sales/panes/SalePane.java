@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.business.sales.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
@@ -9,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
@@ -18,7 +19,9 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SalePaneModelObserver;
+import devopsdistilled.operp.client.party.controllers.CustomerController;
 import devopsdistilled.operp.server.data.entity.business.Sale;
+import devopsdistilled.operp.server.data.entity.party.Customer;
 
 public class SalePane extends
 		EntityPane<Sale, SaleController, SalePaneController> implements
@@ -27,18 +30,16 @@ public class SalePane extends
 	@Inject
 	private SaleController saleController;
 
+	@Inject
+	private CustomerController customerController;
+
 	private final JPanel pane;
 	private final JTextField saleIdField;
-	private final JTextField priceField;
-	private final JTextField quantityField;
-	private final JTable saleDescTable;
-	private final JTextField discountField;
-	private final JTextField totalField;
+	private final JComboBox<Customer> customerCombo;
 
 	public SalePane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[117.00][grow]",
-				"[][][][][][][][][grow]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 
 		JLabel lblSaleId = new JLabel("Sale Id");
 		pane.add(lblSaleId, "cell 0 0,alignx trailing");
@@ -51,56 +52,32 @@ public class SalePane extends
 		JLabel lblCustomer = new JLabel("Customer");
 		pane.add(lblCustomer, "cell 0 1,alignx trailing");
 
-		JComboBox comboBox = new JComboBox();
-		pane.add(comboBox, "flowx,cell 1 1,growx");
+		customerCombo = new JComboBox<>();
+		customerCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED)
+					getController().getModel().getEntity()
+							.setParty((Customer) e.getItem());
+			}
+		});
+		pane.add(customerCombo, "flowx,cell 1 1,growx");
 
 		JButton btnNewCustomer = new JButton("New Customer");
 		btnNewCustomer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				customerController.create();
 			}
 		});
 		pane.add(btnNewCustomer, "cell 1 1");
 
-		JLabel lblItem = new JLabel("Item");
-		pane.add(lblItem, "flowx,cell 0 3");
-
-		JComboBox itemCombo = new JComboBox();
-		pane.add(itemCombo, "cell 0 3");
-
-		saleDescTable = new JTable();
-		pane.add(saleDescTable, "cell 1 3,grow");
-
-		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "flowx,cell 0 4");
-
-		priceField = new JTextField();
-		pane.add(priceField, "cell 0 4,aligny center");
-		priceField.setColumns(10);
-
-		JLabel lblQuantity = new JLabel("Quantity");
-		pane.add(lblQuantity, "flowx,cell 0 5");
-
-		quantityField = new JTextField();
-		pane.add(quantityField, "cell 0 5");
-		quantityField.setColumns(10);
-
-		JLabel lblDiscount = new JLabel("Discount");
-		pane.add(lblDiscount, "flowx,cell 1 6");
-
-		discountField = new JTextField();
-		pane.add(discountField, "cell 1 6");
-		discountField.setColumns(10);
-
-		JLabel lblTotal = new JLabel("Total");
-		pane.add(lblTotal, "flowx,cell 1 7");
-
-		totalField = new JTextField();
-		pane.add(totalField, "cell 1 7");
-		totalField.setColumns(10);
+		JPanel saleDescPanel = new JPanel();
+		pane.add(saleDescPanel, "cell 0 2 2097051 1,grow");
+		saleDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
 		JPanel opBtnPanel = new JPanel();
-		pane.add(opBtnPanel, "cell 1 8,grow");
+		pane.add(opBtnPanel, "cell 1 4,grow");
 		opBtnPanel.setLayout(new MigLayout("", "[]", "[]"));
 	}
 
