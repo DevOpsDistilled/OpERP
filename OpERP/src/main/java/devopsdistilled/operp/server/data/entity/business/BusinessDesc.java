@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.business;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long businessDescId;
 
-	@OneToMany(mappedBy = "businessDesc")
+	@OneToMany(mappedBy = "businessDesc", cascade = CascadeType.ALL)
 	protected List<DR> descRows = new LinkedList<>();
 
 	private Double discountAmount;
