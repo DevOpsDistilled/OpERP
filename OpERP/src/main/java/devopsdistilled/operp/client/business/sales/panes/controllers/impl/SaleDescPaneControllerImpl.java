@@ -71,17 +71,30 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	@Override
 	public void addNewSaleDescRow() {
 
-		model.getEntity().getDescRows().add(model.getSaleDescRow());
+		if (EntityOperation.Edit != model.getEntityOperation()) {
+			model.getEntity().getDescRows().add(model.getSaleDescRow());
+		}
+
 		model.getEntity().setTotalAmount(
 				model.getEntity().getTotalAmount()
 						+ model.getSaleDescRow().getAmount());
 
 		model.setEntityAndEntityOperation(model.getEntity(),
-				model.getEntityOperation());
+				EntityOperation.Create);
 
 		SaleDescRow saleDescRow = new SaleDescRow();
 		model.setSaleDescRow(saleDescRow);
 		saleDescRowPaneController.init(saleDescRow, EntityOperation.Create);
 	}
 
+	@Override
+	public void initEditSaleDescRow(SaleDescRow saleDescRow) {
+		model.setSaleDescRow(saleDescRow);
+		model.getEntity().setTotalAmount(
+				model.getEntity().getTotalAmount()
+						- model.getSaleDescRow().getAmount());
+		model.setEntityAndEntityOperation(model.getEntity(),
+				EntityOperation.Edit);
+		saleDescRowPaneController.init(saleDescRow, EntityOperation.Edit);
+	}
 }
