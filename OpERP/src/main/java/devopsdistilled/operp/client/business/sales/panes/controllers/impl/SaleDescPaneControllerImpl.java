@@ -38,7 +38,6 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 
 	@Override
 	public SaleDesc save() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -73,6 +72,10 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	public void addNewSaleDescRow() {
 
 		model.getEntity().getDescRows().add(model.getSaleDescRow());
+		model.getEntity().setTotalAmount(
+				model.getEntity().getTotalAmount()
+						+ model.getSaleDescRow().getAmount());
+
 		model.setEntityAndEntityOperation(model.getEntity(),
 				model.getEntityOperation());
 
