@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.business.Purchase;
-import devopsdistilled.operp.server.data.repo.sales.PurchaseRepository;
+import devopsdistilled.operp.server.data.repo.business.PurchaseRepository;
 import devopsdistilled.operp.server.data.service.sales.PurchaseService;
 
 @Service

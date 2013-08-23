@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.repo.sales;
+package devopsdistilled.operp.server.data.repo.business;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
