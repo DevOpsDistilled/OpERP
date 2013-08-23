@@ -10,6 +10,7 @@ import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPan
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.SalePaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.party.models.CustomerModel;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDesc;
@@ -33,8 +34,9 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 	@Override
 	public void validate() throws EntityValidationException {
-		// TODO Auto-generated method stub
 
+		if (model.getEntity().getParty() == null)
+			throw new NullFieldException("Customer must be selected");
 	}
 
 	@Override
