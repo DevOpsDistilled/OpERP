@@ -1,8 +1,11 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,13 +37,15 @@ public class SaleDescPane extends
 	private final JTable table;
 	BeanTableModel<SaleDescRow> tableModel;
 	private JPanel rowDescPanel;
+	private final JButton btnAdd;
 
 	public SaleDescPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
+		pane.setLayout(new MigLayout("debug,flowy", "[][grow]", "[][][][]"));
 
 		rowDescPanel = new JPanel();
 		pane.add(rowDescPanel, "cell 0 0,grow");
+
 		rowDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
 		table = new JTable(tableModel);
@@ -62,21 +67,29 @@ public class SaleDescPane extends
 		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pane.add(scrollPane, "cell 1 0,grow");
+		pane.add(scrollPane, "cell 1 0 1 2,grow");
+		btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		pane.add(btnAdd, "cell 0 1,alignx right,aligny top");
 
 		JLabel lblDiscount = new JLabel("Discount");
-		pane.add(lblDiscount, "flowx,cell 1 1,alignx right");
+		pane.add(lblDiscount, "flowx,cell 1 2,alignx right");
 
 		JLabel lblAmount = new JLabel("Amount");
-		pane.add(lblAmount, "flowx,cell 1 2,alignx right");
+		pane.add(lblAmount, "flowx,cell 1 3,alignx right");
 
 		discountField = new JTextField();
-		pane.add(discountField, "cell 1 1,alignx right");
+		pane.add(discountField, "cell 1 2,alignx right");
 		discountField.setColumns(10);
 
 		amountField = new JTextField();
 		amountField.setEditable(false);
-		pane.add(amountField, "cell 1 2,alignx right");
+		pane.add(amountField, "cell 1 3,alignx right");
 		amountField.setColumns(10);
 	}
 
