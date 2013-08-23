@@ -36,6 +36,8 @@ public class SalePane extends
 	private final JPanel pane;
 	private final JTextField saleIdField;
 	private final JComboBox<Customer> customerCombo;
+	private JPanel opBtnPanel;
+	private JPanel saleDescPanel;
 
 	public SalePane() {
 		pane = new JPanel();
@@ -72,13 +74,16 @@ public class SalePane extends
 		});
 		pane.add(btnNewCustomer, "cell 1 1");
 
-		JPanel saleDescPanel = new JPanel();
+		saleDescPanel = new JPanel();
 		pane.add(saleDescPanel, "cell 0 2 2097051 1,grow");
 		saleDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
-		JPanel opBtnPanel = new JPanel();
+		opBtnPanel = new JPanel();
 		pane.add(opBtnPanel, "cell 1 4,grow");
-		opBtnPanel.setLayout(new MigLayout("", "[]", "[]"));
+		opBtnPanel.setLayout(new MigLayout("", "[][][grow]", "[grow]"));
+
+		JPanel panel = new JPanel();
+		opBtnPanel.add(panel, "cell 2 0,grow");
 	}
 
 	@Override
@@ -99,7 +104,19 @@ public class SalePane extends
 
 	@Override
 	public void updateEntity(Sale sale, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
+		if (EntityOperation.Create == entityOperation) {
+			getController().getModel().setTitle("New Sale");
+			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
+		}
+	}
 
+	public void setSaleDescpanel(JPanel saleDescPanel) {
+		MigLayout layout = (MigLayout) pane.getLayout();
+		Object constraints = layout.getComponentConstraints(this.saleDescPanel);
+
+		pane.remove(this.saleDescPanel);
+		pane.add(saleDescPanel, constraints);
+		this.saleDescPanel = saleDescPanel;
+		pane.validate();
 	}
 }
