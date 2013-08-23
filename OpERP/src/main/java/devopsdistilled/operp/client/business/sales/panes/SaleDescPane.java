@@ -61,8 +61,11 @@ public class SaleDescPane extends
 				if (SwingUtilities.isLeftMouseButton(e)
 						&& e.getClickCount() == 2
 						&& table.getSelectedRow() != -1) {
-					// SaleDescRow saleDescRow = tableModel.getRow(table
-					// .getSelectedRow());
+
+					SaleDescRow saleDescRow = tableModel.getRow(table
+							.getSelectedRow());
+
+					getController().initEditSaleDescRow(saleDescRow);
 
 					// XXX
 				}
@@ -133,8 +136,7 @@ public class SaleDescPane extends
 
 	@Override
 	public void resetComponents() {
-		// TODO Auto-generated method stub
-
+		btnAdd.setText("Add");
 	}
 
 	@Override
@@ -149,16 +151,18 @@ public class SaleDescPane extends
 
 	@Override
 	public void updateEntity(SaleDesc saleDesc, EntityOperation entityOperation) {
-		if (EntityOperation.Create == entityOperation) {
-			tableModel = null;
-			tableModel = new BeanTableModel<>(SaleDescRow.class,
-					BusinessDescRow.class, saleDesc.getDescRows());
+		tableModel = null;
+		tableModel = new BeanTableModel<>(SaleDescRow.class,
+				BusinessDescRow.class, saleDesc.getDescRows());
 
-			for (int i = 0; i < table.getColumnCount(); i++) {
-				tableModel.setColumnEditable(i, false);
-			}
-			tableModel.setModelEditable(false);
-			table.setModel(tableModel);
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
+
+		if (EntityOperation.Edit == entityOperation) {
+			btnAdd.setText("Update");
 		}
 	}
 
