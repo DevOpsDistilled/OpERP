@@ -26,9 +26,9 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 	@OneToOne
 	protected Item item;
 
-	private Double rate;
-	private Long quantity;
-	private Double amount;
+	private Double rate = 0.0;
+	private Long quantity = 0L;
+	private Double amount = 0.0;
 
 	public Item getItem() {
 		return item;
@@ -44,6 +44,7 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 
 	public void setRate(Double rate) {
 		this.rate = rate;
+		setAmount(getRate() * getQuantity());
 	}
 
 	public Long getQuantity() {
@@ -52,6 +53,7 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
+		setAmount(getRate() * getQuantity());
 	}
 
 	public Double getAmount() {
