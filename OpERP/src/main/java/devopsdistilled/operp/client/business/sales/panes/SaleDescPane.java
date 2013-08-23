@@ -104,6 +104,19 @@ public class SaleDescPane extends
 			@Override
 			public void focusLost(FocusEvent e) {
 
+				try {
+					Double discountAmount = Double.parseDouble(discountField
+							.getText().trim());
+					getController().getModel().getEntity()
+							.setDiscountAmount(discountAmount);
+
+					amountField.setText(getController().getModel().getEntity()
+							.getBusiness().getAmount().toString());
+
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Discount Field must be numeric");
+				}
 			}
 		});
 		discountField.setText("0");
