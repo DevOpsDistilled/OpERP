@@ -40,9 +40,14 @@ public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController 
 	}
 
 	@Override
-	public void init(SaleDescRow entity, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
+	public void init(SaleDescRow saleDescRow, EntityOperation entityOperation) {
+		if (EntityOperation.Create == entityOperation) {
+
+		}
+		view.setController(this);
+		view.resetComponents();
 		model.registerObserver(view);
+		model.setEntityAndEntityOperation(saleDescRow, entityOperation);
 	}
 
 }
