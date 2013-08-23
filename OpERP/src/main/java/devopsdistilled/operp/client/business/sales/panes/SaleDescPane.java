@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +23,7 @@ import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.business.sales.controllers.SaleDescController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDescPaneModelObserver;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.server.data.entity.business.BusinessDescRow;
 import devopsdistilled.operp.server.data.entity.business.SaleDesc;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
@@ -72,7 +74,13 @@ public class SaleDescPane extends
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					getController().validate();
 
+					getController().addNewSaleDescRow();
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
 			}
 		});
 		pane.add(btnAdd, "cell 0 1,alignx right,aligny top");

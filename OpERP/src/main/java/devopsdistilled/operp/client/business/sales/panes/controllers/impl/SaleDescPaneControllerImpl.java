@@ -49,7 +49,7 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	public void init(SaleDesc saleDesc, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
 			SaleDescRow saleDescRow = new SaleDescRow();
-			saleDesc.getDescRows().add(saleDescRow);
+			model.setSaleDescRow(saleDescRow);
 			saleDescRowPaneController.init(saleDescRow, entityOperation);
 		}
 
@@ -60,6 +60,14 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(saleDesc, entityOperation);
+	}
+
+	@Override
+	public void addNewSaleDescRow() {
+		model.getEntity().getDescRows().add(model.getSaleDescRow());
+		SaleDescRow saleDescRow = new SaleDescRow();
+		model.setSaleDescRow(saleDescRow);
+		saleDescRowPaneController.init(saleDescRow, EntityOperation.Create);
 	}
 
 }

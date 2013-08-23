@@ -8,4 +8,6 @@ import devopsdistilled.operp.server.data.entity.business.SaleDesc;
 public interface SaleDescPaneController extends
 		EntityPaneController<SaleDesc, SaleDescPaneModel, SaleDescPane> {
 
+	void addNewSaleDescRow();
+
 }
