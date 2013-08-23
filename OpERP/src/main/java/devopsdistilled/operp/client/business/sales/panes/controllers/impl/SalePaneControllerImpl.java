@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.swing.JPanel;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
+import devopsdistilled.operp.client.business.sales.models.SaleModel;
 import devopsdistilled.operp.client.business.sales.panes.SalePane;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
@@ -27,6 +28,9 @@ public class SalePaneControllerImpl implements SalePaneController {
 	@Inject
 	private SaleDescPaneController saleDescPaneController;
 
+	@Inject
+	private SaleModel saleModel;
+
 	@Override
 	public void validate() throws EntityValidationException {
 		// TODO Auto-generated method stub
@@ -35,8 +39,7 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 	@Override
 	public Sale save() {
-		// TODO Auto-generated method stub
-		return null;
+		return saleModel.saveAndUpdateModel(model.getEntity());
 	}
 
 	@Override
