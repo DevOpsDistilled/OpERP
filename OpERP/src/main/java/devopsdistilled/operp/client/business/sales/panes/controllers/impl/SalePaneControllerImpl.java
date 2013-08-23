@@ -65,11 +65,8 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 		} else if (EntityOperation.Edit == entityOperation) {
 
-			// XXX
-
 		} else if (EntityOperation.Details == entityOperation) {
 
-			// XXX
 		}
 
 		view.setSaleDescpanel((JPanel) saleDescPaneController.getView()
