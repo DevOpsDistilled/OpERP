@@ -2,8 +2,6 @@ package devopsdistilled.operp.server.data.entity.business;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -21,8 +19,8 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 	private static final long serialVersionUID = -7075903053081563240L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long businessId;
+	@OneToOne
+	protected D businessDesc;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
@@ -31,17 +29,6 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 
 	@ManyToOne
 	protected P party;
-
-	@OneToOne(mappedBy = "business")
-	protected D businessDesc;
-
-	public Long getBusinessId() {
-		return businessId;
-	}
-
-	public void setBusinessId(Long businessId) {
-		this.businessId = businessId;
-	}
 
 	public Date getDate() {
 		return date;
@@ -77,13 +64,13 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 
 	@Override
 	public Long id() {
-		return getBusinessId();
+		return getBusinessDesc().getBusinessId();
 	}
 
 	@Override
 	public String toString() {
 
-		return new String(getBusinessId() + ": " + getDate() + ": "
+		return new String(id() + ": " + getDate() + ": "
 				+ getAmount().toString());
 	}
 

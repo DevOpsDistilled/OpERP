@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.business;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
@@ -17,10 +18,14 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	protected Long businessDescRowId;
+
+	@ManyToOne
+	protected D businessDesc;
 
 	@OneToOne
-	private Item item;
+	protected Item item;
+
 	private Double rate;
 	private Long quantity;
 	private Double amount;
@@ -67,4 +72,5 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 		return new String(getQuantity().toString() + " "
 				+ getItem().getItemName() + " at " + getRate().toString());
 	}
+
 }
