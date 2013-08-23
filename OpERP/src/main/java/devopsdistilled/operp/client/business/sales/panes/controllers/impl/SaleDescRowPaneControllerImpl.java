@@ -51,10 +51,10 @@ public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController 
 		view.setController(this);
 		view.resetComponents();
 
-		itemModel.registerObserver(view);
-
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(saleDescRow, entityOperation);
+
+		itemModel.registerObserver(view);
 	}
 
 }

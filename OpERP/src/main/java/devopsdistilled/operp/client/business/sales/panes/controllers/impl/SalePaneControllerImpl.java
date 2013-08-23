@@ -75,10 +75,10 @@ public class SalePaneControllerImpl implements SalePaneController {
 		view.setController(this);
 		view.resetComponents();
 
-		customerModel.registerObserver(view);
-
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(sale, entityOperation);
+
+		customerModel.registerObserver(view);
 
 		view.init();
 
