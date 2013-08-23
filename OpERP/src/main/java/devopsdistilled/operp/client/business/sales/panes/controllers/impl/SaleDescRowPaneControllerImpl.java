@@ -7,6 +7,7 @@ import devopsdistilled.operp.client.business.sales.panes.SaleDescRowPane;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescRowPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 
 public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController {
@@ -16,6 +17,9 @@ public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController 
 
 	@Inject
 	private SaleDescRowPaneModel model;
+
+	@Inject
+	private ItemModel itemModel;
 
 	@Override
 	public void validate() throws EntityValidationException {
@@ -46,6 +50,9 @@ public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController 
 		}
 		view.setController(this);
 		view.resetComponents();
+
+		itemModel.registerObserver(view);
+
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(saleDescRow, entityOperation);
 	}
