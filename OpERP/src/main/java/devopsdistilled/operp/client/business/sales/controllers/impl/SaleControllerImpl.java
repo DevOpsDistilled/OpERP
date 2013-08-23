@@ -1,14 +1,20 @@
 package devopsdistilled.operp.client.business.sales.controllers.impl;
 
+import javax.inject.Inject;
+
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
+import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 
 public class SaleControllerImpl implements SaleController {
 
+	@Inject
+	private SalePaneController salePaneController;
+
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-
+		salePaneController.init(new Sale(), EntityOperation.Create);
 	}
 
 	@Override
