@@ -1,11 +1,18 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,6 +22,7 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleDescRowController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDescRowPaneModelObserver;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
@@ -38,12 +46,36 @@ public class SaleDescRowPane
 		pane.add(lblItem, "cell 0 0,alignx trailing");
 
 		itemCombo = new JComboBox<>();
+		itemCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					getController().getModel().getEntity()
+							.setItem((Item) e.getItem());
+				}
+			}
+		});
 		pane.add(itemCombo, "cell 1 0,growx");
 
 		JLabel lblPrice = new JLabel("Price");
 		pane.add(lblPrice, "cell 0 1,alignx trailing");
 
 		priceField = new JTextField();
+		priceField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				try {
+					Double price = Double.parseDouble(priceField.getText()
+							.trim());
+					getController().getModel().getEntity().setRate(price);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Price Field must be numeric value");
+					priceField.setText("0");
+					getController().getModel().getEntity().setRate(0.0);
+				}
+			}
+		});
 		pane.add(priceField, "cell 1 1,growx");
 		priceField.setColumns(10);
 
@@ -51,6 +83,23 @@ public class SaleDescRowPane
 		pane.add(lblQuantity, "cell 0 2,alignx trailing");
 
 		quantityField = new JTextField();
+		quantityField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				try {
+					Long quantity = Long.parseLong(quantityField.getText()
+							.trim());
+					getController().getModel().getEntity()
+							.setQuantity(quantity);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Quantity Field must be numeric value");
+
+					quantityField.setText("0");
+					getController().getModel().getEntity().setQuantity(0L);
+				}
+			}
+		});
 		pane.add(quantityField, "cell 1 2,growx");
 		quantityField.setColumns(10);
 
@@ -63,9 +112,28 @@ public class SaleDescRowPane
 		amountField.setColumns(10);
 
 		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		pane.add(btnReset, "flowx,cell 1 4");
 
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					getController().validate();
+
+					
+					
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
+			}
+		});
 		pane.add(btnOk, "cell 1 4");
 	}
 
@@ -87,9 +155,14 @@ public class SaleDescRowPane
 	}
 
 	@Override
-	public void updateEntity(SaleDescRow entity, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
+	public void updateEntity(SaleDescRow saleDescRow,
+			EntityOperation entityOperation) {
 
+		if (EntityOperation.Create == entityOperation) {
+
+		} else if (EntityOperation.Edit == entityOperation) {
+
+		}
 	}
 
 	@Override
