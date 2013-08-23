@@ -29,9 +29,9 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	@OneToMany(mappedBy = "businessDesc", cascade = CascadeType.ALL)
 	protected List<DR> descRows = new LinkedList<>();
 
-	private Double discountAmount;
+	private Double discountAmount = 0.0;
 
-	private Double TotalAmount;
+	private Double TotalAmount = 0.0;
 
 	public Double getDiscountAmount() {
 		return discountAmount;
