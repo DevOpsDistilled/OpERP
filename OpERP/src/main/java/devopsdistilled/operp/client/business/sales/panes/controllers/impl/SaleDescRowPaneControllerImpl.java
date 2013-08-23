@@ -45,9 +45,7 @@ public class SaleDescRowPaneControllerImpl implements SaleDescRowPaneController 
 
 	@Override
 	public void init(SaleDescRow saleDescRow, EntityOperation entityOperation) {
-		if (EntityOperation.Create == entityOperation) {
 
-		}
 		view.setController(this);
 		view.resetComponents();
 
