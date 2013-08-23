@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 
@@ -22,20 +23,15 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long businessDescId;
 
+	@OneToOne(mappedBy = "businessDesc")
+	protected B business;
+
 	@OneToMany(mappedBy = "businessDesc", cascade = CascadeType.ALL)
 	protected List<DR> descRows = new LinkedList<>();
 
 	private Double discountAmount;
 
 	private Double TotalAmount;
-
-	public Long getBusinessId() {
-		return businessDescId;
-	}
-
-	public void setBusinessId(Long businessId) {
-		this.businessDescId = businessId;
-	}
 
 	public Double getDiscountAmount() {
 		return discountAmount;
@@ -63,7 +59,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	@Override
 	public Long id() {
-		return getBusinessId();
+		return businessDescId;
 	}
 
 	@Override

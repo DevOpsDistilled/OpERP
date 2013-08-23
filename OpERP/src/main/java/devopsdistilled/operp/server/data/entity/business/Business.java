@@ -70,7 +70,7 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 
 	@Override
 	public Long id() {
-		return getBusinessDesc().getBusinessId();
+		return businessId;
 	}
 
 	@Override
