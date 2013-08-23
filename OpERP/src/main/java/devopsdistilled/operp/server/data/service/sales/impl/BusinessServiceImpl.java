@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.service.sales.impl;
 
+import java.util.Date;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import devopsdistilled.operp.server.data.entity.business.Business;
@@ -14,6 +16,12 @@ public abstract class BusinessServiceImpl<B extends Business<?, ?>, R extends Jp
 	@Override
 	protected B findByEntityName(String entityName) {
 		return null;
+	}
+
+	@Override
+	public <S extends B> S save(S entity) {
+		entity.setDate(new Date());
+		return super.save(entity);
 	}
 
 }
