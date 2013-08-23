@@ -3,6 +3,7 @@ package devopsdistilled.operp.server.data.entity.business;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
@@ -21,9 +22,11 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 	protected Long businessDescRowId;
 
 	@ManyToOne
+	@JoinColumn(name = "businessDescId")
 	protected D businessDesc;
 
 	@OneToOne
+	@JoinColumn(name = "itemId")
 	protected Item item;
 
 	private Double rate = 0.0;
