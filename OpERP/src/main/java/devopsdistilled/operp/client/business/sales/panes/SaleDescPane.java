@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -76,6 +77,7 @@ public class SaleDescPane extends
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		pane.add(scrollPane, "cell 1 0 1 2,grow");
+
 		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
@@ -137,6 +139,8 @@ public class SaleDescPane extends
 	@Override
 	public void resetComponents() {
 		btnAdd.setText("Add");
+		table.setForeground(null);
+		table.setBackground(null);
 	}
 
 	@Override
@@ -162,7 +166,14 @@ public class SaleDescPane extends
 		table.setModel(tableModel);
 
 		if (EntityOperation.Edit == entityOperation) {
+
 			btnAdd.setText("Update");
+
+			table.setForeground(Color.BLACK);
+			table.setBackground(Color.BLUE);
+
+		} else {
+			resetComponents();
 		}
 	}
 
