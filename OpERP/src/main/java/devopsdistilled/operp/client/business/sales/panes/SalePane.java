@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
@@ -36,7 +35,6 @@ public class SalePane extends
 	private CustomerController customerController;
 
 	private final JPanel pane;
-	private final JTextField saleIdField;
 	private final JComboBox<Customer> customerCombo;
 	private JPanel opBtnPanel;
 	private JPanel saleDescPanel;
@@ -45,16 +43,8 @@ public class SalePane extends
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 
-		JLabel lblSaleId = new JLabel("Sale Id");
-		pane.add(lblSaleId, "cell 0 0,alignx trailing");
-
-		saleIdField = new JTextField();
-		saleIdField.setEditable(false);
-		pane.add(saleIdField, "cell 1 0,growx");
-		saleIdField.setColumns(10);
-
 		JLabel lblCustomer = new JLabel("Customer");
-		pane.add(lblCustomer, "cell 0 1,alignx trailing");
+		pane.add(lblCustomer, "cell 0 0,alignx trailing");
 
 		customerCombo = new JComboBox<>();
 		customerCombo.addItemListener(new ItemListener() {
@@ -65,7 +55,7 @@ public class SalePane extends
 							.setParty((Customer) e.getItem());
 			}
 		});
-		pane.add(customerCombo, "flowx,cell 1 1,growx");
+		pane.add(customerCombo, "flowx,cell 1 0,growx");
 
 		JButton btnNewCustomer = new JButton("New Customer");
 		btnNewCustomer.addActionListener(new ActionListener() {
@@ -74,7 +64,7 @@ public class SalePane extends
 				customerController.create();
 			}
 		});
-		pane.add(btnNewCustomer, "cell 1 1");
+		pane.add(btnNewCustomer, "cell 1 0");
 
 		saleDescPanel = new JPanel();
 		pane.add(saleDescPanel, "cell 0 2 2097051 1,grow");

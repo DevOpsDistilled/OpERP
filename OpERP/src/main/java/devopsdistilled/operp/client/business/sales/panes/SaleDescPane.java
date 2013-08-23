@@ -43,7 +43,7 @@ public class SaleDescPane extends
 
 	public SaleDescPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug,flowy", "[][grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("flowy", "[][grow]", "[][][][]"));
 
 		rowDescPanel = new JPanel();
 		pane.add(rowDescPanel, "cell 0 0,grow");
