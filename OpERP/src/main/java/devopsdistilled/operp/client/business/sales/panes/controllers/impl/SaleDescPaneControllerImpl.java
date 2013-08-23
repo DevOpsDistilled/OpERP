@@ -9,6 +9,7 @@ import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPan
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.server.data.entity.business.SaleDesc;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 
@@ -25,8 +26,14 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 
 	@Override
 	public void validate() throws EntityValidationException {
-		// TODO Auto-generated method stub
+		if (model.getSaleDescRow().getItem() == null
+				|| model.getSaleDescRow().getQuantity().equals(0L)
+				|| model.getSaleDescRow().getRate().equals(0.0)) {
 
+			throw new NullFieldException();
+		}
+
+		// XXX More validation checking
 	}
 
 	@Override
@@ -64,10 +71,11 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 
 	@Override
 	public void addNewSaleDescRow() {
-		
+
 		model.getEntity().getDescRows().add(model.getSaleDescRow());
-		model.setEntityAndEntityOperation(model.getEntity(), model.getEntityOperation());
-		
+		model.setEntityAndEntityOperation(model.getEntity(),
+				model.getEntityOperation());
+
 		SaleDescRow saleDescRow = new SaleDescRow();
 		model.setSaleDescRow(saleDescRow);
 		saleDescRowPaneController.init(saleDescRow, EntityOperation.Create);
