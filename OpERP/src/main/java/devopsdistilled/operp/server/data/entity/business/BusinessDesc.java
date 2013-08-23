@@ -67,8 +67,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String(business.getBusinessId() + ": "
+				+ business.getAmount().toString());
 	}
-
 }
