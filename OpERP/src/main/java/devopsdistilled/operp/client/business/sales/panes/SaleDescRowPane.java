@@ -102,7 +102,9 @@ public class SaleDescRowPane
 	@Override
 	public void resetComponents() {
 		// TODO Auto-generated method stub
-
+		itemCombo.setSelectedItem(null);
+		quantityField.setText("");
+		priceField.setText("");
 	}
 
 	@Override
