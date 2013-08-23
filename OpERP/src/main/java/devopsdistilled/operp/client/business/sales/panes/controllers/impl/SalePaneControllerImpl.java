@@ -9,6 +9,7 @@ import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPan
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.SalePaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.party.models.CustomerModel;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDesc;
 
@@ -19,6 +20,9 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 	@Inject
 	private SalePane view;
+
+	@Inject
+	private CustomerModel customerModel;
 
 	@Inject
 	private SaleDescPaneController saleDescPaneController;
@@ -67,6 +71,8 @@ public class SalePaneControllerImpl implements SalePaneController {
 				.getPane());
 		view.setController(this);
 		view.resetComponents();
+
+		customerModel.registerObserver(view);
 
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(sale, entityOperation);

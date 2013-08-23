@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.swing.JButton;
@@ -20,12 +21,13 @@ import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SalePaneModelObserver;
 import devopsdistilled.operp.client.party.controllers.CustomerController;
+import devopsdistilled.operp.client.party.models.observers.CustomerModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.party.Customer;
 
 public class SalePane extends
 		EntityPane<Sale, SaleController, SalePaneController> implements
-		SalePaneModelObserver {
+		SalePaneModelObserver, CustomerModelObserver {
 
 	@Inject
 	private SaleController saleController;
@@ -118,5 +120,18 @@ public class SalePane extends
 		pane.add(saleDescPanel, constraints);
 		this.saleDescPanel = saleDescPanel;
 		pane.validate();
+	}
+
+	@Override
+	public void updateCustomers(List<Customer> customers) {
+		Customer prevSelected = (Customer) customerCombo.getSelectedItem();
+		customerCombo.removeAllItems();
+
+		for (Customer customer : customers) {
+			customerCombo.addItem(customer);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(customer) == 0)
+					customerCombo.setSelectedItem(customer);
+		}
 	}
 }
