@@ -125,7 +125,9 @@ public class SaleDescRowPane
 		if (EntityOperation.Create == entityOperation) {
 
 		} else if (EntityOperation.Edit == entityOperation) {
-
+			itemCombo.addItem(saleDescRow.getItem());
+			priceField.setText(saleDescRow.getRate().toString());
+			quantityField.setText(saleDescRow.getQuantity().toString());
 		}
 	}
 
