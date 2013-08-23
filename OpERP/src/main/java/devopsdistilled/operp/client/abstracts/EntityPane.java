@@ -114,14 +114,6 @@ public abstract class EntityPane<E extends Entiti<?>, EC extends EntityControlle
 		});
 		detailsOpPanel.add(btnDelete, "flowx,cell 0 0");
 
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			@SuppressWarnings("unchecked")
@@ -134,6 +126,7 @@ public abstract class EntityPane<E extends Entiti<?>, EC extends EntityControlle
 		});
 		detailsOpPanel.add(btnEdit, "cell 0 0");
 
+		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

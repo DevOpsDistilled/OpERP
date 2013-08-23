@@ -12,10 +12,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
+import devopsdistilled.operp.server.data.entity.account.Account;
 import devopsdistilled.operp.server.data.entity.commons.ContactInfo;
 
 @MappedSuperclass
-public abstract class Party extends Entiti<Long> {
+public abstract class Party<A extends Account<?>> extends Entiti<Long> {
 
 	private static final long serialVersionUID = 5183636412272320506L;
 
@@ -26,6 +27,9 @@ public abstract class Party extends Entiti<Long> {
 	private String partyName;
 
 	private String panVat;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	protected A account;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private ContactInfo contactInfo;
@@ -55,6 +59,14 @@ public abstract class Party extends Entiti<Long> {
 
 	public void setPanVat(String panVat) {
 		this.panVat = panVat;
+	}
+
+	public A getAccount() {
+		return account;
+	}
+
+	public void setAccount(A account) {
+		this.account = account;
 	}
 
 	public ContactInfo getContactInfo() {

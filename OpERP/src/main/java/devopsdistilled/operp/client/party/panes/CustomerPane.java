@@ -52,7 +52,7 @@ public class CustomerPane extends
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				((Party) getController().getModel().getEntity())
+				((Party<?>) getController().getModel().getEntity())
 						.setPartyName(nameField.getText().trim());
 			}
 		});
@@ -66,7 +66,7 @@ public class CustomerPane extends
 		panVatField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				((Party) getController().getModel().getEntity())
+				((Party<?>) getController().getModel().getEntity())
 						.setPanVat(panVatField.getText().trim());
 			}
 		});
@@ -114,6 +114,7 @@ public class CustomerPane extends
 	@Override
 	public void updateEntity(Customer customer, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
+			getController().getModel().setTitle("Create Customer");
 
 			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
 
@@ -122,12 +123,15 @@ public class CustomerPane extends
 
 		} else if (EntityOperation.Edit == entityOperation) {
 
+			getController().getModel().setTitle("Edit Customer");
+
 			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
 
 			customerIdField.setText(customer.getPartyId().toString());
 
 		} else if (EntityOperation.Details == entityOperation) {
 
+			getController().getModel().setTitle("Customer Details");
 			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
 
 			customerIdField.setText(customer.getPartyId().toString());
