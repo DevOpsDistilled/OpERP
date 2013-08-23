@@ -1,14 +1,11 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -22,7 +19,6 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleDescRowController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDescRowPaneModelObserver;
-import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
@@ -35,12 +31,11 @@ public class SaleDescRowPane
 	private final JPanel pane;
 	private final JTextField priceField;
 	private final JTextField quantityField;
-	private final JTextField amountField;
 	private final JComboBox<Item> itemCombo;
 
 	public SaleDescRowPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
 
 		JLabel lblItem = new JLabel("Item");
 		pane.add(lblItem, "cell 0 0,alignx trailing");
@@ -102,39 +97,6 @@ public class SaleDescRowPane
 		});
 		pane.add(quantityField, "cell 1 2,growx");
 		quantityField.setColumns(10);
-
-		JLabel lblAmount = new JLabel("Amount");
-		pane.add(lblAmount, "cell 0 3,alignx trailing");
-
-		amountField = new JTextField();
-		amountField.setEditable(false);
-		pane.add(amountField, "cell 1 3,growx");
-		amountField.setColumns(10);
-
-		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		pane.add(btnReset, "flowx,cell 1 4");
-
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					getController().validate();
-
-					
-					
-				} catch (EntityValidationException e1) {
-					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
-				}
-			}
-		});
-		pane.add(btnOk, "cell 1 4");
 	}
 
 	@Override
