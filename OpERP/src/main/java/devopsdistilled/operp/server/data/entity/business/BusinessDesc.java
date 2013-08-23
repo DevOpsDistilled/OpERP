@@ -43,6 +43,14 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 		business.setAmount(getTotalAmount() - getDiscountAmount());
 	}
 
+	public B getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(B business) {
+		this.business = business;
+	}
+
 	public Double getTotalAmount() {
 		return totalAmount;
 	}
