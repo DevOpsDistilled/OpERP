@@ -56,11 +56,11 @@ public class SalePaneControllerImpl implements SalePaneController {
 
 	@Override
 	public void init(Sale sale, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
 
 		if (EntityOperation.Create == entityOperation) {
 			SaleDesc saleDesc = new SaleDesc();
 			sale.setBusinessDesc(saleDesc);
+			saleDesc.setBusiness(sale);
 			saleDescPaneController.init(saleDesc, EntityOperation.Create);
 
 		} else if (EntityOperation.Edit == entityOperation) {
