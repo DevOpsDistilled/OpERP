@@ -31,7 +31,8 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	private Double discountAmount = 0.0;
 
-	private Double TotalAmount = 0.0;
+	// Total Amount without Discount
+	private Double totalAmount = 0.0;
 
 	public Double getDiscountAmount() {
 		return discountAmount;
@@ -39,14 +40,16 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	public void setDiscountAmount(Double discountAmount) {
 		this.discountAmount = discountAmount;
+		business.setAmount(getTotalAmount() - getDiscountAmount());
 	}
 
 	public Double getTotalAmount() {
-		return TotalAmount;
+		return totalAmount;
 	}
 
 	public void setTotalAmount(Double totalAmount) {
-		TotalAmount = totalAmount;
+		this.totalAmount = totalAmount;
+		business.setAmount(getTotalAmount() - getDiscountAmount());
 	}
 
 	public List<DR> getDescRows() {
