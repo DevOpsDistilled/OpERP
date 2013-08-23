@@ -2,6 +2,9 @@ package devopsdistilled.operp.server.data.entity.business;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -19,7 +22,10 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 	private static final long serialVersionUID = -7075903053081563240L;
 
 	@Id
-	@OneToOne
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long businessId;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	protected D businessDesc;
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -19,7 +19,7 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long businessId;
+	protected Long businessDescId;
 
 	@OneToMany(mappedBy = "businessDesc")
 	protected List<DR> descRows = new LinkedList<>();
@@ -29,11 +29,11 @@ public abstract class BusinessDesc<B extends Business<?, ?>, DR extends Business
 	private Double TotalAmount;
 
 	public Long getBusinessId() {
-		return businessId;
+		return businessDescId;
 	}
 
 	public void setBusinessId(Long businessId) {
-		this.businessId = businessId;
+		this.businessDescId = businessId;
 	}
 
 	public Double getDiscountAmount() {
