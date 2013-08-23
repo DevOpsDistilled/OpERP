@@ -33,12 +33,13 @@ public class SaleDescPane extends
 
 	private final JTable table;
 	BeanTableModel<SaleDescRow> tableModel;
+	private JPanel rowDescPanel;
 
 	public SaleDescPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
 
-		JPanel rowDescPanel = new JPanel();
+		rowDescPanel = new JPanel();
 		pane.add(rowDescPanel, "cell 0 0,grow");
 		rowDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
@@ -108,5 +109,15 @@ public class SaleDescPane extends
 			tableModel.setModelEditable(false);
 			table.setModel(tableModel);
 		}
+	}
+
+	public void setSaleDescRowpanel(JPanel rowDescPanel) {
+		MigLayout layout = (MigLayout) pane.getLayout();
+		Object constraints = layout.getComponentConstraints(this.rowDescPanel);
+
+		pane.remove(this.rowDescPanel);
+		pane.add(rowDescPanel, constraints);
+		this.rowDescPanel = rowDescPanel;
+		pane.validate();
 	}
 }
