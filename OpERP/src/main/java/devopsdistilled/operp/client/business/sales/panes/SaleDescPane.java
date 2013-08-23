@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.business.sales.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
@@ -78,6 +81,10 @@ public class SaleDescPane extends
 					getController().validate();
 
 					getController().addNewSaleDescRow();
+
+					amountField.setText(getController().getModel().getEntity()
+							.getBusiness().getAmount().toString());
+
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
@@ -92,10 +99,20 @@ public class SaleDescPane extends
 		pane.add(lblAmount, "flowx,cell 1 3,alignx right");
 
 		discountField = new JTextField();
+		discountField.setHorizontalAlignment(SwingConstants.TRAILING);
+		discountField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+		});
+		discountField.setText("0");
 		pane.add(discountField, "cell 1 2,alignx right");
 		discountField.setColumns(10);
 
 		amountField = new JTextField();
+		amountField.setHorizontalAlignment(SwingConstants.TRAILING);
+		amountField.setText("0");
 		amountField.setEditable(false);
 		pane.add(amountField, "cell 1 3,alignx right");
 		amountField.setColumns(10);
