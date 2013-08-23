@@ -36,6 +36,14 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 	@ManyToOne
 	protected P party;
 
+	public Long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(Long businessId) {
+		this.businessId = businessId;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -70,13 +78,13 @@ public abstract class Business<P extends Party<?>, D extends BusinessDesc<?, ?>>
 
 	@Override
 	public Long id() {
-		return businessId;
+		return getBusinessId();
 	}
 
 	@Override
 	public String toString() {
 
-		return new String(id() + ": " + getDate() + ": "
+		return new String(id() + ": " + getDate() + ": " + getParty() + ": "
 				+ getAmount().toString());
 	}
 
