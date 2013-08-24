@@ -7,6 +7,7 @@ import devopsdistilled.operp.client.account.panes.ReceivedTransactionPane;
 import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.client.account.panes.models.ReceivedTransactionPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.party.models.CustomerModel;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 
 public class ReceivedTransactionPaneControllerImpl implements
@@ -17,6 +18,9 @@ public class ReceivedTransactionPaneControllerImpl implements
 
 	@Inject
 	private ReceivedTransactionPaneModel model;
+
+	@Inject
+	private CustomerModel customerModel;
 
 	@Override
 	public void validate() throws EntityValidationException {
@@ -41,10 +45,17 @@ public class ReceivedTransactionPaneControllerImpl implements
 	}
 
 	@Override
-	public void init(ReceivedTransaction entity, EntityOperation entityOperation) {
+	public void init(ReceivedTransaction receivedTransaction,
+			EntityOperation entityOperation) {
+
+		if (EntityOperation.Create == entityOperation) {
+
+		}
 
 		view.setController(this);
+		customerModel.registerObserver(view);
 		model.registerObserver(view);
+
 		view.init();
 	}
 

@@ -1,6 +1,7 @@
 package devopsdistilled.operp.client.account.panes;
 
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.swing.JComboBox;
@@ -16,12 +17,14 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.account.controllers.ReceivedTransactionController;
 import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.client.account.panes.models.observers.ReceivedTransactionPaneModelObserver;
+import devopsdistilled.operp.client.party.models.observers.CustomerModelObserver;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
+import devopsdistilled.operp.server.data.entity.party.Customer;
 
 public class ReceivedTransactionPane
 		extends
 		EntityPane<ReceivedTransaction, ReceivedTransactionController, ReceivedTransactionPaneController>
-		implements ReceivedTransactionPaneModelObserver {
+		implements ReceivedTransactionPaneModelObserver, CustomerModelObserver {
 
 	@Inject
 	private ReceivedTransactionController receivedTransactionController;
@@ -29,6 +32,7 @@ public class ReceivedTransactionPane
 	private final JPanel pane;
 	private final JTextField balanceField;
 	private final JTextField transactionIdField;
+	private final JComboBox<Customer> customerCombo;
 	private final JTextField textField;
 
 	public ReceivedTransactionPane() {
@@ -46,7 +50,7 @@ public class ReceivedTransactionPane
 		JLabel lblFromCustomer = new JLabel("From Customer");
 		pane.add(lblFromCustomer, "cell 0 1,alignx trailing");
 
-		JComboBox customerCombo = new JComboBox();
+		customerCombo = new JComboBox<>();
 		customerCombo.setMinimumSize(new Dimension(100, 25));
 		pane.add(customerCombo, "cell 1 1,growx");
 
@@ -92,5 +96,18 @@ public class ReceivedTransactionPane
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void updateCustomers(List<Customer> customers) {
+		Customer prevSelected = (Customer) customerCombo.getSelectedItem();
+		customerCombo.removeAllItems();
+
+		for (Customer customer : customers) {
+			customerCombo.addItem(customer);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(customer) == 0)
+					customerCombo.setSelectedItem(customer);
+		}
 	}
 }
