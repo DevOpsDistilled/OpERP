@@ -12,8 +12,6 @@ import devopsdistilled.operp.client.main.MainWindow;
 public class ClientApp {
 
 	public static void main(String[] args) {
-
-		// Apply Nimbus LAF
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
