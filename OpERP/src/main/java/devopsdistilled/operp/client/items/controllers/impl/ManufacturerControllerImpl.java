@@ -43,4 +43,10 @@ public class ManufacturerControllerImpl implements ManufacturerController {
 		manufacturerModel.deleteAndUpdateModel(manufacturer);
 	}
 
+	@Override
+	public void showDetails(Manufacturer entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

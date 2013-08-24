@@ -47,7 +47,7 @@ public class TransferStockPane extends SubTaskPane implements
 	private final JComboBox<Warehouse> toWarehouseCombo;
 	private final JComboBox<Warehouse> fromWarehouseCombo;
 	private final JComboBox<Item> itemsCombo;
-	
+
 	public TransferStockPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));

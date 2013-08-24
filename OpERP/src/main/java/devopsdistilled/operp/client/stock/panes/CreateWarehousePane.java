@@ -30,7 +30,6 @@ public class CreateWarehousePane extends SubTaskPane implements
 	private WarehouseDetailsPane warehouseDetailsPane;
 	private final JPanel pane;
 	private final JTextField warehouseNameField;
-
 	
 	public CreateWarehousePane() {
 		pane = new JPanel();

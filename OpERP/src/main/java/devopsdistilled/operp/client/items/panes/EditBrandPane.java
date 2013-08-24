@@ -46,13 +46,7 @@ public class EditBrandPane extends SubTaskPane implements
 	private AbstractButton btnNewManufacturer;
 	
 	private Brand brand;
-
 	
-	
-	@Override
-	public void init(){
-		super.init();
-	}
 	public EditBrandPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("debug", "[][]", "[][][][][]"));

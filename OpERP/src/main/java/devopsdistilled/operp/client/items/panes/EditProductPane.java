@@ -51,11 +51,6 @@ public class EditProductPane extends SubTaskPane implements
 
 	private Product product;
 	
-	@Override
-	public void init(){
-		super.init();
-	}
-
 	public EditProductPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][grow][]"));

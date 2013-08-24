@@ -52,4 +52,10 @@ public class StockKeeperControllerImpl implements StockKeeperController {
 			stockKeeperModel.deleteAndUpdateModel(stockKeeper,
 					stockKeeper.getTransferStockKeeper());
 	}
+
+	@Override
+	public void showDetails(StockKeeper entity) {
+		// TODO Auto-generated method stub
+
+	}
 }
