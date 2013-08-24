@@ -6,7 +6,7 @@ import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.business.purchases.models.PurchaseModel;
 import devopsdistilled.operp.client.business.purchases.models.observers.PurchaseModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
-import devopsdistilled.operp.server.data.service.sales.PurchaseService;
+import devopsdistilled.operp.server.data.service.business.PurchaseService;
 
 public class PurchaseModelImpl extends
 		AbstractEntityModel<Purchase, PurchaseService, PurchaseModelObserver>

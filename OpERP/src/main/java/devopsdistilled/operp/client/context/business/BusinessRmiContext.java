@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
 import devopsdistilled.operp.client.context.RmiContext;
-import devopsdistilled.operp.server.data.service.sales.PurchaseService;
-import devopsdistilled.operp.server.data.service.sales.SaleService;
+import devopsdistilled.operp.server.data.service.business.PurchaseService;
+import devopsdistilled.operp.server.data.service.business.SaleService;
 
 @Configuration
 public class BusinessRmiContext extends RmiContext {

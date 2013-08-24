@@ -6,7 +6,7 @@ import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.business.sales.models.SaleModel;
 import devopsdistilled.operp.client.business.sales.models.observers.SaleModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Sale;
-import devopsdistilled.operp.server.data.service.sales.SaleService;
+import devopsdistilled.operp.server.data.service.business.SaleService;
 
 public class SaleModelImpl extends
 		AbstractEntityModel<Sale, SaleService, SaleModelObserver> implements
