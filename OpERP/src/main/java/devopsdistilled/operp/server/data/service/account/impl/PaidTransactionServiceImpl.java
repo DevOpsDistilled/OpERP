@@ -37,7 +37,7 @@ public class PaidTransactionServiceImpl extends
 		transaction = super.save(transaction);
 
 		Double initBalance = transaction.getAccount().getBalance();
-		Double afterTranBalance = initBalance + transaction.getAmount();
+		Double afterTranBalance = initBalance - transaction.getAmount();
 		transaction.getAccount().setBalance(afterTranBalance);
 		payableAccountService.save(transaction.getAccount());
 		return transaction;
@@ -47,7 +47,7 @@ public class PaidTransactionServiceImpl extends
 	@Transactional
 	public void delete(PaidTransaction paidTransaction) {
 		Double afterTranBalance = paidTransaction.getAccount().getBalance();
-		Double initBalance = afterTranBalance - paidTransaction.getAmount();
+		Double initBalance = afterTranBalance + paidTransaction.getAmount();
 		paidTransaction.getAccount().setBalance(initBalance);
 		payableAccountService.save(paidTransaction.getAccount());
 		super.delete(paidTransaction);
