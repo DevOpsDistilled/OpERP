@@ -1,6 +1,8 @@
 package devopsdistilled.operp.client.account.panes;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,6 +37,7 @@ public class ReceivedTransactionPane
 	private final JComboBox<Customer> customerCombo;
 	private final JTextField amountField;
 	private final JLabel lblTransactionId;
+	private JPanel opBtnPanel;
 
 	public ReceivedTransactionPane() {
 		pane = new JPanel();
@@ -52,6 +55,20 @@ public class ReceivedTransactionPane
 		pane.add(lblFromCustomer, "cell 0 1,alignx trailing");
 
 		customerCombo = new JComboBox<>();
+		customerCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+
+					Customer selCustomer = (Customer) e.getItem();
+					getController().getModel().getEntity()
+							.setAccount(selCustomer.getAccount());
+
+					balanceField.setText(getController().getModel().getEntity()
+							.getAccount().getBalance().toString());
+				}
+			}
+		});
 		customerCombo.setMinimumSize(new Dimension(100, 25));
 		pane.add(customerCombo, "cell 1 1,growx");
 
@@ -71,14 +88,41 @@ public class ReceivedTransactionPane
 		pane.add(amountField, "cell 1 4,alignx right");
 		amountField.setColumns(10);
 
-		JPanel opBtnPanel = new JPanel();
+		opBtnPanel = new JPanel();
 		pane.add(opBtnPanel, "cell 1 5,grow");
 		opBtnPanel.setLayout(new MigLayout("", "[]", "[]"));
 	}
 
 	@Override
-	public void updateEntity(ReceivedTransaction entity,
+	public void updateEntity(ReceivedTransaction receivedTransaction,
 			EntityOperation entityOperation) {
+
+		if (EntityOperation.Create == entityOperation) {
+			getController().getModel().setTitle("Receive Payment");
+			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
+
+			lblTransactionId.setVisible(false);
+			transactionIdField.setVisible(false);
+
+		} else if (EntityOperation.Edit == entityOperation) {
+
+			getController().getModel().setTitle(
+					"Edit Payment Received Transaction");
+			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
+
+			transactionIdField.setText(receivedTransaction.getTransactionId()
+					.toString());
+		} else if (EntityOperation.Details == entityOperation) {
+
+			getController().getModel().setTitle("Received Payment Details");
+			opBtnPanel = setBtnPanel(detailsOpPanel, opBtnPanel);
+
+			transactionIdField.setText(receivedTransaction.getTransactionId()
+					.toString());
+			amountField.setEditable(false);
+		}
+
+		amountField.setText(receivedTransaction.getAmount().toString());
 
 	}
 
