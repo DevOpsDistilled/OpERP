@@ -45,8 +45,12 @@ public class SaleDescRowPane
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					getController().getModel().getEntity()
-							.setItem((Item) e.getItem());
+					Item selItem = (Item) e.getItem();
+					getController().getModel().getEntity().setItem(selItem);
+
+					Double price = selItem.getPrice();
+					priceField.setText(price.toString());
+					getController().getModel().getEntity().setRate(price);
 				}
 			}
 		});
