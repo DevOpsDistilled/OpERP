@@ -48,13 +48,12 @@ public class ReceivedTransactionPaneControllerImpl implements
 	public void init(ReceivedTransaction receivedTransaction,
 			EntityOperation entityOperation) {
 
-		if (EntityOperation.Create == entityOperation) {
-
-		}
-
 		view.setController(this);
+		view.resetComponents();
+
 		customerModel.registerObserver(view);
 		model.registerObserver(view);
+		model.setEntityAndEntityOperation(receivedTransaction, entityOperation);
 
 		view.init();
 	}

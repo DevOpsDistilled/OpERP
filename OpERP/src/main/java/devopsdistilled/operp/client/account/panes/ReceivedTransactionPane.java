@@ -33,13 +33,14 @@ public class ReceivedTransactionPane
 	private final JTextField balanceField;
 	private final JTextField transactionIdField;
 	private final JComboBox<Customer> customerCombo;
-	private final JTextField textField;
+	private final JTextField amountField;
+	private final JLabel lblTransactionId;
 
 	public ReceivedTransactionPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
-		JLabel lblTransactionId = new JLabel("Transaction ID");
+		lblTransactionId = new JLabel("Transaction ID");
 		pane.add(lblTransactionId, "cell 0 0,alignx trailing");
 
 		transactionIdField = new JTextField();
@@ -65,10 +66,10 @@ public class ReceivedTransactionPane
 		JLabel lblTransactionAmount = new JLabel("Transaction Amount");
 		pane.add(lblTransactionAmount, "flowx,cell 1 4");
 
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.TRAILING);
-		pane.add(textField, "cell 1 4,alignx right");
-		textField.setColumns(10);
+		amountField = new JTextField();
+		amountField.setHorizontalAlignment(SwingConstants.TRAILING);
+		pane.add(amountField, "cell 1 4,alignx right");
+		amountField.setColumns(10);
 
 		JPanel opBtnPanel = new JPanel();
 		pane.add(opBtnPanel, "cell 1 5,grow");
@@ -78,14 +79,16 @@ public class ReceivedTransactionPane
 	@Override
 	public void updateEntity(ReceivedTransaction entity,
 			EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void resetComponents() {
-		// TODO Auto-generated method stub
-
+		customerCombo.setSelectedItem(null);
+		transactionIdField.setVisible(true);
+		lblTransactionId.setVisible(true);
+		balanceField.setText("0");
+		amountField.setText("0");
 	}
 
 	@Override
