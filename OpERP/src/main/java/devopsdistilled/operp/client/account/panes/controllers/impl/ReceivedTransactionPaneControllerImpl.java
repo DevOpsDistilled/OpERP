@@ -51,9 +51,9 @@ public class ReceivedTransactionPaneControllerImpl implements
 		view.setController(this);
 		view.resetComponents();
 
-		customerModel.registerObserver(view);
 		model.registerObserver(view);
 		model.setEntityAndEntityOperation(receivedTransaction, entityOperation);
+		customerModel.registerObserver(view);
 
 		view.init();
 	}
