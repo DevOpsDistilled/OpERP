@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.context;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.account.AccountMgmtPane;
 import devopsdistilled.operp.client.business.sales.SalesMgmtPane;
 import devopsdistilled.operp.client.items.ItemMgmtPane;
 import devopsdistilled.operp.client.main.NavigationPane;
@@ -34,12 +35,18 @@ public class NavigationContext {
 	}
 
 	@Bean
+	public AccountMgmtPane accountMgmtPane() {
+		return new AccountMgmtPane();
+	}
+
+	@Bean
 	public NavigationTree navigationTree() {
 		NavigationTree navTree = new NavigationTree();
-		navTree.addNode(partyMgmtPane(), 0);
-		navTree.addNode(itemMgmtPane(), 1);
-		navTree.addNode(stockMgmtPane(), 2);
-		navTree.addNode(salesMgmtPane(), 3);
+		navTree.addNode(partyMgmtPane());
+		navTree.addNode(itemMgmtPane());
+		navTree.addNode(stockMgmtPane());
+		navTree.addNode(salesMgmtPane());
+		navTree.addNode(accountMgmtPane());
 
 		return navTree;
 	}
