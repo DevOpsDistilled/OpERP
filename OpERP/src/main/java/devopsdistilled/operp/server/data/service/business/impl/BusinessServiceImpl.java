@@ -1,10 +1,10 @@
-package devopsdistilled.operp.server.data.service.sales.impl;
+package devopsdistilled.operp.server.data.service.business.impl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import devopsdistilled.operp.server.data.entity.business.Business;
+import devopsdistilled.operp.server.data.service.business.BusinessService;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
-import devopsdistilled.operp.server.data.service.sales.BusinessService;
 
 public abstract class BusinessServiceImpl<B extends Business<?, ?>, R extends JpaRepository<B, Long>>
 		extends AbstractEntityService<B, Long, R> implements BusinessService<B> {

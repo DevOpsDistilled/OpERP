@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service.sales.impl;
+package devopsdistilled.operp.server.data.service.business.impl;
 
 import javax.inject.Inject;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.business.PurchaseDesc;
 import devopsdistilled.operp.server.data.repo.business.PurchaseDescRepository;
-import devopsdistilled.operp.server.data.service.sales.PurchaseDescService;
+import devopsdistilled.operp.server.data.service.business.PurchaseDescService;
 
 @Service
 public class PurchaseDescServiceImpl extends
