@@ -33,9 +33,8 @@ public class EditWarehousePane extends SubTaskPane implements
 	private final JButton btnCancel;
 	private final JButton btnUpdate;
 	private JButton btnReset;
-	
 	private Warehouse warehouse;
-	
+
 	public EditWarehousePane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));

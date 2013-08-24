@@ -39,7 +39,6 @@ public class EditStockPane extends SubTaskPane
 	@Inject
 	private WarehouseController warehouseController;
 	
-	
 	private JPanel pane;
 	private JTextField stockIdField;
 	private JTextField quantityField;

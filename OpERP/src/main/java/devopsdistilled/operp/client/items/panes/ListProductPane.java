@@ -30,11 +30,6 @@ public class ListProductPane extends SubTaskPane implements
 
 	private final JTable table;
 	BeanTableModel<Product> tableModel;
-	
-	@Override
-	public void init(){
-		super.init();
-	}
 
 	public ListProductPane() {
 		pane = new JPanel(new MigLayout("fill"));

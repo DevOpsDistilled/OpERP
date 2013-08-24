@@ -20,6 +20,7 @@ public class NavigationPane extends ViewPane implements TreeSelectionListener {
 
 	@Override
 	public JComponent getPane() {
+		navigationTree.getTree().expandRow(0);
 		navigationTree.setListener(this);
 		return new JScrollPane(navigationTree.getTree());
 	}
