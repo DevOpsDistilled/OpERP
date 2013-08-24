@@ -21,8 +21,8 @@ public class ReceivedTransactionControllerImpl implements
 
 	@Override
 	public void edit(ReceivedTransaction receivedTransaction) {
-		// TODO Auto-generated method stub
-
+		receivedTransactionPaneController.init(receivedTransaction,
+				EntityOperation.Edit);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ReceivedTransactionControllerImpl implements
 
 	@Override
 	public void showDetails(ReceivedTransaction receivedTransaction) {
-		// TODO Auto-generated method stub
-
+		receivedTransactionPaneController.init(receivedTransaction,
+				EntityOperation.Details);
 	}
 
 }
