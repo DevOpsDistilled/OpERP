@@ -111,6 +111,13 @@ public class ReceivedTransactionPane
 		pane.add(lblNote, "flowx,cell 1 5");
 
 		noteField = new JTextField();
+		noteField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getController().getModel().getEntity()
+						.setNote(noteField.getText().trim());
+			}
+		});
 		pane.add(noteField, "cell 1 5");
 		noteField.setColumns(10);
 
