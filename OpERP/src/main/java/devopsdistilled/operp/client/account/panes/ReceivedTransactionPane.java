@@ -1,6 +1,8 @@
 package devopsdistilled.operp.client.account.panes;
 
 import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.inject.Inject;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -86,6 +89,20 @@ public class ReceivedTransactionPane
 		pane.add(lblTransactionAmount, "flowx,cell 1 4");
 
 		amountField = new JTextField();
+		amountField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				try {
+					Double amount = Double.parseDouble(amountField.getText()
+							.trim());
+					getController().getModel().getEntity().setAmount(amount);
+
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Amount Field must be a numeric value");
+				}
+			}
+		});
 		amountField.setHorizontalAlignment(SwingConstants.TRAILING);
 		pane.add(amountField, "cell 1 4,alignx right");
 		amountField.setColumns(10);
