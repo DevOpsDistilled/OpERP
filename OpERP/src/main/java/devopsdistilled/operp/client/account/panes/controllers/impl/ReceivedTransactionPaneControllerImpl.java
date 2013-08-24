@@ -51,6 +51,10 @@ public class ReceivedTransactionPaneControllerImpl implements
 	public void init(ReceivedTransaction receivedTransaction,
 			EntityOperation entityOperation) {
 
+		if (EntityOperation.Edit == entityOperation) {
+			receivedTransactionModel.getService().delete(receivedTransaction);
+		}
+
 		view.setController(this);
 		view.resetComponents();
 
