@@ -80,7 +80,7 @@ public final class ItemMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]50[]50[]", "[]20[]25[]25[]25[][]"));
+		pane.setLayout(new MigLayout("", "[]50[]50[][grow]", "[]20[]25[]25[]25[][]"));
 
 		JLabel lblitemManagement = new JLabel("Item Management");
 		lblitemManagement.setFont(new Font("Dialog", Font.BOLD, 20));
