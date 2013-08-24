@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import devopsdistilled.operp.client.context.account.AccountRmiContext;
 import devopsdistilled.operp.client.context.business.BusinessRmiContext;
 import devopsdistilled.operp.client.context.items.ItemRmiContext;
 import devopsdistilled.operp.client.context.party.PartyRmiContext;
@@ -15,7 +16,7 @@ import devopsdistilled.operp.client.context.stock.StockRmiContext;
 @Configuration
 @PropertySource("client/rmi.properties")
 @Import({ ItemRmiContext.class, StockRmiContext.class, PartyRmiContext.class,
-		BusinessRmiContext.class })
+		BusinessRmiContext.class, AccountRmiContext.class })
 public class RmiContext {
 
 	@Value("${rmi.url}")

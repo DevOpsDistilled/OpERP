@@ -36,7 +36,7 @@ public class StockMgmtPane extends TaskPane {
 
 	@Override
 	public String toString() {
-		return new String("Stock Management");
+		return new String("Stock");
 	}
 
 	/**
