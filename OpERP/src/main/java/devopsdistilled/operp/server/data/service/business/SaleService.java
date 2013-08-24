@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service.sales;
+package devopsdistilled.operp.server.data.service.business;
 
 import devopsdistilled.operp.server.data.entity.business.Sale;
 
