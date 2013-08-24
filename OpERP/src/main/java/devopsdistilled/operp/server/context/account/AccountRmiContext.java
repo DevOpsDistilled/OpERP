@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
+import devopsdistilled.operp.server.data.service.account.PaidTransactionService;
 import devopsdistilled.operp.server.data.service.account.PayableAccountService;
 import devopsdistilled.operp.server.data.service.account.ReceivableAccountService;
+import devopsdistilled.operp.server.data.service.account.ReceivedTransactionService;
 
 @Configuration
 public class AccountRmiContext {
@@ -17,6 +19,12 @@ public class AccountRmiContext {
 
 	@Inject
 	private ReceivableAccountService receivableAccountService;
+
+	@Inject
+	private PaidTransactionService paidTransactionService;
+
+	@Inject
+	private ReceivedTransactionService receivedTransactionService;
 
 	@Bean
 	public RmiServiceExporter rmiPayableAccountServiceExporter() {
@@ -38,6 +46,31 @@ public class AccountRmiContext {
 				.getCanonicalName();
 		rmiServiceExportor.setServiceName(serviceName);
 		rmiServiceExportor.setService(receivableAccountService);
+		rmiServiceExportor.setRegistryPort(1099);
+		return rmiServiceExportor;
+	}
+
+	@Bean
+	public RmiServiceExporter rmiPaidTransactionServiceExporter() {
+		RmiServiceExporter rmiServiceExportor = new RmiServiceExporter();
+		rmiServiceExportor.setServiceInterface(PaidTransactionService.class);
+		String serviceName = rmiServiceExportor.getServiceInterface()
+				.getCanonicalName();
+		rmiServiceExportor.setServiceName(serviceName);
+		rmiServiceExportor.setService(paidTransactionService);
+		rmiServiceExportor.setRegistryPort(1099);
+		return rmiServiceExportor;
+	}
+
+	@Bean
+	public RmiServiceExporter rmiReceivedTransactionServiceExporter() {
+		RmiServiceExporter rmiServiceExportor = new RmiServiceExporter();
+		rmiServiceExportor
+				.setServiceInterface(ReceivedTransactionService.class);
+		String serviceName = rmiServiceExportor.getServiceInterface()
+				.getCanonicalName();
+		rmiServiceExportor.setServiceName(serviceName);
+		rmiServiceExportor.setService(receivedTransactionService);
 		rmiServiceExportor.setRegistryPort(1099);
 		return rmiServiceExportor;
 	}
