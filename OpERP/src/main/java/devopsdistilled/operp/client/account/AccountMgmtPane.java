@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -11,8 +12,12 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.account.controllers.ReceivedTransactionController;
 
 public class AccountMgmtPane extends TaskPane {
+
+	@Inject
+	private ReceivedTransactionController receivedTransactionController;
 
 	@Override
 	public String toString() {
@@ -33,7 +38,7 @@ public class AccountMgmtPane extends TaskPane {
 		btnReceivePayment.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				receivedTransactionController.create();
 			}
 		});
 		btnReceivePayment.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
