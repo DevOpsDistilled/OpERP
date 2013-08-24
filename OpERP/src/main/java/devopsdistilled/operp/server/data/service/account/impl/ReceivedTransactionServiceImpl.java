@@ -44,4 +44,13 @@ public class ReceivedTransactionServiceImpl
 		return transaction;
 	}
 
+	@Override
+	@Transactional
+	public void delete(ReceivedTransaction receivedTransaction) {
+		Double afterTranBalance = receivedTransaction.getAccount().getBalance();
+		Double initBalance = afterTranBalance + receivedTransaction.getAmount();
+		receivedTransaction.getAccount().setBalance(initBalance);
+		receivableAccountService.save(receivedTransaction.getAccount());
+		super.delete(receivedTransaction);
+	}
 }
