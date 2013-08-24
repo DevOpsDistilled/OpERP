@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.account.panes.controllers.impl;
 import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
+import devopsdistilled.operp.client.account.models.ReceivedTransactionModel;
 import devopsdistilled.operp.client.account.panes.ReceivedTransactionPane;
 import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.client.account.panes.models.ReceivedTransactionPaneModel;
@@ -22,6 +23,9 @@ public class ReceivedTransactionPaneControllerImpl implements
 	@Inject
 	private CustomerModel customerModel;
 
+	@Inject
+	private ReceivedTransactionModel receivedTransactionModel;
+
 	@Override
 	public void validate() throws EntityValidationException {
 		// TODO Auto-generated method stub
@@ -30,8 +34,7 @@ public class ReceivedTransactionPaneControllerImpl implements
 
 	@Override
 	public ReceivedTransaction save() {
-		// TODO Auto-generated method stub
-		return null;
+		return receivedTransactionModel.saveAndUpdateModel(model.getEntity());
 	}
 
 	@Override
