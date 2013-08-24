@@ -43,4 +43,13 @@ public class PaidTransactionServiceImpl extends
 		return transaction;
 	}
 
+	@Override
+	@Transactional
+	public void delete(PaidTransaction paidTransaction) {
+		Double afterTranBalance = paidTransaction.getAccount().getBalance();
+		Double initBalance = afterTranBalance - paidTransaction.getAmount();
+		paidTransaction.getAccount().setBalance(initBalance);
+		payableAccountService.save(paidTransaction.getAccount());
+		super.delete(paidTransaction);
+	}
 }
