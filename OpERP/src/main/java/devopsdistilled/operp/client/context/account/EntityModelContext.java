@@ -3,9 +3,11 @@ package devopsdistilled.operp.client.context.account;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.account.models.PaidTransactionModel;
 import devopsdistilled.operp.client.account.models.PayableAccountModel;
 import devopsdistilled.operp.client.account.models.ReceivableAccountModel;
 import devopsdistilled.operp.client.account.models.ReceivedTransactionModel;
+import devopsdistilled.operp.client.account.models.impl.PaidTransactionModelImpl;
 import devopsdistilled.operp.client.account.models.impl.PayableAccountModelImpl;
 import devopsdistilled.operp.client.account.models.impl.ReceivableAccountModelImpl;
 import devopsdistilled.operp.client.account.models.impl.ReceivedTransactionModelImpl;
@@ -26,5 +28,10 @@ public class EntityModelContext {
 	@Bean
 	public ReceivedTransactionModel receivedTransactionModel() {
 		return new ReceivedTransactionModelImpl();
+	}
+	
+	@Bean
+	public PaidTransactionModel paidTransactionModel() {
+		return new PaidTransactionModelImpl();
 	}
 }
