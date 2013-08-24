@@ -8,6 +8,7 @@ import devopsdistilled.operp.client.account.panes.ReceivedTransactionPane;
 import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.client.account.panes.models.ReceivedTransactionPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
+import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.client.party.models.CustomerModel;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 
@@ -28,7 +29,16 @@ public class ReceivedTransactionPaneControllerImpl implements
 
 	@Override
 	public void validate() throws EntityValidationException {
-		// TODO Auto-generated method stub
+		if (model.getEntity().getAccount() == null)
+			throw new NullFieldException("Customer must be selected");
+
+		if (model.getEntity().getAmount().compareTo(0.0) < 1)
+			throw new NullFieldException("Amount must be greater than 0");
+
+		if (model.getEntity().getAccount().getBalance()
+				.compareTo(model.getEntity().getAmount()) < 0)
+			throw new EntityValidationException(
+					"Received Amount must not be greater than balance");
 
 	}
 
