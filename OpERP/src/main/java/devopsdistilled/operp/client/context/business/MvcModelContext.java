@@ -3,6 +3,12 @@ package devopsdistilled.operp.client.context.business;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDescPaneModel;
+import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDescRowPaneModel;
+import devopsdistilled.operp.client.business.purchases.panes.models.PurchasePaneModel;
+import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDescPaneModelImpl;
+import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDescRowPaneModelImpl;
+import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchasePaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescRowPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SalePaneModel;
@@ -26,5 +32,20 @@ public class MvcModelContext {
 	@Bean
 	public SaleDescRowPaneModel saleDescRowPaneModel() {
 		return new SaleDescRowPaneModelImpl();
+	}
+
+	@Bean
+	public PurchasePaneModel purchasePaneModel() {
+		return new PurchasePaneModelImpl();
+	}
+
+	@Bean
+	public PurchaseDescPaneModel purchaseDescPaneModel() {
+		return new PurchaseDescPaneModelImpl();
+	}
+
+	@Bean
+	public PurchaseDescRowPaneModel purchaseDescRowPaneModel() {
+		return new PurchaseDescRowPaneModelImpl();
 	}
 }

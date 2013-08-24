@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.service.sales.impl;
+package devopsdistilled.operp.server.data.service.business.impl;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.repo.business.SaleRepository;
 import devopsdistilled.operp.server.data.service.account.ReceivedTransactionService;
-import devopsdistilled.operp.server.data.service.sales.SaleService;
+import devopsdistilled.operp.server.data.service.business.SaleService;
 
 @Service
 public class SaleServiceImpl extends BusinessServiceImpl<Sale, SaleRepository>
@@ -38,8 +38,9 @@ public class SaleServiceImpl extends BusinessServiceImpl<Sale, SaleRepository>
 
 		ReceivedTransaction transaction = new ReceivedTransaction();
 		transaction.setAccount(savedSale.getParty().getAccount());
-		transaction.setNote("From Sale " + savedSale.getBusinessId().toString()
-				+ " on " + savedSale.getDate());
+		transaction.setNote("From Sale #"
+				+ savedSale.getBusinessId().toString() + " on "
+				+ savedSale.getDate());
 		transaction.setAmount(savedSale.getAmount() * (-1));
 		receivedTransactionService.save(transaction);
 		return savedSale;

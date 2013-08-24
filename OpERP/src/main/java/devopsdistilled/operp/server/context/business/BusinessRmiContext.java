@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
-import devopsdistilled.operp.server.data.service.sales.PurchaseService;
-import devopsdistilled.operp.server.data.service.sales.SaleService;
+import devopsdistilled.operp.server.data.service.business.PurchaseService;
+import devopsdistilled.operp.server.data.service.business.SaleService;
 
 @Configuration
 public class BusinessRmiContext {
