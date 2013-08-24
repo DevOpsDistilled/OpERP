@@ -1,14 +1,14 @@
 package devopsdistilled.operp.client.main;
 
+import java.awt.Component;
 import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
 public class NavigationTree {
@@ -19,6 +19,7 @@ public class NavigationTree {
 	private JTree tree;
 
 	private EventListener listener;
+
 
 	public JTree getTree() {
 		return tree;
@@ -43,8 +44,29 @@ public class NavigationTree {
 		tree = new JTree(treeModel);
 		tree.setRootVisible(true);
 		tree.setSelectionRow(0);
-	}
+		tree.setCellRenderer(new DefaultTreeCellRenderer() {
 
+			private static final long serialVersionUID = 6394043979244091638L;
+
+			@Override
+			public Component getTreeCellRendererComponent(JTree tree,
+					Object value, boolean sel, boolean expanded, boolean leaf,
+					int row, boolean hasFocus) {
+				super.getTreeCellRendererComponent(tree, value, sel, expanded,
+						leaf, row, hasFocus);
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+				TaskPane taskPane = (TaskPane) node.getUserObject();
+				if (taskPane.getIcon() != null)
+					setIcon(taskPane.getIcon());
+				else
+					setIcon(leafIcon);
+
+				tree.revalidate();
+				tree.repaint();
+				return this;
+			}
+		});
+	}
 	public void setListener(EventListener listener) {
 		this.listener = listener;
 		tree.addTreeSelectionListener((TreeSelectionListener) this.listener);

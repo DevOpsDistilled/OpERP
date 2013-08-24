@@ -1,5 +1,7 @@
 package devopsdistilled.operp.client.party;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,6 +13,11 @@ public class PartyMgmtPane extends TaskPane {
 	@Override
 	public String toString() {
 		return new String("Parties");
+	}
+	
+	@Override
+	public Icon getIcon() {
+		return new ImageIcon(getClass().getResource("/client/icons/party_24.png"));
 	}
 
 	@Override

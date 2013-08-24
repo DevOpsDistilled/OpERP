@@ -63,6 +63,7 @@ public class TransferStockPane extends SubTaskPane implements
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					Warehouse fromWarehouse = (Warehouse) event.getItem();
 					controller.getModel().setFromWarehouse(fromWarehouse);
+					getDialog().pack();
 				}
 
 			}
@@ -77,8 +78,10 @@ public class TransferStockPane extends SubTaskPane implements
 		itemsCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED){
 					controller.getModel().setItemToTransfer((Item) e.getItem());
+					getDialog().pack();
+				}
 			}
 		});
 		pane.add(itemsCombo, "cell 1 1,growx");
@@ -91,8 +94,11 @@ public class TransferStockPane extends SubTaskPane implements
 		toWarehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				Warehouse toWarehouse = (Warehouse) e.getItem();
-				controller.getModel().setToWarehouse(toWarehouse);
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					getDialog().pack();
+					Warehouse toWarehouse = (Warehouse) e.getItem();
+					controller.getModel().setToWarehouse(toWarehouse);
+				}
 			}
 		});
 		pane.add(toWarehouseCombo, "flowx,cell 1 2,growx");
