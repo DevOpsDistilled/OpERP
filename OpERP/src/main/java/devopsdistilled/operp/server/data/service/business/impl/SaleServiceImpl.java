@@ -38,8 +38,9 @@ public class SaleServiceImpl extends BusinessServiceImpl<Sale, SaleRepository>
 
 		ReceivedTransaction transaction = new ReceivedTransaction();
 		transaction.setAccount(savedSale.getParty().getAccount());
-		transaction.setNote("From Sale " + savedSale.getBusinessId().toString()
-				+ " on " + savedSale.getDate());
+		transaction.setNote("From Sale #"
+				+ savedSale.getBusinessId().toString() + " on "
+				+ savedSale.getDate());
 		transaction.setAmount(savedSale.getAmount() * (-1));
 		receivedTransactionService.save(transaction);
 		return savedSale;
