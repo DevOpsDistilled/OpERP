@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.account.controllers.ReceivedTransactionController;
+import devopsdistilled.operp.client.account.models.ReceivedTransactionModel;
 import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 
@@ -12,6 +13,9 @@ public class ReceivedTransactionControllerImpl implements
 
 	@Inject
 	private ReceivedTransactionPaneController receivedTransactionPaneController;
+
+	@Inject
+	private ReceivedTransactionModel receivedTransactionModel;
 
 	@Override
 	public void create() {
@@ -33,8 +37,7 @@ public class ReceivedTransactionControllerImpl implements
 
 	@Override
 	public void delete(ReceivedTransaction receivedTransaction) {
-		// TODO Auto-generated method stub
-
+		receivedTransactionModel.deleteAndUpdateModel(receivedTransaction);
 	}
 
 	@Override
