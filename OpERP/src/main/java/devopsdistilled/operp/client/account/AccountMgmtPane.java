@@ -38,7 +38,7 @@ public class AccountMgmtPane extends TaskPane {
 		pane.add(new JLabel("Account Management"),
 				"cell 0 0,alignx center,aligny top");
 
-		JButton btnReceivePayment = new JButton("Receive Payment");
+		JButton btnReceivePayment = new JButton("Receive Payment  from Customer");
 		btnReceivePayment.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -48,7 +48,7 @@ public class AccountMgmtPane extends TaskPane {
 		btnReceivePayment.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
 		pane.add(btnReceivePayment, "cell 0 2");
 
-		JButton btnPayPayment = new JButton("Pay Payment");
+		JButton btnPayPayment = new JButton("Pay Payment to Vendor");
 		btnPayPayment.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
