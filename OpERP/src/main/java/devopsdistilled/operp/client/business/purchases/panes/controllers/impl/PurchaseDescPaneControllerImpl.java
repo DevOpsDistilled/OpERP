@@ -13,7 +13,8 @@ import devopsdistilled.operp.client.exceptions.NullFieldException;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDesc;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 
-public class PurchaseDescPaneControllerImpl implements PurchaseDescPaneController {
+public class PurchaseDescPaneControllerImpl implements
+		PurchaseDescPaneController {
 
 	@Inject
 	private PurchaseDescPane view;
@@ -56,11 +57,12 @@ public class PurchaseDescPaneControllerImpl implements PurchaseDescPaneControlle
 		if (EntityOperation.Create == entityOperation) {
 			PurchaseDescRow purchaseDescRow = new PurchaseDescRow();
 			model.setPurchaseDescRow(purchaseDescRow);
-			purchaseDescRowPaneController.init(purchaseDescRow, entityOperation);
+			purchaseDescRowPaneController
+					.init(purchaseDescRow, entityOperation);
 		}
 
-		view.setPurchaseDescRowpanel((JPanel) purchaseDescRowPaneController.getView()
-				.getPane());
+		view.setPurchaseDescRowpanel((JPanel) purchaseDescRowPaneController
+				.getView().getPane());
 		view.setController(this);
 		view.resetComponents();
 
@@ -70,6 +72,8 @@ public class PurchaseDescPaneControllerImpl implements PurchaseDescPaneControlle
 
 	@Override
 	public void addNewPurchaseDescRow() {
+
+		model.getPurchaseDescRow().setBusinessDesc(model.getEntity());
 
 		if (EntityOperation.Edit != model.getEntityOperation()) {
 			model.getEntity().getDescRows().add(model.getPurchaseDescRow());
@@ -84,7 +88,8 @@ public class PurchaseDescPaneControllerImpl implements PurchaseDescPaneControlle
 
 		PurchaseDescRow purchaseDescRow = new PurchaseDescRow();
 		model.setPurchaseDescRow(purchaseDescRow);
-		purchaseDescRowPaneController.init(purchaseDescRow, EntityOperation.Create);
+		purchaseDescRowPaneController.init(purchaseDescRow,
+				EntityOperation.Create);
 	}
 
 	@Override
@@ -95,6 +100,7 @@ public class PurchaseDescPaneControllerImpl implements PurchaseDescPaneControlle
 						- model.getPurchaseDescRow().getAmount());
 		model.setEntityAndEntityOperation(model.getEntity(),
 				EntityOperation.Edit);
-		purchaseDescRowPaneController.init(purchaseDescRow, EntityOperation.Edit);
+		purchaseDescRowPaneController.init(purchaseDescRow,
+				EntityOperation.Edit);
 	}
 }
