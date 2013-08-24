@@ -1,11 +1,15 @@
 package devopsdistilled.operp.client.business.purchases.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -19,6 +23,7 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.purchases.controllers.PurchaseDescRowController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchaseDescRowPaneController;
 import devopsdistilled.operp.client.business.purchases.panes.models.observers.PurchaseDescRowPaneModelObserver;
+import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
@@ -28,14 +33,18 @@ public class PurchaseDescRowPane
 		EntityPane<PurchaseDescRow, PurchaseDescRowController, PurchaseDescRowPaneController>
 		implements PurchaseDescRowPaneModelObserver, ItemModelObserver {
 
+	@Inject
+	private ItemController itemController;
+
 	private final JPanel pane;
 	private final JTextField priceField;
 	private final JTextField quantityField;
 	private final JComboBox<Item> itemCombo;
+	private final JButton btnNewItem;
 
 	public PurchaseDescRowPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
 
 		JLabel lblItem = new JLabel("Item");
 		pane.add(lblItem, "cell 0 0,alignx trailing");
@@ -56,8 +65,17 @@ public class PurchaseDescRowPane
 		});
 		pane.add(itemCombo, "cell 1 0,growx");
 
+		btnNewItem = new JButton("New Item");
+		btnNewItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				itemController.create();
+			}
+		});
+		pane.add(btnNewItem, "cell 1 1,alignx right");
+
 		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "cell 0 1,alignx trailing");
+		pane.add(lblPrice, "cell 0 2,alignx trailing");
 
 		priceField = new JTextField();
 		priceField.addFocusListener(new FocusAdapter() {
@@ -75,11 +93,11 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(priceField, "cell 1 1,growx");
+		pane.add(priceField, "cell 1 2,growx");
 		priceField.setColumns(10);
 
 		JLabel lblQuantity = new JLabel("Quantity");
-		pane.add(lblQuantity, "cell 0 2,alignx trailing");
+		pane.add(lblQuantity, "cell 0 3,alignx trailing");
 
 		quantityField = new JTextField();
 		quantityField.addFocusListener(new FocusAdapter() {
@@ -99,7 +117,7 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(quantityField, "cell 1 2,growx");
+		pane.add(quantityField, "cell 1 3,growx");
 		quantityField.setColumns(10);
 	}
 
