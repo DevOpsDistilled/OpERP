@@ -4,7 +4,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -19,14 +22,15 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleDescRowController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDescRowPaneModelObserver;
-import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
+import devopsdistilled.operp.client.stock.models.observers.StockModelObserver;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.Stock;
 
 public class SaleDescRowPane
 		extends
 		EntityPane<SaleDescRow, SaleDescRowController, SaleDescRowPaneController>
-		implements SaleDescRowPaneModelObserver, ItemModelObserver {
+		implements SaleDescRowPaneModelObserver, StockModelObserver {
 
 	private final JPanel pane;
 	private final JTextField priceField;
@@ -135,7 +139,6 @@ public class SaleDescRowPane
 		}
 	}
 
-	@Override
 	public void updateItems(List<Item> items) {
 		Item prevSelected = (Item) itemCombo.getSelectedItem();
 		itemCombo.removeAllItems();
@@ -148,4 +151,15 @@ public class SaleDescRowPane
 		}
 	}
 
+	@Override
+	public void updateStock(List<Stock> stocks) {
+		Set<Item> itemSet = new HashSet<>();
+
+		for (Stock stock : stocks)
+			if (stock.getQuantity().compareTo(0L) > 0)
+				itemSet.add(stock.getItem());
+
+		List<Item> items = new LinkedList<>(itemSet);
+		updateItems(items);
+	}
 }
