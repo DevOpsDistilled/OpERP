@@ -2,10 +2,13 @@ package devopsdistilled.operp.server.data.service.account.impl;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 import devopsdistilled.operp.server.data.repo.account.ReceivedTransactionRepository;
 import devopsdistilled.operp.server.data.service.account.ReceivedTransactionService;
 
+@Service
 public class ReceivedTransactionServiceImpl
 		extends
 		TransactionServiceImpl<ReceivedTransaction, ReceivedTransactionRepository>
