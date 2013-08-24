@@ -1,15 +1,22 @@
 package devopsdistilled.operp.client.account.controllers.impl;
 
+import javax.inject.Inject;
+
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.account.controllers.ReceivedTransactionController;
+import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 
 public class ReceivedTransactionControllerImpl implements
 		ReceivedTransactionController {
 
+	@Inject
+	private ReceivedTransactionPaneController receivedTransactionPaneController;
+
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-
+		receivedTransactionPaneController.init(new ReceivedTransaction(),
+				EntityOperation.Create);
 	}
 
 	@Override
