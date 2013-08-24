@@ -29,6 +29,8 @@ public class Transaction<A extends Account<?>> extends Entiti<Long> {
 	@ManyToOne
 	protected A account;
 
+	protected String note;
+
 	public Long getTransactionId() {
 		return transactionId;
 	}
@@ -59,6 +61,14 @@ public class Transaction<A extends Account<?>> extends Entiti<Long> {
 
 	public void setAccount(A account) {
 		this.account = account;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	@Override
