@@ -38,10 +38,12 @@ public class ReceivedTransactionPane
 	private final JTextField amountField;
 	private final JLabel lblTransactionId;
 	private JPanel opBtnPanel;
+	private final JLabel lblNote;
+	private final JTextField noteField;
 
 	public ReceivedTransactionPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 
 		lblTransactionId = new JLabel("Transaction ID");
 		pane.add(lblTransactionId, "cell 0 0,alignx trailing");
@@ -88,9 +90,16 @@ public class ReceivedTransactionPane
 		pane.add(amountField, "cell 1 4,alignx right");
 		amountField.setColumns(10);
 
+		lblNote = new JLabel("Note");
+		pane.add(lblNote, "flowx,cell 1 5");
+
+		noteField = new JTextField();
+		pane.add(noteField, "cell 1 5");
+		noteField.setColumns(10);
+
 		opBtnPanel = new JPanel();
-		pane.add(opBtnPanel, "cell 1 5,grow");
-		opBtnPanel.setLayout(new MigLayout("", "[]", "[]"));
+		pane.add(opBtnPanel, "cell 1 6,grow");
+		opBtnPanel.setLayout(new MigLayout("", "[][][][]", "[]"));
 	}
 
 	@Override
@@ -120,9 +129,11 @@ public class ReceivedTransactionPane
 			transactionIdField.setText(receivedTransaction.getTransactionId()
 					.toString());
 			amountField.setEditable(false);
+			noteField.setEditable(false);
 		}
 
 		amountField.setText(receivedTransaction.getAmount().toString());
+		noteField.setText(receivedTransaction.getNote());
 
 	}
 
@@ -131,6 +142,8 @@ public class ReceivedTransactionPane
 		customerCombo.setSelectedItem(null);
 		transactionIdField.setVisible(true);
 		lblTransactionId.setVisible(true);
+		amountField.setEditable(true);
+		noteField.setEditable(true);
 		balanceField.setText("0");
 		amountField.setText("0");
 	}
