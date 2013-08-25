@@ -32,8 +32,9 @@ public class VendorServiceImpl extends
 	}
 
 	@Override
-	public <S extends Vendor> S save(S entity) {
-		entity.setRegisteredDate(new Date());
-		return super.save(entity);
+	public <S extends Vendor> S save(S vendor) {
+		if (vendor.getRegisteredDate() == null)
+			vendor.setRegisteredDate(new Date());
+		return super.save(vendor);
 	}
 }
