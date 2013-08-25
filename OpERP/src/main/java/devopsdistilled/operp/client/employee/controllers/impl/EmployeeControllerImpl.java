@@ -39,9 +39,8 @@ public class EmployeeControllerImpl implements EmployeeController {
 	}
 
 	@Override
-	public void showDetails(Employee entity) {
-		// TODO Auto-generated method stub
-
+	public void showDetails(Employee employee) {
+		employeePaneController.init(employee, EntityOperation.Details);
 	}
 
 }
