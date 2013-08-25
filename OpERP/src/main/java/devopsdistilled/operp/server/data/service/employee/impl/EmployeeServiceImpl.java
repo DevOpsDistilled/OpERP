@@ -1,5 +1,7 @@
 package devopsdistilled.operp.server.data.service.employee.impl;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,4 +31,10 @@ public class EmployeeServiceImpl extends
 		return null;
 	}
 
+	@Override
+	public <S extends Employee> S save(S employee) {
+		if (employee.getJoinedDate() == null)
+			employee.setJoinedDate(new Date());
+		return super.save(employee);
+	}
 }
