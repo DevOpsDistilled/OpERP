@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.employee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -10,8 +11,12 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
+import devopsdistilled.operp.client.employee.controllers.EmployeeController;
 
 public class EmployeeMgmtPane extends TaskPane {
+
+	@Inject
+	private EmployeeController employeeController;
 
 	@Override
 	public String toString() {
@@ -32,6 +37,7 @@ public class EmployeeMgmtPane extends TaskPane {
 		btnRegisterNewEmployee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				employeeController.create();
 			}
 		});
 		pane.add(btnRegisterNewEmployee, "cell 0 2");
