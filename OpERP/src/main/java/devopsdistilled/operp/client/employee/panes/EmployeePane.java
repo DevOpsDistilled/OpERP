@@ -99,6 +99,7 @@ public class EmployeePane extends
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Salary field must be numeric value");
+					e.getComponent().requestFocus();
 				}
 
 			}
@@ -161,7 +162,8 @@ public class EmployeePane extends
 
 			employeeIdField.setText(employee.getEmployeeId().toString());
 			nameField.setEditable(false);
-			detailsOpPanel.setVisible(true);
+			lblJoinDate.setVisible(true);
+			dateField.setVisible(true);
 		}
 
 		nameField.setText(employee.getEmployeeName());
