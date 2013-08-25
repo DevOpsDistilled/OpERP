@@ -30,10 +30,16 @@ public class EmployeePane extends
 	private final JTextField employeeIdField;
 	private JPanel contactInfoPanel;
 	private JPanel opBtnPanel;
+	private final JLabel lblDesignation;
+	private final JTextField designationField;
+	private final JLabel lblSalary;
+	private final JTextField salaryField;
+	private final JLabel lblJoinDate;
+	private final JTextField dateField;
 
 	public EmployeePane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][]"));
 
 		lblEmployeeId = new JLabel("Employee ID");
 		pane.add(lblEmployeeId, "cell 0 0,alignx trailing");
@@ -57,11 +63,47 @@ public class EmployeePane extends
 		pane.add(nameField, "cell 1 1,growx");
 		nameField.setColumns(10);
 
+		lblDesignation = new JLabel("Designation");
+		pane.add(lblDesignation, "cell 0 2,alignx trailing");
+
+		designationField = new JTextField();
+		designationField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		pane.add(designationField, "cell 1 2,growx");
+		designationField.setColumns(10);
+
+		lblSalary = new JLabel("Salary");
+		pane.add(lblSalary, "cell 0 3,alignx trailing");
+
+		salaryField = new JTextField();
+		salaryField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		pane.add(salaryField, "cell 1 3,growx");
+		salaryField.setColumns(10);
+
+		lblJoinDate = new JLabel("Join Date");
+		pane.add(lblJoinDate, "cell 0 4,alignx trailing");
+
+		dateField = new JTextField();
+		dateField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		pane.add(dateField, "cell 1 4,growx");
+		dateField.setColumns(10);
+
 		contactInfoPanel = new JPanel();
-		pane.add(contactInfoPanel, "cell 0 3 2 1,grow");
+		pane.add(contactInfoPanel, "cell 0 5 2 1,grow");
 
 		opBtnPanel = new JPanel();
-		pane.add(opBtnPanel, "cell 1 5,grow");
+		pane.add(opBtnPanel, "cell 1 7,grow");
 
 	}
 
