@@ -29,11 +29,11 @@ public class EmployeeMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
+		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][][]"));
 		pane.add(new JLabel("Employee Management"),
 				"cell 0 0,alignx center,aligny top");
 
-		JButton btnRegisterNewEmployee = new JButton("Register New Employee");
+		JButton btnRegisterNewEmployee = new JButton("New Employee");
 		btnRegisterNewEmployee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -41,6 +41,15 @@ public class EmployeeMgmtPane extends TaskPane {
 			}
 		});
 		pane.add(btnRegisterNewEmployee, "cell 0 2");
+
+		JButton btnListEmployees = new JButton("List Employees");
+		btnListEmployees.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				employeeController.list();
+			}
+		});
+		pane.add(btnListEmployees, "cell 0 3");
 		return pane;
 	}
 
