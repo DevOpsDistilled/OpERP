@@ -22,9 +22,8 @@ public class EmployeeControllerImpl implements EmployeeController {
 	}
 
 	@Override
-	public void edit(Employee entity) {
-		// TODO Auto-generated method stub
-
+	public void edit(Employee employee) {
+		employeePaneController.init(employee, EntityOperation.Edit);
 	}
 
 	@Override
