@@ -1,12 +1,12 @@
-package devopsdistilled.operp.server.data.service.hr.impl;
+package devopsdistilled.operp.server.data.service.employee.impl;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import devopsdistilled.operp.server.data.entity.hr.Employee;
-import devopsdistilled.operp.server.data.repo.hr.EmployeeRepository;
-import devopsdistilled.operp.server.data.service.hr.EmployeeService;
+import devopsdistilled.operp.server.data.entity.employee.Employee;
+import devopsdistilled.operp.server.data.repo.employee.EmployeeRepository;
+import devopsdistilled.operp.server.data.service.employee.EmployeeService;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 
 @Service

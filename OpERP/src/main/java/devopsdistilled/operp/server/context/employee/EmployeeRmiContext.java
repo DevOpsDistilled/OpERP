@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.context.hr;
+package devopsdistilled.operp.server.context.employee;
 
 import javax.inject.Inject;
 
@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
-import devopsdistilled.operp.server.data.service.hr.EmployeeService;
+import devopsdistilled.operp.server.data.service.employee.EmployeeService;
 
 @Configuration
-public class HrRmiContext {
+public class EmployeeRmiContext {
 
 	@Inject
 	private EmployeeService employeeService;

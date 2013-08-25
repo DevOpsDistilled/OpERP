@@ -1,4 +1,4 @@
-package devopsdistilled.operp.server.data.entity.hr;
+package devopsdistilled.operp.server.data.entity.employee;
 
 import java.util.Date;
 

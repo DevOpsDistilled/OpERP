@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.hr;
+package devopsdistilled.operp.client.employee;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 
-public class HrMgmtPane extends TaskPane {
+public class EmployeeMgmtPane extends TaskPane {
 
 	@Override
 	public String toString() {
