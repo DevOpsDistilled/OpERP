@@ -2,10 +2,12 @@ package devopsdistilled.operp.server.data.entity.employee;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,11 +26,13 @@ public class Employee extends Entiti<Long> {
 
 	private String employeeName;
 
+	@OneToOne(cascade = CascadeType.ALL)
 	private ContactInfo contactInfo;
 
+	@OneToOne(cascade = CascadeType.ALL)
 	private PayableAccount account;
 
-	private Double salary;
+	private Double salary = 0.0;
 
 	private String designation;
 
