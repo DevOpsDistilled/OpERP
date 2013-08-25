@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import javax.inject.Inject;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -30,9 +31,7 @@ public class EmployeePane extends
 	private final JTextField employeeIdField;
 	private JPanel contactInfoPanel;
 	private JPanel opBtnPanel;
-	private final JLabel lblDesignation;
 	private final JTextField designationField;
-	private final JLabel lblSalary;
 	private final JTextField salaryField;
 	private final JLabel lblJoinDate;
 	private final JTextField dateField;
@@ -56,32 +55,52 @@ public class EmployeePane extends
 		nameField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				getController().getModel().getEntity()
-						.setEmployeeName(nameField.getText().trim());
+
+				String empName = nameField.getText().trim();
+				if (empName.equalsIgnoreCase("")) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Employee Name must not be empty");
+
+					e.getComponent().requestFocus();
+				}
+
+				getController().getModel().getEntity().setEmployeeName(empName);
+
 			}
 		});
 		pane.add(nameField, "cell 1 1,growx");
 		nameField.setColumns(10);
 
-		lblDesignation = new JLabel("Designation");
+		JLabel lblDesignation = new JLabel("Designation");
 		pane.add(lblDesignation, "cell 0 2,alignx trailing");
 
 		designationField = new JTextField();
 		designationField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				getController().getModel().getEntity()
+						.setDesignation(designationField.getText().trim());
 			}
 		});
 		pane.add(designationField, "cell 1 2,growx");
 		designationField.setColumns(10);
 
-		lblSalary = new JLabel("Salary");
+		JLabel lblSalary = new JLabel("Salary");
 		pane.add(lblSalary, "cell 0 3,alignx trailing");
 
 		salaryField = new JTextField();
 		salaryField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				try {
+					Double salary = Double.parseDouble(salaryField.getText()
+							.trim());
+					getController().getModel().getEntity().setSalary(salary);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(getPane(),
+							"Salary field must be numeric value");
+				}
+
 			}
 		});
 		pane.add(salaryField, "cell 1 3,growx");
@@ -91,11 +110,7 @@ public class EmployeePane extends
 		pane.add(lblJoinDate, "cell 0 4,alignx trailing");
 
 		dateField = new JTextField();
-		dateField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
+		dateField.setEditable(false);
 		pane.add(dateField, "cell 1 4,growx");
 		dateField.setColumns(10);
 
@@ -158,6 +173,8 @@ public class EmployeePane extends
 		lblEmployeeId.setVisible(true);
 		employeeIdField.setVisible(true);
 		nameField.setEditable(true);
+		dateField.setVisible(false);
+		lblJoinDate.setVisible(false);
 	}
 
 	@Override
