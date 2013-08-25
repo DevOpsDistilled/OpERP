@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import devopsdistilled.operp.client.account.AccountMgmtPane;
 import devopsdistilled.operp.client.business.purchases.PurchasesMgmtPane;
 import devopsdistilled.operp.client.business.sales.SalesMgmtPane;
+import devopsdistilled.operp.client.employee.EmployeeMgmtPane;
 import devopsdistilled.operp.client.items.ItemMgmtPane;
 import devopsdistilled.operp.client.main.NavigationPane;
 import devopsdistilled.operp.client.main.NavigationTree;
@@ -46,6 +47,11 @@ public class NavigationContext {
 	}
 
 	@Bean
+	public EmployeeMgmtPane employeeMgmtPane() {
+		return new EmployeeMgmtPane();
+	}
+
+	@Bean
 	public NavigationTree navigationTree() {
 		NavigationTree navTree = new NavigationTree();
 		navTree.addNode(partyMgmtPane());
@@ -54,7 +60,7 @@ public class NavigationContext {
 		navTree.addNode(salesMgmtPane());
 		navTree.addNode(purchasesMgmtPane());
 		navTree.addNode(accountMgmtPane());
-
+		navTree.addNode(employeeMgmtPane());
 		return navTree;
 	}
 

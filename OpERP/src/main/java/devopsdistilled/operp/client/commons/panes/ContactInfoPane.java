@@ -63,6 +63,7 @@ public class ContactInfoPane
 					} catch (AddressException e1) {
 						JOptionPane.showMessageDialog(getPane(),
 								"Not a valid email address");
+						e.getComponent().requestFocus();
 					}
 				}
 			}

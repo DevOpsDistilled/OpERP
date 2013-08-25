@@ -32,9 +32,10 @@ public class CustomerServiceImpl extends
 	}
 
 	@Override
-	public <S extends Customer> S save(S entity) {
-		entity.setRegisteredDate(new Date());
-		return super.save(entity);
+	public <S extends Customer> S save(S customer) {
+		if (customer.getRegisteredDate() == null)
+			customer.setRegisteredDate(new Date());
+		return super.save(customer);
 	}
 
 }
