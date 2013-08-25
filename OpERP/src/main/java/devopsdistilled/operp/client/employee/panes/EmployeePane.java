@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.employee.panes;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.Date;
 
 import javax.inject.Inject;
 import javax.swing.JComponent;
@@ -155,6 +156,9 @@ public class EmployeePane extends
 
 			opBtnPanel = setBtnPanel(editOpPanel, opBtnPanel);
 
+			lblJoinDate.setVisible(true);
+			dateField.setVisible(true);
+
 		} else if (EntityOperation.Details == entityOperation) {
 			getController().getModel().setTitle("Employee Details");
 
@@ -164,9 +168,17 @@ public class EmployeePane extends
 			nameField.setEditable(false);
 			lblJoinDate.setVisible(true);
 			dateField.setVisible(true);
+			designationField.setEditable(false);
+			salaryField.setEditable(false);
 		}
 
 		nameField.setText(employee.getEmployeeName());
+		designationField.setText(employee.getDesignation());
+		salaryField.setText(employee.getSalary().toString());
+
+		Date joinedDate = employee.getJoinedDate();
+		if (joinedDate != null)
+			dateField.setText(joinedDate.toString());
 	}
 
 	@Override
@@ -177,6 +189,9 @@ public class EmployeePane extends
 		nameField.setEditable(true);
 		dateField.setVisible(false);
 		lblJoinDate.setVisible(false);
+		dateField.setEditable(false);
+		designationField.setEditable(true);
+		salaryField.setEditable(true);
 	}
 
 	@Override
