@@ -22,8 +22,11 @@ public class DefaultTaskPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout(""));
-		panel.add(new JLabel("DefaultTaskPane"));
+		panel.setLayout(new MigLayout("", "[grow]", "[]"));
+
+		JLabel lbl = new JLabel(new ImageIcon(getClass().getResource(
+				"/client/icons/OpErpBanner.jpg")));
+		panel.add(lbl, "cell 0 0,alignx center");
 		return panel;
 	}
 
