@@ -1,14 +1,15 @@
 package devopsdistilled.operp.client.party;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -16,8 +17,6 @@ import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.main.utils.StandardButtonHelper;
 import devopsdistilled.operp.client.party.controllers.CustomerController;
 import devopsdistilled.operp.client.party.controllers.VendorController;
-import javax.swing.JLabel;
-import java.awt.Font;
 
 public class PartyMgmtPane extends TaskPane {
 
@@ -39,15 +38,16 @@ public class PartyMgmtPane extends TaskPane {
 
 	private ImageIcon iconListCustomers;
 	private JLabel lblPartyManagement;
-	
+
 	@Override
 	public String toString() {
 		return new String("Parties");
 	}
-	
+
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon(getClass().getResource("/client/icons/party_24.png"));
+		return new ImageIcon(getClass().getResource(
+				"/client/icons/party_24.png"));
 	}
 
 	/**
@@ -59,9 +59,9 @@ public class PartyMgmtPane extends TaskPane {
 		panel.setLayout(new MigLayout("", "[]50[][grow]", "[]20[]25[][]"));
 
 		lblPartyManagement = new JLabel("Party Management");
-		lblPartyManagement.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPartyManagement.setFont(new Font("Dialog", Font.BOLD, 20));
 		panel.add(lblPartyManagement, "cell 0 0 3 1,alignx center");
-		
+
 		btnCreateVendor = new JButton("<html>Create<br/> Vendor</");
 		btnCreateVendor.addActionListener(new ActionListener() {
 			@Override
@@ -69,10 +69,13 @@ public class PartyMgmtPane extends TaskPane {
 				vendorController.create();
 			}
 		});
-		iconCreateVendor=new ImageIcon(
-				getClass().getResource("/client/icons/create-vendor.png"));
-		btnCreateVendor.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateVendor));
-		panel.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateVendor), "cell  0 1");
+		iconCreateVendor = new ImageIcon(getClass().getResource(
+				"/client/icons/create-vendor.png"));
+		btnCreateVendor.setIcon(StandardButtonHelper
+				.SetStandardSizeForImage(iconCreateVendor));
+		panel.add(
+				StandardButtonHelper.SetStandardSizeForButton(btnCreateVendor),
+				"cell  0 1");
 
 		btnListVendors = new JButton("List Vendors");
 		btnListVendors.addActionListener(new ActionListener() {
@@ -81,10 +84,13 @@ public class PartyMgmtPane extends TaskPane {
 				vendorController.list();
 			}
 		});
-		iconListVendors=new ImageIcon(
-				getClass().getResource("/client/icons/list-vendor.png"));
-		btnListVendors.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListVendors));
-		panel.add(StandardButtonHelper.SetStandardSizeForButton(btnListVendors), "cell 1 1 ");
+		iconListVendors = new ImageIcon(getClass().getResource(
+				"/client/icons/list-vendor.png"));
+		btnListVendors.setIcon(StandardButtonHelper
+				.SetStandardSizeForImage(iconListVendors));
+		panel.add(
+				StandardButtonHelper.SetStandardSizeForButton(btnListVendors),
+				"cell 1 1 ");
 
 		btnCreateCustomer = new JButton("<html>Create<br/> Customer</html>");
 		btnCreateCustomer.addActionListener(new ActionListener() {
@@ -93,10 +99,12 @@ public class PartyMgmtPane extends TaskPane {
 				customerController.create();
 			}
 		});
-		iconCreateCustomer=new ImageIcon(
-					getClass().getResource("/client/icons/create-customer.png"));
-		btnCreateCustomer.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconCreateCustomer));
-		panel.add(StandardButtonHelper.SetStandardSizeForButton(btnCreateCustomer), "cell 0 2");
+		iconCreateCustomer = new ImageIcon(getClass().getResource(
+				"/client/icons/create-customer.png"));
+		btnCreateCustomer.setIcon(StandardButtonHelper
+				.SetStandardSizeForImage(iconCreateCustomer));
+		panel.add(StandardButtonHelper
+				.SetStandardSizeForButton(btnCreateCustomer), "cell 0 2");
 
 		btnListCustomers = new JButton("<html>List<br/> Customers</html>");
 		btnListCustomers.addActionListener(new ActionListener() {
@@ -105,12 +113,14 @@ public class PartyMgmtPane extends TaskPane {
 				customerController.list();
 			}
 		});
-		iconListCustomers=new ImageIcon(
-				getClass().getResource("/client/icons/list-vendor.png"));
-		btnListCustomers.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListCustomers));
-		panel.add(StandardButtonHelper.SetStandardSizeForButton(btnListCustomers), "cell 1 2");
-		
-		
+		iconListCustomers = new ImageIcon(getClass().getResource(
+				"/client/icons/list-vendor.png"));
+		btnListCustomers.setIcon(StandardButtonHelper
+				.SetStandardSizeForImage(iconListCustomers));
+		panel.add(
+				StandardButtonHelper.SetStandardSizeForButton(btnListCustomers),
+				"cell 1 2");
+
 		return panel;
 	}
 
