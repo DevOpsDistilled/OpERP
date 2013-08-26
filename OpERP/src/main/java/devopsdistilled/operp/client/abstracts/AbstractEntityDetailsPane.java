@@ -62,7 +62,7 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 			}
 		});
 		btnPanel.add(btnOk);
-		
+
 	}
 
 	public abstract EC getEntityController();
@@ -80,12 +80,12 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 	}
 
 	public void showDetailsPane(JPanel detailsPane, JComponent owner) {
-		getPane().add(btnPanel, "south, pad 20 100 20 20");
+		getPane().add(btnPanel, "south");
 		dialog.getContentPane().add(getPane(), "grow");
 		getDialog().setLocationRelativeTo(owner);
 		getDialog().pack();
 		getDialog().setVisible(true);
-		
+
 	}
 
 }
