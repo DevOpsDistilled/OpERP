@@ -26,7 +26,7 @@ public abstract class AbstractEntityDetailsPane<E extends Entiti<?>, EC extends 
 		dialog.getContentPane().setLayout(new MigLayout("fill", "[]", "[]"));
 
 		btnPanel = new JPanel();
-		btnPanel.setLayout(new MigLayout(""));
+		btnPanel.setLayout(new MigLayout("alignx right"));
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
