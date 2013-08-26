@@ -61,7 +61,7 @@ public abstract class EntityPane<E extends Entiti<?>, EC extends EntityControlle
 		editOpPanel.setLayout(new MigLayout("", "[grow]", "[]"));
 
 		JButton btnEditCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
+		btnEditCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
