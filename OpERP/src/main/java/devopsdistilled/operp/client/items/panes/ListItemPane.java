@@ -32,7 +32,7 @@ public class ListItemPane extends SubTaskPane implements
 	private BeanTableModel<Item> tableModel;
 
 	public ListItemPane() {
-		pane = new JPanel(new MigLayout("debug, fill"));
+		pane = new JPanel(new MigLayout("fill"));
 
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

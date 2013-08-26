@@ -25,7 +25,7 @@ public class ListStockPane extends SubTaskPane implements
 	
 	public ListStockPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug,fill"));
+		pane.setLayout(new MigLayout("fill"));
 		table = new JTable(tableModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 

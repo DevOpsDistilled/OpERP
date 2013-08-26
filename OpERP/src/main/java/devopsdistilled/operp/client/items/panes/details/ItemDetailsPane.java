@@ -31,7 +31,7 @@ public class ItemDetailsPane extends
 	public ItemDetailsPane() {
 		pane = new JPanel();
 
-		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 
 		JLabel lblItemId = new JLabel("Item ID:");
 		pane.add(lblItemId, "cell 0 0,alignx trailing");

@@ -43,13 +43,13 @@ public class EditBrandPane extends SubTaskPane implements
 	private final JTextField brandIdField;
 	private final JTextField brandNameField;
 	private final JComboBox<Manufacturer> manufacturersCombo;
-	private AbstractButton btnNewManufacturer;
+	private final AbstractButton btnNewManufacturer;
 	
 	private Brand brand;
 	
 	public EditBrandPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug", "[][]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[][]", "[][][][][]"));
 
 		JLabel lblBrandId = new JLabel("Brand ID");
 		pane.add(lblBrandId, "cell 0 0,alignx trailing");
@@ -83,6 +83,7 @@ public class EditBrandPane extends SubTaskPane implements
 		
 		btnNewManufacturer = new JButton("New Manufacturer");
 		btnNewManufacturer.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				manufacturerController.create();
 			}

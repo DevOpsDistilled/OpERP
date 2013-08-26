@@ -32,7 +32,7 @@ public class ListCategoryPane extends SubTaskPane implements
 	BeanTableModel<Category> tableModel;
 
 	public ListCategoryPane() {
-		pane = new JPanel(new MigLayout("debug, fill"));
+		pane = new JPanel(new MigLayout("fill"));
 
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

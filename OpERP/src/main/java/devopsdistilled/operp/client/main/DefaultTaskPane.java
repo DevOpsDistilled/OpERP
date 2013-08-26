@@ -19,7 +19,7 @@ public class DefaultTaskPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout("debug"));
+		panel.setLayout(new MigLayout(""));
 		panel.add(new JLabel("DefaultTaskPane"));
 		return panel;
 	}
