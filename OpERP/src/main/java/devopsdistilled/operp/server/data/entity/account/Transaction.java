@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -27,7 +28,10 @@ public class Transaction<A extends Account<?>> extends Entiti<Long> {
 	private Double amount = 0.0;
 
 	@ManyToOne
+	@JoinColumn(name = "accountId")
 	protected A account;
+
+	protected String note;
 
 	public Long getTransactionId() {
 		return transactionId;
@@ -59,6 +63,14 @@ public class Transaction<A extends Account<?>> extends Entiti<Long> {
 
 	public void setAccount(A account) {
 		this.account = account;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	@Override

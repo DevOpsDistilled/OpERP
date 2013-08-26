@@ -71,6 +71,8 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	@Override
 	public void addNewSaleDescRow() {
 
+		model.getSaleDescRow().setBusinessDesc(model.getEntity());
+
 		if (EntityOperation.Edit != model.getEntityOperation()) {
 			model.getEntity().getDescRows().add(model.getSaleDescRow());
 		}
