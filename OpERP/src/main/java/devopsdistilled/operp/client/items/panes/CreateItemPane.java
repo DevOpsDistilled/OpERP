@@ -1,7 +1,10 @@
 package devopsdistilled.operp.client.items.panes;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -48,23 +51,22 @@ public class CreateItemPane extends SubTaskPane implements
 	private final JComboBox<Brand> comboBrands;
 	private final JComboBox<Product> comboProducts;
 
-	@Override
-	public void init() {
-		super.init();
-
-		// Other JDialog properties goes here
-		// getDialog.setSize(...);
-	}
-
 	public CreateItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
-				"[][][][][]"));
+		pane.setLayout(new MigLayout("flowy", "[][][grow][]", "[][][][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
 
 		comboProducts = new JComboBox<>();
+		comboProducts.setMinimumSize(new Dimension(100, 24));
+		comboProducts.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED)
+					getDialog().pack();
+			}
+		});
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 0,growx");
 
@@ -72,6 +74,14 @@ public class CreateItemPane extends SubTaskPane implements
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
 
 		comboBrands = new JComboBox<>();
+		comboBrands.setMinimumSize(new Dimension(100, 24));
+		comboBrands.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED)
+					getDialog().pack();
+			}
+		});
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 1,growx");
 

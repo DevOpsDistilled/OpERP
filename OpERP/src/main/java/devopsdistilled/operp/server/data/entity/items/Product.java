@@ -29,7 +29,7 @@ public class Product extends Entiti<Long> {
 	@OneToMany(mappedBy = "product")
 	private List<Item> items;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "ProductCategory")
 	private List<Category> categories;
 

@@ -29,7 +29,7 @@ public class ListWarehousePane extends SubTaskPane implements
 	private final JPanel pane;
 	private final JTable table;
 	BeanTableModel<Warehouse> tableModel;
-
+	
 	public ListWarehousePane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("fill"));

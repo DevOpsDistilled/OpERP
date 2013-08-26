@@ -30,7 +30,7 @@ public class ListManufacturerPane extends SubTaskPane implements
 
 	private final JTable table;
 	BeanTableModel<Manufacturer> tableModel;
-
+	
 	public ListManufacturerPane() {
 		pane = new JPanel(new MigLayout("fill"));
 

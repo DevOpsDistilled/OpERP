@@ -2,6 +2,8 @@ package devopsdistilled.operp.client.items.panes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,10 +52,10 @@ public class EditItemPane extends SubTaskPane implements
 	private final JTextField itemIdField;
 
 	private Item item;
-
+	
 	public EditItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
+		pane.setLayout(new MigLayout("", "[][][][]",
 				"[][][][][][]"));
 
 		JLabel lblItemId_1 = new JLabel("Item ID");
@@ -68,6 +70,13 @@ public class EditItemPane extends SubTaskPane implements
 		pane.add(lblProductName, "cell 0 1,alignx trailing");
 
 		comboProducts = new JComboBox<>();
+		comboProducts.addItemListener(new  ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED)
+					getDialog().pack();
+			}
+		});
 		comboProducts.setSelectedItem(null);
 		pane.add(comboProducts, "flowx,cell 2 1,growx");
 
@@ -75,6 +84,12 @@ public class EditItemPane extends SubTaskPane implements
 		pane.add(lblBrandName, "cell 0 2,alignx trailing");
 
 		comboBrands = new JComboBox<>();
+		comboBrands.addItemListener(new  ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+					getDialog().pack();
+			}
+		});
 		comboBrands.setSelectedItem(null);
 		pane.add(comboBrands, "flowx,cell 2 2,growx");
 
@@ -203,6 +218,7 @@ public class EditItemPane extends SubTaskPane implements
 				if (prevSelected.compareTo(brand) == 0)
 					comboBrands.setSelectedItem(brand);
 		}
+		getDialog().pack();
 	}
 
 	@Override

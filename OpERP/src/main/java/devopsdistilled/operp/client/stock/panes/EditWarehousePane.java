@@ -32,6 +32,8 @@ public class EditWarehousePane extends SubTaskPane implements
 	private final JTextField warehouseNameField;
 	private final JButton btnCancel;
 	private final JButton btnUpdate;
+	private JButton btnReset;
+	private Warehouse warehouse;
 
 	public EditWarehousePane() {
 		pane = new JPanel();
@@ -88,12 +90,21 @@ public class EditWarehousePane extends SubTaskPane implements
 
 			}
 		});
+		
+		btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateEntity(warehouse);
+			}
+		});
+		pane.add(btnReset, "cell 1 3");
 		pane.add(btnUpdate, "cell 1 3");
 
 	}
 
 	@Override
 	public void updateEntity(Warehouse warehouse) {
+		this.warehouse=warehouse;
 		warehouseIdField.setText(warehouse.getWarehouseId().toString());
 		warehouseNameField.setText(warehouse.getWarehouseName());
 	}

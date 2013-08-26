@@ -30,6 +30,7 @@ public class CreateCategoryPane extends SubTaskPane implements
 
 	private final JPanel pane;
 	private final JTextField categoryNameField;
+	
 
 	public CreateCategoryPane() {
 		pane = new JPanel();

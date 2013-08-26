@@ -35,7 +35,7 @@ public class ManufacturerDetailsPane extends
 		manufacturerIdField = new JTextField();
 		manufacturerIdField.setEditable(false);
 		pane.add(manufacturerIdField, "cell 1 0,growx");
-		manufacturerIdField.setColumns(10);
+		manufacturerIdField.setColumns(30);
 
 		JLabel lblManufacturerName = new JLabel("Manufacturer Name");
 		pane.add(lblManufacturerName, "cell 0 1,alignx trailing");
@@ -43,7 +43,7 @@ public class ManufacturerDetailsPane extends
 		manufacturerNameField = new JTextField();
 		manufacturerNameField.setEditable(false);
 		pane.add(manufacturerNameField, "cell 1 1,growx");
-		manufacturerNameField.setColumns(10);
+		manufacturerNameField.setColumns(30);
 
 	}
 

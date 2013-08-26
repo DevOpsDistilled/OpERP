@@ -25,7 +25,7 @@ public class ListBrandPane extends SubTaskPane implements
 
 	@Inject
 	private BrandDetailsPane brandDetailsPane;
-
+	
 	private final JPanel pane;
 
 	private final JTable table;

@@ -37,6 +37,10 @@ public class EditCategoryPane extends SubTaskPane implements
 	private final JButton btnUpdate;
 	private final JButton btnReset;
 
+	public void init(){
+		super.init();
+	}
+	
 	public EditCategoryPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));

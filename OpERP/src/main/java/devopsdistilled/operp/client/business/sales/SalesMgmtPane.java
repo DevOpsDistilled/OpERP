@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.inject.Inject;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -13,17 +15,25 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.TaskPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
+import devopsdistilled.operp.client.main.utils.StandardButtonHelper;
 
 public class SalesMgmtPane extends TaskPane {
 
 	@Inject
 	private SaleController saleController;
+	private JButton btnNewSale;
+	private ImageIcon iconNewSale;
 
 	@Override
 	public String toString() {
 		return new String("Sales");
 	}
-
+	
+	@Override
+	public Icon getIcon() {
+		return new ImageIcon(getClass().getResource("/client/icons/sale_24.png"));
+	}
+	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -31,19 +41,28 @@ public class SalesMgmtPane extends TaskPane {
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
-		pane.add(new JLabel("Sales Management"),
+		JLabel label = new JLabel("Sales Management");
+		pane.add(label,
 				"cell 0 0 2097051 1,alignx center,aligny top");
 
-		JButton btnNewSale = new JButton("New Sale");
+		label.setFont(new Font("Dialog", Font.BOLD, 20));
+		pane.add(label,
+				"cell 0 0 3 1,alignx center,aligny top");
+		
+		btnNewSale = new JButton("New Sale");
 		btnNewSale.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				saleController.create();
 			}
 		});
-		btnNewSale.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
-		pane.add(btnNewSale, "cell 0 2");
+		iconNewSale=new ImageIcon(getClass().
+					getResource("/client/icons/new-purchase.jpg"));
+		btnNewSale.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconNewSale));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewSale), "cell 0 2");
 		return pane;
 	}
+
+	
 
 }

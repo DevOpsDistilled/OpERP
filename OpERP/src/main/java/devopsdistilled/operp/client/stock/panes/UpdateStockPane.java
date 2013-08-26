@@ -30,6 +30,7 @@ import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPane
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import java.awt.Dimension;
 
 public class UpdateStockPane extends SubTaskPane implements
 		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver {
@@ -45,7 +46,7 @@ public class UpdateStockPane extends SubTaskPane implements
 
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
-
+	
 	private final JPanel pane;
 	private final JTextField quantityField;
 	private final JComboBox<Item> comboItems;
@@ -59,11 +60,14 @@ public class UpdateStockPane extends SubTaskPane implements
 		pane.add(lblItemName, "cell 0 0,alignx trailing");
 
 		comboItems = new JComboBox<Item>();
+		comboItems.setMinimumSize(new Dimension(100, 24));
 		comboItems.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					getDialog().pack();
 					controller.getModel().setItem((Item) e.getItem());
+				}
 			}
 		});
 		comboItems.setSelectedItem(null);
@@ -82,11 +86,14 @@ public class UpdateStockPane extends SubTaskPane implements
 		pane.add(lblWarehouseName, "cell 0 1,alignx trailing");
 
 		comboWarehouses = new JComboBox<Warehouse>();
+		comboWarehouses.setMinimumSize(new Dimension(100, 24));
 		comboWarehouses.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					getDialog().pack();
 					controller.getModel().setWarehouse((Warehouse) e.getItem());
+				}
 			}
 		});
 		comboWarehouses.setSelectedItem(null);
