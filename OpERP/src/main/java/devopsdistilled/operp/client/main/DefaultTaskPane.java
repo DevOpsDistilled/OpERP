@@ -13,9 +13,12 @@ public class DefaultTaskPane extends TaskPane {
 
 	@Override
 	public String toString() {
-		return "OpERP";
+		return "";
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
@@ -26,7 +29,8 @@ public class DefaultTaskPane extends TaskPane {
 
 	@Override
 	public Icon getIcon() {
-		Icon icon=new ImageIcon(getClass().getResource("/client/icons/ERP_24.png"));
+		Icon icon = new ImageIcon(getClass().getResource(
+				"/client/icons/OpErpLogo.jpg"));
 		return icon;
 
 	}
