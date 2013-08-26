@@ -55,7 +55,7 @@ public class EditItemPane extends SubTaskPane implements
 	
 	public EditItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug", "[][][][]",
+		pane.setLayout(new MigLayout("", "[][][][]",
 				"[][][][][][]"));
 
 		JLabel lblItemId_1 = new JLabel("Item ID");

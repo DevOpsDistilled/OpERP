@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.business.sales;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,9 +41,14 @@ public class SalesMgmtPane extends TaskPane {
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
-		pane.add(new JLabel("Sales Management"),
+		JLabel label = new JLabel("Sales Management");
+		pane.add(label,
 				"cell 0 0 2097051 1,alignx center,aligny top");
 
+		label.setFont(new Font("Dialog", Font.BOLD, 20));
+		pane.add(label,
+				"cell 0 0 3 1,alignx center,aligny top");
+		
 		btnNewSale = new JButton("New Sale");
 		btnNewSale.addActionListener(new ActionListener() {
 			@Override

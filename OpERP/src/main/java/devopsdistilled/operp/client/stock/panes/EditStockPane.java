@@ -1,10 +1,18 @@
 package devopsdistilled.operp.client.stock.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
@@ -18,15 +26,6 @@ import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class EditStockPane extends SubTaskPane
 		implements EditStockPaneModelObserver,ItemModelObserver,WarehouseModelObserver{
 
@@ -39,18 +38,18 @@ public class EditStockPane extends SubTaskPane
 	@Inject
 	private WarehouseController warehouseController;
 	
-	private JPanel pane;
-	private JTextField stockIdField;
-	private JTextField quantityField;
-	private JTextField dateField;
-	private JComboBox<Item> comboItems;
-	private JComboBox<Warehouse> comboWarehouses;
+	private final JPanel pane;
+	private final JTextField stockIdField;
+	private final JTextField quantityField;
+	private final JTextField dateField;
+	private final JComboBox<Item> comboItems;
+	private final JComboBox<Warehouse> comboWarehouses;
 	
 	private Stock stock;
 	
 	public EditStockPane(){
 		pane=new JPanel();
-		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 		
 		JLabel lblStockId = new JLabel("Stock Id");
 		pane.add(lblStockId, "cell 0 0,alignx trailing");

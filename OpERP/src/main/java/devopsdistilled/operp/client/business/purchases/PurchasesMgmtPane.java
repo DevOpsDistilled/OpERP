@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.business.purchases;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +21,7 @@ public class PurchasesMgmtPane extends TaskPane {
 
 	@Inject
 	private PurchaseController purchaseController;
-	
+
 	private JButton btnNewPurchase;
 	private ImageIcon iconNewPurchase;
 
@@ -36,8 +37,9 @@ public class PurchasesMgmtPane extends TaskPane {
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
-		pane.add(new JLabel("Purchases Management"),
-				"cell 0 0 2097051 1,alignx center,aligny top");
+		JLabel label = new JLabel("Purchases Management");
+		label.setFont(new Font("Dialog", Font.BOLD, 20));
+		pane.add(label, "cell 0 0 2097051 1,alignx center,aligny top");
 
 		btnNewPurchase = new JButton("<html>New Purchase</html>");
 		btnNewPurchase.addActionListener(new ActionListener() {
@@ -46,16 +48,19 @@ public class PurchasesMgmtPane extends TaskPane {
 				purchaseController.create();
 			}
 		});
-		iconNewPurchase=new ImageIcon(getClass().
-					getResource("/client/icons/new-purchase.jpg"));
-		btnNewPurchase.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconNewPurchase));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewPurchase), "cell 0 2");
+		iconNewPurchase = new ImageIcon(getClass().getResource(
+				"/client/icons/new-purchase.jpg"));
+		btnNewPurchase.setIcon(StandardButtonHelper
+				.SetStandardSizeForImage(iconNewPurchase));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewPurchase),
+				"cell 0 2");
 		return pane;
 	}
 
 	@Override
 	public Icon getIcon() {
-		return new ImageIcon(getClass().getResource("/client/icons/sale_24.png"));
+		return new ImageIcon(getClass()
+				.getResource("/client/icons/sale_24.png"));
 	}
 
 }

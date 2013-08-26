@@ -61,7 +61,7 @@ public class StockMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("debug", "[]50[]50[][grow]",
+		pane.setLayout(new MigLayout("", "[]50[]50[][grow]",
 				"[]20[]25[]25[][]"));
 
 		JLabel lblStockManagement = new JLabel("Stock Management");

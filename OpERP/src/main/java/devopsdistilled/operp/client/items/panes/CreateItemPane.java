@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.items.panes;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -29,8 +30,6 @@ import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
 
-import java.awt.Dimension;
-
 public class CreateItemPane extends SubTaskPane implements
 		CreateItemPaneModelObserver, ProductModelObserver, BrandModelObserver {
 
@@ -54,8 +53,7 @@ public class CreateItemPane extends SubTaskPane implements
 
 	public CreateItemPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("debug, flowy", "[][][grow][]",
-				"[][][][][]"));
+		pane.setLayout(new MigLayout("flowy", "[][][grow][]", "[][][][][]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		pane.add(lblProductName, "cell 0 0,alignx trailing");
@@ -65,7 +63,7 @@ public class CreateItemPane extends SubTaskPane implements
 		comboProducts.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED)
 					getDialog().pack();
 			}
 		});
@@ -80,7 +78,7 @@ public class CreateItemPane extends SubTaskPane implements
 		comboBrands.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED)
 					getDialog().pack();
 			}
 		});
