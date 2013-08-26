@@ -33,7 +33,7 @@ public class EditManufacturerPane extends SubTaskPane implements
 	private final JPanel pane;
 	private final JTextField manufacturerIdField;
 	private final JTextField manufacturerNameField;
-
+	
 	public EditManufacturerPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));

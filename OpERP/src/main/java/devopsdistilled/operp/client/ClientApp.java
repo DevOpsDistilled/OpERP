@@ -12,6 +12,7 @@ import devopsdistilled.operp.client.main.MainWindow;
 public class ClientApp {
 
 	public static void main(String[] args) {
+
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -26,10 +27,9 @@ public class ClientApp {
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
-
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();
-
+		
 		System.out.println(context);
 	}
 }

@@ -28,6 +28,7 @@ import devopsdistilled.operp.client.stock.panes.models.observers.TransferStockPa
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
+import java.awt.Dimension;
 
 public class TransferStockPane extends SubTaskPane implements
 		TransferStockPaneModelObserver, WarehouseModelObserver {
@@ -55,12 +56,14 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblFromWarehouse, "cell 0 0,alignx trailing");
 
 		fromWarehouseCombo = new JComboBox<>();
+		fromWarehouseCombo.setMinimumSize(new Dimension(100, 24));
 		fromWarehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					Warehouse fromWarehouse = (Warehouse) event.getItem();
 					controller.getModel().setFromWarehouse(fromWarehouse);
+					getDialog().pack();
 				}
 
 			}
@@ -71,11 +74,14 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblItem, "cell 0 1,alignx trailing");
 
 		itemsCombo = new JComboBox<>();
+		itemsCombo.setMinimumSize(new Dimension(100, 24));
 		itemsCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED)
+				if (e.getStateChange() == ItemEvent.SELECTED){
 					controller.getModel().setItemToTransfer((Item) e.getItem());
+					getDialog().pack();
+				}
 			}
 		});
 		pane.add(itemsCombo, "cell 1 1,growx");
@@ -84,11 +90,15 @@ public class TransferStockPane extends SubTaskPane implements
 		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
 
 		toWarehouseCombo = new JComboBox<>();
+		toWarehouseCombo.setMinimumSize(new Dimension(100, 24));
 		toWarehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				Warehouse toWarehouse = (Warehouse) e.getItem();
-				controller.getModel().setToWarehouse(toWarehouse);
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					getDialog().pack();
+					Warehouse toWarehouse = (Warehouse) e.getItem();
+					controller.getModel().setToWarehouse(toWarehouse);
+				}
 			}
 		});
 		pane.add(toWarehouseCombo, "flowx,cell 1 2,growx");

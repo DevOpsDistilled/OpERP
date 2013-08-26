@@ -58,7 +58,8 @@ public class EmployeePane extends
 			public void focusLost(FocusEvent e) {
 
 				String empName = nameField.getText().trim();
-				if (empName.equalsIgnoreCase("")) {
+				if (empName.equalsIgnoreCase("")
+						&& e.getOppositeComponent() != null) {
 					JOptionPane.showMessageDialog(getPane(),
 							"Employee Name must not be empty");
 

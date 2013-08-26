@@ -3,8 +3,6 @@ package devopsdistilled.operp.client.main;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.swing.JFrame;
@@ -47,30 +45,32 @@ public class MainWindow implements MainModelObserver {
 			public void run() {
 				initComponents();
 				frame.getContentPane().add(splitPane);
-
+				
 				splitPane.setLeftComponent(navigationPane.getPane());
 				splitPane.setRightComponent(model.getSelectedTaskPane()
 						.getPane());
-
 				frame.setVisible(true);
 			}
 		});
+		
 	}
 
 	private void initComponents() {
 		frame = new JFrame(model.getTitle());
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setBounds(new Rectangle(screenSize));
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		Dimension d=new Dimension(750,600);
+		frame.setBounds(new Rectangle(d));
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		splitPane = new JSplitPane();
-		splitPane.setDividerLocation(200);
+		splitPane.setDividerLocation(250);
 	}
 
 	@Override
 	public void updateTaskPane(TaskPane taskPane) {
 		splitPane.setRightComponent(taskPane.getPane());
+		splitPane.setDividerLocation(250);
 	}
 
 	@Override

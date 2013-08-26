@@ -15,7 +15,7 @@ public class StockControllerImpl implements StockController {
 	public void create() {
 
 	}
-
+	
 	@Override
 	public void edit(Stock entity) {
 

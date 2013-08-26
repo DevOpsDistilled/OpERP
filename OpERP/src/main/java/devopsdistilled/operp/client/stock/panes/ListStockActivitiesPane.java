@@ -33,7 +33,7 @@ public class ListStockActivitiesPane extends SubTaskPane implements
 	private final JPanel pane;
 	private final JTable table;
 	BeanTableModel<StockKeeper> tableModel;
-
+	
 	public ListStockActivitiesPane() {
 		pane = new JPanel();
 		pane.setLayout(new MigLayout("fill"));

@@ -31,7 +31,7 @@ public class ItemDetailsPane extends
 	public ItemDetailsPane() {
 		pane = new JPanel();
 
-		pane.setLayout(new MigLayout("debug", "[][grow]", "[][][][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 
 		JLabel lblItemId = new JLabel("Item ID:");
 		pane.add(lblItemId, "cell 0 0,alignx trailing");
@@ -39,7 +39,7 @@ public class ItemDetailsPane extends
 		itemIdField = new JTextField();
 		itemIdField.setEditable(false);
 		pane.add(itemIdField, "cell 1 0,growx");
-		itemIdField.setColumns(10);
+		itemIdField.setColumns(30);
 
 		JLabel lblItemName = new JLabel("Item Name:");
 		pane.add(lblItemName, "cell 0 1,alignx trailing");
@@ -47,7 +47,7 @@ public class ItemDetailsPane extends
 		itemNameField = new JTextField();
 		itemNameField.setEditable(false);
 		pane.add(itemNameField, "cell 1 1,growx");
-		itemNameField.setColumns(10);
+		itemNameField.setColumns(30);
 
 		JLabel lblProduct = new JLabel("Product:");
 		pane.add(lblProduct, "cell 0 2,alignx trailing");
@@ -55,7 +55,7 @@ public class ItemDetailsPane extends
 		productField = new JTextField();
 		productField.setEditable(false);
 		pane.add(productField, "cell 1 2,growx");
-		productField.setColumns(10);
+		productField.setColumns(30);
 
 		JLabel lblNewLabel = new JLabel("Brand:");
 		pane.add(lblNewLabel, "cell 0 3,alignx trailing,aligny baseline");
@@ -63,7 +63,7 @@ public class ItemDetailsPane extends
 		brandField = new JTextField();
 		brandField.setEditable(false);
 		pane.add(brandField, "cell 1 3,growx");
-		brandField.setColumns(10);
+		brandField.setColumns(30);
 
 		JLabel lblPrice = new JLabel("Price:");
 		pane.add(lblPrice, "cell 0 4,alignx trailing");
@@ -71,7 +71,7 @@ public class ItemDetailsPane extends
 		priceField = new JTextField();
 		priceField.setEditable(false);
 		pane.add(priceField, "cell 1 4,growx");
-		priceField.setColumns(10);
+		priceField.setColumns(30);
 
 	}
 

@@ -35,7 +35,7 @@ public class BrandDetailsPane extends
 		brandIdField = new JTextField();
 		brandIdField.setEditable(false);
 		pane.add(brandIdField, "cell 1 0,growx");
-		brandIdField.setColumns(10);
+		brandIdField.setColumns(30);
 
 		JLabel lblBrandName = new JLabel("Brand Name");
 		pane.add(lblBrandName, "cell 0 1,alignx trailing");
@@ -43,7 +43,7 @@ public class BrandDetailsPane extends
 		brandNameField = new JTextField();
 		brandNameField.setEditable(false);
 		pane.add(brandNameField, "cell 1 1,growx");
-		brandNameField.setColumns(10);
+		brandNameField.setColumns(30);
 
 		JLabel lblManufacturer = new JLabel("Manufacturer");
 		pane.add(lblManufacturer, "cell 0 2,alignx trailing");
@@ -51,7 +51,7 @@ public class BrandDetailsPane extends
 		manufacturerField = new JTextField();
 		manufacturerField.setEditable(false);
 		pane.add(manufacturerField, "cell 1 2,growx");
-		manufacturerField.setColumns(10);
+		manufacturerField.setColumns(30);
 
 	}
 
