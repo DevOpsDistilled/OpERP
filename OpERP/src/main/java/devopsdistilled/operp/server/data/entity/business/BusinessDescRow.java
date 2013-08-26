@@ -67,6 +67,10 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 		this.amount = amount;
 	}
 
+	public void setBusinessDesc(D businessDesc) {
+		this.businessDesc = businessDesc;
+	}
+
 	@Override
 	public Long id() {
 		return null;

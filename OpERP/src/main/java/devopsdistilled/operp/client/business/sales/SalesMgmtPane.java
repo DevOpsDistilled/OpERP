@@ -23,7 +23,7 @@ public class SalesMgmtPane extends TaskPane {
 
 	@Override
 	public String toString() {
-		return new String("Sales Management");
+		return new String("Sales");
 	}
 
 	/**

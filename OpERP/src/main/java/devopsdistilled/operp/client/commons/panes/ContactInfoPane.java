@@ -3,8 +3,11 @@ package devopsdistilled.operp.client.commons.panes;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -48,8 +51,21 @@ public class ContactInfoPane
 		emailField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				controller.getModel().getEntity()
-						.setEmail(emailField.getText().trim());
+				String email = emailField.getText().trim();
+
+				if (!email.equalsIgnoreCase("")) {
+					try {
+						InternetAddress emailAddr = new InternetAddress(email);
+						emailAddr.validate();
+
+						controller.getModel().getEntity().setEmail(email);
+
+					} catch (AddressException e1) {
+						JOptionPane.showMessageDialog(getPane(),
+								"Not a valid email address");
+						e.getComponent().requestFocus();
+					}
+				}
 			}
 		});
 		pane.add(emailField, "cell 1 3,growx");
