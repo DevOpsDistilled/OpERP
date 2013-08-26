@@ -57,7 +57,7 @@ public class SalesMgmtPane extends TaskPane {
 			}
 		});
 		iconNewSale=new ImageIcon(getClass().
-					getResource("/client/icons/new-purchase.jpg"));
+					getResource("/client/icons/new-sale.png"));
 		btnNewSale.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconNewSale));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewSale), "cell 0 2");
 		return pane;

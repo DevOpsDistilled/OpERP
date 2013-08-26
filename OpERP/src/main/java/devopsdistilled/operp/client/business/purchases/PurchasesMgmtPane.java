@@ -60,7 +60,7 @@ public class PurchasesMgmtPane extends TaskPane {
 	@Override
 	public Icon getIcon() {
 		return new ImageIcon(getClass()
-				.getResource("/client/icons/sale_24.png"));
+				.getResource("/client/icons/purchase_24.png"));
 	}
 
 }

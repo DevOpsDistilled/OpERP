@@ -63,21 +63,22 @@ public class AccountMgmtPane extends TaskPane {
 			}
 		});
 		iconReceivePayment=new ImageIcon(getClass().
-					getResource("/client/icons/update-stock.png"));
+					getResource("/client/icons/receive-payment.png"));
 		btnReceivePayment.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconReceivePayment));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnReceivePayment), "cell 0 1 ");
-		iconPayPayment=new ImageIcon(getClass().
-				getResource("/client/icons/update-stock.png"));
 		
-				btnPayPayment = new JButton("<html>Pay<br/> Payment</html>");
-				btnPayPayment.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						paidTransactionController.create();
-					}
-				});
-				btnPayPayment.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconPayPayment));
-				pane.add(StandardButtonHelper.SetStandardSizeForButton(btnPayPayment), "cell 1 1 ");
+
+		btnPayPayment = new JButton("<html>Pay<br/> Payment</html>");
+		btnPayPayment.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			paidTransactionController.create();
+			}
+		});
+		iconPayPayment=new ImageIcon(getClass().
+				getResource("/client/icons/pay-payment.png"));
+		btnPayPayment.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconPayPayment));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnPayPayment), "cell 1 1 ");
 		return pane;
 	}
 
