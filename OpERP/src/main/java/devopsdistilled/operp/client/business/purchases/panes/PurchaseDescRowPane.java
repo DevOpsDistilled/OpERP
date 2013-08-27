@@ -25,6 +25,7 @@ import devopsdistilled.operp.client.business.purchases.panes.controllers.Purchas
 import devopsdistilled.operp.client.business.purchases.panes.models.observers.PurchaseDescRowPaneModelObserver;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
@@ -36,6 +37,9 @@ public class PurchaseDescRowPane
 
 	@Inject
 	private ItemController itemController;
+
+	@Inject
+	private WarehouseController warehouseController;
 
 	private final JPanel pane;
 	private final JTextField priceField;
@@ -91,6 +95,12 @@ public class PurchaseDescRowPane
 		pane.add(warehouseCombo, "cell 1 2,growx");
 
 		btnNewWarehouse = new JButton("New Warehouse");
+		btnNewWarehouse.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warehouseController.create();
+			}
+		});
 		pane.add(btnNewWarehouse, "cell 1 3,alignx right");
 
 		JLabel lblPrice = new JLabel("Price");
