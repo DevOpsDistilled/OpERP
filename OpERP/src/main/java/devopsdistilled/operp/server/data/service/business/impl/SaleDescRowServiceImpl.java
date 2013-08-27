@@ -23,6 +23,4 @@ public class SaleDescRowServiceImpl extends
 		return repo;
 	}
 
-	
-	
 }
