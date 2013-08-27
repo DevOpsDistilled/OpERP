@@ -36,8 +36,9 @@ public class SalePane extends
 
 	private final JPanel pane;
 	private final JComboBox<Customer> customerCombo;
-	private JPanel opBtnPanel;
 	private JPanel saleDescPanel;
+	private final JButton btnCancel;
+	private final JButton btnSale;
 
 	public SalePane() {
 		pane = new JPanel();
@@ -67,15 +68,20 @@ public class SalePane extends
 		pane.add(btnNewCustomer, "cell 1 0");
 
 		saleDescPanel = new JPanel();
-		pane.add(saleDescPanel, "cell 0 2 2097051 1,grow");
+		pane.add(saleDescPanel, "cell 0 2 2 1,grow");
 		saleDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
-		opBtnPanel = new JPanel();
-		pane.add(opBtnPanel, "cell 1 4,grow");
-		opBtnPanel.setLayout(new MigLayout("", "[][][grow]", "[grow]"));
+		btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		pane.add(btnCancel, "flowx,cell 1 4,alignx right");
 
-		JPanel panel = new JPanel();
-		opBtnPanel.add(panel, "cell 2 0,grow");
+		btnSale = new JButton("Sale");
+		pane.add(btnSale, "cell 1 4,alignx right");
 	}
 
 	@Override
@@ -98,7 +104,6 @@ public class SalePane extends
 	public void updateEntity(Sale sale, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
 			getController().getModel().setTitle("New Sale");
-			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
 		}
 	}
 
