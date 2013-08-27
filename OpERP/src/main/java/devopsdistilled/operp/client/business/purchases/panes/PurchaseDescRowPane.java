@@ -199,14 +199,14 @@ public class PurchaseDescRowPane
 
 	@Override
 	public void updateWarehouses(List<Warehouse> warehouses) {
-		Warehouse prevSelected = (Warehouse) itemCombo.getSelectedItem();
-		itemCombo.removeAllItems();
+		Warehouse prevSelected = (Warehouse) warehouseCombo.getSelectedItem();
+		warehouseCombo.removeAllItems();
 
 		for (Warehouse warehouse : warehouses) {
 			warehouseCombo.addItem(warehouse);
 			if (prevSelected != null)
 				if (prevSelected.compareTo(warehouse) == 0)
-					itemCombo.setSelectedItem(warehouse);
+					warehouseCombo.setSelectedItem(warehouse);
 		}
 	}
 
