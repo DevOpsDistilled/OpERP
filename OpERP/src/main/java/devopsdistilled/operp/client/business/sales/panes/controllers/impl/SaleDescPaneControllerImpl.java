@@ -33,10 +33,10 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	public void validate() throws EntityValidationException {
 		Long quantity = model.getSaleDescRow().getQuantity();
 
+		Double rate = model.getSaleDescRow().getRate();
 		if (model.getSaleDescRow().getItem() == null
 				|| model.getSaleDescRow().getWarehouse() == null
-				|| quantity.equals(0L)
-				|| model.getSaleDescRow().getRate().equals(0.0)) {
+				|| quantity.equals(0L) || rate.equals(0.0)) {
 
 			throw new NullFieldException();
 		}
@@ -44,6 +44,9 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 		if (quantity.compareTo(0L) <= 0)
 			throw new EntityValidationException(
 					"Quantity shouldnt' be negative value");
+
+		if (rate.compareTo(0.0) < 0)
+			throw new EntityValidationException("Rate can't be negative");
 
 		// Check if quantity exceeds stock
 		for (Stock stock : stockModel.getEntities())
