@@ -8,9 +8,11 @@ import devopsdistilled.operp.client.business.purchases.panes.controllers.Purchas
 import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDescRowPaneModel;
 import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.items.models.ItemModel;
+import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 
-public class PurchaseDescRowPaneControllerImpl implements PurchaseDescRowPaneController {
+public class PurchaseDescRowPaneControllerImpl implements
+		PurchaseDescRowPaneController {
 
 	@Inject
 	private PurchaseDescRowPane view;
@@ -20,6 +22,9 @@ public class PurchaseDescRowPaneControllerImpl implements PurchaseDescRowPaneCon
 
 	@Inject
 	private ItemModel itemModel;
+
+	@Inject
+	private WarehouseModel warehouseModel;
 
 	@Override
 	public void validate() throws EntityValidationException {
@@ -44,7 +49,8 @@ public class PurchaseDescRowPaneControllerImpl implements PurchaseDescRowPaneCon
 	}
 
 	@Override
-	public void init(PurchaseDescRow purchaseDescRow, EntityOperation entityOperation) {
+	public void init(PurchaseDescRow purchaseDescRow,
+			EntityOperation entityOperation) {
 
 		view.setController(this);
 		view.resetComponents();
@@ -53,6 +59,7 @@ public class PurchaseDescRowPaneControllerImpl implements PurchaseDescRowPaneCon
 		model.setEntityAndEntityOperation(purchaseDescRow, entityOperation);
 
 		itemModel.registerObserver(view);
+		warehouseModel.registerObserver(view);
 	}
 
 }

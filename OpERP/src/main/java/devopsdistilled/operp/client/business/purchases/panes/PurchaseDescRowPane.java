@@ -26,6 +26,7 @@ import devopsdistilled.operp.client.business.purchases.panes.models.observers.Pu
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
@@ -33,7 +34,8 @@ import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 public class PurchaseDescRowPane
 		extends
 		EntityPane<PurchaseDescRow, PurchaseDescRowController, PurchaseDescRowPaneController>
-		implements PurchaseDescRowPaneModelObserver, ItemModelObserver {
+		implements PurchaseDescRowPaneModelObserver, ItemModelObserver,
+		WarehouseModelObserver {
 
 	@Inject
 	private ItemController itemController;
@@ -196,6 +198,19 @@ public class PurchaseDescRowPane
 			if (prevSelected != null)
 				if (prevSelected.compareTo(item) == 0)
 					itemCombo.setSelectedItem(item);
+		}
+	}
+
+	@Override
+	public void updateWarehouses(List<Warehouse> warehouses) {
+		Warehouse prevSelected = (Warehouse) itemCombo.getSelectedItem();
+		itemCombo.removeAllItems();
+
+		for (Warehouse warehouse : warehouses) {
+			warehouseCombo.addItem(warehouse);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(warehouse) == 0)
+					itemCombo.setSelectedItem(warehouse);
 		}
 	}
 
