@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 @MappedSuperclass
 public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
@@ -29,6 +30,10 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 	@JoinColumn(name = "itemId")
 	protected Item item;
 
+	@OneToOne
+	@JoinColumn(name = "warehouseId")
+	protected Warehouse warehouse;
+
 	private Double rate = 0.0;
 	private Long quantity = 0L;
 	private Double amount = 0.0;
@@ -39,6 +44,14 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
 	}
 
 	public Double getRate() {
@@ -73,7 +86,7 @@ public abstract class BusinessDescRow<D extends BusinessDesc<?, ?>> extends
 
 	@Override
 	public Long id() {
-		return null;
+		return businessDescRowId;
 	}
 
 	@Override

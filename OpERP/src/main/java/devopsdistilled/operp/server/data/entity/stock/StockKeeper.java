@@ -32,6 +32,8 @@ public class StockKeeper extends Entiti<Long> {
 
 	private Long quantity;
 
+	private String note;
+
 	@OneToOne
 	@JoinColumn(name = "transferStockKeeperId")
 	private StockKeeper transferStockKeeper;
@@ -74,6 +76,14 @@ public class StockKeeper extends Entiti<Long> {
 
 	public void setTransferStockKeeper(StockKeeper transferStockKeeper) {
 		this.transferStockKeeper = transferStockKeeper;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public Item getItem() {
