@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -19,6 +20,7 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SalePaneModelObserver;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.controllers.CustomerController;
 import devopsdistilled.operp.client.party.models.observers.CustomerModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Sale;
@@ -81,6 +83,21 @@ public class SalePane extends
 		pane.add(btnCancel, "flowx,cell 1 4,alignx right");
 
 		btnSale = new JButton("Sale");
+		btnSale.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					getController().validate();
+
+					Sale sale = getController().save();
+
+					dispose();
+
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
+			}
+		});
 		pane.add(btnSale, "cell 1 4,alignx right");
 	}
 
