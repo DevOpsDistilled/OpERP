@@ -66,10 +66,6 @@ public class PurchaseDescRowPane
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					Item selItem = (Item) e.getItem();
 					getController().getModel().getEntity().setItem(selItem);
-
-					Double price = selItem.getPrice();
-					priceField.setText(price.toString());
-					getController().getModel().getEntity().setRate(price);
 				}
 			}
 		});
