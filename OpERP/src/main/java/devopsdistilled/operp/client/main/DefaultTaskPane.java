@@ -13,20 +13,27 @@ public class DefaultTaskPane extends TaskPane {
 
 	@Override
 	public String toString() {
-		return "OpERP";
+		return "";
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public JComponent getPane() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout(""));
-		panel.add(new JLabel("DefaultTaskPane"));
+		panel.setLayout(new MigLayout("", "[grow]", "[]"));
+
+		JLabel lbl = new JLabel(new ImageIcon(getClass().getResource(
+				"/client/icons/OpErpBanner.jpg")));
+		panel.add(lbl, "cell 0 0,alignx center");
 		return panel;
 	}
 
 	@Override
 	public Icon getIcon() {
-		Icon icon=new ImageIcon(getClass().getResource("/client/icons/ERP_24.png"));
+		Icon icon = new ImageIcon(getClass().getResource(
+				"/client/icons/OpErpLogo.jpg"));
 		return icon;
 
 	}
