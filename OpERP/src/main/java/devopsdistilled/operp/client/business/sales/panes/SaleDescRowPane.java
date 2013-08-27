@@ -48,6 +48,12 @@ public class SaleDescRowPane
 		warehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					Warehouse selWarehouse = (Warehouse) e.getItem();
+
+					updateItems(getController().getItemsInWarehouse(
+							selWarehouse));
+				}
 
 			}
 		});
@@ -70,6 +76,9 @@ public class SaleDescRowPane
 					Double price = selItem.getPrice();
 					priceField.setText(price.toString());
 					getController().getModel().getEntity().setRate(price);
+
+					Long quantity = getController().getQuantityOfItem(selItem);
+					quantityField.setText(quantity.toString());
 				}
 			}
 		});
@@ -154,7 +163,7 @@ public class SaleDescRowPane
 		}
 	}
 
-	public void updateItems(List<Item> items) {
+	private void updateItems(List<Item> items) {
 		Item prevSelected = (Item) itemCombo.getSelectedItem();
 		itemCombo.removeAllItems();
 
@@ -166,15 +175,27 @@ public class SaleDescRowPane
 		}
 	}
 
+	private void updateWarehouses(List<Warehouse> warehouses) {
+		Warehouse prevSelected = (Warehouse) warehouseCombo.getSelectedItem();
+		warehouseCombo.removeAllItems();
+
+		for (Warehouse warehouse : warehouses) {
+			warehouseCombo.addItem(warehouse);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(warehouse) == 0)
+					itemCombo.setSelectedItem(warehouse);
+		}
+	}
+
 	@Override
 	public void updateStock(List<Stock> stocks) {
-		Set<Item> itemSet = new HashSet<>();
+		Set<Warehouse> warehouseSet = new HashSet<>();
 
 		for (Stock stock : stocks)
 			if (stock.getQuantity().compareTo(0L) > 0)
-				itemSet.add(stock.getItem());
+				warehouseSet.add(stock.getWarehouse());
 
-		List<Item> items = new LinkedList<>(itemSet);
-		updateItems(items);
+		List<Warehouse> warehouses = new LinkedList<>(warehouseSet);
+		updateWarehouses(warehouses);
 	}
 }
