@@ -89,7 +89,11 @@ public class PurchaseDescRowPane
 		warehouseCombo.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					Warehouse warehouse = (Warehouse) e.getItem();
+					getController().getModel().getEntity()
+							.setWarehouse(warehouse);
+				}
 			}
 		});
 		pane.add(warehouseCombo, "cell 1 2,growx");
