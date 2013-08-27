@@ -25,26 +25,36 @@ import devopsdistilled.operp.client.business.purchases.panes.controllers.Purchas
 import devopsdistilled.operp.client.business.purchases.panes.models.observers.PurchaseDescRowPaneModelObserver;
 import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
+import devopsdistilled.operp.client.stock.controllers.WarehouseController;
+import devopsdistilled.operp.client.stock.models.observers.WarehouseModelObserver;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class PurchaseDescRowPane
 		extends
 		EntityPane<PurchaseDescRow, PurchaseDescRowController, PurchaseDescRowPaneController>
-		implements PurchaseDescRowPaneModelObserver, ItemModelObserver {
+		implements PurchaseDescRowPaneModelObserver, ItemModelObserver,
+		WarehouseModelObserver {
 
 	@Inject
 	private ItemController itemController;
+
+	@Inject
+	private WarehouseController warehouseController;
 
 	private final JPanel pane;
 	private final JTextField priceField;
 	private final JTextField quantityField;
 	private final JComboBox<Item> itemCombo;
 	private final JButton btnNewItem;
+	private final JLabel lblToWarehouse;
+	private final JComboBox<Warehouse> warehouseCombo;
+	private final JButton btnNewWarehouse;
 
 	public PurchaseDescRowPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
 		JLabel lblItem = new JLabel("Item");
 		pane.add(lblItem, "cell 0 0,alignx trailing");
@@ -56,10 +66,6 @@ public class PurchaseDescRowPane
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					Item selItem = (Item) e.getItem();
 					getController().getModel().getEntity().setItem(selItem);
-
-					Double price = selItem.getPrice();
-					priceField.setText(price.toString());
-					getController().getModel().getEntity().setRate(price);
 				}
 			}
 		});
@@ -74,8 +80,33 @@ public class PurchaseDescRowPane
 		});
 		pane.add(btnNewItem, "cell 1 1,alignx right");
 
+		lblToWarehouse = new JLabel("To Warehouse");
+		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
+
+		warehouseCombo = new JComboBox<>();
+		warehouseCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					Warehouse warehouse = (Warehouse) e.getItem();
+					getController().getModel().getEntity()
+							.setWarehouse(warehouse);
+				}
+			}
+		});
+		pane.add(warehouseCombo, "cell 1 2,growx");
+
+		btnNewWarehouse = new JButton("New Warehouse");
+		btnNewWarehouse.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warehouseController.create();
+			}
+		});
+		pane.add(btnNewWarehouse, "cell 1 3,alignx right");
+
 		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "cell 0 2,alignx trailing");
+		pane.add(lblPrice, "cell 0 4,alignx trailing");
 
 		priceField = new JTextField();
 		priceField.addFocusListener(new FocusAdapter() {
@@ -93,11 +124,11 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(priceField, "cell 1 2,growx");
+		pane.add(priceField, "cell 1 4,growx");
 		priceField.setColumns(10);
 
 		JLabel lblQuantity = new JLabel("Quantity");
-		pane.add(lblQuantity, "cell 0 3,alignx trailing");
+		pane.add(lblQuantity, "cell 0 5,alignx trailing");
 
 		quantityField = new JTextField();
 		quantityField.addFocusListener(new FocusAdapter() {
@@ -117,7 +148,7 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(quantityField, "cell 1 3,growx");
+		pane.add(quantityField, "cell 1 5,growx");
 		quantityField.setColumns(10);
 	}
 
@@ -163,6 +194,19 @@ public class PurchaseDescRowPane
 			if (prevSelected != null)
 				if (prevSelected.compareTo(item) == 0)
 					itemCombo.setSelectedItem(item);
+		}
+	}
+
+	@Override
+	public void updateWarehouses(List<Warehouse> warehouses) {
+		Warehouse prevSelected = (Warehouse) warehouseCombo.getSelectedItem();
+		warehouseCombo.removeAllItems();
+
+		for (Warehouse warehouse : warehouses) {
+			warehouseCombo.addItem(warehouse);
+			if (prevSelected != null)
+				if (prevSelected.compareTo(warehouse) == 0)
+					warehouseCombo.setSelectedItem(warehouse);
 		}
 	}
 
