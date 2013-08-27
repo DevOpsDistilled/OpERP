@@ -27,6 +27,7 @@ import devopsdistilled.operp.client.items.controllers.ItemController;
 import devopsdistilled.operp.client.items.models.observers.ItemModelObserver;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
 import devopsdistilled.operp.server.data.entity.items.Item;
+import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 
 public class PurchaseDescRowPane
 		extends
@@ -41,10 +42,13 @@ public class PurchaseDescRowPane
 	private final JTextField quantityField;
 	private final JComboBox<Item> itemCombo;
 	private final JButton btnNewItem;
+	private final JLabel lblToWarehouse;
+	private final JComboBox<Warehouse> warehouseCombo;
+	private final JButton btnNewWarehouse;
 
 	public PurchaseDescRowPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow]", "[][][][][][]"));
 
 		JLabel lblItem = new JLabel("Item");
 		pane.add(lblItem, "cell 0 0,alignx trailing");
@@ -74,8 +78,23 @@ public class PurchaseDescRowPane
 		});
 		pane.add(btnNewItem, "cell 1 1,alignx right");
 
+		lblToWarehouse = new JLabel("To Warehouse");
+		pane.add(lblToWarehouse, "cell 0 2,alignx trailing");
+
+		warehouseCombo = new JComboBox<>();
+		warehouseCombo.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+			}
+		});
+		pane.add(warehouseCombo, "cell 1 2,growx");
+
+		btnNewWarehouse = new JButton("New Warehouse");
+		pane.add(btnNewWarehouse, "cell 1 3,alignx right");
+
 		JLabel lblPrice = new JLabel("Price");
-		pane.add(lblPrice, "cell 0 2,alignx trailing");
+		pane.add(lblPrice, "cell 0 4,alignx trailing");
 
 		priceField = new JTextField();
 		priceField.addFocusListener(new FocusAdapter() {
@@ -93,11 +112,11 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(priceField, "cell 1 2,growx");
+		pane.add(priceField, "cell 1 4,growx");
 		priceField.setColumns(10);
 
 		JLabel lblQuantity = new JLabel("Quantity");
-		pane.add(lblQuantity, "cell 0 3,alignx trailing");
+		pane.add(lblQuantity, "cell 0 5,alignx trailing");
 
 		quantityField = new JTextField();
 		quantityField.addFocusListener(new FocusAdapter() {
@@ -117,7 +136,7 @@ public class PurchaseDescRowPane
 				}
 			}
 		});
-		pane.add(quantityField, "cell 1 3,growx");
+		pane.add(quantityField, "cell 1 5,growx");
 		quantityField.setColumns(10);
 	}
 
