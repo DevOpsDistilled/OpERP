@@ -27,6 +27,7 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 	@Override
 	public void validate() throws EntityValidationException {
 		if (model.getSaleDescRow().getItem() == null
+				|| model.getSaleDescRow().getWarehouse() == null
 				|| model.getSaleDescRow().getQuantity().equals(0L)
 				|| model.getSaleDescRow().getRate().equals(0.0)) {
 
