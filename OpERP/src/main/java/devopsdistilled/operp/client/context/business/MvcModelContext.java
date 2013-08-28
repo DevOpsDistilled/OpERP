@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDescPaneModel;
 import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDescRowPaneModel;
+import devopsdistilled.operp.client.business.purchases.panes.models.PurchaseDetailsPaneModel;
 import devopsdistilled.operp.client.business.purchases.panes.models.PurchasePaneModel;
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDescPaneModelImpl;
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDescRowPaneModelImpl;
+import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDetailsPaneModelImpl;
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchasePaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescRowPaneModel;
@@ -54,5 +56,10 @@ public class MvcModelContext {
 	@Bean
 	public SaleDetailsPaneModel saleDetailsPaneModel() {
 		return new SaleDetailsPaneModelImpl();
+	}
+
+	@Bean
+	public PurchaseDetailsPaneModel purchaseDetailsPaneModel() {
+		return new PurchaseDetailsPaneModelImpl();
 	}
 }
