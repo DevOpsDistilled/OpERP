@@ -77,6 +77,7 @@ public class UpdateStockPaneControllerImpl implements UpdateStockPaneController 
 		stock.setWarehouse(model.getWarehouse());
 		StockKeeper stockKeeper = new StockKeeper();
 		stockKeeper.setStock(stock);
+		stockKeeper.setNote(model.getNote());
 		stockKeeper.setQuantity(model.getQuantity());
 		return stockKeeperModel.saveAndUpdateModel(stockKeeper);
 	}

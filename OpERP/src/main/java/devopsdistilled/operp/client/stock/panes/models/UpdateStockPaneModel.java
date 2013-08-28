@@ -20,4 +20,8 @@ public interface UpdateStockPaneModel extends
 
 	Item getItem();
 
+	String getNote();
+
+	void setNote(String note);
+
 }
