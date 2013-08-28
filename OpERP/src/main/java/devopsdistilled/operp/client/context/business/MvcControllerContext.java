@@ -11,9 +11,11 @@ import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.Pu
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchasePaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
+import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDescPaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDescRowPaneControllerImpl;
+import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDetailsPaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SalePaneControllerImpl;
 
 @Configuration
@@ -47,5 +49,10 @@ public class MvcControllerContext {
 	@Bean
 	public PurchaseDescRowPaneController purchaseDescRowPaneController() {
 		return new PurchaseDescRowPaneControllerImpl();
+	}
+
+	@Bean
+	public SaleDetailsPaneController saleDetailsPaneController() {
+		return new SaleDetailsPaneControllerImpl();
 	}
 }
