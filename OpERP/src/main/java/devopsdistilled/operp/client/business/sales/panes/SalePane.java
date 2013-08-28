@@ -93,6 +93,8 @@ public class SalePane extends
 
 					dispose();
 
+					saleController.showDetails(sale);
+
 				} catch (EntityValidationException e1) {
 					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
 				}
