@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.stock.panes;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -30,7 +31,6 @@ import devopsdistilled.operp.client.stock.panes.models.observers.UpdateStockPane
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
-import java.awt.Dimension;
 
 public class UpdateStockPane extends SubTaskPane implements
 		UpdateStockPaneModelObserver, ItemModelObserver, WarehouseModelObserver {
@@ -46,15 +46,16 @@ public class UpdateStockPane extends SubTaskPane implements
 
 	@Inject
 	private StockKeepingDetailsPane stockKeepingDetailsPane;
-	
+
 	private final JPanel pane;
 	private final JTextField quantityField;
 	private final JComboBox<Item> comboItems;
 	private final JComboBox<Warehouse> comboWarehouses;
+	private final JTextField noteField;
 
 	public UpdateStockPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][]"));
+		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][][]"));
 
 		JLabel lblItemName = new JLabel("Item Name");
 		pane.add(lblItemName, "cell 0 0,alignx trailing");
@@ -64,14 +65,14 @@ public class UpdateStockPane extends SubTaskPane implements
 		comboItems.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getStateChange() == ItemEvent.SELECTED) {
 					getDialog().pack();
 					controller.getModel().setItem((Item) e.getItem());
 				}
 			}
 		});
 		comboItems.setSelectedItem(null);
-		pane.add(comboItems, "flowx,split 2,cell 1 0,growx");
+		pane.add(comboItems, "flowx,cell 1 0,growx");
 
 		JButton btnNewItem = new JButton("New Item");
 		btnNewItem.addActionListener(new ActionListener() {
@@ -90,14 +91,14 @@ public class UpdateStockPane extends SubTaskPane implements
 		comboWarehouses.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getStateChange() == ItemEvent.SELECTED) {
 					getDialog().pack();
 					controller.getModel().setWarehouse((Warehouse) e.getItem());
 				}
 			}
 		});
 		comboWarehouses.setSelectedItem(null);
-		pane.add(comboWarehouses, "flowx,split 2,cell 1 1,growx");
+		pane.add(comboWarehouses, "flowx,cell 1 1,growx");
 
 		JButton btnNewWarehouse = new JButton("New Warehouse");
 		btnNewWarehouse.addActionListener(new ActionListener() {
@@ -136,7 +137,20 @@ public class UpdateStockPane extends SubTaskPane implements
 				getDialog().dispose();
 			}
 		});
-		pane.add(btnCancel, "flowx,split 3,cell 1 4");
+
+		JLabel lblNote = new JLabel("Note");
+		pane.add(lblNote, "cell 0 3,alignx trailing");
+
+		noteField = new JTextField();
+		noteField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				controller.getModel().setNote(noteField.getText().trim());
+			}
+		});
+		pane.add(noteField, "cell 1 3,growx");
+		noteField.setColumns(20);
+		pane.add(btnCancel, "flowx,cell 1 5");
 
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
@@ -155,7 +169,7 @@ public class UpdateStockPane extends SubTaskPane implements
 
 			}
 		});
-		pane.add(btnUpdate, "cell 1 4");
+		pane.add(btnUpdate, "cell 1 5");
 
 	}
 

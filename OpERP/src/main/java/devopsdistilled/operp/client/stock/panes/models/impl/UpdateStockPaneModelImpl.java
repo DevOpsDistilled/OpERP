@@ -13,6 +13,17 @@ public class UpdateStockPaneModelImpl extends
 	private Item item;
 	private Warehouse warehouse;
 	private Long quantity;
+	private String note;
+
+	@Override
+	public String getNote() {
+		return note;
+	}
+
+	@Override
+	public void setNote(String note) {
+		this.note = note;
+	}
 
 	@Override
 	public Warehouse getWarehouse() {

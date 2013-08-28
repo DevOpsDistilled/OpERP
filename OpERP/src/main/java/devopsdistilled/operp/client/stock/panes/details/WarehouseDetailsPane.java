@@ -1,5 +1,6 @@
 package devopsdistilled.operp.client.stock.panes.details;
 
+import java.awt.Dimension;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class WarehouseDetailsPane extends
 
 	public WarehouseDetailsPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][grow,center]", "[][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow,center]", "[][][][grow]"));
 
 		JLabel lblWarehouseId = new JLabel("Warehouse Id");
 		pane.add(lblWarehouseId, "cell 0 0,alignx trailing");
@@ -72,7 +73,8 @@ public class WarehouseDetailsPane extends
 		final JScrollPane scrollPane = new JScrollPane(table,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pane.add(scrollPane, "cell 1 3");
+		scrollPane.setPreferredSize(new Dimension(456, 200));
+		pane.add(scrollPane, "cell 1 3,grow");
 
 	}
 
