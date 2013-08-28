@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.business.purchases.controllers.PurchaseController;
+import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchaseDetailsPaneController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchasePaneController;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
 
@@ -11,6 +12,9 @@ public class PurchaseControllerImpl implements PurchaseController {
 
 	@Inject
 	private PurchasePaneController purchasePaneController;
+
+	@Inject
+	private PurchaseDetailsPaneController purchaseDetailsPaneController;
 
 	@Override
 	public void create() {
@@ -36,9 +40,8 @@ public class PurchaseControllerImpl implements PurchaseController {
 	}
 
 	@Override
-	public void showDetails(Purchase entity) {
-		// TODO Auto-generated method stub
-
+	public void showDetails(Purchase purchase) {
+		purchaseDetailsPaneController.init(purchase, EntityOperation.Details);
 	}
 
 }
