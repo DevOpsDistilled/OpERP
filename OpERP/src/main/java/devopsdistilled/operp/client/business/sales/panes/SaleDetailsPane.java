@@ -9,15 +9,19 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
+import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDetailsPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.business.BusinessDescRow;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 
 public class SaleDetailsPane extends
-		EntityPane<Sale, SaleController, SaleDetailsPaneController> {
+		EntityPane<Sale, SaleController, SaleDetailsPaneController> implements
+		SaleDetailsPaneModelObserver {
 
 	private final JPanel pane;
 	private final JTextField saleIdField;
@@ -34,26 +38,26 @@ public class SaleDetailsPane extends
 
 	public SaleDetailsPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[][][]", "[][grow][][][][]"));
+		pane.setLayout(new MigLayout("", "[][grow][grow]", "[][grow][][][][]"));
 
 		JLabel lblSaleId = new JLabel("Sale ID");
 		pane.add(lblSaleId, "flowx,cell 0 0,alignx trailing");
 
 		JLabel lblCustomer = new JLabel("Customer");
-		pane.add(lblCustomer, "flowx,cell 1 0");
+		pane.add(lblCustomer, "flowx,cell 1 0,alignx center");
 
 		JLabel lblDate = new JLabel("Date");
-		pane.add(lblDate, "flowx,cell 2 0");
+		pane.add(lblDate, "flowx,cell 2 0,alignx trailing");
 
 		dateField = new JTextField();
 		dateField.setEditable(false);
 		pane.add(dateField, "cell 2 0");
-		dateField.setColumns(10);
+		dateField.setColumns(20);
 
 		customerField = new JTextField();
 		customerField.setEditable(false);
-		pane.add(customerField, "cell 1 0");
-		customerField.setColumns(10);
+		pane.add(customerField, "cell 1 0,alignx center");
+		customerField.setColumns(20);
 
 		saleIdField = new JTextField();
 		saleIdField.setEditable(false);
@@ -66,27 +70,27 @@ public class SaleDetailsPane extends
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		pane.add(scrollPane, "cell 0 1 3 1,grow");
 
-		JLabel lblDiscount = new JLabel("Discount");
-		pane.add(lblDiscount, "cell 1 2,alignx trailing");
-
-		discountField = new JTextField();
-		discountField.setEditable(false);
-		pane.add(discountField, "cell 2 2,growx");
-		discountField.setColumns(10);
-
-		lblTotal = new JLabel("Total");
-		pane.add(lblTotal, "cell 1 3,alignx trailing");
-
-		totalField = new JTextField();
-		totalField.setEditable(false);
-		pane.add(totalField, "cell 2 3,growx");
-		totalField.setColumns(10);
-
 		btnReceivePayment = new JButton("Receive Payment");
 		pane.add(btnReceivePayment, "cell 0 5");
 
 		btnOk = new JButton("OK");
 		pane.add(btnOk, "cell 2 5,alignx trailing");
+
+		JLabel lblDiscount = new JLabel("Discount");
+		pane.add(lblDiscount, "flowx,cell 2 2,alignx trailing");
+
+		discountField = new JTextField();
+		discountField.setEditable(false);
+		pane.add(discountField, "cell 2 2");
+		discountField.setColumns(10);
+
+		lblTotal = new JLabel("Total");
+		pane.add(lblTotal, "flowx,cell 2 3,alignx trailing");
+
+		totalField = new JTextField();
+		totalField.setEditable(false);
+		pane.add(totalField, "cell 2 3");
+		totalField.setColumns(10);
 	}
 
 	@Override
@@ -101,5 +105,25 @@ public class SaleDetailsPane extends
 	@Override
 	public SaleController getEntityController() {
 		return null;
+	}
+
+	@Override
+	public void updateEntity(Sale sale, EntityOperation entityOperation) {
+		saleIdField.setText(sale.getBusinessId().toString());
+		customerField.setText(sale.getParty().toString());
+		dateField.setText(sale.getDate().toString());
+		discountField.setText(sale.getBusinessDesc().getDiscountAmount()
+				.toString());
+		totalField.setText(sale.getAmount().toString());
+
+		tableModel = null;
+		tableModel = new BeanTableModel<>(SaleDescRow.class,
+				BusinessDescRow.class, sale.getBusinessDesc().getDescRows());
+
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			tableModel.setColumnEditable(i, false);
+		}
+		tableModel.setModelEditable(false);
+		table.setModel(tableModel);
 	}
 }
