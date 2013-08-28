@@ -38,7 +38,15 @@ public class SaleDetailsPaneControllerImpl implements SaleDetailsPaneController 
 
 	@Override
 	public void init(Sale sale, EntityOperation entityOperation) {
-		// TODO Auto-generated method stub
+		if (EntityOperation.Details != entityOperation)
+			return;
+
+		view.setController(this);
+
+		model.registerObserver(view);
+		model.setEntityAndEntityOperation(sale, entityOperation);
+
+		view.init();
 
 	}
 
