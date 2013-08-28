@@ -1,11 +1,12 @@
 package devopsdistilled.operp.client.business.sales.panes.models.i;
 
-import devopsdistilled.operp.client.abstracts.AbstractPaneModel;
+import devopsdistilled.operp.client.abstracts.AbstractEntityPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDetailsPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDetailsPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.business.Sale;
 
 public class SaleDetailsPaneModelImpl extends
-		AbstractPaneModel<SaleDetailsPaneModelObserver> implements
+		AbstractEntityPaneModel<Sale, SaleDetailsPaneModelObserver> implements
 		SaleDetailsPaneModel {
 
 	@Override

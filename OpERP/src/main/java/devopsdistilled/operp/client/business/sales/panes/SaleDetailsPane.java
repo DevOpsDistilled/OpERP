@@ -9,11 +9,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-import devopsdistilled.operp.client.abstracts.SubTaskPane;
+import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
+import devopsdistilled.operp.client.business.sales.controllers.SaleController;
+import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
+import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 
-public class SaleDetailsPane extends SubTaskPane {
+public class SaleDetailsPane extends
+		EntityPane<Sale, SaleController, SaleDetailsPaneController> {
 
 	private final JPanel pane;
 	private final JTextField saleIdField;
@@ -66,6 +70,7 @@ public class SaleDetailsPane extends SubTaskPane {
 		pane.add(lblDiscount, "cell 1 2,alignx trailing");
 
 		discountField = new JTextField();
+		discountField.setEditable(false);
 		pane.add(discountField, "cell 2 2,growx");
 		discountField.setColumns(10);
 
@@ -73,6 +78,7 @@ public class SaleDetailsPane extends SubTaskPane {
 		pane.add(lblTotal, "cell 1 3,alignx trailing");
 
 		totalField = new JTextField();
+		totalField.setEditable(false);
 		pane.add(totalField, "cell 2 3,growx");
 		totalField.setColumns(10);
 
@@ -86,5 +92,14 @@ public class SaleDetailsPane extends SubTaskPane {
 	@Override
 	public JComponent getPane() {
 		return pane;
+	}
+
+	@Override
+	public void resetComponents() {
+	}
+
+	@Override
+	public SaleController getEntityController() {
+		return null;
 	}
 }
