@@ -13,9 +13,9 @@ import devopsdistilled.operp.client.business.sales.panes.models.SaleDescPaneMode
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescRowPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDetailsPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SalePaneModel;
-import devopsdistilled.operp.client.business.sales.panes.models.i.SaleDetailsPaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDescPaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDescRowPaneModelImpl;
+import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDetailsPaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SalePaneModelImpl;
 
 @Configuration
