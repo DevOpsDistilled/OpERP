@@ -2,6 +2,7 @@ package devopsdistilled.operp.client.party.panes;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.SubTaskPane;
@@ -71,6 +74,24 @@ public class ListVendorPane extends SubTaskPane implements
 		}
 		tableModel.setModelEditable(false);
 		table.setModel(tableModel);
+
+		JTableHeader tableHeader = table.getTableHeader();
+		Enumeration<TableColumn> columns = tableHeader.getColumnModel()
+				.getColumns();
+		while (columns.hasMoreElements()) {
+			final TableColumn column = columns.nextElement();
+			String columnName = (String) column.getHeaderValue();
+			if (columnName.equalsIgnoreCase("Contact Info")) {
+
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						table.removeColumn(column);
+					}
+				});
+			}
+
+		}
 	}
 
 }

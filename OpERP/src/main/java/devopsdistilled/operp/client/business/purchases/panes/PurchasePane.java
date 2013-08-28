@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -19,14 +20,15 @@ import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.business.purchases.controllers.PurchaseController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchasePaneController;
 import devopsdistilled.operp.client.business.purchases.panes.models.observers.PurchasePaneModelObserver;
+import devopsdistilled.operp.client.exceptions.EntityValidationException;
 import devopsdistilled.operp.client.party.controllers.VendorController;
 import devopsdistilled.operp.client.party.models.observers.VendorModelObserver;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
 import devopsdistilled.operp.server.data.entity.party.Vendor;
 
 public class PurchasePane extends
-		EntityPane<Purchase, PurchaseController, PurchasePaneController> implements
-		PurchasePaneModelObserver, VendorModelObserver {
+		EntityPane<Purchase, PurchaseController, PurchasePaneController>
+		implements PurchasePaneModelObserver, VendorModelObserver {
 
 	@Inject
 	private PurchaseController saleController;
@@ -36,8 +38,9 @@ public class PurchasePane extends
 
 	private final JPanel pane;
 	private final JComboBox<Vendor> vendorCombo;
-	private JPanel opBtnPanel;
 	private JPanel saleDescPanel;
+	private final JButton btnCancel;
+	private final JButton btnPurchase;
 
 	public PurchasePane() {
 		pane = new JPanel();
@@ -67,21 +70,41 @@ public class PurchasePane extends
 		pane.add(btnNewVendor, "cell 1 0");
 
 		saleDescPanel = new JPanel();
-		pane.add(saleDescPanel, "cell 0 2 2097051 1,grow");
+		pane.add(saleDescPanel, "cell 0 2 2 1,grow");
 		saleDescPanel.setLayout(new MigLayout("", "[]", "[]"));
 
-		opBtnPanel = new JPanel();
-		pane.add(opBtnPanel, "cell 1 4,grow");
-		opBtnPanel.setLayout(new MigLayout("", "[][][grow]", "[grow]"));
+		btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		pane.add(btnCancel, "flowx,cell 1 4,alignx trailing");
 
-		JPanel panel = new JPanel();
-		opBtnPanel.add(panel, "cell 2 0,grow");
+		btnPurchase = new JButton("Purchase");
+		btnPurchase.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					getController().validate();
+
+					Purchase purchase = getController().save();
+
+					dispose();
+
+					saleController.showDetails(purchase);
+
+				} catch (EntityValidationException e1) {
+					JOptionPane.showMessageDialog(getPane(), e1.getMessage());
+				}
+			}
+		});
+		pane.add(btnPurchase, "cell 1 4, alignx right");
 	}
 
 	@Override
 	public void resetComponents() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -98,7 +121,6 @@ public class PurchasePane extends
 	public void updateEntity(Purchase sale, EntityOperation entityOperation) {
 		if (EntityOperation.Create == entityOperation) {
 			getController().getModel().setTitle("New Purchase");
-			opBtnPanel = setBtnPanel(createOpPanel, opBtnPanel);
 		}
 	}
 
