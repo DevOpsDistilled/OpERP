@@ -1,5 +1,8 @@
 package devopsdistilled.operp.client.business.sales.panes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -74,6 +77,12 @@ public class SaleDetailsPane extends
 		pane.add(btnReceivePayment, "cell 0 5");
 
 		btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		pane.add(btnOk, "cell 2 5,alignx trailing");
 
 		JLabel lblDiscount = new JLabel("Discount");
