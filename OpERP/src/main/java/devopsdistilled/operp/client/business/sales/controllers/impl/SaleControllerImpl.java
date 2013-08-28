@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
+import devopsdistilled.operp.client.business.sales.panes.controllers.ListSalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
 import devopsdistilled.operp.server.data.entity.business.Sale;
@@ -15,6 +16,9 @@ public class SaleControllerImpl implements SaleController {
 
 	@Inject
 	private SaleDetailsPaneController saleDetailsPaneController;
+
+	@Inject
+	private ListSalePaneController listSalePaneController;
 
 	@Override
 	public void create() {
@@ -29,8 +33,7 @@ public class SaleControllerImpl implements SaleController {
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-
+		listSalePaneController.init();
 	}
 
 	@Override
