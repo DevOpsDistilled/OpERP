@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.business.sales.panes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -15,9 +16,11 @@ import net.miginfocom.swing.MigLayout;
 import devopsdistilled.operp.client.abstracts.EntityOperation;
 import devopsdistilled.operp.client.abstracts.EntityPane;
 import devopsdistilled.operp.client.abstracts.libs.BeanTableModel;
+import devopsdistilled.operp.client.account.panes.controllers.ReceivedTransactionPaneController;
 import devopsdistilled.operp.client.business.sales.controllers.SaleController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
 import devopsdistilled.operp.client.business.sales.panes.models.observers.SaleDetailsPaneModelObserver;
+import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 import devopsdistilled.operp.server.data.entity.business.BusinessDescRow;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
@@ -25,6 +28,9 @@ import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
 public class SaleDetailsPane extends
 		EntityPane<Sale, SaleController, SaleDetailsPaneController> implements
 		SaleDetailsPaneModelObserver {
+
+	@Inject
+	private ReceivedTransactionPaneController receivedTransactionPaneController;
 
 	private final JPanel pane;
 	private final JTextField saleIdField;
@@ -74,6 +80,21 @@ public class SaleDetailsPane extends
 		pane.add(scrollPane, "cell 0 1 3 1,grow");
 
 		btnReceivePayment = new JButton("Receive Payment");
+		btnReceivePayment.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ReceivedTransaction transaction = new ReceivedTransaction();
+				transaction.setAccount(getController().getModel().getEntity()
+						.getParty().getAccount());
+				transaction.setNote("Sale #"
+						+ getController().getModel().getEntity()
+								.getBusinessId());
+				transaction.setAmount(getController().getModel().getEntity()
+						.getAmount());
+				receivedTransactionPaneController.init(transaction,
+						EntityOperation.Create);
+			}
+		});
 		pane.add(btnReceivePayment, "cell 0 5");
 
 		btnOk = new JButton("OK");
