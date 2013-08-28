@@ -1,4 +1,4 @@
-package devopsdistilled.operp.client.business.sales.panes.models.i;
+package devopsdistilled.operp.client.business.sales.panes.models.impl;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDetailsPaneModel;
