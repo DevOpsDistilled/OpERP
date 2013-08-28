@@ -3,6 +3,7 @@ package devopsdistilled.operp.client.context.business;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.business.purchases.panes.ListPurchasePane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchaseDescPane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchaseDescRowPane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchaseDetailsPane;
@@ -60,4 +61,10 @@ public class MvcViewContext {
 	public ListSalePane listSalePane() {
 		return new ListSalePane();
 	}
+
+	@Bean
+	public ListPurchasePane listPurchasePane() {
+		return new ListPurchasePane();
+	}
+
 }
