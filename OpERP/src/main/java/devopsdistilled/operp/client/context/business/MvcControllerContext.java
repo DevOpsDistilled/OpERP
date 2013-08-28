@@ -11,10 +11,12 @@ import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.Pu
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchaseDescRowPaneControllerImpl;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchaseDetailsPaneControllerImpl;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchasePaneControllerImpl;
+import devopsdistilled.operp.client.business.sales.panes.controllers.ListSalePaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDescRowPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SaleDetailsPaneController;
 import devopsdistilled.operp.client.business.sales.panes.controllers.SalePaneController;
+import devopsdistilled.operp.client.business.sales.panes.controllers.impl.ListSalePaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDescPaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDescRowPaneControllerImpl;
 import devopsdistilled.operp.client.business.sales.panes.controllers.impl.SaleDetailsPaneControllerImpl;
@@ -61,6 +63,11 @@ public class MvcControllerContext {
 	@Bean
 	public PurchaseDetailsPaneController purchaseDetailsPaneController() {
 		return new PurchaseDetailsPaneControllerImpl();
+	}
+
+	@Bean
+	public ListSalePaneController listSalePaneController() {
+		return new ListSalePaneControllerImpl();
 	}
 
 }
