@@ -11,10 +11,12 @@ import devopsdistilled.operp.client.business.purchases.panes.models.impl.Purchas
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDescRowPaneModelImpl;
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchaseDetailsPaneModelImpl;
 import devopsdistilled.operp.client.business.purchases.panes.models.impl.PurchasePaneModelImpl;
+import devopsdistilled.operp.client.business.sales.panes.models.ListSalePaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDescRowPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SaleDetailsPaneModel;
 import devopsdistilled.operp.client.business.sales.panes.models.SalePaneModel;
+import devopsdistilled.operp.client.business.sales.panes.models.impl.ListSalePaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDescPaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDescRowPaneModelImpl;
 import devopsdistilled.operp.client.business.sales.panes.models.impl.SaleDetailsPaneModelImpl;
@@ -61,5 +63,10 @@ public class MvcModelContext {
 	@Bean
 	public PurchaseDetailsPaneModel purchaseDetailsPaneModel() {
 		return new PurchaseDetailsPaneModelImpl();
+	}
+
+	@Bean
+	public ListSalePaneModel listSalePaneModel() {
+		return new ListSalePaneModelImpl();
 	}
 }

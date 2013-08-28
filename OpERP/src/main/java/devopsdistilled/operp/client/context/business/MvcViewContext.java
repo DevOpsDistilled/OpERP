@@ -7,6 +7,7 @@ import devopsdistilled.operp.client.business.purchases.panes.PurchaseDescPane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchaseDescRowPane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchaseDetailsPane;
 import devopsdistilled.operp.client.business.purchases.panes.PurchasePane;
+import devopsdistilled.operp.client.business.sales.panes.ListSalePane;
 import devopsdistilled.operp.client.business.sales.panes.SaleDescPane;
 import devopsdistilled.operp.client.business.sales.panes.SaleDescRowPane;
 import devopsdistilled.operp.client.business.sales.panes.SaleDetailsPane;
@@ -53,5 +54,10 @@ public class MvcViewContext {
 	@Bean
 	public PurchaseDetailsPane purchaseDetailsPane() {
 		return new PurchaseDetailsPane();
+	}
+
+	@Bean
+	public ListSalePane listSalePane() {
+		return new ListSalePane();
 	}
 }
