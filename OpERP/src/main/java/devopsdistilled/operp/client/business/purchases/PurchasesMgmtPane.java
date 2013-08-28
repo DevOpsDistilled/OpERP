@@ -54,6 +54,15 @@ public class PurchasesMgmtPane extends TaskPane {
 				.SetStandardSizeForImage(iconNewPurchase));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewPurchase),
 				"cell 0 2");
+
+		JButton btnListPurchases = new JButton("List Purchases");
+		btnListPurchases.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				purchaseController.list();
+			}
+		});
+		pane.add(btnListPurchases, "cell 0 2");
 		return pane;
 	}
 

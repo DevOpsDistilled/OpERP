@@ -3,10 +3,12 @@ package devopsdistilled.operp.client.context.business;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import devopsdistilled.operp.client.business.purchases.panes.controllers.ListPurchasePaneController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchaseDescPaneController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchaseDescRowPaneController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchaseDetailsPaneController;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.PurchasePaneController;
+import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.ListPurchasePaneControllerImpl;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchaseDescPaneControllerImpl;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchaseDescRowPaneControllerImpl;
 import devopsdistilled.operp.client.business.purchases.panes.controllers.impl.PurchaseDetailsPaneControllerImpl;
@@ -68,6 +70,11 @@ public class MvcControllerContext {
 	@Bean
 	public ListSalePaneController listSalePaneController() {
 		return new ListSalePaneControllerImpl();
+	}
+
+	@Bean
+	public ListPurchasePaneController listPurchasePaneController() {
+		return new ListPurchasePaneControllerImpl();
 	}
 
 }
