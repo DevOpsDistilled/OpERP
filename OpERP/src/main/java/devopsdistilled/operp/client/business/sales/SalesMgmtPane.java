@@ -22,7 +22,10 @@ public class SalesMgmtPane extends TaskPane {
 	@Inject
 	private SaleController saleController;
 	private JButton btnNewSale;
+	private JButton btnListSales;
+	
 	private ImageIcon iconNewSale;
+	private ImageIcon iconListSales;
 
 	@Override
 	public String toString() {
@@ -41,7 +44,7 @@ public class SalesMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
+		pane.setLayout(new MigLayout("", "[]50[]", "[]15[][]"));
 		JLabel label = new JLabel("Sales Management");
 		pane.add(label, "cell 0 0 2097051 1,alignx center,aligny top");
 
@@ -55,21 +58,23 @@ public class SalesMgmtPane extends TaskPane {
 				saleController.create();
 			}
 		});
-		iconNewSale = new ImageIcon(getClass().getResource(
-				"/client/icons/new-purchase.jpg"));
-		btnNewSale.setIcon(StandardButtonHelper
-				.SetStandardSizeForImage(iconNewSale));
-		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewSale),
-				"cell 0 2");
+		iconNewSale=new ImageIcon(getClass().
+					getResource("/client/icons/new-sale.png"));
+		btnNewSale.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconNewSale));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewSale), "cell 0 1");
+		
 
-		JButton btnListSales = new JButton("List Sales");
+		btnListSales = new JButton("List Sales");
 		btnListSales.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				saleController.list();
 			}
 		});
-		pane.add(btnListSales, "cell 0 2");
+		iconListSales=new ImageIcon(getClass().
+					getResource("/client/icons/list.png"));
+		btnListSales.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListSales));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListSales), "cell 1 1 ");
 		return pane;
 	}
 

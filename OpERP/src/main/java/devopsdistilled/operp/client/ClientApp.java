@@ -27,6 +27,7 @@ public class ClientApp {
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
+
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();
 		
