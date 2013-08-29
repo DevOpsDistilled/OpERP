@@ -25,6 +25,10 @@ public class PurchasesMgmtPane extends TaskPane {
 	private JButton btnNewPurchase;
 	private ImageIcon iconNewPurchase;
 
+	private JButton btnListPurchases;
+
+	private ImageIcon iconListPurchases;
+
 	@Override
 	public String toString() {
 		return new String("Purchases");
@@ -36,10 +40,10 @@ public class PurchasesMgmtPane extends TaskPane {
 	@Override
 	public JComponent getPane() {
 		JPanel pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[136px,grow]", "[15px][][]"));
+		pane.setLayout(new MigLayout("", "[]50[]", "[]20[][]"));
 		JLabel label = new JLabel("Purchases Management");
 		label.setFont(new Font("Dialog", Font.BOLD, 20));
-		pane.add(label, "cell 0 0 2097051 1,alignx center,aligny top");
+		pane.add(label, "cell 0 0 500 1,alignx center,aligny top");
 
 		btnNewPurchase = new JButton("<html>New Purchase</html>");
 		btnNewPurchase.addActionListener(new ActionListener() {
@@ -53,14 +57,26 @@ public class PurchasesMgmtPane extends TaskPane {
 		btnNewPurchase.setIcon(StandardButtonHelper
 				.SetStandardSizeForImage(iconNewPurchase));
 		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnNewPurchase),
-				"cell 0 2");
+				"cell 0 1");
+
+		btnListPurchases = new JButton("<html>List Purchases</html>");
+		btnListPurchases.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				purchaseController.list();
+			}
+		});
+		iconListPurchases=new ImageIcon(
+					getClass().getResource("/client/icons/list.png"));
+		btnListPurchases.setIcon(StandardButtonHelper.SetStandardSizeForImage(iconListPurchases));
+		pane.add(StandardButtonHelper.SetStandardSizeForButton(btnListPurchases), "cell 1 1");
 		return pane;
 	}
 
 	@Override
 	public Icon getIcon() {
 		return new ImageIcon(getClass()
-				.getResource("/client/icons/sale_24.png"));
+				.getResource("/client/icons/purchase_24.png"));
 	}
 
 }

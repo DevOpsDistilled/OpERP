@@ -55,7 +55,7 @@ public class UpdateStockPane extends SubTaskPane implements
 
 	public UpdateStockPane() {
 		pane = new JPanel();
-		pane.setLayout(new MigLayout("", "[]25[grow]", "[][][][][][]"));
+		pane.setLayout(new MigLayout("", "[]25[grow]", "[][]"));
 
 		JLabel lblItemName = new JLabel("Item Name");
 		pane.add(lblItemName, "cell 0 0,alignx trailing");
