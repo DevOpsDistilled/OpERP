@@ -94,7 +94,7 @@ public class JpaContext {
 	public Properties hibernateProperties() {
 		Properties hibernateProps = new Properties();
 		hibernateProps.setProperty("hibernate.hbm2ddl.auto",
-				env.getProperty("hibernate.hbm2ddl.auto"));
+				System.getProperty("hibernate.hbm2ddl.auto"));
 		hibernateProps.setProperty("hibernate.format_sql",
 				env.getProperty("hibernate.format_sql"));
 		hibernateProps.setProperty("hibernate.show_sql",
