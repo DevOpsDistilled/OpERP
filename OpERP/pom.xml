@@ -27,30 +27,45 @@
 			</plugin>
 
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>devopsdistilled.operp.server.ServerApp</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
+				<groupId>org.dstovall</groupId>
+				<artifactId>onejar-maven-plugin</artifactId>
+				<version>1.4.4</version>
 				<executions>
 					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
+						<id>build-first</id>
+						<configuration>
+							<mainClass>devopsdistilled.operp.server.ServerApp</mainClass>
+							<attachToBuild>true</attachToBuild>
+							<classifier>onejar</classifier>
+							<filename>ServerApp.jar</filename>
+						</configuration>
 						<goals>
-							<goal>single</goal>
+							<goal>one-jar</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>build-second</id>
+						<configuration>
+							<mainClass>devopsdistilled.operp.client.ClientApp</mainClass>
+							<attachToBuild>true</attachToBuild>
+							<classifier>onejar</classifier>
+							<filename>ClientApp.jar</filename>
+						</configuration>
+						<goals>
+							<goal>one-jar</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>onejar-maven-plugin.googlecode.com</id>
+			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<dependency>
