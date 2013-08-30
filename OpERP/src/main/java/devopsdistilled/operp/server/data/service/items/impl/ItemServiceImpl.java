@@ -87,4 +87,8 @@ public class ItemServiceImpl extends
 		return itemRepository.findByItemName(entityName);
 	}
 
+	@Override
+	public void registerClient(String clientAddress) {
+		System.out.println("Client from " + clientAddress);
+	}
 }
