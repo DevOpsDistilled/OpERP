@@ -28,7 +28,7 @@ public class ClientApp {
 		if (args.length > 0)
 			System.setProperty("server.rmi.host.address", args[0]);
 		else
-			System.setProperty("server.rmi.host.address", "127.0.1.1");
+			System.setProperty("server.rmi.host.address", "localhost");
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
