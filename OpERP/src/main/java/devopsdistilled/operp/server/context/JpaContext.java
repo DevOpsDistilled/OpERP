@@ -27,8 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "devopsdistilled.operp.server.data.repo", repositoryImplementationPostfix = "CustomImpl")
 @EnableTransactionManagement
-@PropertySource(value = { "server/jdbc.properties",
-		"server/hibernate.properties" })
+@PropertySource(value = { "classpath:/server/jdbc.properties",
+		"classpath:/server/hibernate.properties" })
 @ComponentScan("devopsdistilled.operp.server.data")
 public class JpaContext {
 
@@ -94,7 +94,7 @@ public class JpaContext {
 	public Properties hibernateProperties() {
 		Properties hibernateProps = new Properties();
 		hibernateProps.setProperty("hibernate.hbm2ddl.auto",
-				env.getProperty("hibernate.hbm2ddl.auto"));
+				System.getProperty("hibernate.hbm2ddl.auto"));
 		hibernateProps.setProperty("hibernate.format_sql",
 				env.getProperty("hibernate.format_sql"));
 		hibernateProps.setProperty("hibernate.show_sql",

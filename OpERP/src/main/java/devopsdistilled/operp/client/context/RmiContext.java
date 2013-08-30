@@ -1,6 +1,5 @@
 package devopsdistilled.operp.client.context;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -19,10 +18,17 @@ import devopsdistilled.operp.client.context.stock.StockRmiContext;
 @Import({ ItemRmiContext.class, StockRmiContext.class, PartyRmiContext.class,
 		BusinessRmiContext.class, AccountRmiContext.class,
 		EmployeeRmiContext.class })
-public class RmiContext {
+public abstract class RmiContext {
 
-	@Value("${rmi.url}")
+	// @Value("${rmi.port}")
+	protected String rmiPort = "1099";
+
 	protected String rmiUrl;
+
+	public RmiContext() {
+		String rmiHost = System.getProperty("server.rmi.host.address");
+		rmiUrl = new String("rmi://" + rmiHost + ":" + rmiPort);
+	}
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {

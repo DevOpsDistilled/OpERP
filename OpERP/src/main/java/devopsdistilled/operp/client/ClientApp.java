@@ -25,12 +25,17 @@ public class ClientApp {
 					.println("Nimbus Look and Feel not available.\nReverting to default");
 		}
 
+		if (args.length > 0)
+			System.setProperty("server.rmi.host.address", args[0]);
+		else
+			System.setProperty("server.rmi.host.address", "127.0.1.1");
+
 		ApplicationContext context = new AnnotationConfigApplicationContext(
 				AppContext.class);
 
 		MainWindow window = context.getBean(MainWindow.class);
 		window.init();
-		
+
 		System.out.println(context);
 	}
 }
