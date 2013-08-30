@@ -40,6 +40,7 @@ public class ServerApp {
 
 		} catch (IOException e) {
 			System.err.println("hibernate.properties file not found!");
+			e.printStackTrace();
 		}
 
 		System.out.println(context);
