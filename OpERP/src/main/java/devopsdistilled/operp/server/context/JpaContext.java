@@ -27,8 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = "devopsdistilled.operp.server.data.repo", repositoryImplementationPostfix = "CustomImpl")
 @EnableTransactionManagement
-@PropertySource(value = { "server/jdbc.properties",
-		"server/hibernate.properties" })
+@PropertySource(value = { "classpath:/server/jdbc.properties",
+		"classpath:/server/hibernate.properties" })
 @ComponentScan("devopsdistilled.operp.server.data")
 public class JpaContext {
 
