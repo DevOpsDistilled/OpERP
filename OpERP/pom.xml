@@ -27,45 +27,48 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.dstovall</groupId>
-				<artifactId>onejar-maven-plugin</artifactId>
-				<version>1.4.4</version>
+				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>build-first</id>
-						<configuration>
-							<mainClass>devopsdistilled.operp.server.ServerApp</mainClass>
-							<attachToBuild>true</attachToBuild>
-							<classifier>onejar</classifier>
-							<filename>ServerApp.jar</filename>
-						</configuration>
+						<id>build-server</id>
+						<phase>package</phase> <!-- bind to the packaging phase -->
 						<goals>
-							<goal>one-jar</goal>
+							<goal>single</goal>
 						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>devopsdistilled.operp.server.ServerApp</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<finalName>ServerApp.jar</finalName>
+						</configuration>
 					</execution>
 					<execution>
-						<id>build-second</id>
-						<configuration>
-							<mainClass>devopsdistilled.operp.client.ClientApp</mainClass>
-							<attachToBuild>true</attachToBuild>
-							<classifier>onejar</classifier>
-							<filename>ClientApp.jar</filename>
-						</configuration>
+						<id>build-client</id>
+						<phase>package</phase> <!-- bind to the packaging phase -->
 						<goals>
-							<goal>one-jar</goal>
+							<goal>single</goal>
 						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>devopsdistilled.operp.client.ClientApp</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<finalName>ClientApp.jar</finalName>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>onejar-maven-plugin.googlecode.com</id>
-			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<dependencies>
 		<dependency>
