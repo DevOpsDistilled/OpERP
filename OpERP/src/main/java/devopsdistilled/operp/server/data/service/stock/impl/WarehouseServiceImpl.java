@@ -4,15 +4,17 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import devopsdistilled.operp.client.stock.models.WarehouseModel;
 import devopsdistilled.operp.server.data.entity.stock.Warehouse;
 import devopsdistilled.operp.server.data.repo.stock.WarehouseRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.stock.WarehouseService;
 
 @Service
-public class WarehouseServiceImpl extends
-		AbstractEntityService<Warehouse, Long, WarehouseRepository> implements
-		WarehouseService {
+public class WarehouseServiceImpl
+		extends
+		AbstractEntityService<Warehouse, Long, WarehouseRepository, WarehouseModel>
+		implements WarehouseService {
 
 	private static final long serialVersionUID = -460466203849182372L;
 

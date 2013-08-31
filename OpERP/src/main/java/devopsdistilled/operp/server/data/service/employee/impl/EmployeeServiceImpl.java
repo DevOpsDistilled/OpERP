@@ -6,15 +6,17 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import devopsdistilled.operp.client.employee.models.EmployeeModel;
 import devopsdistilled.operp.server.data.entity.employee.Employee;
 import devopsdistilled.operp.server.data.repo.employee.EmployeeRepository;
 import devopsdistilled.operp.server.data.service.employee.EmployeeService;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 
 @Service
-public class EmployeeServiceImpl extends
-		AbstractEntityService<Employee, Long, EmployeeRepository> implements
-		EmployeeService {
+public class EmployeeServiceImpl
+		extends
+		AbstractEntityService<Employee, Long, EmployeeRepository, EmployeeModel>
+		implements EmployeeService {
 
 	private static final long serialVersionUID = 2648525777561781085L;
 

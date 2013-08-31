@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import devopsdistilled.operp.client.business.sales.models.SaleModel;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 import devopsdistilled.operp.server.data.entity.business.Sale;
 import devopsdistilled.operp.server.data.entity.business.SaleDescRow;
@@ -18,8 +19,9 @@ import devopsdistilled.operp.server.data.service.business.SaleService;
 import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
 
 @Service
-public class SaleServiceImpl extends BusinessServiceImpl<Sale, SaleRepository>
-		implements SaleService {
+public class SaleServiceImpl extends
+		BusinessServiceImpl<Sale, SaleRepository, SaleModel> implements
+		SaleService {
 
 	private static final long serialVersionUID = 2688393943868408691L;
 
