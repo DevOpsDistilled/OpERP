@@ -55,7 +55,7 @@ public class SaleDescPaneControllerImpl implements SaleDescPaneController {
 					&& stock.getItem().compareTo(
 							model.getSaleDescRow().getItem()) == 0)
 
-				if (stock.getQuantity().compareTo(quantity) <= 0)
+				if (stock.getQuantity().compareTo(quantity) < 0)
 					throw new EntityValidationException("Only "
 							+ stock.getQuantity() + " " + stock.getItem()
 							+ " available in " + stock.getWarehouse());
