@@ -120,11 +120,11 @@ public class ItemServiceImpl extends
 		MutablePropertyValues propertyValues = new MutablePropertyValues();
 		propertyValues.addPropertyValue("serviceInterface", ItemModel.class);
 		propertyValues.addPropertyValue("serviceUrl", "rmi://" + clientAddress
-				+ ":1099/" + "ItemModel");
+				+ ":1099/" + ItemModel.class.getCanonicalName());
 		beanDefinition.setPropertyValues(propertyValues);
 
 		registry.registerBeanDefinition("itemModelRmiProxyFactoryBean",
 				beanDefinition);
-		 System.out.println(context.getBean("itemModelRmiProxyFactoryBean"));
+		System.out.println(context.getBean("itemModelRmiProxyFactoryBean"));
 	}
 }

@@ -49,7 +49,8 @@ public class ItemModelImpl extends
 
 		MutablePropertyValues propertyValues = new MutablePropertyValues();
 		propertyValues.addPropertyValue("serviceInterface", ItemModel.class);
-		propertyValues.addPropertyValue("serviceName", "ItemModel");
+		propertyValues.addPropertyValue("serviceName",
+				ItemModel.class.getCanonicalName());
 		propertyValues.addPropertyValue("service", this);
 		propertyValues.addPropertyValue("registryPort", "1099");
 		beanDefinition.setPropertyValues(propertyValues);
