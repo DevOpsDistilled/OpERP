@@ -41,4 +41,16 @@ public class EntityModelContext {
 		return new ManufacturerModelImpl();
 	}
 
+//	@Bean
+//	public RmiServiceExporter rmiEmployeeServiceExporter() {
+//		RmiServiceExporter rmiServiceExportor = new RmiServiceExporter();
+//		rmiServiceExportor.setServiceInterface(ItemModel.class);
+//		// String serviceName = rmiServiceExportor.getServiceInterface()
+//		// .getCanonicalName();
+//		rmiServiceExportor.setServiceName("ItemModel");
+//		rmiServiceExportor.setService(itemModel());
+//		rmiServiceExportor.setRegistryPort(1099);
+//		System.out.println(rmiServiceExportor);
+//		return rmiServiceExportor;
+//	}
 }
