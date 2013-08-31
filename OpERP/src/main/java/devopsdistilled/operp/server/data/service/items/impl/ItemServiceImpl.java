@@ -2,6 +2,11 @@ package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.server.data.entity.items.Brand;
@@ -20,6 +25,9 @@ public class ItemServiceImpl extends
 
 	@Inject
 	private ItemRepository itemRepository;
+
+	@Inject
+	private ApplicationContext context;
 
 	@Override
 	protected ItemRepository getRepo() {
@@ -90,5 +98,29 @@ public class ItemServiceImpl extends
 	@Override
 	public void registerClient(String clientAddress) {
 		System.out.println("Client from " + clientAddress);
+		//
+		// RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
+		// rmiProxy.setServiceInterface(ItemModel.class);
+		// String serviceName =
+		// rmiProxy.getServiceInterface().getCanonicalName();
+		// rmiProxy.setServiceUrl("rmi://" + clientAddress + ":1099/"
+		// + serviceName);
+
+		// TestClass testing = new TestClass();
+
+		AutowireCapableBeanFactory factory = context
+				.getAutowireCapableBeanFactory();
+		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) factory;
+		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
+		beanDefinition.setBeanClass(TestClass.class);
+		beanDefinition.setAutowireCandidate(true);
+
+		MutablePropertyValues propertyValues = new MutablePropertyValues();
+		propertyValues.addPropertyValue("property", "Just a sample");
+		beanDefinition.setPropertyValues(propertyValues);
+
+		registry.registerBeanDefinition("testClass", beanDefinition);
+
+		System.out.println(context.getBean(TestClass.class));
 	}
 }
