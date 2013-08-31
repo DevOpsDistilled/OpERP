@@ -7,6 +7,12 @@ import devopsdistilled.operp.server.context.AppContext;
 
 public class ServerApp {
 
+	private static ApplicationContext context;
+
+	public static ApplicationContext getApplicationContext() {
+		return context;
+	}
+
 	public static void main(String[] args) {
 
 		if (args.length > 0 && args[0].equalsIgnoreCase("init"))
@@ -14,9 +20,9 @@ public class ServerApp {
 		else
 			System.setProperty("hibernate.hbm2ddl.auto", "update");
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(
-				AppContext.class);
+		context = new AnnotationConfigApplicationContext(AppContext.class);
 
 		System.out.println(context);
 	}
+
 }

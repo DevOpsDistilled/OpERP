@@ -7,14 +7,16 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import devopsdistilled.operp.client.account.models.PaidTransactionModel;
 import devopsdistilled.operp.server.data.entity.account.PaidTransaction;
 import devopsdistilled.operp.server.data.repo.account.PaidTransactionRepository;
 import devopsdistilled.operp.server.data.service.account.PaidTransactionService;
 import devopsdistilled.operp.server.data.service.account.PayableAccountService;
 
 @Service
-public class PaidTransactionServiceImpl extends
-		TransactionServiceImpl<PaidTransaction, PaidTransactionRepository>
+public class PaidTransactionServiceImpl
+		extends
+		TransactionServiceImpl<PaidTransaction, PaidTransactionRepository, PaidTransactionModel>
 		implements PaidTransactionService {
 
 	private static final long serialVersionUID = 8946536638729817665L;
