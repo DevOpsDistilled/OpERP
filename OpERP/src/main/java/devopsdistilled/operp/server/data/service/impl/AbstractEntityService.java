@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.remoting.RemoteConnectFailureException;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
 import devopsdistilled.operp.client.abstracts.EntityModel;
@@ -49,7 +50,11 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 	@Override
 	public void notifyClientsForUpdate() {
 		for (EM entityModel : entityModels) {
-			entityModel.update();
+			try {
+				entityModel.update();
+			} catch (RemoteConnectFailureException e) {
+				entityModels.remove(entityModel);
+			}
 		}
 	}
 
