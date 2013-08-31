@@ -125,6 +125,7 @@ public class ItemServiceImpl extends
 
 		registry.registerBeanDefinition("itemModelRmiProxyFactoryBean",
 				beanDefinition);
-		System.out.println(context.getBean("itemModelRmiProxyFactoryBean"));
+		System.out.println(context.getBean(ItemModel.class));
+
 	}
 }

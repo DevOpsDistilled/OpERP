@@ -57,7 +57,8 @@ public class ItemModelImpl extends
 
 		registry.registerBeanDefinition("itemModelServiceExporter",
 				beanDefinition);
-		System.out.println(context.getBean("itemModelServiceExporter"));
+		context.getBean("itemModelServiceExporter"); // Need this else
+														// NotBoundException
 
 		try {
 			Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
