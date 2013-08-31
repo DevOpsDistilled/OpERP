@@ -21,7 +21,6 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
-import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 import devopsdistilled.operp.server.data.service.items.ItemService;
@@ -109,17 +108,19 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 		beanDefinition.setAutowireCandidate(true);
 
 		MutablePropertyValues propertyValues = new MutablePropertyValues();
-		propertyValues.addPropertyValue("serviceInterface", ItemModel.class);
-		propertyValues.addPropertyValue("serviceName",
-				ItemModel.class.getCanonicalName());
+
+		Class<?> serviceInterface = this.getClass().getInterfaces()[0];
+
+		propertyValues.addPropertyValue("serviceInterface", serviceInterface);
+		String serviceName = serviceInterface.getCanonicalName();
+		propertyValues.addPropertyValue("serviceName", serviceName);
 		propertyValues.addPropertyValue("service", this);
 		propertyValues.addPropertyValue("registryPort", "1099");
 		beanDefinition.setPropertyValues(propertyValues);
 
-		registry.registerBeanDefinition("itemModelServiceExporter",
-				beanDefinition);
-		context.getBean("itemModelServiceExporter"); // Need this else
-														// NotBoundException
+		registry.registerBeanDefinition(serviceName, beanDefinition);
+		context.getBean(serviceName); // Need this else
+										// NotBoundException
 
 		try {
 			Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
