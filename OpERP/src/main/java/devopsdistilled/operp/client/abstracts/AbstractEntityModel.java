@@ -121,7 +121,11 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 		registry.registerBeanDefinition(serviceName, beanDefinition);
 		context.getBean(serviceName); // Need this else
 										// NotBoundException
+		getService().registerClient(getHostAddress());
 
+	}
+
+	public String getHostAddress() {
 		try {
 			Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
 					.getNetworkInterfaces();
@@ -138,8 +142,7 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 
 					if (!netAddr.isLoopbackAddress()
 							&& (netAddr instanceof Inet4Address)) {
-						getService().registerClient(netAddr.getHostAddress());
-						break;
+						return netAddr.getHostAddress();
 					}
 
 				}
@@ -147,5 +150,6 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
+		return "localhost";
 	}
 }
