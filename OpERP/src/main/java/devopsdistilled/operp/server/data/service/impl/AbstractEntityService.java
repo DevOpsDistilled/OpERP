@@ -6,8 +6,6 @@ import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -21,6 +19,7 @@ import org.springframework.remoting.RemoteConnectFailureException;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
 import devopsdistilled.operp.client.abstracts.EntityModel;
+import devopsdistilled.operp.server.ServerApp;
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
 
@@ -28,9 +27,6 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 		implements EntityService<E, ID> {
 
 	private static final long serialVersionUID = 4892118695516828793L;
-
-	@Inject
-	private ApplicationContext context;
 
 	protected abstract ER getRepo();
 
@@ -171,6 +167,7 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 	public void registerClient(String clientAddress) {
 		System.out.println("Client from " + clientAddress);
 
+		ApplicationContext context = ServerApp.getApplicationContext();
 		AutowireCapableBeanFactory factory = context
 				.getAutowireCapableBeanFactory();
 		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) factory;
