@@ -47,6 +47,13 @@ public abstract class AbstractEntityService<E extends Entiti<?>, ID extends Seri
 	}
 
 	@Override
+	public void notifyClientsForUpdate() {
+		for (EM entityModel : entityModels) {
+			entityModel.update();
+		}
+	}
+
+	@Override
 	public boolean isEntityNameExists(String entityName) {
 		E entity = findByEntityName(entityName);
 		if (entity != null)

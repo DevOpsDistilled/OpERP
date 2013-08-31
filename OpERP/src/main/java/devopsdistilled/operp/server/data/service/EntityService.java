@@ -15,4 +15,6 @@ public interface EntityService<E extends Entiti<?>, ID extends Serializable>
 
 	void registerClient(String clientAddress);
 
+	void notifyClientsForUpdate();
+
 }
