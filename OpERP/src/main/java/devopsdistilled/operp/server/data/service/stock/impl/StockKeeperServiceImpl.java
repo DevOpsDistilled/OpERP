@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import devopsdistilled.operp.client.stock.models.StockKeeperModel;
 import devopsdistilled.operp.server.data.entity.stock.Stock;
 import devopsdistilled.operp.server.data.entity.stock.StockKeeper;
 import devopsdistilled.operp.server.data.repo.stock.StockKeeperRepository;
@@ -17,8 +18,9 @@ import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
 
 @Service
-public class StockKeeperServiceImpl extends
-		AbstractEntityService<StockKeeper, Long, StockKeeperRepository>
+public class StockKeeperServiceImpl
+		extends
+		AbstractEntityService<StockKeeper, Long, StockKeeperRepository, StockKeeperModel>
 		implements StockKeeperService {
 
 	private static final long serialVersionUID = -1311042040845285500L;

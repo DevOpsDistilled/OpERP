@@ -1,9 +1,6 @@
 package devopsdistilled.operp.client.items.models.impl;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
-import org.springframework.context.ApplicationContext;
 
 import devopsdistilled.operp.client.abstracts.AbstractEntityModel;
 import devopsdistilled.operp.client.items.models.ItemModel;
@@ -16,9 +13,6 @@ public class ItemModelImpl extends
 		ItemModel {
 
 	@Inject
-	private ApplicationContext context;
-
-	@Inject
 	private ItemService service;
 
 	@Override
@@ -26,10 +20,4 @@ public class ItemModelImpl extends
 		return service;
 	}
 
-	@Override
-	@PostConstruct
-	public void registerWithServer() {
-
-		super.registerWithServer();
-	}
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import devopsdistilled.operp.client.account.models.ReceivedTransactionModel;
 import devopsdistilled.operp.server.data.entity.account.ReceivedTransaction;
 import devopsdistilled.operp.server.data.repo.account.ReceivedTransactionRepository;
 import devopsdistilled.operp.server.data.service.account.ReceivableAccountService;
@@ -15,7 +16,7 @@ import devopsdistilled.operp.server.data.service.account.ReceivedTransactionServ
 @Service
 public class ReceivedTransactionServiceImpl
 		extends
-		TransactionServiceImpl<ReceivedTransaction, ReceivedTransactionRepository>
+		TransactionServiceImpl<ReceivedTransaction, ReceivedTransactionRepository, ReceivedTransactionModel>
 		implements ReceivedTransactionService {
 
 	private static final long serialVersionUID = -8134555856017276841L;

@@ -2,12 +2,6 @@ package devopsdistilled.operp.server.data.service.items.impl;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
-import org.springframework.context.ApplicationContext;
-import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import org.springframework.stereotype.Service;
 
 import devopsdistilled.operp.client.items.models.ItemModel;
@@ -20,16 +14,13 @@ import devopsdistilled.operp.server.data.service.items.ItemService;
 
 @Service
 public class ItemServiceImpl extends
-		AbstractEntityService<Item, Long, ItemRepository> implements
+		AbstractEntityService<Item, Long, ItemRepository, ItemModel> implements
 		ItemService {
 
 	private static final long serialVersionUID = 7578267584162733059L;
 
 	@Inject
 	private ItemRepository itemRepository;
-
-	@Inject
-	private ApplicationContext context;
 
 	@Override
 	protected ItemRepository getRepo() {
@@ -97,35 +88,4 @@ public class ItemServiceImpl extends
 		return itemRepository.findByItemName(entityName);
 	}
 
-	@Override
-	public void registerClient(String clientAddress) {
-		System.out.println("Client from " + clientAddress);
-		//
-		// RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
-		// rmiProxy.setServiceInterface(ItemModel.class);
-		// String serviceName =
-		// rmiProxy.getServiceInterface().getCanonicalName();
-		// rmiProxy.setServiceUrl("rmi://" + clientAddress + ":1099/"
-		// + serviceName);
-
-		// TestClass testing = new TestClass();
-
-		AutowireCapableBeanFactory factory = context
-				.getAutowireCapableBeanFactory();
-		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) factory;
-		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-		beanDefinition.setBeanClass(RmiProxyFactoryBean.class);
-		beanDefinition.setAutowireCandidate(true);
-
-		MutablePropertyValues propertyValues = new MutablePropertyValues();
-		propertyValues.addPropertyValue("serviceInterface", ItemModel.class);
-		propertyValues.addPropertyValue("serviceUrl", "rmi://" + clientAddress
-				+ ":1099/" + ItemModel.class.getCanonicalName());
-		beanDefinition.setPropertyValues(propertyValues);
-
-		registry.registerBeanDefinition("itemModelRmiProxyFactoryBean",
-				beanDefinition);
-		System.out.println(context.getBean(ItemModel.class));
-
-	}
 }

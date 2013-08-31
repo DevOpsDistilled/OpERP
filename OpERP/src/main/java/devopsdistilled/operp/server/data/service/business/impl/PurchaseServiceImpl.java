@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import devopsdistilled.operp.client.business.purchases.models.PurchaseModel;
 import devopsdistilled.operp.server.data.entity.account.PaidTransaction;
 import devopsdistilled.operp.server.data.entity.business.Purchase;
 import devopsdistilled.operp.server.data.entity.business.PurchaseDescRow;
@@ -19,8 +20,8 @@ import devopsdistilled.operp.server.data.service.stock.StockKeeperService;
 
 @Service
 public class PurchaseServiceImpl extends
-		BusinessServiceImpl<Purchase, PurchaseRepository> implements
-		PurchaseService {
+		BusinessServiceImpl<Purchase, PurchaseRepository, PurchaseModel>
+		implements PurchaseService {
 
 	private static final long serialVersionUID = 2688393943868408691L;
 

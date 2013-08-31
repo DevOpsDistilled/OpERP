@@ -13,4 +13,6 @@ public interface EntityService<E extends Entiti<?>, ID extends Serializable>
 
 	public boolean isEntityNameValidForTheEntity(ID id, String entityName);
 
+	void registerClient(String clientAddress);
+
 }

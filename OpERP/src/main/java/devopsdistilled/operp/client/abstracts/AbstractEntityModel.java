@@ -12,6 +12,7 @@ import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.springframework.beans.MutablePropertyValues;
@@ -23,7 +24,6 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
 
 import devopsdistilled.operp.server.data.entity.Entiti;
 import devopsdistilled.operp.server.data.service.EntityService;
-import devopsdistilled.operp.server.data.service.items.ItemService;
 
 public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends EntityService<E, ?>, EO extends EntityModelObserver>
 		extends AbstractModel<EO> implements EntityModel<E, ES, EO> {
@@ -99,6 +99,7 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 		update();
 	}
 
+	@PostConstruct
 	public void registerWithServer() {
 		AutowireCapableBeanFactory factory = context
 				.getAutowireCapableBeanFactory();
@@ -138,8 +139,7 @@ public abstract class AbstractEntityModel<E extends Entiti<?>, ES extends Entity
 
 					if (!netAddr.isLoopbackAddress()
 							&& (netAddr instanceof Inet4Address)) {
-						((ItemService) getService()).registerClient(netAddr
-								.getHostAddress());
+						getService().registerClient(netAddr.getHostAddress());
 						break;
 					}
 

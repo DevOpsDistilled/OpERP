@@ -6,15 +6,17 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import devopsdistilled.operp.client.party.models.CustomerModel;
 import devopsdistilled.operp.server.data.entity.party.Customer;
 import devopsdistilled.operp.server.data.repo.party.CustomerRepository;
 import devopsdistilled.operp.server.data.service.impl.AbstractEntityService;
 import devopsdistilled.operp.server.data.service.party.CustomerService;
 
 @Service
-public class CustomerServiceImpl extends
-		AbstractEntityService<Customer, Long, CustomerRepository> implements
-		CustomerService {
+public class CustomerServiceImpl
+		extends
+		AbstractEntityService<Customer, Long, CustomerRepository, CustomerModel>
+		implements CustomerService {
 
 	private static final long serialVersionUID = 7983273640225740161L;
 
