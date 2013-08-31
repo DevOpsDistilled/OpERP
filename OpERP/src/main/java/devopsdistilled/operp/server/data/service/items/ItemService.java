@@ -16,4 +16,6 @@ public interface ItemService extends EntityService<Item, Long> {
 
 	boolean isItemNameValidForItem(Long itemId, String itemName);
 
+	void registerClient(String clientAddress);
+
 }

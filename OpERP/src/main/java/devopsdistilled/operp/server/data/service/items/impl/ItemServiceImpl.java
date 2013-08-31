@@ -7,8 +7,10 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;
+import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import org.springframework.stereotype.Service;
 
+import devopsdistilled.operp.client.items.models.ItemModel;
 import devopsdistilled.operp.server.data.entity.items.Brand;
 import devopsdistilled.operp.server.data.entity.items.Item;
 import devopsdistilled.operp.server.data.entity.items.Product;
@@ -112,15 +114,17 @@ public class ItemServiceImpl extends
 				.getAutowireCapableBeanFactory();
 		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) factory;
 		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-		beanDefinition.setBeanClass(TestClass.class);
+		beanDefinition.setBeanClass(RmiProxyFactoryBean.class);
 		beanDefinition.setAutowireCandidate(true);
 
 		MutablePropertyValues propertyValues = new MutablePropertyValues();
-		propertyValues.addPropertyValue("property", "Just a sample");
+		propertyValues.addPropertyValue("serviceInterface", ItemModel.class);
+		propertyValues.addPropertyValue("serviceUrl", "rmi://" + clientAddress
+				+ ":1099/" + "ItemModel");
 		beanDefinition.setPropertyValues(propertyValues);
 
-		registry.registerBeanDefinition("testClass", beanDefinition);
-
-		System.out.println(context.getBean(TestClass.class));
+		registry.registerBeanDefinition("itemModelRmiProxyFactoryBean",
+				beanDefinition);
+		 System.out.println(context.getBean("itemModelRmiProxyFactoryBean"));
 	}
 }
